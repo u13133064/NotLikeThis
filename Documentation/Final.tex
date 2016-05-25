@@ -1,0 +1,182 @@
+\documentclass[a4paper,12pt]{report}
+\addtolength{\oddsidemargin}{-1.cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{3.5cm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\makeindex
+
+\usepackage{longtable}
+\usepackage[pdftex]{graphicx}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+% define the title
+\author{Not Like This}
+\title{ Network Visualizations interface for large scale networks Functional Requirements}
+\begin{document}
+\setlength{\parskip}{6pt}
+
+% generates the title
+\begin{titlepage}
+
+\begin{center}
+% Upper part of the page       
+\includegraphics[width=1\textwidth]{./up-logo.jpg}\\[0.4cm]    
+\textsc{\LARGE Department of Computer Science}\\[1.5cm]
+\textsc{\Large COS 301 - Software Engineering}\\[0.5cm]
+% Title
+\HRule \\[0.4cm]
+
+{ \huge \bfseries Not Like This}
+\\[0.4cm] 
+{ \huge \bfseries Functional Requirements}\\[0.4cm]
+\HRule \\[0.4cm]
+% Author and supervisor
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Student number:}
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Jedd {Shneier}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+13133064
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Duncan {Smallwood}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+13027205
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Daniel {King}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+13307607
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Muller {Potgieter}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+12003672
+\end{flushright}
+\end{minipage}
+
+
+\vfill
+% Bottom of the page
+{\large \today}
+\end{center}
+\end{titlepage}
+\footnotesize
+%\input{declaration_of_originality.tex}
+\normalsize
+
+\renewcommand{\thesection}{\arabic{section}}
+\newpage
+\begin{center}
+\textsc{\LARGE Software Requirements Specification and Technology Neutral Process Design}\\[1.5cm]
+\textsc{\Large Network Visualizations interface for large scale networks/Main Project}\\[0.5cm]
+Version: Version 1.0 Beta
+For further references see \href{ https://github.com/u13133064/NotLikeThis}{gitHub}.
+\today
+\end{center}
+\tableofcontents{}
+\newpage
+
+\section{Introduction}
+
+\section{Vision}
+
+\section{Background}
+
+\section{Architecture Requirements}
+	\subsection{Access Channel Requirements}
+		Only registered members of Amazon's EC2 will be allowed to use the visualizer, as it will be integrated into EC2. Clients will be able to use any device(s) that can make use of Chrome, Firefox and/or Internet explorer. The browsers will not need any additional plugins to use the visualizer.
+	\subsection{Quality Requirements}
+	\begin{enumerate}
+		\item The system should show the following performance characteristics:
+		\begin{itemize}
+			\item It should cater for large and small customers. (The customer's size is in terms of the number of networks[VPCs] and network interfaces)
+			\item The visualization should render all displays in under 10 seconds.
+			\item The visualization should render all displays in under 10 seconds.
+			\item The site should load and allow customer interaction within 3 seconds on a local network.
+			\item The project should work within normal EC2 API throttling limits.
+			\item The web page component should require no more computing resources than can be provided without noticeable slow down on a low end consumer laptop.
+		\end{itemize}
+		\item The system should use secure authentication supported by the EC2 API's and follow best practices 
+	\end{enumerate}
+	
+	\subsection{Integration Requirements}
+	\subsection{Architecture Constraints}
+\section{Functional requirements and Application Design}
+	\subsection{Use case prioritization}
+	\subsection{Use case/Services contracts}
+	\subsection{Required functionality}
+	\subsection{Process specifications}
+	\subsection{Domain Model}
+
+\section{Open issues}
+	\begin{itemize}
+		\item The client has yet to mention specific details on how they intend to expand on the base project.
+	\end{itemize}
+
+
+
+%----------------------------------------------------------------------------------------
+%  2 Vision to be done by: Jedd
+%------------------------------------------------------
+ %----------------------------------------------------------------------------------------
+%  3 Background to be done by: Jedd
+%-------------------------------------------
+ %----------------------------------------------------------------------------------------
+%  4 Arch req to be done by: Jedd 4.3 4.4 muller 4.1 4.2
+%-------------------------------------------
+%----------------------------------------------------------------------------------------
+%  5 fun req to be done by: Dan duncan
+%-------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%  6 open issuesto be done by : Muller
+%-------------------------------------------
+
+
+
+\end{document}
