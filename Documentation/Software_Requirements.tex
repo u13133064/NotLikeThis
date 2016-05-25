@@ -1,0 +1,175 @@
+\documentclass[a4paper,12pt]{report}
+\addtolength{\oddsidemargin}{-1.cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{3.5cm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\makeindex
+
+\usepackage{longtable}
+\usepackage[pdftex]{graphicx}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+% define the title
+\author{Not Like This}
+\title{ Network Visualizations interface for large scale networks Functional Requirements}
+\begin{document}
+\setlength{\parskip}{6pt}
+
+% generates the title
+\begin{titlepage}
+
+\begin{center}
+% Upper part of the page       
+\includegraphics[width=1\textwidth]{./up-logo.jpg}\\[0.4cm]    
+\textsc{\LARGE Department of Computer Science}\\[1.5cm]
+\textsc{\Large COS 301 - Software Engineering}\\[0.5cm]
+% Title
+\HRule \\[0.4cm]
+
+{ \huge \bfseries Not Like This}
+\\[0.4cm] 
+{ \huge \bfseries Functional Requirements}\\[0.4cm]
+\HRule \\[0.4cm]
+% Author and supervisor
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Student number:}
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Jedd {Shneier}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+13133064
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Duncan {Smallwood}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+13027205
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Daniel {King}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+13307607
+\end{flushright}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Muller {Potgieter}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{}
+12003672
+\end{flushright}
+\end{minipage}
+
+
+\vfill
+% Bottom of the page
+{\large \today}
+\end{center}
+\end{titlepage}
+\footnotesize
+%\input{declaration_of_originality.tex}
+\normalsize
+
+\renewcommand{\thesection}{\arabic{section}}
+\newpage
+\begin{center}
+\textsc{\LARGE Software Requirements Specification and Technology Neutral Process Design}\\[1.5cm]
+\textsc{\Large Network Visualizations interface for large scale networks/Main Project}\\[0.5cm]
+Version: Version 1.0 Beta
+For further references see \href{ https://github.com/u13133064/NotLikeThis}{gitHub}.
+\today
+\end{center}
+\tableofcontents{}
+\newpage
+\section{Functional requirements}
+\subsection{Introduction}
+This is the Software Requirements specitcation document for a network visuilization system for Amazon web services. Amazon web service customers have hundreds of inter-connected networks with tens-of thousands of networked resources of many types and uses. The Network Visualizations interface for large scale networks (NVI, for short) will be used to create a display of a customer's networks, so that they can have a better understanding of their network. In short a vizualization system to capture the virtual connectiosn between a customers instances within their Amazon Virtual Private Cloud.
+The purpose of this document is to capture the functioal and architectural requirments of the system as well as other issues. The document is divided into the following sections:
+\begin{enumerate}
+    \item Vision for the system
+\begin{itemize}
+    \item This includes the projected vision and outcomes of the system and what AWS aims to achieve with this project. 
+\end{itemize}
+
+    \item Background to why the system is being developed
+
+\begin{itemize}
+    \item This includes a discussion of the problem which AWS has decided upon to address with this project. How this system is intended to solve the problem and why this system is needed.
+\end{itemize}
+
+    \item Architecture Requirements
+\setlength{\parindent}{2.5em}
+
+\begin{itemize}
+    \item This includes the software architecture requirements wich include the access and integration requirements, quality
+requirements and architectural constraints for the NVI. Additionally to the quality requirements of the system the external systems wich will be incorparated into the system will be discussed. Lastly it will include any constraints that the client has
+specifed with regard to technologies used in and by the system.
+\end{itemize}
+
+    \item Functional requirements and application design
+
+\begin{itemize}
+    \item This will include the functionality of the system that is required by the users of the system asww well as the initial design for the system.
+\end{itemize}
+    \item Open Issues
+\begin{itemize}
+    \item This section will discuss any requirements of the system that may be unclear or has not been specified. It will also include any inconsistencies that have been discovered in the requirements. 
+\end{itemize}
+\end{enumerate}
+%----------------------------------------------------------------------------------------
+%  2 Vision to be done by: Jedd
+%------------------------------------------------------
+ %----------------------------------------------------------------------------------------
+%  3 Background to be done by: Jedd
+%-------------------------------------------
+ %----------------------------------------------------------------------------------------
+%  4 Arch req to be done by: Jedd 4.3 4.4 muller 4.1 4.2
+%-------------------------------------------
+%----------------------------------------------------------------------------------------
+%  5 fun req to be done by: Dan duncan
+%-------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%  6 open issuesto be done by : Muller
+%-------------------------------------------
+
+\end{document}
