@@ -162,6 +162,12 @@ For further references see \href{ https://github.com/u13133064/NotLikeThis}{gitH
 			\item A major issue with this pattern is that it is possible that it causes a performance decrease as there is an overhead of passing through layers. However, it is still untested and may be nonexistent or negligable.
 		\end{itemize}
 	\subsection{Architectural tactics or strategies}
+		\subsubsection{Thread pooling}
+		In thread pooling m threads work on n tasks. Usually m is less than n thus less memory is used for these threads. This will be especially helpful in this system as it will improve scalability which will be needed for the very large networks we will have to work with. 
+		
+		It can also improve performance as the program no longer has the overhead of creating a new thread for each new task and the system is less likely to have a bottleneck due to high memory usage.
+		\subsubsection{Caching}
+		Due to the system needing to constantly update caching is going to be extremely useful in increasing the performance of the system, as data can be continiously cached and only updated as time progresses rather than completely replaced with some of the data having not changed at all.
 	\subsection{Use of reference architectures and frameworks}
 	\subsection{Access and integration channels}
 	\subsection{Technologies}
