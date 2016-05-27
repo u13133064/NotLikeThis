@@ -142,26 +142,36 @@ For further references see \href{ https://github.com/u13133064/NotLikeThis}{gitH
 		\end{itemize}
 		\item The system should use secure authentication supported by the EC2 API's and follow best practices 
 	\end{enumerate}
-	
 	\subsection{Integration Requirements}
 	\subsection{Architecture Constraints}
+\section{Software Architecture}
+	\subsection{Architectural patterns or styles}
+		\subsubsection{Layered Architecture}
+		The layered architecture separates various logical layers, specifically in this system the Presentation Layer, The Network Analyser, and The Network. The Network Analyser layer will interact with the Network layer and produce an abstraction of various data with regards to the Network. This is then passed to the Presentation Layer which will create a visual representation of the abstraction produced by the lower level.
+		
+		Reasons use layered architecture:
+		\begin{itemize}
+			\item Flexibility, maintainability and scalability. Scalability being a major factor in the overall success of our system. 
+			\item It will also allow for teams to work on different parts of the application in parallel, thus speeding up the implentation process. 
+			\item It also makes it possible to configure different levels of security to different levels. As some levels require more security than others namely any level dealing with EC2 user's account information.
+			\item This also allows for components to be tested independently of each other. 
+		\end{itemize}
+		
+		Some potential issues:
+		\begin{itemize}
+			\item A major issue with this pattern is that it is possible that it causes a performance decrease as there is an overhead of passing through layers. However, it is still untested and may be nonexistent or negligable.
+		\end{itemize}
+	\subsection{Architectural tactics or strategies}
+	\subsection{Use of reference architectures and frameworks}
+	\subsection{Access and integration channels}
+	\subsection{Technologies}
 \section{Functional requirements and Application Design}
+	This section will be completed in later stages of development
 	\subsection{Use case prioritization}
 	\subsection{Use case/Services contracts}
 	\subsection{Required functionality}
 	\subsection{Process specifications}
 	\subsection{Domain Model}
-\section{Software Architecture}
-	\subsection{Architecture requirements}
-		\subsubsection{Architectural scope}
-		\subsubsection{Quality requirements}
-		\subsubsection{Integration and access channel requirements}
-		\subsubsection{Architectural constraints}
-	\subsection{Architectural patterns or styles}
-	\subsection{Architectural tactics or strategies}
-	\subsection{Use of reference architectures and frameworks}
-	\subsection{Access and integration channels}
-	\subsection{Technologies}
 
 \section{Open issues}
 	\begin{itemize}
