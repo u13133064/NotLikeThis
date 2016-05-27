@@ -135,7 +135,6 @@ For further references see \href{ https://github.com/u13133064/NotLikeThis}{gitH
 		\begin{itemize}
 			\item It should cater for large and small customers. (The customer's size is in terms of the number of networks[VPCs] and network interfaces)
 			\item The visualization should render all displays in under 10 seconds.
-			\item The visualization should render all displays in under 10 seconds.
 			\item The site should load and allow customer interaction within 3 seconds on a local network.
 			\item The project should work within normal EC2 API throttling limits.
 			\item The web page component should require no more computing resources than can be provided without noticeable slow down on a low end consumer laptop.
@@ -161,6 +160,11 @@ For further references see \href{ https://github.com/u13133064/NotLikeThis}{gitH
 	\subsection{Architectural tactics or strategies}
 	\subsection{Use of reference architectures and frameworks}
 	\subsection{Access and integration channels}
+		\begin{itemize}
+			\item The service will be accessable by human users through any normal web browser.
+			\item The service will use Amazon's EC2 API in order to access the information required to perform the service, thus it needs to be able to intergrate with it.
+			\item The channels used by EC2 to get its information are already established and their inner workings are beyond the scope of this project, thus they will be ignored.
+		\end{itemize}
 	\subsection{Technologies}
 
 \section{Open issues}
