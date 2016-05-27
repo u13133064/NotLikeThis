@@ -333,7 +333,19 @@ system, tactics such as error checking and process monitoring are applied.
 	
 	
 		
-	\subsection{Use of reference architectures and frameworks}
+\subsection{Use of reference architectures and frameworks}
+		We have decided to break the problem up into 3 basic layers. Each layer will be as replaceable as posible. The 3 layers will be:
+		\begin{enumerate}
+			\item Visualisation layer
+			\item Scanner Layer
+			\item Network Layer
+		\end{enumerate}
+		\subsubsection{Visualisation Layer}
+			This layer will likely be primarily implemented in standard browser technologies and be run on the client side. It will be the implementation of the actual visualisation of the network. Implementation will be as independant as possible in order to allow it to be used as a web based network visualiser by anyone.
+		\subsubsection{Scanner Layer}
+			This layer will be implemented as a mediator between the network and the visualiser. It will provide a consistant input for the Visualisation Layer such that any network API, or lack thereof will wimply require a different version of this layer without any rewirting of the Visulisation Layer.
+		\subsubsection{Network Layer}
+			This layer is the layer we are least concerned with. Our only concern is the API of the network and how the scanner will gather the information needed to visulize the network.
 	\subsection{Access and integration channels}
 		\begin{itemize}
 			\item The service will be accessable by human users through any normal web browser.
