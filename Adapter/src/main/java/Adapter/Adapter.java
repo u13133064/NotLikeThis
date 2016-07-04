@@ -1,32 +1,26 @@
 package Adapter;
 
+import Credentials.Credential;
 import ResponeObjects.ResponseObject;
 
 /**
  * Created by User on 2016/07/04.
  */
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.ec2.AmazonEC2;
-import com.amazonaws.services.ec2.AmazonEC2Client;
-import com.amazonaws.services.ec2.model.DescribeInstancesResult;
-import com.amazonaws.services.ec2.model.Instance;
-import com.amazonaws.services.ec2.model.Reservation;
-public interface Adapter {
 
-    public ResponseObject getAvailibilityZones();
-    public ResponseObject getClassicLinks();
-    public ResponseObject getDHCP();
-    public ResponseObject getGateways();
-    public ResponseObject getInstsances();
-    public ResponseObject getInternalGateways();
-    public ResponseObject getNAT();
-    public ResponseObject getNetworkinterfaces();
-    public ResponseObject getPlacementGroups();
-    public ResponseObject getRegions();
-    public ResponseObject getRouteTable();
-    public ResponseObject getVPC();
-    public ResponseObject getVPNGateWays();
+public interface Adapter {
+    public ResponseObject getAvailabilityZones(Credential clientCredentials);
+    public ResponseObject getClassicLinks(Credential clientCredentials);
+    public ResponseObject getDHCP(Credential clientCredentials);
+    public ResponseObject getGateways(Credential clientCredentials);
+    public ResponseObject getInstsances(Credential clientCredentials);
+    public ResponseObject getInternalGateways(Credential clientCredentials);
+    public ResponseObject getNAT(Credential clientCredentials);
+    public ResponseObject getNetworkinterfaces(Credential clientCredentials);
+    public ResponseObject getPlacementGroups(Credential clientCredentials);
+    public ResponseObject getRegions(Credential clientCredentials);
+    public ResponseObject getRouteTable(Credential clientCredentials);
+    public ResponseObject getVPC(Credential clientCredentials);
+    public ResponseObject getVPNGateWays(Credential clientCredentials);
 
 
 }
