@@ -48,7 +48,17 @@ public class AWSAdapterAlpha implements Adapter{
 
     @Override
     public ResponseObject getDHCP(Credential clientCredentials) {
-        return null;
+        AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
+        AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+
+        DescribeDhcpOptionsResult dhcpOptionsResult = ec2.describeDhcpOptions();
+        List<DhcpOptions> dhcpOptionses = dhcpOptionsResult.getDhcpOptions();
+
+        DhcpOptionsResponse dhcpOptionsResponse = new DhcpOptionsResponse();
+        dhcpOptionsResponse.setDhcpOptionses(dhcpOptionses);
+
+        return dhcpOptionsResponse;
+
     }
 
     @Override
