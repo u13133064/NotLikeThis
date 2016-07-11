@@ -22,7 +22,7 @@ public class AvailabilityZonesResponse implements ResponseObject{
         String result="";
         for (int i =0 ; i< getAvailabilityZones().size();i++)
         {
-            result+=getAvailabilityZones().get(i)+",";
+            result+=getAvailabilityZones().get(i).getRegionName()+",";
         }
         result=result.substring(0,result.length()-1);
         return  result;

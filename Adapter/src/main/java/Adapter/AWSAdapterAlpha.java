@@ -32,7 +32,18 @@ public class AWSAdapterAlpha implements Adapter{
 
     @Override
     public ResponseObject getClassicLinks(Credential clientCredentials) {
-        return null;
+        AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
+        AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+
+        DescribeClassicLinkInstancesResult classicLinkInstancesResult = ec2.describeClassicLinkInstances();
+        List<ClassicLinkInstance> classicLinkInstances = classicLinkInstancesResult.getInstances();
+
+        ClassicLinksResponse classicLinksResponse =new ClassicLinksResponse();
+        classicLinksResponse.setClassicLinkInstances(classicLinkInstances);
+
+        return classicLinksResponse;
+
+
     }
 
     @Override
