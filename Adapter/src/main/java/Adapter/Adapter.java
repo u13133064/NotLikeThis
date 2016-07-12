@@ -15,7 +15,7 @@ public interface Adapter {
     public ResponseObject getInstsances(Credential clientCredentials);
     public ResponseObject getInternalGateways(Credential clientCredentials);
     public ResponseObject getNAT(Credential clientCredentials);
-    public ResponseObject getNetworkinterfaces(Credential clientCredentials);
+    public ResponseObject getNetworkInterfaces(Credential clientCredentials);
     public ResponseObject getPlacementGroups(Credential clientCredentials);
     public ResponseObject getRegions(Credential clientCredentials);
     public ResponseObject getRouteTable(Credential clientCredentials);

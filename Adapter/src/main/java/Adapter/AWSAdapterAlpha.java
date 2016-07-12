@@ -112,12 +112,20 @@ public class AWSAdapterAlpha implements Adapter{
 
     @Override
     public ResponseObject getNAT(Credential clientCredentials) {
-        return null;
+                return null;
     }
 
     @Override
-    public ResponseObject getNetworkinterfaces(Credential clientCredentials) {
-        return null;
+    public ResponseObject getNetworkInterfaces(Credential clientCredentials) {
+        AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
+        AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+
+        DescribeNetworkAclsResult networkAclsResult = ec2.describeNetworkAcls();
+        List<NetworkAcl> networkAcls=networkAclsResult.getNetworkAcls();
+
+        NetworkInterfacesResponse networkInterfacesResponse= new NetworkInterfacesResponse();
+        networkInterfacesResponse.setNetworkAcls(networkAcls);
+        return networkInterfacesResponse;
     }
 
     @Override
@@ -156,7 +164,6 @@ public class AWSAdapterAlpha implements Adapter{
 
         DescribeRouteTablesResult routeTableResult= ec2.describeRouteTables();
         List<RouteTable> routeTables= routeTableResult.getRouteTables();
-
 
         RouteTableResponse routeTableResponse = new RouteTableResponse();
         routeTableResponse.setRouteTables(routeTables);
