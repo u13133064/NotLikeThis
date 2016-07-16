@@ -4,12 +4,15 @@ import Credentials.Credential;
 import ResponeObjects.*;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.*;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by User on 2016/07/04.
@@ -20,13 +23,18 @@ public class AWSAdapterAlpha implements Adapter{
     public ResponseObject getAvailabilityZones(Credential clientCredentials) {
         AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        
+      
 
         DescribeAvailabilityZonesResult availabilityZonesResult=ec2.describeAvailabilityZones();
         List<AvailabilityZone> availabilityZones=availabilityZonesResult.getAvailabilityZones();
+    
+
 
         AvailabilityZonesResponse availabilityZonesResponse = new AvailabilityZonesResponse();
         availabilityZonesResponse.setAvailabilityZones(availabilityZones);
-
+        
+      
         return availabilityZonesResponse;
     }
 
@@ -67,14 +75,16 @@ public class AWSAdapterAlpha implements Adapter{
     }
 
     @Override
-    public ResponseObject getInstsances(Credential clientCredentials) {
+    public ResponseObject getInstsances(Credential clientCredentials,Regions region) {
         AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        ec2.setRegion(com.amazonaws.regions.Region.getRegion(region));
 
         DescribeInstancesResult instancesResult =ec2.describeInstances();
         List<Reservation> reservations = instancesResult.getReservations();
         InstancesResponse instancesResponse = new InstancesResponse();
         List<Instance> instancesCollection = new LinkedList<Instance>();
+        
 
 
 
@@ -83,7 +93,7 @@ public class AWSAdapterAlpha implements Adapter{
             List<Instance> instances= reservations.get(i).getInstances();
             for(int j =0;j<instances.size();j++)
             {
-                 instancesCollection.add(instances.get(i));
+                 instancesCollection.add(instances.get(j));
 
             }
 

@@ -1,5 +1,8 @@
 package Adapter;
 
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.ec2.model.Region;
+
 import Credentials.Credential;
 import ResponeObjects.ResponseObject;
 
@@ -12,7 +15,7 @@ public interface Adapter {
     public ResponseObject getClassicLinks(Credential clientCredentials);
     public ResponseObject getDHCP(Credential clientCredentials);
     public ResponseObject getGateways(Credential clientCredentials);
-    public ResponseObject getInstsances(Credential clientCredentials);
+    public ResponseObject getInstsances(Credential clientCredentials,Regions region);
     public ResponseObject getInternalGateways(Credential clientCredentials);
     public ResponseObject getNAT(Credential clientCredentials);
     public ResponseObject getNetworkInterfaces(Credential clientCredentials);

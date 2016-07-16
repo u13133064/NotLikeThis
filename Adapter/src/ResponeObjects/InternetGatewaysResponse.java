@@ -20,12 +20,13 @@ public class InternetGatewaysResponse implements ResponseObject {
 
     @Override
     public String toString() {
-        String result="";
+        String result="Internet Gateways: ";
         for (int i = 0;i<getInternetGateways().size();i++)
         {
             result+=getInternetGateways().get(i).getInternetGatewayId();
             result+=",";
         }
+     
         result=result.substring(0,result.length()-1);
         return  result;
 
