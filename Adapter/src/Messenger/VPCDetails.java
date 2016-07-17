@@ -2,13 +2,13 @@ package Messenger;
 
 public class VPCDetails {
 	private String vpcName;
-	private int regionCount;
+	private int avZoneCount;
 	
 
 	public VPCDetails copy() {
 		VPCDetails cloneVPCDetails = new VPCDetails();
 		cloneVPCDetails.setVpcName(getVpcName());
-		cloneVPCDetails.setRegionCount(getRegionCount());
+		cloneVPCDetails.setAvZoneCount(getAvZoneCount());
 		return cloneVPCDetails;
 	}
 
@@ -23,13 +23,16 @@ public class VPCDetails {
 	}
 
 
-	public int getRegionCount() {
-		return regionCount;
+	public int getAvZoneCount() {
+		return avZoneCount;
 	}
 
 
-	public void setRegionCount(int regionCount) {
-		this.regionCount = regionCount;
+	public void setAvZoneCount(int avZoneCount) {
+		this.avZoneCount = avZoneCount;
 	}
+
+
+
 
 }

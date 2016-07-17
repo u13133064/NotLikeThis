@@ -2,10 +2,13 @@ package Messenger;
 
 public class AWSRegionDetails {
 	private String awsRegionName;
-	private int avZoneCount;
+	private int vpcCount;
 	public AWSRegionDetails copy() {
-		// TODO Auto-generated method stub
-		return null;
+		AWSRegionDetails cloneAWSRegionDetails = new AWSRegionDetails();
+		cloneAWSRegionDetails.setAwsRegionName(getAwsRegionName());
+		cloneAWSRegionDetails.setVpcCount(getVpcCount());
+		
+		return cloneAWSRegionDetails;
 	}
 	public String getAwsRegionName() {
 		return awsRegionName;
@@ -13,11 +16,12 @@ public class AWSRegionDetails {
 	public void setAwsRegionName(String awsRegionName) {
 		this.awsRegionName = awsRegionName;
 	}
-	public int getAvZoneCount() {
-		return avZoneCount;
+	public int getVpcCount() {
+		return vpcCount;
 	}
-	public void setAvZoneCount(int avZoneCount) {
-		this.avZoneCount = avZoneCount;
+	public void setVpcCount(int vpcCount) {
+		this.vpcCount = vpcCount;
 	}
+
 
 }

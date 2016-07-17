@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Network {
 	private NetworkDetails networkDetails;
-	private LinkedList<VPC> vpcList; 
+	private LinkedList<AWSRegion> awsRegionList; 
 	
 	public NetworkDetails getNetworkDetails()
 	{
@@ -16,14 +16,14 @@ public class Network {
 		networkDetails = _networkDetails.copy();
 	}
 	
-	public LinkedList<VPC> getVPCList()
+	public LinkedList<AWSRegion> getAWSRegionList()
 	{
-		return vpcList;
+		return awsRegionList;
 	}
 	
-	public void setVPCList(LinkedList<VPC> _vpcList)
+	public void setAWSRegionList(LinkedList<AWSRegion> _awsList)
 	{
-		vpcList = _vpcList;
+		awsRegionList = _awsList;
 	}
 
 }

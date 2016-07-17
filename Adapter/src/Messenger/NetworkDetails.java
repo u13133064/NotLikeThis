@@ -2,14 +2,14 @@ package Messenger;
 
 public class NetworkDetails {
 	private String userName;
-	private int vpcCount;
+	private int regionCount;
 	
 	
 
 	public NetworkDetails copy() {
 		NetworkDetails cloneNetworkdetails= new NetworkDetails();
 		cloneNetworkdetails.setUserName(getUserName());
-		cloneNetworkdetails.setVpcCount(getVpcCount());
+		cloneNetworkdetails.setRegionCount(getRegionCount());
 		return cloneNetworkdetails;
 	}
 
@@ -27,14 +27,14 @@ public class NetworkDetails {
 
 
 
-	public int getVpcCount() {
-		return vpcCount;
+	public int getRegionCount() {
+		return regionCount;
 	}
 
 
 
-	public void setVpcCount(int vpcCount) {
-		this.vpcCount = vpcCount;
+	public void setRegionCount(int regionCount) {
+		this.regionCount = regionCount;
 	}
 
 }
