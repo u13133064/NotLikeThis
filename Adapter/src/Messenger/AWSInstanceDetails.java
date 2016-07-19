@@ -20,4 +20,7 @@ public class AWSInstanceDetails {
 		this.instanceID = instanceID;
 	}
 
+
+
+
 }

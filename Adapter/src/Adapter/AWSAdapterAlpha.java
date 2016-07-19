@@ -184,7 +184,17 @@ public class AWSAdapterAlpha implements Adapter{
 
     @Override
     public ResponseObject getVPC(Credential clientCredentials) {
-        return null;
+    	AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
+        AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        
+        
+     
+        DescribeVpcsResult describeVpcsResult = ec2.describeVpcs();
+        List<Vpc>vpcs=describeVpcsResult.getVpcs();
+        
+        VPCResponse vpcResponse = new VPCResponse();
+        vpcResponse.setVpcs(vpcs);
+        return vpcResponse;
     }
 
     @Override

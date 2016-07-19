@@ -1,7 +1,8 @@
 
 
 import com.amazonaws.regions.Regions;
-
+import Messenger.*;
+import Scanner.AWSNetworkScanner;
 import Adapter.AWSAdapterAlpha;
 import Credentials.Credential;
 
@@ -16,9 +17,12 @@ public class MainTest{
         Credential credential = new Credential();
         credential.setAccess_key("AKIAI7CWEMOYBL2FRGTA");
         credential.setPrivate_key("Fi4zVz2Ikk0WDwQ/CuKysn5XJLLaqoe8/RRAgBGe");
+        AWSNetworkScanner ns = new AWSNetworkScanner();
+        
+        ns.createCredentials("AKIAI7CWEMOYBL2FRGTA", "Fi4zVz2Ikk0WDwQ/CuKysn5XJLLaqoe8/RRAgBGe");
+        ns.scanNetwork();
 
 
-        System.out.println(awsAdapterAlpha.getInstsances(credential,Regions.US_WEST_2));
 
 
 
