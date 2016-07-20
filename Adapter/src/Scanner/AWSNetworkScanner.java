@@ -23,13 +23,26 @@ public class AWSNetworkScanner implements NetworkScanner{
 		for(int i = 0;i<network.getAWSRegionList().size();i++)
 		{
 			addVPC(network.getAWSRegionList().get(i));
+		
 		}
 		return null;
 	}
 
 	private void addVPC(AWSRegion awsRegion) {
-		ResponseObject vpcs = adapter.getVPC(credentials);
-		System.out.println(vpcs.toString());
+		ResponseObject vpcs = adapter.getVPC(credentials,com.amazonaws.regions.Regions.fromName(awsRegion.getAwsRegionDetails().getAwsRegionName()));
+		String[]vpcList =  vpcs.toString().split(",");
+		LinkedList<VPC> awsVPCList = new LinkedList<>();
+		for(int i =0;i<vpcList.length;i++ )
+		{
+			VPC newVPC =new VPC();
+			VPCDetails newVPCDetails = new VPCDetails();
+			newVPCDetails.setVpcName(vpcList[i]);
+			newVPCDetails.setAvZoneCount(0);
+			newVPC.setVpcDetails(newVPCDetails);
+			awsVPCList.add(newVPC);
+			
+		}
+		awsRegion.setVpcList(awsVPCList);
 		
 		
 		

@@ -183,9 +183,10 @@ public class AWSAdapterAlpha implements Adapter{
     }
 
     @Override
-    public ResponseObject getVPC(Credential clientCredentials) {
+    public ResponseObject getVPC(Credential clientCredentials,Regions region) {
     	AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        ec2.setRegion(com.amazonaws.regions.Region.getRegion(region));
         
         
      

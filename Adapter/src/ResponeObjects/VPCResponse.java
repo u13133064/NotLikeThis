@@ -22,6 +22,11 @@ public class VPCResponse implements ResponseObject {
 		{
 			result+=getVpcs().get(i).getVpcId()+",";
 		}
+		if(result.length()>1)
+		{
+			 result=result.substring(0,result.length()-1);
+		}
+	
         return  result;
 		
 	}
