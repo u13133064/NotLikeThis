@@ -1,5 +1,8 @@
 
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.LinkedList;
 import java.util.UUID;
 
@@ -11,6 +14,7 @@ import Messenger.AWSRegion;
 import Messenger.AWSRegionDetails;
 import Messenger.Network;
 import Messenger.NetworkDetails;
+import Visualizer.MultiThreadServer;
 import Visualizer.Visualizer;
 
 /**
@@ -19,7 +23,7 @@ import Visualizer.Visualizer;
 public class MainTest{
 
 
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         //-----------Dummy network one-----------
         Messenger.NetworkDetails nd = new NetworkDetails();
@@ -193,16 +197,6 @@ public class MainTest{
         InstanceListTwo.add(instanceTwo);
         subNetworkTwo.setAWSInstanceList(InstanceListTwo);
         
-        LinkedList<Messenger.AWSInstance>  InstanceListThree = new LinkedList <Messenger.AWSInstance>();
-        InstanceListThree.add(instanceTwo);
-        subNetworkThree.setAWSInstanceList(InstanceListThree);
-        
-        
-        
-        
-        
-        
-        
         //---------------------------------------
         LinkedList<AWSRegion> awsRegionListOne = new LinkedList <AWSRegion>();
         awsRegionListOne.add(regionOne);
@@ -244,11 +238,26 @@ public class MainTest{
         
         Visualizer visualizer = new Visualizer();
         visualizer.addNetwork(networkOne);
+        visualizer.addNetwork(networkTwo);
         
         visualizer.printNodes();
         visualizer.printRelationships();
         //visualizer.printNetwork(networkOne);
         //visualizer.printNetwork(networkTwo);
+        
+
+            ServerSocket ssock = new ServerSocket(1236);
+            System.out.println("Listening");
+
+            Socket sock = ssock.accept();
+            
+                System.out.println("Connected");
+                MultiThreadServer a = new MultiThreadServer(sock);
+                a.createNode("a", visualizer.getNodes());
+                a.createRelationship(visualizer.getRelationships());
+                a.run();
+            
+        }
 
     }
 
@@ -260,4 +269,4 @@ public class MainTest{
 
 
 
-}
+
