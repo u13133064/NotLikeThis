@@ -151,17 +151,17 @@ public class MainTest{
         
       //------Instance----------
         Messenger.AWSInstanceDetails i1 = new Messenger.AWSInstanceDetails();
-        i1.setInstanceID("i E 2");
+        i1.setInstanceName("i E 2");
         Messenger.AWSInstance instanceOne = new Messenger.AWSInstance();
         instanceOne.setAwsInstanceDetails(i1);
         
         Messenger.AWSInstanceDetails i2 = new Messenger.AWSInstanceDetails();
-        i2.setInstanceID("F 3");
+        i2.setInstanceName("i F 3");
         Messenger.AWSInstance instanceTwo = new Messenger.AWSInstance();
         instanceTwo.setAwsInstanceDetails(i2);
         
         Messenger.AWSInstanceDetails i3 = new Messenger.AWSInstanceDetails();
-        i3.setInstanceID("G 1");
+        i3.setInstanceName("i G 1");
         Messenger.AWSInstance instanceThree = new Messenger.AWSInstance();
         instanceThree.setAwsInstanceDetails(i3);
       //---------------------------------------
@@ -191,11 +191,11 @@ public class MainTest{
         
         LinkedList<Messenger.AWSInstance>  InstanceListTwo = new LinkedList <Messenger.AWSInstance>();
         InstanceListTwo.add(instanceTwo);
-        subNetworkOne.setAWSInstanceList(InstanceListTwo);
+        subNetworkTwo.setAWSInstanceList(InstanceListTwo);
         
         LinkedList<Messenger.AWSInstance>  InstanceListThree = new LinkedList <Messenger.AWSInstance>();
         InstanceListThree.add(instanceTwo);
-        subNetworkOne.setAWSInstanceList(InstanceListThree);
+        subNetworkThree.setAWSInstanceList(InstanceListThree);
         
         
         
@@ -243,7 +243,11 @@ public class MainTest{
         //---------------------------------------
         
         Visualizer visualizer = new Visualizer();
-        visualizer.printNetwork(networkOne);
+        visualizer.addNetwork(networkOne);
+        
+        visualizer.printNodes();
+        visualizer.printRelationships();
+        //visualizer.printNetwork(networkOne);
         //visualizer.printNetwork(networkTwo);
 
     }

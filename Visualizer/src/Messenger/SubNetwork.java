@@ -12,6 +12,11 @@ public class SubNetwork
 	
 	private UUID SubNetworkID;
 	
+	public SubNetwork()
+	{
+		SubNetworkID = UUID.randomUUID();
+	}
+	
 	public SubNetworkDetails getSubnetworkDetails() 
 	{
 		return subnetworkDetails.copy();

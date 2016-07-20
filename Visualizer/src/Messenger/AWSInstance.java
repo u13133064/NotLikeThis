@@ -1,8 +1,17 @@
 package Messenger;
 
+import java.util.UUID;
+
 public class AWSInstance 
 {
 	private AWSInstanceDetails awsInstanceDetails;
+	
+	private UUID AWSInstanceID;
+	
+	public AWSInstance()
+	{
+		AWSInstanceID = UUID.randomUUID();
+	}
 
 	public AWSInstanceDetails getAwsInstanceDetails() 
 	{
@@ -14,9 +23,14 @@ public class AWSInstance
 		this.awsInstanceDetails = awsInstanceDetails.copy();
 	}
 	
-	public String getInstanceID() 
+	public String getAWSInstanceName()
 	{
-		return awsInstanceDetails.getInstanceID();
+		return awsInstanceDetails.getInstanceName();
+	}
+	
+	public UUID getAWSInstanceID()
+	{
+		return AWSInstanceID;
 	}
 	
 }
