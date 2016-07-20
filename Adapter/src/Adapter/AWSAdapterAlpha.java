@@ -20,9 +20,10 @@ import java.util.Set;
 public class AWSAdapterAlpha implements Adapter{
 
     @Override
-    public ResponseObject getAvailabilityZones(Credential clientCredentials) {
+    public ResponseObject getAvailabilityZones(Credential clientCredentials,Regions region) {
         AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        ec2.setRegion(com.amazonaws.regions.Region.getRegion(region));
         
       
 
@@ -202,9 +203,10 @@ public class AWSAdapterAlpha implements Adapter{
     }
 
 	@Override
-	public ResponseObject getSubnets(Credential clientCredentials) {
+	public ResponseObject getSubnets(Credential clientCredentials,Regions region) {
 		AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        ec2.setRegion(com.amazonaws.regions.Region.getRegion(region));
         
         DescribeSubnetsResult describeSubnetsResult = ec2.describeSubnets();
         List<Subnet>subnets=describeSubnetsResult.getSubnets();

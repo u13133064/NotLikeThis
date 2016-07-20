@@ -11,7 +11,7 @@ import ResponeObjects.ResponseObject;
  */
 
 public interface Adapter {
-    public ResponseObject getAvailabilityZones(Credential clientCredentials);
+    public ResponseObject getAvailabilityZones(Credential clientCredentials,Regions region);
     public ResponseObject getClassicLinks(Credential clientCredentials);
     public ResponseObject getDHCP(Credential clientCredentials);
     public ResponseObject getGateways(Credential clientCredentials);
@@ -22,7 +22,7 @@ public interface Adapter {
     public ResponseObject getPlacementGroups(Credential clientCredentials);
     public ResponseObject getRegions(Credential clientCredentials);
     public ResponseObject getRouteTable(Credential clientCredentials);
-    public ResponseObject getSubnets(Credential clientCredentials);
+    public ResponseObject getSubnets(Credential clientCredentials,Regions region);
     public ResponseObject getVPC(Credential clientCredentials,Regions region);
     public ResponseObject getVPNGateWays(Credential clientCredentials);
 
