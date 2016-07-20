@@ -25,7 +25,11 @@ public class ClassicLinksResponse implements ResponseObject {
         {
             result+="["+getClassicLinkInstances().get(i).getInstanceId()+","+getClassicLinkInstances().get(i).getVpcId()+"],";
         }
-        result=result.substring(0,result.length()-1);
+        if(result.length()>1)
+		{
+			 result=result.substring(0,result.length()-1);
+		}
+	
         return  result;
     }
 

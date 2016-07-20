@@ -18,7 +18,11 @@ public class RouteTableResponse implements ResponseObject {
             result+="["+getRouteTables().get(i).getRouteTableId()+','+getRouteTables().get(i).getVpcId()+"]";
             result+=",";
         }
-        result=result.substring(0,result.length()-1);
+        if(result.length()>1)
+		{
+			 result=result.substring(0,result.length()-1);
+		}
+	
         return  result;
     }
 

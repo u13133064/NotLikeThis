@@ -17,9 +17,12 @@ public class NetworkInterfacesResponse implements ResponseObject{
         {
             result+=getNetworkAcls().get(i).getNetworkAclId()+",";
         }
-        result=result.substring(0,result.length()-1);
+        if(result.length()>1)
+		{
+			 result=result.substring(0,result.length()-1);
+		}
+	
         return  result;
-
     }
 
     public List<NetworkAcl> getNetworkAcls() {

@@ -22,6 +22,7 @@ public interface Adapter {
     public ResponseObject getPlacementGroups(Credential clientCredentials);
     public ResponseObject getRegions(Credential clientCredentials);
     public ResponseObject getRouteTable(Credential clientCredentials);
+    public ResponseObject getSubnets(Credential clientCredentials);
     public ResponseObject getVPC(Credential clientCredentials,Regions region);
     public ResponseObject getVPNGateWays(Credential clientCredentials);
 

@@ -20,7 +20,11 @@ public class PlacementGroupResponse implements ResponseObject{
             result+="["+getPlacementGroups().get(i).getGroupName()+","+getPlacementGroups().get(i).getState()+","+getPlacementGroups().get(i).getStrategy()+"]";
             result+=",";
         }
-        result=result.substring(0,result.length()-1);
+        if(result.length()>1)
+		{
+			 result=result.substring(0,result.length()-1);
+		}
+	
         return  result;
     }
 

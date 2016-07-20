@@ -33,7 +33,6 @@ public class AWSAdapterAlpha implements Adapter{
 
         AvailabilityZonesResponse availabilityZonesResponse = new AvailabilityZonesResponse();
         availabilityZonesResponse.setAvailabilityZones(availabilityZones);
-        
       
         return availabilityZonesResponse;
     }
@@ -192,7 +191,6 @@ public class AWSAdapterAlpha implements Adapter{
      
         DescribeVpcsResult describeVpcsResult = ec2.describeVpcs();
         List<Vpc>vpcs=describeVpcsResult.getVpcs();
-        
         VPCResponse vpcResponse = new VPCResponse();
         vpcResponse.setVpcs(vpcs);
         return vpcResponse;
@@ -202,6 +200,26 @@ public class AWSAdapterAlpha implements Adapter{
     public ResponseObject getVPNGateWays(Credential clientCredentials) {
         return null;
     }
+
+	@Override
+	public ResponseObject getSubnets(Credential clientCredentials) {
+		AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
+        AmazonEC2 ec2 = new AmazonEC2Client(credentials);
+        
+        DescribeSubnetsResult describeSubnetsResult = ec2.describeSubnets();
+        List<Subnet>subnets=describeSubnetsResult.getSubnets();
+        
+        SubnetResponse subnetresponse = new SubnetResponse();
+        
+        subnetresponse.setSubnets(subnets);
+        
+        
+
+        return subnetresponse;
+        
+		
+
+	}
 
 
 }

@@ -23,6 +23,7 @@ public class AWSNetworkScanner implements NetworkScanner{
 		for(int i = 0;i<network.getAWSRegionList().size();i++)
 		{
 			addVPC(network.getAWSRegionList().get(i));
+			System.out.println(adapter.getAvailabilityZones(credentials).toString());
 		
 		}
 		return null;
