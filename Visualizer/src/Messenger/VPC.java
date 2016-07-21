@@ -45,5 +45,15 @@ public class VPC
 	{
 		return vpcID;
 	}
+	
+	public Boolean hasLevel()
+	{
+		return true;
+	}
+	
+	public int getLevel()
+	{
+		return 4;
+	}
 
 }

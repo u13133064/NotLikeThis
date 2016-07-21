@@ -23,7 +23,10 @@ public class MultiThreadServer implements Runnable
         
         for(int i = 0; i < nodes.size(); i++)
         {
-            out = out + "    {id: '" + nodes.get(i).getID() + "' , label: '" + nodes.get(i).getName() + "', shape: 'circle', level: 1  },\n";
+        //	if(nodes.get(i).getLevel() != -1)
+        //		out = out + "    {id: '" + nodes.get(i).getID() + "' , label: '" + nodes.get(i).getName() + "', shape: 'circle', level: " + nodes.get(i).getLevel() +"  },\n";
+        //	else
+        		out = out + "    {id: '" + nodes.get(i).getID() + "' , label: '" + nodes.get(i).getName() + "', shape: 'circle'},\n";
         }
         
         out = out +"  ]);";
@@ -94,8 +97,8 @@ public class MultiThreadServer implements Runnable
 			"\n" +
 			"  <style type=\"text/css\">\n" +
 			"    #mynetwork {\n" +
-			"      width: 600px;\n" +
-			"      height: 400px;\n" +
+			"      width: 1200px;\n" +
+			"      height: 800px;\n" +
 			"      border: 1px solid lightgray;\n" +
 			"    }\n" +
 			"  </style>\n" +

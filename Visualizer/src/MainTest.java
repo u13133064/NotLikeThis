@@ -239,24 +239,10 @@ public class MainTest{
         Visualizer visualizer = new Visualizer();
         visualizer.addNetwork(networkOne);
         visualizer.addNetwork(networkTwo);
-        
-        visualizer.printNodes();
-        visualizer.printRelationships();
-        //visualizer.printNetwork(networkOne);
-        //visualizer.printNetwork(networkTwo);
-        
 
-            ServerSocket ssock = new ServerSocket(1236);
-            System.out.println("Listening");
-
-            Socket sock = ssock.accept();
-            
-                System.out.println("Connected");
-                MultiThreadServer a = new MultiThreadServer(sock);
-                a.createNode("a", visualizer.getNodes());
-                a.createRelationship(visualizer.getRelationships());
-                a.run();
-            
+        System.out.println(visualizer.generateHTML());
+        visualizer.generateHTMLDocument();
+   
         }
 
     }

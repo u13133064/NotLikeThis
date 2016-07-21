@@ -45,4 +45,14 @@ public class Network
 	{
 		return networkID;
 	}
+	
+	public Boolean hasLevel()
+	{
+		return true;
+	}
+	
+	public int getLevel()
+	{
+		return 2;
+	}
 }

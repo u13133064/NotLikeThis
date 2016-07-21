@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <title>Network | Basic usage</title>
+
+  <script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+  <link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    #mynetwork {
+      width: 1200px;
+      height: 800px;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+  // create an array with nodes
+  var nodes= new vis.DataSet([
+    {id: 'd56c3725-7760-451f-a9cc-d1e5a9003269' , label: 'AWS', shape: 'circle'},
+    {id: '1ebbd134-4791-46b1-bdeb-85d1ae0c5a07' , label: 'A 1', shape: 'circle'},
+    {id: 'fab7c85f-ba4b-485d-beb0-f6c61684d13a' , label: 'B 1', shape: 'circle'},
+    {id: '311c39c8-2fe1-467f-8ff8-45162008fc61' , label: 'C 1', shape: 'circle'},
+    {id: 'c2d49644-ae02-4d75-a626-643a6106ae5b' , label: 'D 1', shape: 'circle'},
+    {id: '81ca94d0-4d9e-4e20-a3aa-c225a2e1494e' , label: 'E 1', shape: 'circle'},
+    {id: 'caa8d1ef-3761-47a5-869d-4e3cf2da43c4' , label: 'F 1', shape: 'circle'},
+    {id: 'e7cab831-3350-40b2-a1c2-4cec861bdc12' , label: 'i F 3', shape: 'circle'},
+    {id: 'eaf7413a-f196-401f-815d-c5e95b42d0ee' , label: 'F 2', shape: 'circle'},
+    {id: '5d8181e6-7896-4d42-b33b-b66ae5005876' , label: 'G 1', shape: 'circle'},
+    {id: '123e0d77-d4ed-4ec6-9ef3-2b5bfafbd371' , label: 'i E 2', shape: 'circle'},
+    {id: '6976e110-0f32-4c99-8e9f-4f9dbfafb422' , label: 'C 2', shape: 'circle'},
+    {id: 'ea412523-6f7b-4c89-a2ec-13846c1bf72e' , label: 'B 2', shape: 'circle'},
+    {id: '2ff2bcc1-a750-4072-8247-9490ea0fc566' , label: 'C 3', shape: 'circle'},
+    {id: '12894dbc-a278-49c1-8b94-b825f888f33d' , label: 'C 4', shape: 'circle'},
+    {id: '26763336-ca46-4359-a68b-9ed87abd9ac4' , label: 'A 2', shape: 'circle'},
+    {id: '142d9aaf-4d31-4145-9023-7dbb26cd5dce' , label: 'B 3', shape: 'circle'},
+    {id: '49a9df6d-eb40-4e6e-86ad-9f9a4936cfb8' , label: 'C 5', shape: 'circle'},
+    {id: 'cb5b6611-2f90-4462-a586-b6971cd5c85b' , label: 'C 6', shape: 'circle'},
+    {id: '4592f8b8-4daa-47eb-9502-cfcf45459cc0' , label: 'B 4', shape: 'circle'},
+    {id: 'a709cd96-4281-4f2b-afb1-85423fe2dea2' , label: 'C 7', shape: 'circle'},
+    {id: '964c0913-6922-43e2-91ff-70731d9e1881' , label: 'C 8', shape: 'circle'},
+  ]);  var edges = new vis.DataSet([
+    {from: 'd56c3725-7760-451f-a9cc-d1e5a9003269', to: '1ebbd134-4791-46b1-bdeb-85d1ae0c5a07'},
+    {from: '1ebbd134-4791-46b1-bdeb-85d1ae0c5a07', to: 'fab7c85f-ba4b-485d-beb0-f6c61684d13a'},
+    {from: 'fab7c85f-ba4b-485d-beb0-f6c61684d13a', to: '311c39c8-2fe1-467f-8ff8-45162008fc61'},
+    {from: '311c39c8-2fe1-467f-8ff8-45162008fc61', to: 'c2d49644-ae02-4d75-a626-643a6106ae5b'},
+    {from: 'c2d49644-ae02-4d75-a626-643a6106ae5b', to: '81ca94d0-4d9e-4e20-a3aa-c225a2e1494e'},
+    {from: '81ca94d0-4d9e-4e20-a3aa-c225a2e1494e', to: 'caa8d1ef-3761-47a5-869d-4e3cf2da43c4'},
+    {from: 'caa8d1ef-3761-47a5-869d-4e3cf2da43c4', to: 'e7cab831-3350-40b2-a1c2-4cec861bdc12'},
+    {from: '81ca94d0-4d9e-4e20-a3aa-c225a2e1494e', to: 'eaf7413a-f196-401f-815d-c5e95b42d0ee'},
+    {from: 'eaf7413a-f196-401f-815d-c5e95b42d0ee', to: '5d8181e6-7896-4d42-b33b-b66ae5005876'},
+    {from: '81ca94d0-4d9e-4e20-a3aa-c225a2e1494e', to: '123e0d77-d4ed-4ec6-9ef3-2b5bfafbd371'},
+    {from: 'fab7c85f-ba4b-485d-beb0-f6c61684d13a', to: '6976e110-0f32-4c99-8e9f-4f9dbfafb422'},
+    {from: '1ebbd134-4791-46b1-bdeb-85d1ae0c5a07', to: 'ea412523-6f7b-4c89-a2ec-13846c1bf72e'},
+    {from: 'ea412523-6f7b-4c89-a2ec-13846c1bf72e', to: '2ff2bcc1-a750-4072-8247-9490ea0fc566'},
+    {from: 'ea412523-6f7b-4c89-a2ec-13846c1bf72e', to: '12894dbc-a278-49c1-8b94-b825f888f33d'},
+    {from: 'd56c3725-7760-451f-a9cc-d1e5a9003269', to: '26763336-ca46-4359-a68b-9ed87abd9ac4'},
+    {from: '26763336-ca46-4359-a68b-9ed87abd9ac4', to: '142d9aaf-4d31-4145-9023-7dbb26cd5dce'},
+    {from: '142d9aaf-4d31-4145-9023-7dbb26cd5dce', to: '49a9df6d-eb40-4e6e-86ad-9f9a4936cfb8'},
+    {from: '142d9aaf-4d31-4145-9023-7dbb26cd5dce', to: 'cb5b6611-2f90-4462-a586-b6971cd5c85b'},
+    {from: '26763336-ca46-4359-a68b-9ed87abd9ac4', to: '4592f8b8-4daa-47eb-9502-cfcf45459cc0'},
+    {from: '4592f8b8-4daa-47eb-9502-cfcf45459cc0', to: 'a709cd96-4281-4f2b-afb1-85423fe2dea2'},
+    {from: '4592f8b8-4daa-47eb-9502-cfcf45459cc0', to: '964c0913-6922-43e2-91ff-70731d9e1881'},
+  ]);
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {layout: {        hierarchical: {            direction: 'LR'        }    }};
+  var network = new vis.Network(container, data, options);
+
+</script>
+
+<script src="../googleAnalytics.js"></script>
+</body>
+</html>
