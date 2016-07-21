@@ -23,13 +23,61 @@ public class AWSNetworkScanner implements NetworkScanner{
 		for(int i = 0;i<network.getAWSRegionList().size();i++)
 		{
 			addVPC(network.getAWSRegionList().get(i));
-			addZoneAndSubnets(network.getAWSRegionList().get(i).getVpcList(),network.getAWSRegionList().get(i));
+			addAvZone(network.getAWSRegionList().get(i).getVpcList(),network.getAWSRegionList().get(i));
+			for(int j =0; j<network.getAWSRegionList().get(i).getVpcList().size();j++)
+			{
+				addSubnets(network.getAWSRegionList().get(i).getVpcList().get(j),network.getAWSRegionList().get(i));
+				
+			}
 		
+			
+			
 		}
 		return null;
 	}
 
-	private void addZoneAndSubnets(LinkedList<VPC> vpcList, AWSRegion awsRegion) {
+	private void addSubnets(VPC vpc, AWSRegion awsRegion) {
+		ResponseObject subnets = adapter.getSubnets(credentials,com.amazonaws.regions.Regions.fromName(awsRegion.getAwsRegionDetails().getAwsRegionName()));
+		String[]subnetList =  subnets.toString().split(",");
+		for(int i =0; i<subnetList.length;i++)
+		{
+			
+			String[]subnetParts =  subnetList[i].toString().split(":");
+			String subnetID = subnetParts[0];
+			String avZone = subnetParts[1];
+			String vpcID = subnetParts[2];
+			for(int j =0; j<vpc.getAVZoneList().size();j++)
+			{
+				
+				if(vpc.getVpcDetails().getVpcName().equals(vpcID))
+				{
+					if(vpc.getAVZoneList().get(j).getAvZoneDetails().getAvZoneName().equals(avZone))
+					{
+						SubNetwork newSubnetwork = new SubNetwork();
+						SubNetworkDetails newSubnetworkDetails = new SubNetworkDetails();
+						newSubnetworkDetails.setSubNetworkName(subnetID);
+						newSubnetwork.setSubnetworkDetails(newSubnetworkDetails);
+						LinkedList<SubNetwork> subnetworkList = vpc.getAVZoneList().get(j).getSubNetworkList();
+						if(subnetworkList==null)
+						{
+							subnetworkList=new LinkedList<SubNetwork>();
+						}
+						
+						subnetworkList.add(newSubnetwork);
+						vpc.getAVZoneList().get(j).setSubNetworkList(subnetworkList);
+						System.out.println(vpc.getAVZoneList().get(j).getSubNetworkList().get(0).getSubNetworkName());
+						
+						
+			
+					}
+				}
+			}
+		}
+		
+		
+	}
+
+	private void addAvZone(LinkedList<VPC> vpcList, AWSRegion awsRegion) {
 		ResponseObject subnets = adapter.getSubnets(credentials,com.amazonaws.regions.Regions.fromName(awsRegion.getAwsRegionDetails().getAwsRegionName()));
 		String[]subnetList =  subnets.toString().split(",");
 		for(int i =0; i<subnetList.length;i++)
@@ -37,7 +85,7 @@ public class AWSNetworkScanner implements NetworkScanner{
 			String[]subnetParts =  subnetList[i].toString().split(":");
 			String subnetID = subnetParts[0];
 			String avZone = subnetParts[1];
-			String vpcID = subnetParts[3];
+			String vpcID = subnetParts[2];
 			for(int j =0;j<vpcList.size();j++)
 			{
 				if(vpcList.get(j).getVpcDetails().getVpcName().equals(vpcID))
@@ -45,30 +93,16 @@ public class AWSNetworkScanner implements NetworkScanner{
 					LinkedList<AVZone> avList = vpcList.get(j).getAVZoneList();
 					if(avList==null)
 					{
-						avList = new LinkedList<AVZone>();
+						avList=new LinkedList<AVZone>();
 					}
-					int avZoneInList=-1;
-					for(int k= 0;k<avList.size();k++)
-					{
-						if(avList.get(k).getAvZoneDetails().getAvZoneName().equals(avZone))
-						{
-							 avZoneInList=k;
-						}
-
-					}
-					AVZone subnetZone;
-					if(avZoneInList==-1)
-					{
-						subnetZone= new AVZone();
-						
-					}
-					else 
-					{
-						subnetZone=avList.get(avZoneInList);
-					}
-			
+					AVZone newZone = new AVZone();
+					AVZoneDetails newDetails = new AVZoneDetails();
+					newDetails.setAvZoneName(avZone);
+					newZone.setAvZoneDetails(newDetails);
+					avList.add(newZone);
+					vpcList.get(j).setAVZoneList(avList);
 					
-					
+				
 				}
 			}
 		}

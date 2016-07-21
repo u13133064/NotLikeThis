@@ -6,11 +6,15 @@ public class SubNetwork {
 	private SubNetworkDetails subnetworkDetails;
 	private LinkedList<SubNetwork> subNetworkList;
 	private LinkedList<AWSInstance> AWSInstanceList;
+	public String getSubNetworkName()
+	{
+		return subnetworkDetails.getSubNetworkName();
+	}
 	public SubNetworkDetails getSubnetworkDetails() {
 		return subnetworkDetails.copy();
 	}
 	public void setSubnetworkDetails(SubNetworkDetails subnetworkDetails) {
-		this.subnetworkDetails = subnetworkDetails.copy();
+		this.subnetworkDetails = subnetworkDetails;
 	}
 	public LinkedList<SubNetwork> getSubNetworkList() {
 		return subNetworkList;
