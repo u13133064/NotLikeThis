@@ -19,7 +19,8 @@ public class SubnetResponse implements ResponseObject {
 		String result="";
 		for(int i =0; i<getSubnets().size();i++)
 		{
-			result+=getSubnets().get(i).getSubnetId()+",";
+			
+			result+=getSubnets().get(i).getSubnetId()+":"+getSubnets().get(i).getAvailabilityZone()+":"+getSubnets().get(i).getVpcId()+",";
 		}
 		
 		if(result.length()>1)

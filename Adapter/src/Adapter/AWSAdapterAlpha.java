@@ -94,7 +94,6 @@ public class AWSAdapterAlpha implements Adapter{
             for(int j =0;j<instances.size();j++)
             {
                  instancesCollection.add(instances.get(j));
-
             }
 
         }
