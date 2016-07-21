@@ -19,6 +19,9 @@ public class AWSNetworkScanner implements NetworkScanner{
 	@Override
 	public Network scanNetwork() {
 		Network network = new Network();
+		NetworkDetails networkDetails = new NetworkDetails();
+		networkDetails.setUserName("Jedd");
+		network.setNetworkDetails(networkDetails);
 		addRegions(network);
 		for(int i = 0;i<network.getAWSRegionList().size();i++)
 		{
@@ -52,11 +55,12 @@ public class AWSNetworkScanner implements NetworkScanner{
 		ResponseObject instances =adapter.getInstsances(credentials,com.amazonaws.regions.Regions.fromName(awsRegion.getAwsRegionDetails().getAwsRegionName()));
 		
 		String[] instanceList = instances.toString().split(",");
+	
 		for(int i = 0;i<instanceList.length;i++)
 		{
 			String[]instanceParts =  instanceList[i].toString().split(":");
-			String instanceID = instanceList[0];
-			String subnetID = instanceList[1];
+			String instanceID = instanceParts[0];
+			String subnetID = instanceParts[1];
 		
 				if(subNetwork.getSubNetworkName().equals(subnetID))
 				{

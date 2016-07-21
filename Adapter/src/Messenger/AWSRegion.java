@@ -17,6 +17,16 @@ public class AWSRegion {
 	public void setVpcList(LinkedList<VPC> vpcList) {
 		this.vpcList = vpcList;
 	}
+	public String toString()
+	{
+		String result="";
+		result+=getAwsRegionDetails().getAwsRegionName()+System.lineSeparator();
+		for(int i = 0;i<getVpcList().size();i++)
+		{
+			result+=getVpcList().get(i).toString()+System.lineSeparator();
+		}
+		return result;
+	}
 	
 
 }

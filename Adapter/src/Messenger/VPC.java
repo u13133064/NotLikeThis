@@ -17,5 +17,15 @@ public class VPC {
 	public void setAVZoneList(LinkedList<AVZone> aVZoneList) {
 		AVZoneList = aVZoneList;
 	} 
+	public String toString()
+	{
+		String result="";
+		result+=getVpcDetails().getVpcName()+System.lineSeparator();
+		for(int i = 0;i<getAVZoneList().size();i++)
+		{
+			result+=getAVZoneList().get(i).toString()+System.lineSeparator();
+		}
+		return result;
+	}
 
 }

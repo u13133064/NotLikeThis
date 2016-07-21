@@ -20,7 +20,8 @@ public class MainTest{
         AWSNetworkScanner ns = new AWSNetworkScanner();
         
         ns.createCredentials("AKIAI7CWEMOYBL2FRGTA", "Fi4zVz2Ikk0WDwQ/CuKysn5XJLLaqoe8/RRAgBGe");
-        ns.scanNetwork();
+        System.out.println(ns.scanNetwork());
+        
 
 
 

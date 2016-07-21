@@ -17,6 +17,17 @@ public class AVZone {
 	public void setSubNetworkList(LinkedList<SubNetwork> subNetworkList) {
 		this.subNetworkList = subNetworkList;
 	}
+	public String toString()
+	{
+		String result="";
+		result+=getAvZoneDetails().getAvZoneName()+System.lineSeparator();
+		for(int i = 0;i<getSubNetworkList().size();i++)
+		{
+			
+			result+=getSubNetworkList().get(i).toString()+System.lineSeparator();
+		}
+		return result;
+	}
 	
 	
 }

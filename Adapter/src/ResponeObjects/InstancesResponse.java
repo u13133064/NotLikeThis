@@ -27,11 +27,15 @@ public class InstancesResponse implements ResponseObject{
             
         }
         if(result.length()>1)
-     		{
+     	{
      			 result=result.substring(0,result.length()-1);
-     		}
+     	}
+        else
+        {
+        	 result="None:None";
+        }
      	
-             return  result;
+        return  result;
 
     }
 }
