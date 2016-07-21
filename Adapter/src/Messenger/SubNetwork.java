@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class SubNetwork {
 	private SubNetworkDetails subnetworkDetails;
-	private LinkedList<SubNetwork> subNetworkList;
+	private LinkedList<SubNetwork> subNetworkList=null;
 	private LinkedList<AWSInstance> AWSInstanceList;
 	public String getSubNetworkName()
 	{

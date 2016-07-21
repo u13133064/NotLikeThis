@@ -23,13 +23,15 @@ public class InstancesResponse implements ResponseObject{
         String result="";
         for (int i = 0;i<getInstances().size();i++)
         {
-            result+=getInstances().get(i).toString();
-            result+="\n";
+            result+=getInstances().get(i).getInstanceId()+":"+getInstances().get(i).getSubnetId()+",";
+            
         }
+        if(result.length()>1)
+     		{
+     			 result=result.substring(0,result.length()-1);
+     		}
+     	
+             return  result;
 
-
-
-       
-        return result;
     }
 }

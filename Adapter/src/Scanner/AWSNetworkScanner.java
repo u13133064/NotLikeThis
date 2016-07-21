@@ -27,13 +27,56 @@ public class AWSNetworkScanner implements NetworkScanner{
 			for(int j =0; j<network.getAWSRegionList().get(i).getVpcList().size();j++)
 			{
 				addSubnets(network.getAWSRegionList().get(i).getVpcList().get(j),network.getAWSRegionList().get(i));
+				for(int k =0; k<network.getAWSRegionList().get(i).getVpcList().get(j).getAVZoneList().size();k++)
+				{
+					
+					for(int l =0; l<network.getAWSRegionList().get(i).getVpcList().get(j).getAVZoneList().get(k).getSubNetworkList().size();l++)
+					{
+						
+						addInstances(network.getAWSRegionList().get(i).getVpcList().get(j).getAVZoneList().get(k).getSubNetworkList().get(l),network.getAWSRegionList().get(i));
+						
+					}
+					
+				}
 				
 			}
 		
 			
 			
 		}
-		return null;
+		return network;
+	}
+
+	private void addInstances(SubNetwork subNetwork, AWSRegion awsRegion) {
+		
+		ResponseObject instances =adapter.getInstsances(credentials,com.amazonaws.regions.Regions.fromName(awsRegion.getAwsRegionDetails().getAwsRegionName()));
+		
+		String[] instanceList = instances.toString().split(",");
+		for(int i = 0;i<instanceList.length;i++)
+		{
+			String[]instanceParts =  instanceList[i].toString().split(":");
+			String instanceID = instanceList[0];
+			String subnetID = instanceList[1];
+		
+				if(subNetwork.getSubNetworkName().equals(subnetID))
+				{
+					LinkedList<AWSInstance> awsinstances = subNetwork.getAWSInstanceList();
+					if(awsinstances==null)
+					{
+						awsinstances=new LinkedList<AWSInstance>();
+					}
+					AWSInstance newInstance = new AWSInstance();
+					AWSInstanceDetails newDetails = new AWSInstanceDetails();
+					newDetails.setInstanceID(instanceID);
+					newInstance.setAwsInstanceDetails(newDetails);
+					awsinstances.add(newInstance);
+					subNetwork.setAWSInstanceList(awsinstances);
+					
+				
+			}
+		}
+			
+	
 	}
 
 	private void addSubnets(VPC vpc, AWSRegion awsRegion) {
@@ -65,7 +108,7 @@ public class AWSNetworkScanner implements NetworkScanner{
 						
 						subnetworkList.add(newSubnetwork);
 						vpc.getAVZoneList().get(j).setSubNetworkList(subnetworkList);
-						System.out.println(vpc.getAVZoneList().get(j).getSubNetworkList().get(0).getSubNetworkName());
+						
 						
 						
 			
