@@ -1,21 +1,36 @@
 package Messenger;
 
-public class AWSInstance {
-	private AWSInstanceDetails awsInstanceDetails;
+import java.util.UUID;
 
-	public AWSInstanceDetails getAwsInstanceDetails() {
+public class AWSInstance 
+{
+	private AWSInstanceDetails awsInstanceDetails;
+	
+	private UUID AWSInstanceID;
+	
+	public AWSInstance()
+	{
+		AWSInstanceID = UUID.randomUUID();
+	}
+
+	public AWSInstanceDetails getAwsInstanceDetails() 
+	{
 		return awsInstanceDetails.copy();
 	}
 
-	public void setAwsInstanceDetails(AWSInstanceDetails awsInstanceDetails) {
+	public void setAwsInstanceDetails(AWSInstanceDetails awsInstanceDetails) 
+	{
 		this.awsInstanceDetails = awsInstanceDetails.copy();
 	}
-	public String toString()
+	
+	public String getAWSInstanceName()
 	{
-		String result="";
-		result+=getAwsInstanceDetails().getInstanceID()+System.lineSeparator();
-		
-		return result;
+		return awsInstanceDetails.getInstanceName();
+	}
+	
+	public UUID getAWSInstanceID()
+	{
+		return AWSInstanceID;
 	}
 	
 }

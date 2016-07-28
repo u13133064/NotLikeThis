@@ -7,7 +7,11 @@ public class SubNetworkDetails {
 
 	public SubNetworkDetails copy() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		SubNetworkDetails cloneSubNetworkDetails = new SubNetworkDetails();
+		cloneSubNetworkDetails.setSubNetworkName(subNetworkName);
+		return cloneSubNetworkDetails;
+		//return null;
 	}
 
 	public String getSubNetworkName() {

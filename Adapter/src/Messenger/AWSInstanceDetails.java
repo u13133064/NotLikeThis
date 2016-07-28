@@ -1,26 +1,24 @@
 package Messenger;
 
-public class AWSInstanceDetails {
-	private String instanceID;
+public class AWSInstanceDetails 
+{
+	private String instanceName;
 	
-
-	public AWSInstanceDetails copy() {
+	public AWSInstanceDetails copy() 
+	{
 		AWSInstanceDetails cloneAWSInstanceDetails = new AWSInstanceDetails();
-		cloneAWSInstanceDetails.setInstanceID(getInstanceID());
+		cloneAWSInstanceDetails.setInstanceName(getInstanceName());
 		return cloneAWSInstanceDetails;
 	}
 
-
-	public String getInstanceID() {
-		return instanceID;
+	public String getInstanceName() 
+	{
+		return instanceName;
 	}
 
-
-	public void setInstanceID(String instanceID) {
-		this.instanceID = instanceID;
+	public void setInstanceName(String instanceName) 
+	{
+		this.instanceName = instanceName;
 	}
-
-
-
 
 }

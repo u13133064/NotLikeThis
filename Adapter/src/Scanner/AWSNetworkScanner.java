@@ -71,7 +71,7 @@ public class AWSNetworkScanner implements NetworkScanner{
 					}
 					AWSInstance newInstance = new AWSInstance();
 					AWSInstanceDetails newDetails = new AWSInstanceDetails();
-					newDetails.setInstanceID(instanceID);
+					newDetails.setInstanceName(instanceID);
 					newInstance.setAwsInstanceDetails(newDetails);
 					awsinstances.add(newInstance);
 					subNetwork.setAWSInstanceList(awsinstances);

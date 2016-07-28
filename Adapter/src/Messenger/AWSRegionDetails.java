@@ -1,27 +1,37 @@
 package Messenger;
 
-public class AWSRegionDetails {
+public class AWSRegionDetails 
+{
 	private String awsRegionName;
+	
 	private int vpcCount;
-	public AWSRegionDetails copy() {
+	
+	public AWSRegionDetails copy() 
+	{
 		AWSRegionDetails cloneAWSRegionDetails = new AWSRegionDetails();
 		cloneAWSRegionDetails.setAwsRegionName(getAwsRegionName());
 		cloneAWSRegionDetails.setVpcCount(getVpcCount());
 		
 		return cloneAWSRegionDetails;
 	}
-	public String getAwsRegionName() {
+	
+	public String getAwsRegionName() 
+	{
 		return awsRegionName;
 	}
-	public void setAwsRegionName(String awsRegionName) {
+	
+	public void setAwsRegionName(String awsRegionName) 
+	{
 		this.awsRegionName = awsRegionName;
 	}
-	public int getVpcCount() {
+	
+	public int getVpcCount() 
+	{
 		return vpcCount;
 	}
-	public void setVpcCount(int vpcCount) {
+	
+	public void setVpcCount(int vpcCount) 
+	{
 		this.vpcCount = vpcCount;
 	}
-
-
 }

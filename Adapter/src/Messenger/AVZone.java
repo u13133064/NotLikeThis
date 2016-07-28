@@ -1,33 +1,55 @@
 package Messenger;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
-public class AVZone {
+public class AVZone 
+{
 	private AVZoneDetails avZoneDetails;
+	
 	private LinkedList<SubNetwork> subNetworkList;
-	public AVZoneDetails getAvZoneDetails() {
+	
+	private UUID AVZoneID;
+	
+	public AVZone()
+	{
+		AVZoneID = UUID.randomUUID();
+	}
+	
+	public AVZoneDetails getAvZoneDetails() 
+	{
 		return avZoneDetails.copy();
 	}
-	public void setAvZoneDetails(AVZoneDetails avZoneDetails) {
+	public void setAvZoneDetails(AVZoneDetails avZoneDetails) 
+	{
 		this.avZoneDetails = avZoneDetails.copy();
 	}
-	public LinkedList<SubNetwork> getSubNetworkList() {
+	public LinkedList<SubNetwork> getSubNetworkList() 
+	{
 		return subNetworkList;
 	}
-	public void setSubNetworkList(LinkedList<SubNetwork> subNetworkList) {
+	public void setSubNetworkList(LinkedList<SubNetwork> subNetworkList) 
+	{
 		this.subNetworkList = subNetworkList;
 	}
-	public String toString()
+	
+	public String getAVZoneName()
 	{
-		String result="";
-		result+=getAvZoneDetails().getAvZoneName()+System.lineSeparator();
-		for(int i = 0;i<getSubNetworkList().size();i++)
-		{
-			
-			result+=getSubNetworkList().get(i).toString()+System.lineSeparator();
-		}
-		return result;
+		return avZoneDetails.getAvZoneName();
 	}
 	
+	public UUID getAVZoneID()
+	{
+		return AVZoneID;
+	}
 	
+	public Boolean hasLevel()
+	{
+		return true;
+	}
+	
+	public int getLevel()
+	{
+		return 5;
+	}
 }
