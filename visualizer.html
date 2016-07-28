@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Amazon Web Services Network Visualizer</title>
+		
+		<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+		<link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">
+			#buttonHolder 
+			{
+				position: absolute;
+				left: 10px;
+				top: 170px;
+				width: 150px;
+				height: 700px;
+				border: 2px solid black;
+				background: white;
+			}
+			  
+			#mynetwork 
+			{
+				position: absolute;
+				left: 170px;
+				top: 170px;
+				width: 1340px;
+				height: 700px;
+				border: 2px solid black;
+				background: white;
+			}
+			    
+			#banner 
+			{
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 1500px;
+				height: 150px;
+				border: 2px solid black;
+			}
+			
+			#regionSelect 
+			{
+				position: absolute;
+				top: 1px;
+				left: 2px;
+				width: 146px;
+				height: 50px;
+			}
+			
+			#regionButton
+			{
+				position: absolute;
+				top: 55px;
+				left: 2px;
+				width: 146px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	
+	<body style="background-color:#FF9933;">
+		<img id="banner" src="Banner.jpg" alt="Mountain View">
+
+		<div id="buttonHolder">
+			<select id="regionSelect">
+				<option value="region1">Region 1</option>
+				<option value="region2">Region 2</option>
+				<option value="region3">Region 3</option>
+				<option value="region4">Region 4</option>
+			</select>
+			
+			 <button id="regionButton" type="button">Load selected region</button> 
+		
+		</div>
+		<div id="mynetwork"></div>
+
+		<script type="text/javascript">
+		  // create an array with nodes
+		  var nodes= new vis.DataSet([
+		    {id: 'd44ff3ed-760a-4bed-a9bc-994397b34a4e',	 label: 'AWS', 		shape: 'dot', level: 1, color: {background:'white', border:'black'} ,font: {background: 'white'}	,title: 'aaa'},
+		    {id: 'fef375e2-3032-4ffe-ab24-b2d2cdf841a4' ,	 label: 'Network 1', 	shape: 'dot', level: 2 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'bfe55c92-ad8d-4abb-80c2-0ec46a295dc5' ,	 label: 'AWSRegion 1', 	shape: 'dot', level: 3, color: {background:'white', border:'black'}   ,font: {background: 'white'},title: 'aaa'},
+		    {id: '90a7ae9a-9e79-4c82-9e63-a2a1ec713df3' ,	label: 'VPC 1',		 shape: 'dot', level: 4  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '399b9413-05e8-47a6-8c42-2a6e0931ade2' ,	 label: 'AVZone 1', 	shape: 'dot', level: 5  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '9f35a11f-c847-40fc-87d2-13084fd67aab' ,	 label: 'SubNetwork 1', shape: 'dot', level: 6  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'fba1ac67-00a2-46b4-b7d9-566cedd96ca1' ,	 label: 'SubNetwork 2', shape: 'dot', level: 7  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '6a3d3d09-59b6-43e9-8c72-066abebe0a82' ,	 label: 'AWSInstance 2', shape: 'dot', level: 8 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'e4a96768-dc41-4255-bc24-af78ad5597da' ,	 label: 'SubNetwork 3', shape: 'dot', level: 7 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: '4bf1c40b-2001-4e19-8de7-05b1338611a4' ,	label: 'SubNetwork 4', shape: 'dot', level: 8 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'd6c2f1a1-7d79-4151-86e4-b267aac46d88' ,	 label: 'AWSInstance 3', shape: 'dot', level: 8 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'dcd973e0-b24f-4056-ab4d-a1bce732922f' , 	label: 'AWSInstance 1', shape: 'dot', level: 7  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'b9200bcd-93a2-4efe-b91d-c73a631c2907' ,	 label: 'VPC 2', shape: 'dot', level: 4  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '56c4abb1-6f36-4a2f-a92b-da4152068f0c' , 	label: 'AWSRegion 2', shape: 'dot', level: 3 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'a945579e-346f-49bd-b2e8-4ba18c3b817a' ,	 label: 'VPC 3', shape: 'dot', level: 4  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '1061ba0e-5e87-44af-b710-1bbcbd9e45d3' , 	label: 'VPC 4', shape: 'dot', level: 4 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: '2be6bdf9-ce38-4ccf-a666-9587d9f6639e' ,	 label: 'Network 2', shape: 'dot', level: 2  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '668f0385-0e2e-4125-b618-d1f77d71030c' ,	 label: 'AWSRegion 3', shape: 'dot', level: 3  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: '2f0f2b1c-4ad2-4424-b6be-2290fa8a5466' 	, label: 'VPC 5', shape: 'dot', level: 4 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: '6ea48917-acee-4ce6-bedf-fb1e8abfc3ee' ,	 label: 'VPC 6', shape: 'dot', level: 4 , color: {background:'white', border:'black'}  ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'e293801d-3a35-4730-95f8-5b3c0d5b111b' ,	 label: 'AWSRegion 4', shape: 'dot', level: 3, color: {background:'white', border:'black'}   ,font: {background: 'white'},title: 'aaa'},
+		    {id: '2c9e2803-1173-4385-a0e2-fdf26acece2e' , 	label: 'VPC 7', shape: 'dot', level: 4  , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		    {id: 'a2184f1d-2883-415b-a53e-b66f6eb87975' ,	 label: 'VPC 8', shape: 'dot', level: 4 , color: {background:'white', border:'black'} ,font: {background: 'white'},title: 'aaa'},
+		  ]);  var edges = new vis.DataSet([
+		    {from: 'd44ff3ed-760a-4bed-a9bc-994397b34a4e', to: 'fef375e2-3032-4ffe-ab24-b2d2cdf841a4'},
+		    {from: 'fef375e2-3032-4ffe-ab24-b2d2cdf841a4', to: 'bfe55c92-ad8d-4abb-80c2-0ec46a295dc5'},
+		    {from: 'bfe55c92-ad8d-4abb-80c2-0ec46a295dc5', to: '90a7ae9a-9e79-4c82-9e63-a2a1ec713df3'},
+		    {from: '90a7ae9a-9e79-4c82-9e63-a2a1ec713df3', to: '399b9413-05e8-47a6-8c42-2a6e0931ade2'},
+		    {from: '399b9413-05e8-47a6-8c42-2a6e0931ade2', to: '9f35a11f-c847-40fc-87d2-13084fd67aab'},
+		    {from: '9f35a11f-c847-40fc-87d2-13084fd67aab', to: 'fba1ac67-00a2-46b4-b7d9-566cedd96ca1'},
+		    {from: 'fba1ac67-00a2-46b4-b7d9-566cedd96ca1', to: '6a3d3d09-59b6-43e9-8c72-066abebe0a82'},
+		    {from: '9f35a11f-c847-40fc-87d2-13084fd67aab', to: 'e4a96768-dc41-4255-bc24-af78ad5597da'},
+		    {from: 'e4a96768-dc41-4255-bc24-af78ad5597da', to: '4bf1c40b-2001-4e19-8de7-05b1338611a4'},
+		    {from: 'e4a96768-dc41-4255-bc24-af78ad5597da', to: 'd6c2f1a1-7d79-4151-86e4-b267aac46d88'},
+		    {from: '9f35a11f-c847-40fc-87d2-13084fd67aab', to: 'dcd973e0-b24f-4056-ab4d-a1bce732922f'},
+		    {from: 'bfe55c92-ad8d-4abb-80c2-0ec46a295dc5', to: 'b9200bcd-93a2-4efe-b91d-c73a631c2907'},
+		    {from: 'fef375e2-3032-4ffe-ab24-b2d2cdf841a4', to: '56c4abb1-6f36-4a2f-a92b-da4152068f0c'},
+		    {from: '56c4abb1-6f36-4a2f-a92b-da4152068f0c', to: 'a945579e-346f-49bd-b2e8-4ba18c3b817a'},
+		    {from: '56c4abb1-6f36-4a2f-a92b-da4152068f0c', to: '1061ba0e-5e87-44af-b710-1bbcbd9e45d3'},
+		    {from: 'd44ff3ed-760a-4bed-a9bc-994397b34a4e', to: '2be6bdf9-ce38-4ccf-a666-9587d9f6639e'},
+		    {from: '2be6bdf9-ce38-4ccf-a666-9587d9f6639e', to: '668f0385-0e2e-4125-b618-d1f77d71030c'},
+		    {from: '668f0385-0e2e-4125-b618-d1f77d71030c', to: '2f0f2b1c-4ad2-4424-b6be-2290fa8a5466'},
+		    {from: '668f0385-0e2e-4125-b618-d1f77d71030c', to: '6ea48917-acee-4ce6-bedf-fb1e8abfc3ee'},
+		    {from: '2be6bdf9-ce38-4ccf-a666-9587d9f6639e', to: 'e293801d-3a35-4730-95f8-5b3c0d5b111b'},
+		    {from: 'e293801d-3a35-4730-95f8-5b3c0d5b111b', to: '2c9e2803-1173-4385-a0e2-fdf26acece2e'},
+		    {from: 'e293801d-3a35-4730-95f8-5b3c0d5b111b', to: 'a2184f1d-2883-415b-a53e-b66f6eb87975'},
+		  ]);
+
+			var container = document.getElementById('mynetwork');
+			var data = 
+			{
+				nodes: nodes,
+				edges: edges
+			};
+			
+			var options = {layout: {hierarchical: {direction: 'UD'}}, nodes: {borderWidth: 2}, edges: {width: 2}};
+			var network = new vis.Network(container, data, options);
+		</script>
+
+		<script src="../googleAnalytics.js"></script>
+	</body>
+</html>
