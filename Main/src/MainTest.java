@@ -27,7 +27,7 @@ public class MainTest{
         AWSNetworkScanner ns = new AWSNetworkScanner();
         Visualizer visualizer = new Visualizer();
         
-        ns.createCredentials("AKIAI7CWEMOYBL2FRGTA", "Fi4zVz2Ikk0WDwQ/CuKysn5XJLLaqoe8/RRAgBGe");
+        ns.createCredentials();
         visualizer.addNetwork(ns.scanNetwork());
         try {
 			visualizer.generateHTMLDocument();
