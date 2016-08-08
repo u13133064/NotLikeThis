@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Amazon Web Services Network Visualizer</title>
+		
+		<link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">		    
+			#banner 
+			{
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 1500px;
+				height: 150px;
+				border: 2px solid black;
+			}
+			
+			#loginDiv 
+			{
+				position: absolute;
+				top: 170px;
+				left: 525px;
+				width: 450px;
+				height: 150px;
+				border: 2px solid black;
+				background: white;
+			}
+			
+			#p1 
+			{
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+			
+			#p2 
+			{
+				position: absolute;
+				top: 50px;
+				left: 10px;
+			}
+			
+			#passwordInput 
+			{
+				position: absolute;
+				top: 25px;
+				left: 130px;
+				width: 300px;
+			}
+			
+			#secretPasswordInput 
+			{
+				position: absolute;
+				top: 65px;
+				left: 130px;
+				width: 300px;
+			}
+			
+			#submitPasswords 
+			{
+				position: absolute;
+				top: 100px;
+				left: 175px;
+				width: 100px;
+			}
+		</style>
+	</head>
+	
+	<body style="background-color:#FF9933;">
+
+		<img id="banner" src="Banner.jpg" alt="AWS Banner">
+		
+		<div id="loginDiv" >
+			<form action="http://localhost:8000/">
+				 <p id="p1">Password:</p> 
+				 <input type="text" id="passwordInput" name="password">
+				 <p id="p2">Secret password:</p> 
+				<input type="text" id="secretPasswordInput" name="secretPassword">
+				
+				<input id="submitPasswords" type="submit" value="Submit">
+			</form>
+		</div>
+
+	</body>
+</html>
