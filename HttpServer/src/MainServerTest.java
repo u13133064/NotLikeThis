@@ -6,9 +6,12 @@ import Server.VisualizerServer;
 public class MainServerTest {
     public static void main(String args[])
     {
-        VisualizerServer server = new VisualizerServer(8000);
+        VisualizerServer server = new VisualizerServer(8000,"test");
+        server.start();
+        VisualizerServer server2 = new VisualizerServer(8001,"test2");
+        server2.start();
 
-        //server.StopServer();
+        server.beginVisualize();
 
     }
 }

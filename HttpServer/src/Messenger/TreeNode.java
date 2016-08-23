@@ -7,6 +7,17 @@ import java.util.LinkedList;
  */
 public class TreeNode implements NetworkTree{
     private LinkedList<String> additionalInformation;
+
+    public LinkedList<String> getNodeInformation() {
+        return nodeInformation;
+    }
+
+    public void setNodeInformation(LinkedList<String> nodeInformation) {
+        this.nodeInformation = nodeInformation;
+    }
+
+    private LinkedList<String> nodeInformation;
+
     @Override
     public String displayAdditionalInformation() {
         return null;
