@@ -86,14 +86,18 @@
 				}
 			}
 		
-			function addNode(idIn, labelIn) 
+			function addNode(idIn, labelIn, levelIn) 
 			{
 				try
 				{
 					nodes.add(
 					{
 						id: idIn,
-						label: labelIn
+						label: labelIn,
+						level: levelIn,
+						shape: 'dot',  
+						color: {background:'white', border:'black'},
+						font: {background: 'white'}						
 					});
 				}
 				catch (err) 
@@ -178,7 +182,7 @@
 					edges.add({
 						id: idIn,
 						from: fromIn,
-						to: toIn
+						to: toIn,
 						});
 				}
 				catch (err) 
@@ -246,7 +250,6 @@
 
 			function draw() 
 			{
-				// create an array with nodes
 				nodes = new vis.DataSet();
 				nodes.on('*', function () 
 				{
@@ -323,9 +326,9 @@
                     <td></td>
                     <td>Action</td>
                     <td>
-                        <button id="node-add" onclick="addNodeFromInput();">Add</button>
-                        <button id="node-update" onclick="updateNodeFromInput();">Update</button>
-                        <button id="node-remove" onclick="removeNodeFromInput();">Remove</button>
+                        <button id="node-add" onclick="addNodeFromInput() ;">Add</button>
+                        <button id="node-update" onclick="updateNodeFromInput() ;">Update</button>
+                        <button id="node-remove" onclick="removeNodeFromInput() ;">Remove</button>
                     </td>
                 </tr>
             </table>
