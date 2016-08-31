@@ -33,12 +33,24 @@ Node.prototype = {
 
 // recursively traverse a (sub)tree
 
-function traverse(indent, node) {
-    //log.add(Array(indent++).join("--") + node.name);
+function traverse(node)
+{
 
-    for (var i = 0, len = node.children.length; i < len; i++) {
-        traverse(indent, node.getChild(i));
+    var jsonNetwork='{';
+    jsonNetwork+="Name : "+node.name;
+    jsonNetwork+=',Children:[';
+    for (var i = 0, len = node.children.length; i < len; i++)
+    {
+
+        jsonNetwork+=traverse(node.getChild(i));
+
     }
+    jsonNetwork+=']';
+    jsonNetwork+='}';
+    return jsonNetwork;
 }
+
+
+
 
 
