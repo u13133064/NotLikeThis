@@ -61,6 +61,12 @@
 		
 		<script type="text/javascript"  charset="UTF-8">
 		
+			var switchy = true;
+			var visNodes, visEdges, edgesMouseOver, networkHierarchy, networkMouseOver;
+			
+			var parentEdges = new Array();
+			var siblingEdges = new Array();
+		
 			function beginScan()
 			{
 				document.getElementById("startScanButton").style.visibility='hidden';
@@ -79,8 +85,6 @@
 				document.getElementById("pauseScanButton").style.visibility='visible';
 			}
 			
-			var nodes, edges, edgesMouseOver, networkHierarchy, networkMouseOver;
-			
 			function toJSON(obj) 
 			{
 				return JSON.stringify(obj, null, 4);
@@ -90,7 +94,7 @@
 			{
 				try
 				{
-					nodes.add(
+					visNodes.add(
 					{
 						id: idIn,
 						label: labelIn,
@@ -109,7 +113,7 @@
 			function updateNode(idIn, labelIn) 
 			{
 				try {
-					nodes.update({
+					visNodes.update({
 					    id: idIn,
 					    label: labelIn
 					});
@@ -124,7 +128,7 @@
 			{
 				try 
 				{
-					nodes.remove({id: idIn});
+					visNodes.remove({id: idIn});
 				}
 				catch (err) 
 				{
@@ -132,15 +136,35 @@
 				}
 			}
 			
-			function addEdge(idIn, fromIn, toIn)
+			function addEdgeParent(idIn, fromIn, toIn)
 			{
 				try 
 				{
-					edges.add({
+					visEdges.add({
 						id: idIn,
 						from: fromIn,
 						to: toIn,
 						});
+						
+					parentEdges.push(idIn);
+				}
+				catch (err) 
+				{
+					alert(err);
+				}
+			}
+			
+			function addEdgeSibling(idIn, fromIn, toIn)
+			{
+				try 
+				{
+					visEdges.add({
+						id: idIn,
+						from: fromIn,
+						to: toIn,
+						});
+						
+					siblingEdges.push(idIn);
 				}
 				catch (err) 
 				{
@@ -152,7 +176,7 @@
 			{
 				try 
 				{
-					edges.update({
+					visEdges.update({
 						id: idIn,
 						from: fromIn,
 						to: inTo
@@ -168,24 +192,112 @@
 			{
 				try 
 				{
-					edges.remove({id: idIn});
+					visEdges.remove({id: idIn});
+					var a = fruits.indexOf("Apple1");
+					
+					if(parentEdges.indexOf(idIn) != -1)
+					{
+						parentEdges.splice(indexOf(idIn), 1);
+					}
+					
+					if(siblingEdges.indexOf(idIn) != -1)
+					{
+						siblingEdges.splice(indexOf(idIn), 1);
+					}
 				}
 				catch (err)
 				{
 					alert(err);
 				}
 			}
-			var switchy = true;
+			
+			
+			function setParentEdgesVisible()
+			{
+				var i = 0;
+				var temp;
+				
+				for(i = 0; i < parentEdges.length; i++)
+				{
+					try 
+					{
+						temp = parentEdges[i];
+						
+						visEdges.update({
+							id: temp,
+							hidden: false
+						});
+					}
+					catch (err) 
+					{
+						alert(err);
+					}
+				}
+				
+				for(i = 0; i < siblingEdges.length; i++)
+				{
+					try 
+					{
+						visEdges.update({
+							id: siblingEdges[i],
+							hidden: true
+						});
+					}
+					catch (err) 
+					{
+						alert(err);
+					}
+				}	
+			}
+			
+			function setSiblingEdgesVisible()
+			{
+				var i = 0;
+				var temp;
+				
+				for(i = 0; i < parentEdges.length; i++)
+				{
+					try 
+					{
+						temp = parentEdges[i];
+						
+						visEdges.update({
+							id: temp,
+							hidden: true
+						});
+					}
+					catch (err) 
+					{
+						alert(err);
+					}
+				}
+				
+				for(i = 0; i < siblingEdges.length; i++)
+				{
+					try 
+					{
+						visEdges.update({
+							id: siblingEdges[i],
+							hidden: false
+						});
+					}
+					catch (err) 
+					{
+						alert(err);
+					}
+				}	
+			}
+			
 			function draw() 
 			{
-				nodes = new vis.DataSet();
+				visNodes = new vis.DataSet();
 				
-				nodes.on('*', function () 
+				visNodes.on('*', function () 
 				{
 					//document.getElementById('nodes').innerHTML = JSON.stringify(nodes.get(), null, 4);
 				});
-				
-				nodes.add([
+			
+				visNodes.add([
 				//level 1
 					{id: '1', label: 'Node 1', level: '1' , shape: 'dot',  color: {background:'white', border:'black'} ,font: {background: 'white'}},
 				//level 2	
@@ -224,14 +336,14 @@
 					{id: '30', label: 'Node 30', level: '5', shape: 'dot',  color: {background:'white', border:'black'} ,font: {background: 'white'}},
 					{id: '31', label: 'Node 31', level: '5', shape: 'dot',  color: {background:'white', border:'black'} ,font: {background: 'white'}},
 				]);
-				edges = new vis.DataSet();
-				edgesMouseOver = new vis.DataSet();
-				edges.on('*', function () 
+				visEdges = new vis.DataSet();
+				
+				visEdges.on('*', function () 
 				{
 					//document.getElementById('edges').innerHTML = JSON.stringify(edges.get(), null, 4);
 				});
 				
-				edges.add([
+				visEdges.add([
 					{id: '1', from: '1', to: '2'},
 					{id: '2', from: '1', to: '3'},
 					
@@ -254,71 +366,35 @@
 					{id: '17', from: '9', to: '18'},
 					{id: '18', from: '9', to: '19'},
 					{id: '19', from: '10', to: '20'},
-					{id: '20', from: '10', to: '21'},					
+					{id: '20', from: '10', to: '21'},				
 					{id: '21', from: '11', to: '22'},
-					{id: '22', from: '11', to: '23'},					
+					{id: '22', from: '11', to: '23'},				
 					{id: '23', from: '12', to: '24'},
-					{id: '24', from: '12', to: '25'},					
+					{id: '24', from: '12', to: '25'},				
 					{id: '25', from: '13', to: '26'},
 					{id: '26', from: '13', to: '27'},
 					{id: '27', from: '14', to: '28'},
-					{id: '28', from: '14', to: '29'},					
+					{id: '28', from: '14', to: '29'},				
 					{id: '29', from: '15', to: '30'},
 					{id: '30', from: '15', to: '31'},
-				]);
-				
-				edgesMouseOver	.add([
-					{id: '1', from: '1', to: '2', hidden: 'true'},
-					{id: '2', from: '1', to: '3', hidden: 'true'},
-					
-					{id: '3', from: '2', to: '4', hidden: 'true'},
-					{id: '4', from: '2', to: '5', hidden: 'true'},
-					{id: '5', from: '3', to: '6', hidden: 'true'},
-					{id: '6', from: '3', to: '7', hidden: 'true'},
-					
-					{id: '7', from: '4', to: '8', hidden: 'true'},
-					{id: '8', from: '4', to: '9', hidden: 'true'},
-					{id: '9', from: '5', to: '10', hidden: 'true'},
-					{id: '10', from: '5', to: '11', hidden: 'true'},
-					{id: '11', from: '6', to: '12', hidden: 'true'},
-					{id: '12', from: '6', to: '13', hidden: 'true'},
-					{id: '13', from: '7', to: '14', hidden: 'true'},
-					{id: '14', from: '7', to: '15', hidden: 'true'},
-					
-					{id: '15', from: '8', to: '16', hidden: 'true'},
-					{id: '16', from: '8', to: '17', hidden: 'true'},
-					{id: '17', from: '9', to: '18', hidden: 'true'},
-					{id: '18', from: '9', to: '19', hidden: 'true'},
-					{id: '19', from: '10', to: '20', hidden: 'true'},
-					{id: '20', from: '10', to: '21', hidden: 'true'},				
-					{id: '21', from: '11', to: '22', hidden: 'true'},
-					{id: '22', from: '11', to: '23', hidden: 'true'},				
-					{id: '23', from: '12', to: '24', hidden: 'true'},
-					{id: '24', from: '12', to: '25', hidden: 'true'},				
-					{id: '25', from: '13', to: '26', hidden: 'true'},
-					{id: '26', from: '13', to: '27', hidden: 'true'},
-					{id: '27', from: '14', to: '28', hidden: 'true'},
-					{id: '28', from: '14', to: '29', hidden: 'true'},				
-					{id: '29', from: '15', to: '30', hidden: 'true'},
-					{id: '30', from: '15', to: '31', hidden: 'true'},
 				//same line
 					{id: 's1', from: '2', to: '3'},		
 					{id: 's2', from: '4', to: '5'},						
-					{id: 's3', from: '6', to: '7'},
-					{id: 's4', from: '8', to: '9'},
-					{id: 's5', from: '10', to: '11'},
-					{id: 's6', from: '12', to: '13'},					
-					{id: 's7', from: '14', to: '15'},
-					{id: 's8', from: '16', to: '17'},
-					{id: 's9', from: '18', to: '19'},
-					{id: 's10', from: '20', to: '21'},
-					{id: 's11', from: '22', to: '23'},
-					{id: 's12', from: '24', to: '25'},
-					{id: 's13', from: '26', to: '27'},
-					{id: 's14', from: '28', to: '29'},	
+					{id: 's3', from: '6', to: '7'},		
+					{id: 's4', from: '8', to: '9'},		
+					{id: 's5', from: '10', to: '11'},		
+					{id: 's6', from: '12', to: '13'},						
+					{id: 's7', from: '14', to: '15'},		
+					{id: 's8', from: '16', to: '17'},		
+					{id: 's9', from: '18', to: '19'},		
+					{id: 's10', from: '20', to: '21'},		
+					{id: 's11', from: '22', to: '23'},		
+					{id: 's12', from: '24', to: '25'},		
+					{id: 's13', from: '26', to: '27'},		
+					{id: 's14', from: '28', to: '29'},		
 					{id: 's15', from: '30', to: '31'},			
 				]);
-				
+
 				var options = 
 				{
 					interaction: { navigationButtons: true,  keyboard: true, hover:true},
@@ -331,54 +407,41 @@
 				
 				var data = 
 				{
-					nodes: nodes,
-					edges: edges
+					nodes: visNodes,
+					edges: visEdges
 				};
 				
-				var dataMouseOver = 
-				{
-					nodes: nodes,
-					edges: edgesMouseOver
-				};
 				
 				var container = document.getElementById('hierarchyVisualizerDiv');
 				networkHierarchy = new vis.Network(container, data, options);
 				
-				var container2 = document.getElementById('mouseOverVisualizerDiv');
-				networkMouseOver = new vis.Network(container2, dataMouseOver, options);
-				
 				networkHierarchy.on("selectNode", function (params) 
 				{
-					document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
-					document.getElementById("mouseOverVisualizerDiv").style.visibility='visible';
+					//document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
+					//document.getElementById("mouseOverVisualizerDiv").style.visibility='visible';
 				});
+				
+				parentEdges.push('1');		parentEdges.push('2');		parentEdges.push('3');		parentEdges.push('4');		parentEdges.push('5');
+				parentEdges.push('6');		parentEdges.push('7');		parentEdges.push('8');		parentEdges.push('9');		parentEdges.push('10');
+				parentEdges.push('11');	parentEdges.push('12');	parentEdges.push('13');	parentEdges.push('14');	parentEdges.push('15');
+				parentEdges.push('16');	parentEdges.push('17');	parentEdges.push('18');	parentEdges.push('19');	parentEdges.push('20');
+				parentEdges.push('21');	parentEdges.push('22');	parentEdges.push('23');	parentEdges.push('24');	parentEdges.push('25');
+				parentEdges.push('26');	parentEdges.push('27');	parentEdges.push('28');	parentEdges.push('29');	parentEdges.push('30');	
+
+				siblingEdges.push('s1');	siblingEdges.push('s2');	siblingEdges.push('s3');	siblingEdges.push('s4');	siblingEdges.push('s5');
+				siblingEdges.push('s6');	siblingEdges.push('s7');	siblingEdges.push('s8');	siblingEdges.push('s9');	siblingEdges.push('s10');
+				siblingEdges.push('s11');	siblingEdges.push('s12');	siblingEdges.push('s13');	siblingEdges.push('s14');	siblingEdges.push('s15');
 				
 				networkHierarchy.on("hoverNode", function (params) 
 				{
-					document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
-					document.getElementById("mouseOverVisualizerDiv").style.visibility='visible';
-				
-					
-					
+					setSiblingEdgesVisible();
 				});
 				
-				networkMouseOver.on("blurNode", function (params) 
+				networkHierarchy.on("blurNode", function (params) 
 				{
-					document.getElementById("hierarchyVisualizerDiv").style.visibility='visible';
-					document.getElementById("mouseOverVisualizerDiv").style.visibility='hidden';
-					//alert("hello");
-					
+					setParentEdgesVisible();						
 				});
-				
-
 			}
-			
-			
-			
-			
-			//instead of loading different div and containter, update visibility instead
-			//use id's to differentiate hier and same level //friend node and parents
-			
 		</script>
 	</head>
 
@@ -412,8 +475,7 @@
 		<div id="hierarchyVisualizerDiv">
 		</div>
 		
-		<div id="mouseOverVisualizerDiv">
-		</div>
+
 		
 		<div id="nodeInfoDiv">
 			<p id="nodeInfo">aaaaaaaa</p>
@@ -421,4 +483,3 @@
 		
 	</body>
 </html>
-
