@@ -2,24 +2,51 @@
  * Created by Jedd Shneier
  */
 var AWS = require('aws-sdk');
-var composite = require('aws-sdk');
-exports.scanNetwork=function(region) {
-    AWS.config.region = region;
+var composite = require('./composite');
+exports.scanNetwork=function()
+{
+    AWS.config.region = 'ap-south-1';
     var ec2 = new AWS.EC2();
-    ec2.describeInstances(function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        var inst_id = '-';
-        console.log(data.Reservations.length);
-        for (var i = 0; i < data.Reservations.length; i++) {
-            var res = data.Reservations[i];
-            var instances = res.Instances;
-            for (var j = 0; j < instances.length; j++) {
-                var instanceID = instances[j].InstanceId;
-                var state = instances[j].State.Code;
-                var public_ip = instances[j].PublicIpAddress;
-                var imageID = instances[j].ImageId;
-                console.log('instance ' + instanceID + " state " + state + " public ip " + public_ip + 'image id ' + imageID);
+    ec2.describeRegions(function(err, data)
+    {
+        if (err)
+        {
+            console.log(err, err.stack); // an error occurred
+        }
+        else
+        {
+            var regions =data.Regions;
+            var root = new composite.Node('1','AWS');
+            for(var i =0;i<regions.length;i++)
+            {
+
+                root.add( new composite.Node(regions[i].RegionName,regions[i].RegionName));
+                AWS.config.region =regions[i].RegionName ;
+                ec2 = new AWS.EC2();
+                ec2.describeVpcs(function(err, data)
+                {
+                    if (err)
+                    {
+                        console.log(err, err.stack); // an error occurred
+                    }
+                    else
+                    {
+                        var vpcs = data.Vpcs;
+                        for(var j =0;j<vpcs.length;j++) {
+                            console.log(root.getChild());
+                            root.getChild(i).add(new composite.Node(vpcs[j].VpcId,vpcs[j].VpcId));
+                        }
+                    }
+
+                })
+
             }
+
+            console.log(composite.traverse(root));
+
+
         }
 
-})};
+    })
+};
+

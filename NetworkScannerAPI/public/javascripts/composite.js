@@ -1,14 +1,14 @@
 /**
  * Created by Jedd Shneier
  */
-var Node = function (uuid,additionalInformation) {
+exports.Node = function (uuid,additionalInformation) {
     this.children = [];
     this.uuid = uuid;
     this.additionalInformation=additionalInformation;
 
 }
 
-Node.prototype = {
+exports.Node.prototype = {
     add: function (child) {
         this.children.push(child);
     },
@@ -34,7 +34,7 @@ Node.prototype = {
 
 // recursively traverse a (sub)tree
 
-function traverse(node)
+exports.traverse=function traverse(node)
 {
 
     var jsonNetwork='{';
