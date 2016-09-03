@@ -1,9 +1,10 @@
 /**
  * Created by Jedd Shneier
  */
-var Node = function (name) {
+var Node = function (uuid,additionalInformation) {
     this.children = [];
-    this.name = name;
+    this.uuid = uuid;
+    this.additionalInformation=additionalInformation;
 
 }
 
@@ -37,7 +38,8 @@ function traverse(node)
 {
 
     var jsonNetwork='{';
-    jsonNetwork+="Name : "+node.name;
+    jsonNetwork+="UUID : "+node.uuid;
+    jsonNetwork+=",additionalInformation : "+node.additionalInformation;
     jsonNetwork+=',Children:[';
     for (var i = 0, len = node.children.length; i < len; i++)
     {
