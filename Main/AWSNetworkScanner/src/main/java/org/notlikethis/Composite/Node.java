@@ -9,12 +9,22 @@ public class Node implements NetworkTree {
     private String information;
     private String uuid;
     private LinkedList<NetworkTree> children = null;
+    private String name;
+
     public String getUUID() {
         return uuid;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getInformation() {
         return information;
+    }
+
+    public void setName(String name) {
+        this.name= name;
     }
 
     public void setUUID(String id) {
