@@ -6,6 +6,7 @@ import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeRegionsResult;
 import com.amazonaws.services.ec2.model.Region;
+import org.notlikethis.Buffer.SharedBuffer;
 import org.notlikethis.Composite.NetworkTree;
 import org.notlikethis.Credentials.Credential;
 
@@ -15,9 +16,9 @@ import java.util.List;
  * Created by Jedd Shneier.
  */
 public class AWSScanner implements ScannerInterface {
-    public NetworkTree scanFullNetwork(Credential clientCredentials) {
+    public void scanFullNetwork(Credential clientCredentials,SharedBuffer buffer) {
 
-        //Connect to account
+
         AWSCredentials credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         AmazonEC2 ec2 = new AmazonEC2Client(credentials);
 
@@ -26,13 +27,10 @@ public class AWSScanner implements ScannerInterface {
 
         for(int i =0;i<regions.size();i++)
         {
-            //Start a new thread
-            //describe 100 instances
-            //convert to tree
-            //add to buffer
+            new RegionScannerThread(clientCredentials,regions.get(i).getRegionName(),buffer).run();
+
         }
 
-        return null;
     }
 
     public NetworkTree scanNetworkFrom(String identifier, Credential credentials) {
