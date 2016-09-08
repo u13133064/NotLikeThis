@@ -44,7 +44,7 @@ public class RegionScannerThread implements Runnable {
                 List<Instance> instances =reservations.get(i).getInstances();
                 for(int j =0;j<instances.size();j++)
                 {
-                    NetworkTree generatedTree =convertInstanceToTree(instances.get(i));
+                    NetworkTree generatedTree =convertInstanceToTree(instances.get(j));
                     buffer.addToBuffer(generatedTree);
 
                 }
@@ -52,7 +52,7 @@ public class RegionScannerThread implements Runnable {
             }
             nextToken = instancesResult.getNextToken();
 
-        } while (nextToken.length()>0);
+        } while (nextToken!=null);
 
 
 
