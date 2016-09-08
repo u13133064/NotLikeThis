@@ -19,16 +19,19 @@ public class SharedBuffer implements SmartBufferInterface{
         currentTree.setInformation("AWS");
         currentTree.setName("Root");
         currentTree.setUUID("1");
+
     }
 
 
 
     public void constructTree() {
-       NetworkTree additionTree = frontBuffer.remove();
-        if (additionTree==null)
-        {
-            return;
+        NetworkTree additionTree = null;
+        try {
+            additionTree = frontBuffer.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
         for (int i =0;i< currentTree.getChildrenSize();i++)
         {
             if(currentTree.getChild(i).getName().equals(additionTree.getName()))
@@ -68,7 +71,11 @@ public class SharedBuffer implements SmartBufferInterface{
     }
 
     public void addToBuffer(NetworkTree tree) {
-            frontBuffer.add(tree);
+        try {
+            frontBuffer.put(tree);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getLatestTree() {
