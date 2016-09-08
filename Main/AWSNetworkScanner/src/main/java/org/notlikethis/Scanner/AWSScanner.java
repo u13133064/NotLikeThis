@@ -27,7 +27,7 @@ public class AWSScanner implements ScannerInterface {
 
         for(int i =0;i<regions.size();i++)
         {
-            new RegionScannerThread(clientCredentials,regions.get(i).getRegionName(),buffer).run();
+            new Thread(new RegionScannerThread(clientCredentials,regions.get(i).getRegionName(),buffer)).start();
 
         }
 
