@@ -10,6 +10,11 @@ and open the template in the editor.
 		
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+		.test:hover { 
+			background-color: orange;
+				}
+		</style>
 		
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 		<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
@@ -427,8 +432,6 @@ and open the template in the editor.
 					setParentEdgesVisible();						
 				});
 			}
-			
-			
 		</script>
 		
 	</head>
@@ -450,12 +453,12 @@ and open the template in the editor.
 				</div>
 			</div>
 			<input type='file' accept='text/plain' class="w3-btn" style="width:100%; background-color: #146eb4;" onchange='openFile(event)'>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Scan Network</button>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Pause</button>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Resume</button>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Stop</button>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Scan Up</button>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Scan Down</button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;"><div class="test">Scan Network</div></button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;"><div class="test">Pause</div></button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;"><div class="test">Resume</div></button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;"><div class="test">Stop</div></button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;"><div class="test">Scan Up</div></button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;"><div class="test">Scan Down</div></button>
 		</nav>
 
 		<div style="margin-left:25%; padding: 10px; height: 500px; ">
