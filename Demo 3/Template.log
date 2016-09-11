@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.7.29)  11 SEP 2016 21:01
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.7.29)  11 SEP 2016 21:17
 entering extended mode
 **C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo*3/Template.tex
 ("C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/Template.tex"
@@ -246,14 +246,14 @@ LaTeX Info: Redefining \nameref on input line 24.
 ("C:\Users\User\Desktop\COS301Repo\NotLikeThis\Demo 3\Template.out")
 \@outlinefile=\write4
 
-<./images/up-logo.jpg, id=99, 287.1528pt x 78.7743pt>
+<./images/up-logo.jpg, id=103, 287.1528pt x 78.7743pt>
 File: ./images/up-logo.jpg Graphic file (type jpg)
 
 <use ./images/up-logo.jpg>
 Package pdftex.def Info: ./images/up-logo.jpg used on input line 32.
 (pdftex.def)             Requested size: 446.9055pt x 122.60974pt.
 
-<./images/logo.jpg, id=100, 427.5975pt x 427.5975pt>
+<./images/logo.jpg, id=104, 427.5975pt x 427.5975pt>
 File: ./images/logo.jpg Graphic file (type jpg)
  <use ./images/logo.jpg>
 Package pdftex.def Info: ./images/logo.jpg used on input line 37.
@@ -290,235 +290,235 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.120 \newpage
-               [1]
-Overfull \hbox (15.98572pt too wide) in paragraph at lines 137--138
+               [1] [2]
+Overfull \hbox (15.98572pt too wide) in paragraph at lines 161--162
 \OT1/cmr/m/n/12 the AWS ssytem and their API can be found here https://aws.amaz
 on.com/documentation/
  []
 
-[2] [3]
-Underfull \hbox (badness 3746) in paragraph at lines 191--191
+[3] [4]
+Underfull \hbox (badness 3746) in paragraph at lines 215--215
 \OT1/cmr/m/n/12 server must be ac-
  []
 
 
-Underfull \hbox (badness 2368) in paragraph at lines 191--191
+Underfull \hbox (badness 2368) in paragraph at lines 215--215
 []\OT1/cmr/m/n/12 The web page con-
  []
 
 
-Underfull \hbox (badness 1635) in paragraph at lines 191--191
+Underfull \hbox (badness 1635) in paragraph at lines 215--215
 \OT1/cmr/m/n/12 the new data be-ing
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 191--191
+Underfull \hbox (badness 1168) in paragraph at lines 215--215
 []\OT1/cmr/m/n/12 This use case forms
  []
 
 
-Underfull \hbox (badness 1052) in paragraph at lines 191--191
+Underfull \hbox (badness 1052) in paragraph at lines 215--215
 \OT1/cmr/m/n/12 as the pri-mary pur-
  []
 
 
-Underfull \hbox (badness 1137) in paragraph at lines 191--191
+Underfull \hbox (badness 1137) in paragraph at lines 215--215
 \OT1/cmr/m/n/12 pose of the ap-pli-ca-
  []
 
 
-Underfull \hbox (badness 3746) in paragraph at lines 193--193
+Underfull \hbox (badness 3746) in paragraph at lines 217--217
 \OT1/cmr/m/n/12 server must be ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
+Underfull \hbox (badness 10000) in paragraph at lines 217--217
 \OT1/cmr/m/n/12 vi-su-al-i-sa-tion is re-
  []
 
 
-Underfull \hbox (badness 2951) in paragraph at lines 193--193
+Underfull \hbox (badness 2951) in paragraph at lines 217--217
 \OT1/cmr/m/n/12 vi-su-aliser only vi-su-
  []
 
 
-Underfull \hbox (badness 3746) in paragraph at lines 195--195
+Underfull \hbox (badness 3746) in paragraph at lines 219--219
 \OT1/cmr/m/n/12 server must be ac-
  []
 
 
-Underfull \hbox (badness 4072) in paragraph at lines 195--195
+Underfull \hbox (badness 4072) in paragraph at lines 219--219
 []\OT1/cmr/m/n/12 Since the vi-su-alised
  []
 
 
-Underfull \hbox (badness 3746) in paragraph at lines 197--197
+Underfull \hbox (badness 3746) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 server must be ac-
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 197--197
+Underfull \hbox (badness 3557) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 lated in-for-ma-tion is
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 197--197
+Underfull \hbox (badness 3557) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 dis-played be-low the
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 197--197
+Underfull \hbox (badness 1831) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 work has a num-ber
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 197--197
+Underfull \hbox (badness 1762) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 ma-tion. This way,
  []
 
 
-Underfull \hbox (badness 2334) in paragraph at lines 197--197
+Underfull \hbox (badness 2334) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 dis-played in a neat
  []
 
 
-Underfull \hbox (badness 3746) in paragraph at lines 199--199
+Underfull \hbox (badness 3746) in paragraph at lines 223--223
 \OT1/cmr/m/n/12 server must be ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
 []\OT1/cmr/m/n/12 Edges con-nect-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
 \OT1/cmr/m/n/12 nodes of dif-fer-ent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
 \OT1/cmr/m/n/12 lev-els are ren-dered
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 199--199
+Underfull \hbox (badness 1389) in paragraph at lines 223--223
 \OT1/cmr/m/n/12 re-la-tion-ships. They
  []
 
 
-Overfull \hbox (27.88582pt too wide) in paragraph at lines 187--201
+Overfull \hbox (27.88582pt too wide) in paragraph at lines 211--225
 [] 
  []
 
-[4] [5] <./images/Login1.png, id=181, 1206.00563pt x 364.36125pt>
+[5] [6] <./images/Login1.png, id=194, 1206.00563pt x 364.36125pt>
 File: ./images/Login1.png Graphic file (type png)
 
 <use ./images/Login1.png>
-Package pdftex.def Info: ./images/Login1.png used on input line 236.
+Package pdftex.def Info: ./images/Login1.png used on input line 260.
 (pdftex.def)             Requested size: 402.21222pt x 121.51274pt.
 
-<./images/Login2.png, id=182, 1206.00563pt x 373.395pt>
+<./images/Login2.png, id=195, 1206.00563pt x 373.395pt>
 File: ./images/Login2.png Graphic file (type png)
 
 <use ./images/Login2.png>
-Package pdftex.def Info: ./images/Login2.png used on input line 240.
+Package pdftex.def Info: ./images/Login2.png used on input line 264.
 (pdftex.def)             Requested size: 402.21222pt x 124.52547pt.
- [6 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Login1.png> <C:
+ [7 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Login1.png> <C:
 /Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Login2.png>] <./images
-/Visualizer1.png, id=187, 1206.00563pt x 679.03688pt>
+/Visualizer1.png, id=200, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer1.png Graphic file (type png)
 
 <use ./images/Visualizer1.png>
-Package pdftex.def Info: ./images/Visualizer1.png used on input line 246.
+Package pdftex.def Info: ./images/Visualizer1.png used on input line 270.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
 
-<./images/Visualizer2.png, id=188, 1206.00563pt x 301.8778pt>
+<./images/Visualizer2.png, id=201, 1206.00563pt x 301.8778pt>
 File: ./images/Visualizer2.png Graphic file (type png)
 
 <use ./images/Visualizer2.png>
-Package pdftex.def Info: ./images/Visualizer2.png used on input line 250.
+Package pdftex.def Info: ./images/Visualizer2.png used on input line 274.
 (pdftex.def)             Requested size: 402.21222pt x 100.67482pt.
 
-<./images/Visualizer3.png, id=189, 1206.00563pt x 350.05782pt>
+<./images/Visualizer3.png, id=202, 1206.00563pt x 350.05782pt>
 File: ./images/Visualizer3.png Graphic file (type png)
 
 <use ./images/Visualizer3.png>
-Package pdftex.def Info: ./images/Visualizer3.png used on input line 254.
+Package pdftex.def Info: ./images/Visualizer3.png used on input line 278.
 (pdftex.def)             Requested size: 402.21222pt x 116.74261pt.
- [7 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer1.png
+ [8 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer1.png
 > <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer2.png> 
 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer3.png>]
-<./images/Visualizer4.png, id=196, 1206.00563pt x 318.43968pt>
+<./images/Visualizer4.png, id=209, 1206.00563pt x 318.43968pt>
 File: ./images/Visualizer4.png Graphic file (type png)
 
 <use ./images/Visualizer4.png>
-Package pdftex.def Info: ./images/Visualizer4.png used on input line 259.
+Package pdftex.def Info: ./images/Visualizer4.png used on input line 283.
 (pdftex.def)             Requested size: 402.21222pt x 106.19812pt.
 
-<./images/Visualizer5.png, id=197, 1206.00563pt x 679.03688pt>
+<./images/Visualizer5.png, id=210, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer5.png Graphic file (type png)
 
 <use ./images/Visualizer5.png>
-Package pdftex.def Info: ./images/Visualizer5.png used on input line 264.
+Package pdftex.def Info: ./images/Visualizer5.png used on input line 288.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
- [8 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer4.png
+ [9 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer4.png
 > <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer5.png>]
 
-<./images/Visualizer6.png, id=203, 1206.00563pt x 679.03688pt>
+<./images/Visualizer6.png, id=216, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer6.png Graphic file (type png)
 
 <use ./images/Visualizer6.png>
-Package pdftex.def Info: ./images/Visualizer6.png used on input line 270.
+Package pdftex.def Info: ./images/Visualizer6.png used on input line 294.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
 
-<./images/Visualizer7.png, id=204, 1206.00563pt x 679.03688pt>
+<./images/Visualizer7.png, id=217, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer7.png Graphic file (type png)
 
 <use ./images/Visualizer7.png>
-Package pdftex.def Info: ./images/Visualizer7.png used on input line 275.
+Package pdftex.def Info: ./images/Visualizer7.png used on input line 299.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
- [9 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer6.png
-> <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer7.png>]
-
-<./images/Visualizer8.png, id=209, 1206.00563pt x 679.03688pt>
+ [10 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer6.pn
+g> <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer7.png>
+]
+<./images/Visualizer8.png, id=222, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer8.png Graphic file (type png)
 
 <use ./images/Visualizer8.png>
-Package pdftex.def Info: ./images/Visualizer8.png used on input line 281.
+Package pdftex.def Info: ./images/Visualizer8.png used on input line 305.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--283
+Underfull \hbox (badness 10000) in paragraph at lines 305--307
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 285.
-[10 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer8.png
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 309.
+[11 <C:/Users/User/Desktop/COS301Repo/NotLikeThis/Demo 3/images/Visualizer8.png
 >]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 285.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 309.
  ("C:\Users\User\Desktop\COS301Repo\NotLikeThis\Demo 3\Template.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 285.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 285.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 309.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 309.
 Package rerunfilecheck Info: File `Template.out' has not changed.
-(rerunfilecheck)             Checksum: E3B6F7D0600E8ED524A171865E24A025;1498.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 285.
+(rerunfilecheck)             Checksum: 3FAD1D65A76AE3594C79AC6C0D54657F;1580.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 309.
  ) 
 Here is how much of TeX's memory you used:
- 4960 strings out of 493921
- 74784 string characters out of 3144879
+ 4967 strings out of 493921
+ 74849 string characters out of 3144879
  158146 words of memory out of 3000000
- 8163 multiletter control sequences out of 15000+200000
+ 8164 multiletter control sequences out of 15000+200000
  9750 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 29i,8n,28p,928b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,8n,28p,928b,397s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Template.pdf (12 pages, 1793789 bytes).
+Output written on Template.pdf (13 pages, 1797654 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 261 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
+ 261 words of extra memory for PDF output out of 10000 (max. 10000000)
 

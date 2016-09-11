@@ -123,14 +123,38 @@ Using this representation, it is then translated into HTML. Making use of the vi
 
 	\subsection{Architecture Scope}
 	Layered Architecture: 
+	RESTFUl Architecture
+	Threading Pool tactic:
+	
 	
 
 	\subsection{Quality Requirements}
 		\subsubsection {Critical}
+\begin{enumerate}  
+					\item Performance: The first and perhapse msot important critical requirment. The system is working with massive amounts of data. the system is redundant if it can not process and shwo that data quickly. The majority of architectual design ahs been don to improve perfroamnce. To keep it withib its 3 second throughput requiremnt. 
+					\item Scalability: This is one of the major quality requirements for the service. As stated from the start of the project. The system will have to work with very large networks in future and thus the algorithms within will need to scale well such that they can work with these large networks and so that performance costs are minimized when these large networks are used. So far our Performance requirements matches our Scale.
+\end{enumerate}		
 		\subsubsection {Important}
+\begin{enumerate}  
+					\item Security: From our own experince we know how important securoty is with this system.As we are working with sensitive client info (links to credit cards), it is imperative that we make sure the system is secure and does not allow for this iinformation to go to unwanted 3rd parties or be compromised in anyway.
+
+\item Usability: Usability is very important for if the system is not easy, comfortable and pleasuarabel to use then the client may not feel a use in using it at all. However it is not important as perfrormance or Scaleabilty as at higher levels regardless of usability the ssytem will be required to meet thsoe requirments. The system is going to be used by the Amazon clients who will not necessarily have programming knowledge thus the end product needs to be catered to these users such that they are able to use the program efficiently.
+\end{enumerate}	
+
 		\subsubsection {Nice To Have}
+			Maintainability: The system is going to be used by the Amazon clients who will not necessarily have programming knowledge thus the end product needs to be catered to these users such that they are able to use the program efficiently.
 	\subsection{Architectural Constraint}
-	
+	The user must have an existing and valid account with the Amazon services.
+          The user must be using a virtual network. the user has to havea valid credit card to set up their account. user msut havea relitavily stable preferbly uncapped internet connection. USer must also set up access key and Secrete key on their end.
+	\subsection{Access and integration channels}
+ The information regarding the networks is taken via the Amazon API services.
+- The user should login via the existing Amazon site and the visualizer should integrate into the site itself.
+- The Front end must intergrate through the REST server with the backend. 
+-The scanner must intergrate with the Shared Buffer.
+-The Scanner mustt intergrate with AWS.
+-The interface must intergrate on all browsers and with standard web technologies
+1.4 Architectural constraints
+
 \section{Architectural Design}
 Layered Architecture: 
 
