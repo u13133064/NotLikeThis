@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  11 SEP 2016 22:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  11 SEP 2016 20:03
 entering extended mode
 **./Template.tex
 (Template.tex
@@ -268,272 +268,163 @@ LaTeX Info: Redefining \nameref on input line 24.
 \openout4 = `Template.out'.
 
 
-<./images/up-logo.jpg, id=103, 287.1528pt x 78.7743pt>
+<./images/up-logo.jpg, id=47, 287.1528pt x 78.7743pt>
 File: ./images/up-logo.jpg Graphic file (type jpg)
 
 <use ./images/up-logo.jpg>
 Package pdftex.def Info: ./images/up-logo.jpg used on input line 32.
 (pdftex.def)             Requested size: 446.9055pt x 122.60974pt.
-
-<./images/logo.jpg, id=104, 427.5975pt x 427.5975pt>
-File: ./images/logo.jpg Graphic file (type jpg)
- <use ./images/logo.jpg>
-Package pdftex.def Info: ./images/logo.jpg used on input line 37.
-(pdftex.def)             Requested size: 22.34663pt x 22.34024pt.
+ <./images/logo.jpg, id=48, 427.5975pt x 427.5975pt>
 File: ./images/logo.jpg Graphic file (type jpg)
 
 <use ./images/logo.jpg>
+Package pdftex.def Info: ./images/logo.jpg used on input line 37.
+(pdftex.def)             Requested size: 22.34663pt x 22.34024pt.
+File: ./images/logo.jpg Graphic file (type jpg)
+ <use ./images/logo.jpg>
 Package pdftex.def Info: ./images/logo.jpg used on input line 39.
 (pdftex.def)             Requested size: 22.34663pt x 22.34024pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 49.
+(Font)              <12> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 49.
+(Font)              <8> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 49.
+(Font)              <6> on input line 48.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./images/up-logo.jpg> <./
-images/logo.jpg>] (Template.toc)
+images/logo.jpg>]
+(Template.toc)
 \tf@toc=\write5
 \openout5 = `Template.toc'.
 
  [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 117.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 112.
 
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 112.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.120 \newpage
-               [1] [2]
-Overfull \hbox (15.98572pt too wide) in paragraph at lines 161--162
-\OT1/cmr/m/n/12 the AWS ssytem and their API can be found here https://aws.amaz
-on.com/documentation/
- []
-
-[3] [4]
-Underfull \hbox (badness 3746) in paragraph at lines 215--215
-\OT1/cmr/m/n/12 server must be ac-
- []
-
-
-Underfull \hbox (badness 2368) in paragraph at lines 215--215
-[]\OT1/cmr/m/n/12 The web page con-
- []
-
-
-Underfull \hbox (badness 1635) in paragraph at lines 215--215
-\OT1/cmr/m/n/12 the new data be-ing
- []
-
-
-Underfull \hbox (badness 1168) in paragraph at lines 215--215
-[]\OT1/cmr/m/n/12 This use case forms
- []
-
-
-Underfull \hbox (badness 1052) in paragraph at lines 215--215
-\OT1/cmr/m/n/12 as the pri-mary pur-
- []
-
-
-Underfull \hbox (badness 1137) in paragraph at lines 215--215
-\OT1/cmr/m/n/12 pose of the ap-pli-ca-
- []
-
-
-Underfull \hbox (badness 3746) in paragraph at lines 217--217
-\OT1/cmr/m/n/12 server must be ac-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 217--217
-\OT1/cmr/m/n/12 vi-su-al-i-sa-tion is re-
- []
-
-
-Underfull \hbox (badness 2951) in paragraph at lines 217--217
-\OT1/cmr/m/n/12 vi-su-aliser only vi-su-
- []
-
-
-Underfull \hbox (badness 3746) in paragraph at lines 219--219
-\OT1/cmr/m/n/12 server must be ac-
- []
-
-
-Underfull \hbox (badness 4072) in paragraph at lines 219--219
-[]\OT1/cmr/m/n/12 Since the vi-su-alised
- []
-
-
-Underfull \hbox (badness 3746) in paragraph at lines 221--221
-\OT1/cmr/m/n/12 server must be ac-
- []
-
-
-Underfull \hbox (badness 3557) in paragraph at lines 221--221
-\OT1/cmr/m/n/12 lated in-for-ma-tion is
- []
-
-
-Underfull \hbox (badness 3557) in paragraph at lines 221--221
-\OT1/cmr/m/n/12 dis-played be-low the
- []
-
-
-Underfull \hbox (badness 1831) in paragraph at lines 221--221
-\OT1/cmr/m/n/12 work has a num-ber
- []
-
-
-Underfull \hbox (badness 1762) in paragraph at lines 221--221
-\OT1/cmr/m/n/12 ma-tion. This way,
- []
-
-
-Underfull \hbox (badness 2334) in paragraph at lines 221--221
-\OT1/cmr/m/n/12 dis-played in a neat
- []
-
-
-Underfull \hbox (badness 3746) in paragraph at lines 223--223
-\OT1/cmr/m/n/12 server must be ac-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 223--223
-[]\OT1/cmr/m/n/12 Edges con-nect-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 223--223
-\OT1/cmr/m/n/12 nodes of dif-fer-ent
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 223--223
-\OT1/cmr/m/n/12 lev-els are ren-dered
- []
-
-
-Underfull \hbox (badness 1389) in paragraph at lines 223--223
-\OT1/cmr/m/n/12 re-la-tion-ships. They
- []
-
-
-Overfull \hbox (27.88582pt too wide) in paragraph at lines 211--225
-[] 
- []
-
-[5] [6] <./images/Login1.png, id=194, 1206.00563pt x 364.36125pt>
+l.115 \newpage
+               [1] <./images/Login1.png, id=80, 1206.00563pt x 364.36125pt>
 File: ./images/Login1.png Graphic file (type png)
 
 <use ./images/Login1.png>
-Package pdftex.def Info: ./images/Login1.png used on input line 260.
+Package pdftex.def Info: ./images/Login1.png used on input line 124.
 (pdftex.def)             Requested size: 402.21222pt x 121.51274pt.
 
-<./images/Login2.png, id=195, 1206.00563pt x 373.395pt>
+<./images/Login2.png, id=81, 1206.00563pt x 373.395pt>
 File: ./images/Login2.png Graphic file (type png)
 
 <use ./images/Login2.png>
-Package pdftex.def Info: ./images/Login2.png used on input line 264.
+Package pdftex.def Info: ./images/Login2.png used on input line 128.
 (pdftex.def)             Requested size: 402.21222pt x 124.52547pt.
- [7 <./images/Login1.png> <./images/Login2.png>]
-<./images/Visualizer1.png, id=200, 1206.00563pt x 679.03688pt>
+ [2 <./images/Login1.png> <./images/Login2.png>]
+<./images/Visualizer1.png, id=86, 1427.3325pt x 653.44125pt>
 File: ./images/Visualizer1.png Graphic file (type png)
 
 <use ./images/Visualizer1.png>
-Package pdftex.def Info: ./images/Visualizer1.png used on input line 270.
-(pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
+Package pdftex.def Info: ./images/Visualizer1.png used on input line 134.
+(pdftex.def)             Requested size: 402.21222pt x 184.12888pt.
 
-<./images/Visualizer2.png, id=201, 1206.00563pt x 301.8778pt>
+<./images/Visualizer2.png, id=87, 357.58594pt x 231.86626pt>
 File: ./images/Visualizer2.png Graphic file (type png)
 
 <use ./images/Visualizer2.png>
-Package pdftex.def Info: ./images/Visualizer2.png used on input line 274.
-(pdftex.def)             Requested size: 402.21222pt x 100.67482pt.
+Package pdftex.def Info: ./images/Visualizer2.png used on input line 138.
+(pdftex.def)             Requested size: 402.21222pt x 260.81703pt.
 
-<./images/Visualizer3.png, id=202, 1206.00563pt x 350.05782pt>
+<./images/Visualizer3.png, id=88, 360.59718pt x 231.11343pt>
 File: ./images/Visualizer3.png Graphic file (type png)
 
 <use ./images/Visualizer3.png>
-Package pdftex.def Info: ./images/Visualizer3.png used on input line 278.
-(pdftex.def)             Requested size: 402.21222pt x 116.74261pt.
- [8 <./images/Visualizer1.png> <./images/Visualizer2.png> <./images/Visualizer3
-.png>]
-<./images/Visualizer4.png, id=209, 1206.00563pt x 318.43968pt>
+Package pdftex.def Info: ./images/Visualizer3.png used on input line 143.
+(pdftex.def)             Requested size: 402.21222pt x 257.7838pt.
+ [3 <./images/Visualizer1.png> <./images/Visualizer2.png>] <./images/Visualizer
+4.png, id=93, 359.84438pt x 232.61906pt>
 File: ./images/Visualizer4.png Graphic file (type png)
 
 <use ./images/Visualizer4.png>
-Package pdftex.def Info: ./images/Visualizer4.png used on input line 283.
-(pdftex.def)             Requested size: 402.21222pt x 106.19812pt.
+Package pdftex.def Info: ./images/Visualizer4.png used on input line 147.
+(pdftex.def)             Requested size: 402.21222pt x 260.02753pt.
 
-<./images/Visualizer5.png, id=210, 1206.00563pt x 679.03688pt>
+<./images/Visualizer5.png, id=94, 360.59718pt x 231.86626pt>
 File: ./images/Visualizer5.png Graphic file (type png)
 
 <use ./images/Visualizer5.png>
-Package pdftex.def Info: ./images/Visualizer5.png used on input line 288.
-(pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
- [9 <./images/Visualizer4.png> <./images/Visualizer5.png>] <./images/Visualizer
-6.png, id=216, 1206.00563pt x 679.03688pt>
+Package pdftex.def Info: ./images/Visualizer5.png used on input line 151.
+(pdftex.def)             Requested size: 402.21222pt x 258.62349pt.
+ [4 <./images/Visualizer3.png> <./images/Visualizer4.png>] <./images/Visualizer
+6.png, id=99, 360.59718pt x 310.15875pt>
 File: ./images/Visualizer6.png Graphic file (type png)
 
 <use ./images/Visualizer6.png>
-Package pdftex.def Info: ./images/Visualizer6.png used on input line 294.
+Package pdftex.def Info: ./images/Visualizer6.png used on input line 155.
+(pdftex.def)             Requested size: 402.21222pt x 345.9509pt.
+ [5 <./images/Visualizer5.png> <./images/Visualizer6.png>] <./images/Visualizer
+9.png, id=105, 1206.00563pt x 679.03688pt>
+File: ./images/Visualizer9.png Graphic file (type png)
+
+<use ./images/Visualizer9.png>
+Package pdftex.def Info: ./images/Visualizer9.png used on input line 161.
+(pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
+ [6 <./images/Visualizer9.png>]
+<./images/Visualizer10.png, id=110, 1206.00563pt x 679.03688pt>
+File: ./images/Visualizer10.png Graphic file (type png)
+
+<use ./images/Visualizer10.png>
+Package pdftex.def Info: ./images/Visualizer10.png used on input line 167.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
 
-<./images/Visualizer7.png, id=217, 1206.00563pt x 679.03688pt>
+<./images/Visualizer7.png, id=111, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer7.png Graphic file (type png)
 
 <use ./images/Visualizer7.png>
-Package pdftex.def Info: ./images/Visualizer7.png used on input line 299.
+Package pdftex.def Info: ./images/Visualizer7.png used on input line 172.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
- [10 <./images/Visualizer6.png> <./images/Visualizer7.png>] <./images/Visualize
-r8.png, id=222, 1206.00563pt x 679.03688pt>
+ [7 <./images/Visualizer10.png> <./images/Visualizer7.png>] <./images/Visualize
+r8.png, id=116, 1206.00563pt x 679.03688pt>
 File: ./images/Visualizer8.png Graphic file (type png)
 
 <use ./images/Visualizer8.png>
-Package pdftex.def Info: ./images/Visualizer8.png used on input line 305.
+Package pdftex.def Info: ./images/Visualizer8.png used on input line 178.
 (pdftex.def)             Requested size: 402.21222pt x 226.45558pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--307
+Underfull \hbox (badness 10000) in paragraph at lines 178--180
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 309.
-[11 <./images/Visualizer8.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 309.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 182.
+[8 <./images/Visualizer8.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 182.
  (Template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 309.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 309.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 182.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 182.
 Package rerunfilecheck Info: File `Template.out' has not changed.
-(rerunfilecheck)             Checksum: 3FAD1D65A76AE3594C79AC6C0D54657F;1580.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 309.
+(rerunfilecheck)             Checksum: 38E2F57157E888EA2D77A5A39FDEBF5F;621.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 182.
  ) 
 Here is how much of TeX's memory you used:
- 5382 strings out of 493335
- 80293 string characters out of 3136677
- 169732 words of memory out of 3000000
- 8804 multiletter control sequences out of 15000+200000
+ 5338 strings out of 493335
+ 79976 string characters out of 3136677
+ 161728 words of memory out of 3000000
+ 8798 multiletter control sequences out of 15000+200000
  9750 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,8n,28p,878b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,6n,28p,487b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Template.pdf (13 pages, 1797796 bytes).
+Output written on Template.pdf (10 pages, 1257138 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 261 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 145 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 159 words of extra memory for PDF output out of 10000 (max. 10000000)
 
