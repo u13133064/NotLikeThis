@@ -120,7 +120,11 @@ Using this representation, it is then translated into HTML. Making use of the vi
 \newpage
 
 \section{Architectural Requirements}
+
 	\subsection{Architecture Scope}
+	Layered Architecture: 
+	
+
 	\subsection{Quality Requirements}
 		\subsubsection {Critical}
 		\subsubsection {Important}
@@ -128,6 +132,38 @@ Using this representation, it is then translated into HTML. Making use of the vi
 	\subsection{Architectural Constraint}
 	
 \section{Architectural Design}
+Layered Architecture: 
+
+Our core architectural design follows a standard Client-Applciation-Server layered architecture. As seen below, the "Server" (not to be confused with the Application server) is the AWS server we connect to through their API. The product does not persist to only reads from it and is we have no controll over its functionality it will be left for an intergratio requirment and will not be disccues furhter in this section. Additional information on the AWS ssytem and their API can be found here https://aws.amazon.com/documentation/ . Previously we useda  bridging layer ,ADAPTER, to join the Application and Server layer, but  it has sesne been incorporated into the Scanner to reduce communciation overhead and facilitate the threading tactics. The main backend of the system lies on the Application layer, which is broken down into the follwoing components:
+\begin{enumerate}  
+					\item Scanner: Most important component, constructs a scan based on differnt priorities. Forms a Producer-Consumer relationship with the Visualizer. Once launced it will continue to produce network trees(see below) for the buffer until it recieves a pause/stop command, or completes a scan of the network. 
+					\item Composite:  Following the composite design pattern, this object represents the hierarchial Network tree, either in part in whole.  
+					\item Threaded sub-Scanners: Each logial part of an AWS network has an assigned threaded scanner to it. Depeding on what is a priority to scan first the scanner will launcha number of threads for each part wich in turn will launch its on sub scan threads based on perfromance requirments. Each threaded SubScanner will scann 100 of its children,place in buffer and then contineu to scan another 100. 
+					\item Smart buffer: The link between the Visualizer and the Scanner as wel las the "brain" of the system. The individual scanner threads wil ladd to the buffer as soon as they have finished constructinga tree then go back to scanning. The trees arrive disjoint and posisbly overlap. The smart buffer constructs the entire network tree from the disjoint trees it recieves accurately. It stores the moat upto date construct for the Visualizer.
+				\item REST API and Server: The REST server joins the backend to the front end. See architecture below.
+				\end{enumerate}
+
+The client layer consists of a Single page Application and the Visualizer. The SPA is tee user interface with all the scanning options and controll. and the visualized graph and scanned information. The Visualizer polls on the REST server requesting latest tree from the smart buffer, rendering it and presenting it to the user.
+
+RESTFUL Design:
+
+User interaction is mapped from the user interface onto diffennt API calls on the server. Each call launches a backend method to fullfill the request. The API calls are:
+\begin{enumerate}  
+					\item POST, ConnectToAccount: Takes the users acces and private key and creates a conenction to AWS for the remainder of the session .
+					\item GET, ScanNetwork: Launches a scan of the entire network, Visualizer polls on results as they stream in. 
+					\item GET, StopScan: Cancels current scan.
+					\item GET, PauseScan: Pauses current scan.
+					\item GET, ResumeScan:Resumes current scan Visualizere polls on buffer.
+					\item GET, ScanFrom: Performs a subscan starting from the given point and scanning around its general vicinity.
+\item GET, ScanUP: Scans the next logical area above what the ScanFrom scanned.
+ \item GET, ScanDown: Scans the next logical area below what the ScanFrom scanned.
+				\end{enumerate}
+
+Threading Tactic:
+Each network component Region,VPC,Subnetwork,Instance has a threaded scanner associated to it. it si up to the Scanner depending on what the user is searching for to construct the scan from this subscanners.
+By defualt The scanner will thread a RegionScanner for each region and each one will have one scanner for the other parts. However if the scan is narrowed then scanner will thread on the most cost and performance effective way to compelte the scan . For example if the scan was to only scan a single VPC then other Regions would not need to be scanned and thus only one RegionalScanner will be launced, one VPCScanner will be launced and it with thread on collections of its subnetworks. We trying to keep number of threads needed to a mninimum, but they are invaluabel to speeding up the scanning.  
+
+
 
 \newpage
 \section{Functional Requirements}
