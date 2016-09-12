@@ -27,7 +27,12 @@ public class AWSScanner implements ScannerInterface {
 
         for(int i =0;i<regions.size();i++)
         {
-            new Thread(new RegionScannerThread(clientCredentials,regions.get(i).getRegionName(),buffer)).start();
+
+            ec2.setEndpoint(regions.get(i).getEndpoint());
+            //launch a Vpc scanner
+            new Thread(new VpcScannerThread(regions.get(i).getRegionName(),ec2,buffer));
+            //launch a subnetScanner
+            //launch a instance scanner
 
         }
 

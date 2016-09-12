@@ -42,7 +42,7 @@ public class SubNetworkScannerThread {
             NetworkTree child= new Node();
             child.setUUID("PlaceHolder");
             child.setName(subnets.get(i).getSubnetId());
-            child.setInformation(subnets.get(i).toString());
+            child.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
             node.add(child);
             tree.add(node);
             buffer.addToBuffer(tree);
