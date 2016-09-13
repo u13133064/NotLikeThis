@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.1}{Vision}{}% 1
+\BOOKMARK [1][-]{section.2}{Scope}{}% 2
+\BOOKMARK [1][-]{section.3}{Architectural Requirements}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Architecture Scope}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Quality Requirements}{section.3}% 5
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Critical}{subsection.3.2}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Important}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Nice To Have}{subsection.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Architectural Constraint}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.4}{Access and integration channels}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Architectural Design}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Layered Architecture}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.2}{RESTFUL Design}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Threading Tactic}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Functional Requirements}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Description of AWS}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Required Functionality}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.3}{Use case}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.4}{Use case/Service contracts}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.5}{Using the System}{section.5}% 20
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Login}{subsection.5.5}% 21
+\BOOKMARK [3][-]{subsubsection.5.5.2}{Scan Network}{subsection.5.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.5.3}{Visualise Network}{subsection.5.5}% 23
+\BOOKMARK [3][-]{subsubsection.5.5.4}{Expand Information}{subsection.5.5}% 24
+\BOOKMARK [1][-]{section.6}{Specification Update}{}% 25
+\BOOKMARK [1][-]{section.7}{Testing}{}% 26
