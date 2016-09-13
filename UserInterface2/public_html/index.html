@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script src="visualizer.js"></script>
+    <script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+    <script type="text/javascript" src="http://visjs.org/dist/exampleUtils.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+        #draggable { width: 150px; height: 150px; padding: 0.5em; }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#draggable").draggable();
+        });
+    </script>
+    <body>
+        <nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
+            <a href="javascript:void(0)"
+               onclick="w3_close()"
+               class="w3-closenav w3-large">Close &times;</a>
+            <input type='file' accept='text/plain' class="w3-btn" style="width:100%; background-color: #146eb4;" onchange='openFile(event)'>
+            <p>Info goes here</p>
+        </nav>
+
+        <div id="main">
+
+            <header class="w3-container w3-teal">
+                <span class="w3-opennav w3-xlarge" onclick="w3_open()" id="openNav">&#9776;</span>
+            </header>
+
+
+
+        </div>
+
+        <script>
+            function w3_open() {
+                document.getElementById("main").style.marginLeft = "25%";
+                document.getElementById("mySidenav").style.width = "25%";
+                document.getElementById("mySidenav").style.display = "block";
+                document.getElementById("openNav").style.display = 'none';
+            }
+            function w3_close() {
+                document.getElementById("main").style.marginLeft = "0%";
+                document.getElementById("mySidenav").style.display = "none";
+                document.getElementById("openNav").style.display = "inline-block";
+            }
+        </script>
+        <div id="draggable" class="ui-widget-content">
+            <button class="w3-btn" style="width:100%; background-color: #146eb4;">Scan Network</button>
+            <button class="w3-btn" style="width:100%; background-color: #146eb4;">Pause</button>
+			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Resume</button
+        </div>
+    </body>
+</html>
+
