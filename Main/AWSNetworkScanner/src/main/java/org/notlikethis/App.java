@@ -4,6 +4,10 @@ import org.notlikethis.Buffer.SharedBuffer;
 import org.notlikethis.Credentials.Credential;
 import org.notlikethis.Scanner.AWSScanner;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 /**
  * Hello world!
  *
@@ -24,10 +28,16 @@ public class App
             while (true)
             {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                     buffer.constructTree();
-                    System.out.println(buffer.getLatestTree());
+                    PrintWriter writer = new PrintWriter("test.json", "UTF-8");
+                    writer.println(buffer.getLatestTree());
+                    writer.close();
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
             }

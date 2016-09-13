@@ -10,9 +10,9 @@ import org.notlikethis.Composite.Node;
 import java.util.List;
 
 /**
- * Created by User1 on 2016/09/12.
+ * Created by Jedd Shneier.
  */
-public class VpcScannerThread {
+public class VpcScannerThread implements Runnable{
     private String regionName;
     private  AmazonEC2 ec2;
     private SharedBuffer buffer;
@@ -31,6 +31,7 @@ public class VpcScannerThread {
         List<Vpc> vpcs = describeVpcsResult.getVpcs();
 
         for(int i = 0; i<vpcs.size();i++) {
+            System.out.println("Adding Vpc for : "+regionName);
             NetworkTree tree = new Node();
             tree.setUUID("TEMP");
             tree.setName(regionName);
@@ -43,5 +44,10 @@ public class VpcScannerThread {
             buffer.addToBuffer(tree);
 
         }
+    }
+
+    public void run() {
+        System.out.println("Starting VPC thread for : "+regionName);
+        scanContext();
     }
 }

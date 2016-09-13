@@ -59,6 +59,11 @@ public class SharedBuffer implements SmartBufferInterface{
             {
                 if(current.getChild(j).getName().equals(addition.getChild(i).getName()))
                 {
+                     if (current.getChild(j).getUUID().equals("TEMP"))
+                     {
+                         current.getChild(j).setUUID(addition.getChild(i).getUUID());
+                         current.getChild(j).setInformation(addition.getChild(i).getInformation());
+                     }
                     combineTree(current.getChild(j),addition.getChild(i));
                     found=true;
                 }

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Jedd Sheneier.
  */
-public class SubNetworkScannerThread {
+public class SubNetworkScannerThread implements Runnable {
     private String regionName;
     private AmazonEC2 ec2;
     private SharedBuffer buffer;
@@ -31,13 +31,14 @@ public class SubNetworkScannerThread {
         List<Subnet> subnets = describeSubnetsResult.getSubnets();
 
         for(int i = 0; i<subnets.size();i++) {
+            System.out.println("Adding subent for : "+regionName);
             NetworkTree tree = new Node();
             tree.setUUID("TEMP");
             tree.setName(regionName);
             tree.setInformation("{ Region Information : Unscanned");
             NetworkTree node= new Node();
             node.setName(subnets.get(i).getVpcId());
-            node.setUUID("PlaceHolder");
+            node.setUUID("TEMP");
             node.setInformation("{Vpc Information : Unscanned}");
             NetworkTree child= new Node();
             child.setUUID("PlaceHolder");
@@ -48,5 +49,10 @@ public class SubNetworkScannerThread {
             buffer.addToBuffer(tree);
 
         }
+    }
+
+    public void run() {
+        System.out.println("Starting Subnet thread for : "+regionName);
+        scanContext();
     }
 }

@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * Created by Jedd Shneier
  */
-public class InstanceScannerThread {
+public class InstanceScannerThread implements Runnable
+{
     private String regionName;
     private AmazonEC2 ec2;
     private SharedBuffer buffer;
@@ -42,17 +43,17 @@ public class InstanceScannerThread {
                 List<Instance> instances =reservations.get(i).getInstances();
                 for(int j =0;j<instances.size();j++)
                 {
-
+                    System.out.println("Adding instance for : "+regionName);
                     NetworkTree tree = new Node();
                     tree.setUUID("TEMP");
                     tree.setName(regionName);
                     tree.setInformation("{ Region Information : Unscanned");
                     NetworkTree node= new Node();
                     node.setName(instances.get(j).getVpcId());
-                    node.setUUID("PlaceHolder");
+                    node.setUUID("TEMP");
                     node.setInformation("{Vpc Information : Unscanned}");
                     NetworkTree child= new Node();
-                    child.setUUID("PlaceHolder");
+                    child.setUUID("TEMP");
                     child.setName(instances.get(j).getSubnetId());
                     child.setInformation("{Sub-network Information : Unscanned");
                     NetworkTree instanceNode= new Node();
@@ -73,4 +74,8 @@ public class InstanceScannerThread {
         } while (nextToken!=null);
         }
 
+    public void run() {
+        System.out.println("Starting Instance thread for : "+regionName);
+        scanContext();
+    }
 }
