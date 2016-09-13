@@ -62,25 +62,17 @@ public class Node implements NetworkTree {
 
     private String traverse(NetworkTree node) {
         String jsonNetwork="{";
-        jsonNetwork+='"'+"Name"+'"'+" : "+'"'+node.getName()+'"';
-        jsonNetwork+=","+'"'+"UUID"+'"'+" :" +'"'+node.getUUID()+'"';
-        jsonNetwork+=","+'"'+"Information"+'"'+" :" +'"'+node.getInformation()+'"';
-        jsonNetwork+=","+'"'+"Children"+'"'+" :[";
+        jsonNetwork+="UUID : "+node.getUUID();
+        jsonNetwork+=",Information : "+node.getInformation();
+        jsonNetwork+=",Children:[";
         for (int i = 0; i < node.getChildrenSize(); i++)
         {
 
-            jsonNetwork+=traverse(node.getChild(i))+',';
+            jsonNetwork+=traverse(node.getChild(i));
 
         }
-        if (jsonNetwork.endsWith(","))
-        {
-            jsonNetwork=jsonNetwork.substring(0,jsonNetwork.length()-1);
-        }
-
-        jsonNetwork+="]";
+        jsonNetwork+=']';
         jsonNetwork+='}';
-
-
         return jsonNetwork;
 
     }
