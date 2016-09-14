@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <style>
-        #draggable { width: 150px; height: 150px; padding: 0.5em; background-color: white; border: solid black 1px;}
+        #draggable { width: 150px; background-color: white; border-radius: 5px; box-shadow: 0px 0px 20px #888888; display: inline-block;}
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -21,13 +21,11 @@
             <a href="javascript:void(0)"
                onclick="w3_close()"
                class="w3-closenav w3-large">Close &times;</a>
-            <input type='file' accept='text/plain' class="w3-btn" style="width:100%; background-color: #146eb4;" onchange='openFile(event)'>
             <p>Info goes here</p>
         </nav>
 
         <div id="main">
-
-            <header class="w3-container w3-teal">
+            <header class="w3-container" style="background-color: #146eb4;">
                 <span class="w3-opennav w3-xlarge" onclick="w3_open()" id="openNav">&#9776;</span>
             </header>
 
@@ -47,12 +45,25 @@
                 document.getElementById("mySidenav").style.display = "none";
                 document.getElementById("openNav").style.display = "inline-block";
             }
+            
+            function mouseover(obj)
+            {
+                obj.style.boxShadow = "0px 0px 10px #555555";
+                obj.style.zIndex = "1";
+            }
+            
+            function mouseleave(obj)
+            {
+                obj.style.boxShadow = "0px 0px 0px white";
+                obj.style.zIndex = "0";
+            }
         </script>
         <div id="draggable" class="ui-widget-content">
-            <button class="w3-btn" style="width:100%; background-color: #146eb4;">Scan Network</button>
-            <button class="w3-btn" style="width:100%; background-color: #146eb4;">Pause</button>
-            <button class="w3-btn" style="width:100%; background-color: #146eb4;">Resume</button>
+            <div id="toolbar" style="height: 15px; background-color: #146eb4; "></div>
+            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
+            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button>
+            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Pause Scan</button>
+            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Resume Scan</button>
         </div>
     </body>
 </html>
-
