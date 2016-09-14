@@ -254,51 +254,51 @@ and open the template in the editor.
 				var obj = JSON.parse(jsonIn);
 				var j, i = 0;
 				
-				//alert(obj.nodesArray[0].Name);
+				//alert(obj.NodesArray[0].Name);
 				
 
-				/*addNode(nodeCount, obj.nodesArray[i].Name, 1) ;
-				nodeInfo.push(obj.nodesArray[i].Information);
+				/*addNode(nodeCount, obj.NodesArray[i].Name, 1) ;
+				nodeInfo.push(obj.NodesArray[i].Information);
 				nodeCount++;
 				
 				
-				for(i = 0; i < obj.nodesArray[0].length; i++)
+				for(i = 0; i < obj.NodesArray[0].length; i++)
 				{
-					if(obj.nodesArray[i].Children.length != 0)
+					if(obj.NodesArray[i].Children.length != 0)
 					{
-						for(j = 0; j < obj.nodesArray[i].Children.length; j++)
+						for(j = 0; j < obj.NodesArray[i].Children.length; j++)
 						{
-							addEdgeParent(edgeNum, obj.nodesArray[i].UUID, obj.nodesArray[i].Children[j]);
+							addEdgeParent(edgeNum, obj.NodesArray[i].UUID, obj.NodesArray[i].Children[j]);
 							edgeNum++;
 						}
 					}
 				}*/
-				traverse(obj.nodesArray[0],1);
+				traverse(obj.NodesArray[0],1);
+				
 			}
-			
+			var block = 0;
 			
 			
 			
 			function traverse(node,level)
 			{
-			var j = nodeCount;
-			
-				nodeCount++;
-				j = j+1;
-			
-				addNode(nodeCount, node.Name, level);
+			if(block < 100)
+			{
+				block++;
+				addNode(node.UUID, node.Name, level);
 				
 				level = level + 1;
 				    for (var i = 0, len = node.Children.length; i < len; i++)
 				    {
-					addEdgeParent(edgeNum, nodeCount, j);
+										//parent		child
+					addEdgeParent(edgeNum, node.UUID,	node.Children[i].UUID 	);
 					
 					edgeNum = edgeNum + 1;
 					traverse(node.Children[i],level);
 					
 				    }
 				   
-				
+				}
 			}
 
 			
@@ -435,7 +435,7 @@ and open the template in the editor.
 				{
 					//alert(nodeInfo[params.nodes]);
 				});
-				
+				/*
 				parentEdges.push('1');		parentEdges.push('2');		parentEdges.push('3');		parentEdges.push('4');		parentEdges.push('5');
 				parentEdges.push('6');		parentEdges.push('7');		parentEdges.push('8');		parentEdges.push('9');		parentEdges.push('10');
 				parentEdges.push('11');	parentEdges.push('12');	parentEdges.push('13');	parentEdges.push('14');	parentEdges.push('15');
@@ -454,7 +454,7 @@ and open the template in the editor.
 				networkHierarchy.on("blurNode", function (params) 
 				{
 					setParentEdgesVisible();						
-				});
+				});*/
 			}
 			
 			
