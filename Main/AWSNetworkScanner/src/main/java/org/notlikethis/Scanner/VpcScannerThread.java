@@ -8,6 +8,7 @@ import org.notlikethis.Composite.NetworkTree;
 import org.notlikethis.Composite.Node;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Jedd Shneier.
@@ -38,7 +39,7 @@ public class VpcScannerThread implements Runnable{
             tree.setInformation("{ Region Information : Unscanned");
             NetworkTree node= new Node();
             node.setName(vpcs.get(i).getVpcId());
-            node.setUUID("PlaceHolder");
+            node.setUUID(UUID.randomUUID().toString());
             node.setInformation("{Vpc Information : " + vpcs.get(i).toString() + " }");
             tree.add(node);
             buffer.addToBuffer(tree);

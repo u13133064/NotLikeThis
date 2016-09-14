@@ -8,6 +8,7 @@ import org.notlikethis.Composite.NetworkTree;
 import org.notlikethis.Composite.Node;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Jedd Sheneier.
@@ -41,7 +42,7 @@ public class SubNetworkScannerThread implements Runnable {
             node.setUUID("TEMP");
             node.setInformation("{Vpc Information : Unscanned}");
             NetworkTree child= new Node();
-            child.setUUID("PlaceHolder");
+            child.setUUID(UUID.randomUUID().toString());
             child.setName(subnets.get(i).getSubnetId());
             child.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
             node.add(child);

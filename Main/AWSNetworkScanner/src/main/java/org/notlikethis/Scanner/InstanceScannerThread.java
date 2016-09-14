@@ -11,12 +11,14 @@ import org.notlikethis.Composite.NetworkTree;
 import org.notlikethis.Composite.Node;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Jedd Shneier
  */
 public class InstanceScannerThread implements Runnable
 {
+
     private String regionName;
     private AmazonEC2 ec2;
     private SharedBuffer buffer;
@@ -57,7 +59,7 @@ public class InstanceScannerThread implements Runnable
                     child.setName(instances.get(j).getSubnetId());
                     child.setInformation("{Sub-network Information : Unscanned");
                     NetworkTree instanceNode= new Node();
-                    instanceNode.setUUID("PlaceHolder");
+                    instanceNode.setUUID(UUID.randomUUID().toString());
                     instanceNode.setName(instances.get(j).getInstanceId());
                     instanceNode.setInformation("{Instance Information : " + instances.get(j).toString() + " }");
                     child.add(instanceNode);

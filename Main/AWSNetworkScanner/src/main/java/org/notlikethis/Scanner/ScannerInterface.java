@@ -12,7 +12,7 @@ import java.util.LinkedList;
 public interface ScannerInterface {
     void scanFullNetwork(Credential credentials, SharedBuffer buffer);
 
-    NetworkTree scanNetworkFrom(String identifier, Credential credentials);
+    NetworkTree scanNetworkFrom(String level, String identifier, Credential credentials);
 
     NetworkTree resumeScan(LinkedList<String> tokens, Credential credentials);
 

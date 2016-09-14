@@ -57,20 +57,24 @@ public class Node implements NetworkTree {
     }
 
     public String toJSON() {
-        return traverse(this);
+        return "{"+'"' + "NodesArray"+'"' +": ["+traverse(this)+"]}";
     }
 
     private String traverse(NetworkTree node) {
         String jsonNetwork="{";
         jsonNetwork+='"' + "Name" + '"' +":"+ '"' + node.getName() + '"';
+        jsonNetwork+='\n';
         jsonNetwork+=","+'"' + "UUID" + '"'+ ":"+ '"' + node.getUUID() + '"';
-        jsonNetwork+=","+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"';
+        jsonNetwork+='\n';
+       //jsonNetwork+=","+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"';
+        jsonNetwork+='\n';
         jsonNetwork+=","+'"' + "Children" + '"'+ ":[";
         jsonNetwork+='\n';
         for (int i = 0; i < node.getChildrenSize(); i++)
         {
-
+            jsonNetwork+='\n';
             jsonNetwork+=traverse(node.getChild(i))+",";
+
 
         }
         if (jsonNetwork.endsWith(","))
@@ -79,6 +83,7 @@ public class Node implements NetworkTree {
         }
         jsonNetwork+=']';
         jsonNetwork+='}';
+        jsonNetwork+='\n';
 
         return jsonNetwork;
 
