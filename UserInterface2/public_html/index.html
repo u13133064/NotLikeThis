@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <style>
         #draggable { width: 150px; background-color: white; border-radius: 5px; box-shadow: 0px 0px 20px #888888; display: inline-block;}
+        #draggableTwo { width: 150px; background-color: white; border-radius: 5px; box-shadow: 0px 0px 20px #888888; display: inline-block;}
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -15,8 +16,14 @@
         $(function () {
             $("#draggable").draggable();
         });
+        $(function () {
+            $("#draggableTwo").draggable();
+        });
     </script>
-    <body onload="draw();">
+    <body onload="draw();" style="background-image: url('cloud.png');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: 100%;">
         <nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
             <a href="javascript:void(0)"
                onclick="w3_close()"
@@ -25,9 +32,10 @@
         </nav>
 
         <div id="main">
+            <!-- Write your comments here 
             <header class="w3-container" style="background-color: #146eb4;">
                 <span class="w3-opennav w3-xlarge" onclick="w3_open()" id="openNav">&#9776;</span>
-            </header>
+            </header>-->
 
             <div id = "hierarchyVisualizerDiv"  style="position: absolute; height: 100%; width: 100%;">
             </div>	
@@ -45,25 +53,38 @@
                 document.getElementById("mySidenav").style.display = "none";
                 document.getElementById("openNav").style.display = "inline-block";
             }
-            
+
             function mouseover(obj)
             {
                 obj.style.boxShadow = "0px 0px 10px #555555";
                 obj.style.zIndex = "1";
             }
-            
+
             function mouseleave(obj)
             {
                 obj.style.boxShadow = "0px 0px 0px white";
                 obj.style.zIndex = "0";
             }
+
+            function scanNetwork() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://local host:8888/StartScan?access_key=#&secrete_key=#";
+
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+
+            }
         </script>
         <div id="draggable" class="ui-widget-content">
             <div id="toolbar" style="height: 15px; background-color: #146eb4; "></div>
-            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
+            <button class="w3-btn" onclick="scanNetwork()" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Pause Scan</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Resume Scan</button>
+        </div>
+        <div id="draggableTwo" class="ui-widget-content">
+            <div style="height: 15px; background-color: darkgray; "></div>
+            <div style="height: 185px; background-color: white; "><p>This is where the information goes</p></div>
         </div>
     </body>
 </html>
