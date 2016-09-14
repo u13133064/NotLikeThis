@@ -41,76 +41,75 @@ function addNode(idIn, labelIn, levelIn)
 			case 1:
 			visNodes.add(
 			{
-								id: idIn,
-								label: labelIn,
-								level: levelIn,
-								shape: 'dot',  
-								color: {background:'red', border:'black',highlight:{background:'red',border:'black'}},
-								font: {background: 'white'}						
-							});
-							break;
-					   	case 2:
-							visNodes.add(
-							{
-								id: idIn,
-								label: labelIn,
-								level: levelIn,
-								shape: 'dot',  
-								color: {background:'blue', border:'black',highlight:{background:'blue',border:'black'}},
-								font: {background: 'white'}						
-							});
-							break;
-						case 3:
-							visNodes.add(
-							{
-								id: idIn,
-								label: labelIn,
-								level: levelIn,
-								shape: 'dot',  
-								color: {background:'green', border:'black',highlight:{background:'green',border:'black'}},
-								font: {background: 'white'}						
-							});
-							break;
-						case 4:
-							visNodes.add(
-							{
-								id: idIn,
-								label: labelIn,
-								level: levelIn,
-								shape: 'dot',  
-								color: {background:'yellow', border:'black',highlight:{background:'yellow',border:'black'}},
-								font: {background: 'white'}						
-							});
-							break;
-						case 5:
-							visNodes.add(
-							{
-								id: idIn,
-								label: labelIn,
-								level: levelIn,
-								shape: 'dot',  
-								color: {background:'purple', border:'black',highlight:{background:'purple',border:'black'}},
-								font: {background: 'white'}						
-							});
-							break;
-						default:
-							visNodes.add(
-							{
-								id: idIn,
-								label: labelIn,
-								level: levelIn,
-								shape: 'dot',  
-								color: {background:'red', border:'black',highlight:{background:'white',border:'black'}},
-								font: {background: 'white'}						
-							});
-							break;
-					}
-				}
-				catch (err) 
-				{
-					alert(err);
-				}
-			}
+				id: idIn,
+				label: labelIn,
+				level: levelIn,
+				shape: 'dot',  
+				color: {background:'red', border:'black',highlight:{background:'red',border:'black'}},
+				font: {background: 'white'}						
+			});
+			break;
+			case 2:
+			visNodes.add(
+			{
+				id: idIn,
+				label: labelIn,
+				level: levelIn,
+				shape: 'dot',  
+				color: {background:'blue', border:'black',highlight:{background:'blue',border:'black'}},
+				font: {background: 'white'}						
+			});
+			break;
+			case 3:
+			visNodes.add(
+			{
+				id: idIn,
+				label: labelIn,
+				level: levelIn,
+				shape: 'dot',  
+				color: {background:'yellow', border:'black',highlight:{background:'yellow',border:'black'}},
+				font: {background: 'white'}						
+			});
+			break;
+			case 4:
+			visNodes.add(
+			{
+				id: idIn,
+				label: labelIn,
+				level: levelIn,
+				shape: 'dot',  
+				color: {background:'green', border:'black',highlight:{background:'green',border:'black'}},
+				font: {background: 'white'}						
+			});
+			break;
+			case 5:
+			visNodes.add(
+			{
+				id: idIn,
+				label: labelIn,
+				level: levelIn,
+				shape: 'dot',  
+				color: {background:'orange', border:'black',highlight:{background:'orange',border:'black'}},
+				font: {background: 'white'}						
+			});
+			break;
+			default:
+			visNodes.add(
+			{
+				id: idIn,
+				label: labelIn,
+				level: levelIn,
+				shape: 'dot',  
+				color: {background:'white', border:'black',highlight:{background:'white',border:'black'}},
+				font: {background: 'white'}						
+			});
+		}
+	}
+	catch (err) 
+	{
+		alert(err);
+	}
+}
 
 function updateNode(idIn, labelIn)
 {
