@@ -4,11 +4,10 @@
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <script src="visualizer.js"></script>
     <script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
-    <script type="text/javascript" src="http://visjs.org/dist/exampleUtils.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <style>
-        #draggable { width: 150px; height: 150px; padding: 0.5em; }
+        #draggable { width: 150px; height: 150px; padding: 0.5em; background-color: white; border: solid black 1px;}
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -17,7 +16,7 @@
             $("#draggable").draggable();
         });
     </script>
-    <body>
+    <body onload="draw();">
         <nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
             <a href="javascript:void(0)"
                onclick="w3_close()"
@@ -32,8 +31,8 @@
                 <span class="w3-opennav w3-xlarge" onclick="w3_open()" id="openNav">&#9776;</span>
             </header>
 
-
-
+            <div id = "hierarchyVisualizerDiv"  style="position: absolute; height: 100%; width: 100%;">
+            </div>	
         </div>
 
         <script>
@@ -52,7 +51,7 @@
         <div id="draggable" class="ui-widget-content">
             <button class="w3-btn" style="width:100%; background-color: #146eb4;">Scan Network</button>
             <button class="w3-btn" style="width:100%; background-color: #146eb4;">Pause</button>
-			<button class="w3-btn" style="width:100%; background-color: #146eb4;">Resume</button
+            <button class="w3-btn" style="width:100%; background-color: #146eb4;">Resume</button>
         </div>
     </body>
 </html>

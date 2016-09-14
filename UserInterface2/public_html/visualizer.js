@@ -1,15 +1,13 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 var visNodes, visEdges, edgesMouseOver, networkHierarchy, networkMouseOver;
 
 var parentEdges = new Array();
 var siblingEdges = new Array();
 
+var nodeInfo = new Array();
+//var siblingEdges = new Array();
+
 var edgeNum = 0;
+var nodeCount = 1;
 
 function addNode(idIn, labelIn, levelIn)
 {
@@ -24,7 +22,8 @@ function addNode(idIn, labelIn, levelIn)
                     color: {background: 'white', border: 'black'},
                     font: {background: 'white'}
                 });
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -37,7 +36,8 @@ function updateNode(idIn, labelIn)
             id: idIn,
             label: labelIn
         });
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -48,7 +48,8 @@ function removeNode(idIn)
     try
     {
         visNodes.remove({id: idIn});
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -65,7 +66,8 @@ function addEdgeParent(idIn, fromIn, toIn)
         });
 
         parentEdges.push(idIn);
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -82,7 +84,8 @@ function addEdgeSibling(idIn, fromIn, toIn)
         });
 
         siblingEdges.push(idIn);
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -97,7 +100,8 @@ function updateEdge(idIn, fromIn, inTo)
             from: fromIn,
             to: inTo
         });
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -119,7 +123,8 @@ function removeEdge(idIn)
         {
             siblingEdges.splice(indexOf(idIn), 1);
         }
-    } catch (err)
+    }
+    catch (err)
     {
         alert(err);
     }
@@ -141,7 +146,8 @@ function setParentEdgesVisible()
                 id: temp,
                 hidden: false
             });
-        } catch (err)
+        }
+        catch (err)
         {
             alert(err);
         }
@@ -155,7 +161,8 @@ function setParentEdgesVisible()
                 id: siblingEdges[i],
                 hidden: true
             });
-        } catch (err)
+        }
+        catch (err)
         {
             alert(err);
         }
@@ -177,7 +184,8 @@ function setSiblingEdgesVisible()
                 id: temp,
                 hidden: true
             });
-        } catch (err)
+        }
+        catch (err)
         {
             alert(err);
         }
@@ -191,7 +199,8 @@ function setSiblingEdgesVisible()
                 id: siblingEdges[i],
                 hidden: false
             });
-        } catch (err)
+        }
+        catch (err)
         {
             alert(err);
         }
@@ -204,7 +213,6 @@ var JSONThings;
 var openFile = function (event)
 {
     var input = event.target;
-
     var reader = new FileReader();
     reader.onload = function ()
     {
@@ -221,28 +229,52 @@ function setJSONThings(jsonIn)
     var obj = JSON.parse(jsonIn);
     var j, i = 0;
 
-    for (i = 0; i < obj.nodesArray.length; i++)
-    {
-        addNode(obj.nodesArray[i].UUID, obj.nodesArray[i].Name, 1);
-    }
+    //alert(obj.nodesArray[0].Name);
 
-    for (i = 0; i < obj.nodesArray.length; i++)
-    {
-        if (obj.nodesArray[i].Children.length != 0)
-        {
-            for (j = 0; j < obj.nodesArray[i].Children.length; j++)
-            {
-                addEdgeParent(edgeNum, obj.nodesArray[i].UUID, obj.nodesArray[i].Children[j]);
-                edgeNum++;
-            }
-        }
-    }
 
+    /*addNode(nodeCount, obj.nodesArray[i].Name, 1) ;
+     nodeInfo.push(obj.nodesArray[i].Information);
+     nodeCount++;
+     
+     
+     for(i = 0; i < obj.nodesArray[0].length; i++)
+     {
+     if(obj.nodesArray[i].Children.length != 0)
+     {
+     for(j = 0; j < obj.nodesArray[i].Children.length; j++)
+     {
+     addEdgeParent(edgeNum, obj.nodesArray[i].UUID, obj.nodesArray[i].Children[j]);
+     edgeNum++;
+     }
+     }
+     }*/
+    traverse(obj.nodesArray[0], 1);
 }
 
 
 
 
+function traverse(node, level)
+{
+    var j = nodeCount;
+
+    nodeCount++;
+    j = j + 1;
+
+    addNode(nodeCount, node.Name, level);
+
+    level = level + 1;
+    for (var i = 0, len = node.Children.length; i < len; i++)
+    {
+        addEdgeParent(edgeNum, nodeCount, j);
+
+        edgeNum = edgeNum + 1;
+        traverse(node.Children[i], level);
+
+    }
+
+
+}
 
 
 
@@ -354,7 +386,6 @@ function draw()
      {id: 's14', from: '28', to: '29'},		
      {id: 's15', from: '30', to: '31'},			
      ]);*/
-
     var options =
             {
                 interaction: {navigationButtons: true, keyboard: true, hover: true},
@@ -362,7 +393,7 @@ function draw()
                 nodes: {borderWidth: 2},
                 edges: {width: 2},
                 physics: {enabled: false},
-                interaction:{hover: true},
+                //interaction:{hover: true},
             };
 
     var data =
@@ -377,8 +408,7 @@ function draw()
 
     networkHierarchy.on("selectNode", function (params)
     {
-        //document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
-        //document.getElementById("mouseOverVisualizerDiv").style.visibility='visible';
+        //alert(nodeInfo[params.nodes]);
     });
 
     parentEdges.push('1');
@@ -411,7 +441,6 @@ function draw()
     parentEdges.push('28');
     parentEdges.push('29');
     parentEdges.push('30');
-
     siblingEdges.push('s1');
     siblingEdges.push('s2');
     siblingEdges.push('s3');
@@ -427,7 +456,7 @@ function draw()
     siblingEdges.push('s13');
     siblingEdges.push('s14');
     siblingEdges.push('s15');
-
+/*
     networkHierarchy.on("hoverNode", function (params)
     {
         setSiblingEdgesVisible();
@@ -436,5 +465,5 @@ function draw()
     networkHierarchy.on("blurNode", function (params)
     {
         setParentEdgesVisible();
-    });
+    });*/
 }
