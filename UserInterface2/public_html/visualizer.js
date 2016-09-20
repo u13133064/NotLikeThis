@@ -203,6 +203,8 @@ var openFile = function (event)
 	reader.readAsText(input.files[0]);
 };
 
+
+//Function that starts traverse
 function readInJSON(jsonIn)
 {
     JSONThings = jsonIn;
@@ -225,7 +227,8 @@ function traverse(node, level)
 	
 	for (var i = 0, len = node.Children.length; i < len; i++)
 	{
-		addEdge(edgeNum, nodeCount, j);
+		//addEdge(edgeNum, nodeCount, j);
+		addEdge(edgeNum, node.UUID,	node.Children[i].UUID);
 
 		edgeNum = edgeNum + 1;
 		traverse(node.Children[i], level);
