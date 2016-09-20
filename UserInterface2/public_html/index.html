@@ -37,7 +37,8 @@
                 <span class="w3-opennav w3-xlarge" onclick="w3_open()" id="openNav">&#9776;</span>
             </header>-->
 
-            <div id = "hierarchyVisualizerDiv"  style="position: absolute; height: 100%; width: 100%;">
+            <div id = "hierarchy
+ualizerDiv"  style="position: absolute; height: 100%; width: 100%;">
             </div>	
         </div>
 
@@ -67,11 +68,15 @@
             }
 
             function scanNetwork() {
-                var xmlhttp = new XMLHttpRequest();
-                var url = "http://local host:8888/StartScan?access_key=#&secrete_key=#";
+              
+ 		 var xhttp = new XMLHttpRequest();
+ 		 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner?a_key=AKIAIFVJORQSMUKYDIKA &s_key=H2lUH2eZ2oi3ZfYzxeEs0PHL5cTu3HOee5VtTdfI", true);
+  		 xhttp.send();
+		setTimeout(function(){
+  		   startTimer();
+		},5000);
+		 
 
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
 
             }
         </script>

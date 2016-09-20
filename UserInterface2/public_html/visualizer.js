@@ -11,13 +11,37 @@ var  timerIsActive = false;
 
 function startTimer() 
 {
-	timer = setInterval(doGetStuff, 1000);
+	timer = setInterval(doGetStuff, 5000);
 	timerIsActive = true;
 }
 	 
 function doGetStuff() 
 {
+	var xhttp = new XMLHttpRequest();
+	
+ 		
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) 
+    {
+      if(this.responseText==null)
+      {
+	stopTimer();
+	setTimeout(function(){
+   	   startTimer();
+	}, 10000);
+      }
+      
+    else
+    {
+	
+	var jsonIn = this.responseText;
+	readInJSON(jsonIn)
 
+    }
+   }
+	}
+	 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
+  	 xhttp.send();
 }
 	 
 function stopTimer()
@@ -211,7 +235,7 @@ function readInJSON(jsonIn)
     var obj = JSON.parse(jsonIn);
 
 
-    traverse(obj.nodesArray[0], 1);
+    traverse(obj.NodesArray[0], 1);
 }
 
 
@@ -227,7 +251,7 @@ function traverse(node, level)
 	
 	for (var i = 0, len = node.Children.length; i < len; i++)
 	{
-		//addEdge(edgeNum, nodeCount, j);
+		//addEdge(edgeNum, nodeCount, i);
 		addEdge(edgeNum, node.UUID,	node.Children[i].UUID);
 
 		edgeNum = edgeNum + 1;
