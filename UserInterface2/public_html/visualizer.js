@@ -39,7 +39,7 @@ function addNode(idIn, labelIn, levelIn)
 		switch (levelIn) 
 		{
 			case 1:
-			visNodes.add(
+			Nodes.add(
 			{
 				id: idIn,
 				label: labelIn,
@@ -50,7 +50,7 @@ function addNode(idIn, labelIn, levelIn)
 			});
 			break;
 			case 2:
-			visNodes.add(
+			Nodes.add(
 			{
 				id: idIn,
 				label: labelIn,
@@ -61,7 +61,7 @@ function addNode(idIn, labelIn, levelIn)
 			});
 			break;
 			case 3:
-			visNodes.add(
+			Nodes.add(
 			{
 				id: idIn,
 				label: labelIn,
@@ -72,7 +72,7 @@ function addNode(idIn, labelIn, levelIn)
 			});
 			break;
 			case 4:
-			visNodes.add(
+			Nodes.add(
 			{
 				id: idIn,
 				label: labelIn,
@@ -83,7 +83,7 @@ function addNode(idIn, labelIn, levelIn)
 			});
 			break;
 			case 5:
-			visNodes.add(
+			Nodes.add(
 			{
 				id: idIn,
 				label: labelIn,
@@ -94,7 +94,7 @@ function addNode(idIn, labelIn, levelIn)
 			});
 			break;
 			default:
-			visNodes.add(
+			Nodes.add(
 			{
 				id: idIn,
 				label: labelIn,
