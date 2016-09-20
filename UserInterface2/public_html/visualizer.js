@@ -269,5 +269,8 @@ function draw()
 
 	networkHierarchy.on("selectNode", function (params)
 	{	});
+	
+	//start Timer
+	//get JSON based on timer
 
 }
