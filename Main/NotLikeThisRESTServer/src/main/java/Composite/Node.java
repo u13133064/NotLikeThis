@@ -8,12 +8,22 @@ import java.util.LinkedList;
 public class Node implements NetworkTree {
     private String information;
     private String uuid;
+    private int level;
     private LinkedList<NetworkTree> children = null;
+    private LinkedList<String> relationships=null;
     private String name;
     private boolean checked = false;
 
     public String getUUID() {
         return uuid;
+    }
+
+    public void setLevel(int level) {
+        this.level=level;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public String getName() {
@@ -53,6 +63,31 @@ public class Node implements NetworkTree {
         children.add(child);
 
 
+    }
+
+    public void addRelationship(String UUID) {
+        if(relationships==null)
+        {
+            relationships= new LinkedList<String>();
+        }
+        relationships.add(UUID);
+    }
+
+    public String getRelationships() {
+        if(relationships==null)
+        {
+            return "";
+        }
+        else
+        {
+            String output="";
+            for(int i = 0;i<relationships.size();i++)
+            {
+                output+=relationships.get(i)+",";
+            }
+            output=output.substring(0,output.length()-1);
+            return output;
+        }
     }
 
     public int getChildrenSize() {
