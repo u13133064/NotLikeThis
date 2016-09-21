@@ -10,6 +10,7 @@ public class Node implements NetworkTree {
     private String uuid;
     private LinkedList<NetworkTree> children = null;
     private String name;
+    private boolean checked = false;
 
     public String getUUID() {
         return uuid;
@@ -25,6 +26,14 @@ public class Node implements NetworkTree {
 
     public void setName(String name) {
         this.name= name;
+    }
+
+    public void setChecked() {
+        this.checked=true;
+    }
+
+    public boolean isChecked() {
+        return checked;
     }
 
     public void setUUID(String id) {

@@ -11,7 +11,7 @@ var  timerIsActive = false;
 
 function startTimer() 
 {
-	timer = setInterval(doGetStuff, 5000);
+	timer = setInterval(doGetStuff, 3000);
 	timerIsActive = true;
 }
 	 
@@ -28,7 +28,7 @@ function doGetStuff()
 	stopTimer();
 	setTimeout(function(){
    	   startTimer();
-	}, 10000);
+	}, 5000);
       }
       
     else
@@ -264,13 +264,13 @@ function draw()
 {
 	Nodes = new vis.DataSet();
 
-	Nodes.on('*', function ()
-	{	});
+	//Nodes.on('*', function ()
+	//{	});
 
 	Relationships = new vis.DataSet();
 
-	Relationships.on('*', function ()
-	{     });
+	//Relationships.on('*', function ()
+	//{     });
 
 	var options =
         {
@@ -288,7 +288,7 @@ function draw()
 	};
 
 
-	var container = document.getElementById('hierarchyVisualizerDiv');
+	var container = document.getElementById("hierarchyVisualizerDiv");
 	networkHierarchy = new vis.Network(container, data, options);
 
 	networkHierarchy.on("selectNode", function (params)
