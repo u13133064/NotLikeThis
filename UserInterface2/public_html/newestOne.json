@@ -1,0 +1,10 @@
+{"NodesArray":[
+{"Name":"a1", "UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"}]},
+{"Name":"a2", "UUID":"2", "Level":"2", "Relationships":[]},
+{"Name":"a3", "UUID":"3", "Level":"3", "Relationships":[]}
+],
+"Information":[
+{"InfoStuff":"a1"},
+{"InfoStuff":"a2"},
+{"InfoStuff":"a3"}
+]}

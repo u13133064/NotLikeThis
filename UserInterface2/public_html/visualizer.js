@@ -4,10 +4,12 @@ var nodeInfo = new Array();
 
 
 var edgeNum = 0;
-var nodeCount = 1;
+var nodeCount = 0;
 
 var timer;
 var  timerIsActive = false;
+
+var informationArray = new Object();
 
 function startTimer() 
 {
@@ -62,7 +64,7 @@ function addNode(idIn, labelIn, levelIn)
 	{
 		switch (levelIn) 
 		{
-			case 1:
+			case "1":
 			Nodes.add(
 			{
 				id: idIn,
@@ -73,7 +75,7 @@ function addNode(idIn, labelIn, levelIn)
 				font: {background: 'white'}						
 			});
 			break;
-			case 2:
+			case "2":
 			Nodes.add(
 			{
 				id: idIn,
@@ -84,7 +86,7 @@ function addNode(idIn, labelIn, levelIn)
 				font: {background: 'white'}						
 			});
 			break;
-			case 3:
+			case "3":
 			Nodes.add(
 			{
 				id: idIn,
@@ -95,7 +97,7 @@ function addNode(idIn, labelIn, levelIn)
 				font: {background: 'white'}						
 			});
 			break;
-			case 4:
+			case "4":
 			Nodes.add(
 			{
 				id: idIn,
@@ -106,7 +108,7 @@ function addNode(idIn, labelIn, levelIn)
 				font: {background: 'white'}						
 			});
 			break;
-			case 5:
+			case "5":
 			Nodes.add(
 			{
 				id: idIn,
@@ -221,21 +223,40 @@ var openFile = function (event)
 	{
 		var text = reader.result;
 		console.log(reader.result.substring(0, 200));
-		setJSONThings(text);
+		readInJSON(text);
 	};
 	
 	reader.readAsText(input.files[0]);
 };
 
-
 //Function that starts traverse
 function readInJSON(jsonIn)
 {
-    JSONThings = jsonIn;
-    var obj = JSON.parse(jsonIn);
-
-
-    traverse(obj.NodesArray[0], 1);
+	
+	JSONThings = jsonIn;
+	var obj = JSON.parse(jsonIn);
+	
+	for(i = 0; i < obj.NodesArray.length; i++)
+	{
+		addNode(obj.NodesArray[i].UUID, obj.NodesArray[i].Name, obj.NodesArray[i].Level);
+		
+		if(obj.NodesArray[i].Relationships.length != 0)
+		{
+			for(j = 0; j < obj.NodesArray[i].Relationships.length; j++)
+			{
+				addEdge(edgeNum, obj.NodesArray[i].UUID, obj.NodesArray[i].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+	}
+	
+	for(i = 0; i < obj.Information.length; i++)
+	{
+		informationArray[obj.NodesArray[i].UUID] = obj.Information[i];
+		//alert(informationArray[obj.NodesArray[i].UUID].InfoStuff);
+	}
+		
+	
 }
 
 
