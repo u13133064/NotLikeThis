@@ -67,9 +67,10 @@
             }
 
             function scanNetwork() {
-              
+                 var accessKey = prompt("Please enter your access key", "");
+		 var secretKey = prompt("Please enter your secret key", "");
  		 var xhttp = new XMLHttpRequest();
- 		 
+ 		 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanNetwork?a_key=accessKey&s_key=secretKey", true);
   		 xhttp.send();
 		setTimeout(function(){
   		   startTimer();
