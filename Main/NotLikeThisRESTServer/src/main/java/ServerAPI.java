@@ -18,9 +18,12 @@ public class ServerAPI {
     @Path("/startScanner")
     @Produces(MediaType.TEXT_PLAIN)
     public Object ScanNetwork(@BeanParam CredentialBean paramBean) {
+        sharedBuffer=new SharedBuffer();
         Credential credentials= new Credential();
         credentials.setAccess_key(paramBean.a_key);
         credentials.setPrivate_key(paramBean.s_key);
+        System.out.println(paramBean.a_key);
+        System.out.println(paramBean.s_key);
         new Thread(new AWSScanner(credentials,sharedBuffer,1)).start();
 
 
@@ -36,7 +39,7 @@ public class ServerAPI {
     @Produces(MediaType.APPLICATION_JSON)
     public Object getCurrentTree() {
         return Response.ok() //200
-                .entity(sharedBuffer.getLatestTree(),new Annotation[0])
+                .entity(sharedBuffer.getJSONList(),new Annotation[0])
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
                 .allow("OPTIONS").build();

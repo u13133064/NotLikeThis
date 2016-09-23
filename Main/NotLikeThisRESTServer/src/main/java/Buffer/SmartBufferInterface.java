@@ -9,6 +9,6 @@ import Composite.NetworkTree;
 public interface SmartBufferInterface {
     void constructTree();
     void addToBuffer(NetworkTree tree);
-    String getLatestTree();
+    String getJSONList();
 
 }

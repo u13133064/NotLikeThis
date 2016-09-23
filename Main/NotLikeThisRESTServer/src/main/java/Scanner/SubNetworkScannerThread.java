@@ -8,7 +8,6 @@ import com.amazonaws.services.ec2.model.DescribeSubnetsResult;
 import com.amazonaws.services.ec2.model.Subnet;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Jedd Sheneier.
@@ -32,21 +31,14 @@ public class SubNetworkScannerThread implements Runnable {
         List<Subnet> subnets = describeSubnetsResult.getSubnets();
 
         for(int i = 0; i<subnets.size();i++) {
-            System.out.println("Adding subent for : "+regionName);
-            NetworkTree tree = new Node();
-            tree.setUUID("TEMP"+UUID.randomUUID().toString());
-            tree.setName(regionName);
-            tree.setInformation("{ Region Information : Unscanned");
-            NetworkTree node= new Node();
-            node.setName(subnets.get(i).getVpcId());
-            node.setUUID("TEMP"+UUID.randomUUID().toString());
-            node.setInformation("{Vpc Information : Unscanned}");
-            NetworkTree child= new Node();
-            child.setUUID(UUID.randomUUID().toString());
-            child.setName(subnets.get(i).getSubnetId());
-            child.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
-            node.add(child);
-            tree.add(node);
+            System.out.println("Adding subnet for : "+regionName);
+            NetworkTree tree= new Node();
+            tree.setUUID(subnets.get(i).getSubnetId());
+            //tree.setUUID(UUID.randomUUID().toString());
+            tree.setName(subnets.get(i).getSubnetId());
+            tree.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
+            tree.setLevel(4);
+            tree.addRelationship(subnets.get(i).getVpcId());
             buffer.addToBuffer(tree);
 
         }

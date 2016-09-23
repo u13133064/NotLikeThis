@@ -13,7 +13,8 @@ var informationArray = new Object();
 
 function startTimer() 
 {
-	timer = setInterval(doGetStuff, 3000);
+	//timer = setInterval(doGetStuff, 5000);
+	
 	timerIsActive = true;
 }
 	 
@@ -37,13 +38,14 @@ function doGetStuff()
     {
 	
 	var jsonIn = this.responseText;
-	readInJSON(jsonIn)
+	readInJSON(jsonIn);
 
     }
    }
 	}
 	 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
   	 xhttp.send();
+
 }
 	 
 function stopTimer()
@@ -234,6 +236,7 @@ function readInJSON(jsonIn)
 {
 	
 	JSONThings = jsonIn;
+	
 	var obj = JSON.parse(jsonIn);
 	
 	for(i = 0; i < obj.NodesArray.length; i++)

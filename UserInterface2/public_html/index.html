@@ -70,11 +70,11 @@
                  var accessKey = prompt("Please enter your access key", "");
 		 var secretKey = prompt("Please enter your secret key", "");
  		 var xhttp = new XMLHttpRequest();
- 		 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanNetwork?a_key=accessKey&s_key=secretKey", true);
+ 		 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner?a_key="+accessKey+"&s_key="+secretKey, true);
   		 xhttp.send();
 		setTimeout(function(){
   		   startTimer();
-		},5000);
+		},10000);
 		 
 
 
@@ -87,7 +87,7 @@
             <button class="w3-btn" onclick="scanNetwork()" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Pause Scan</button>
-            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Resume Scan</button>
+            <button class="w3-btn" onclick="doGetStuff()"style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Resume Scan</button>
         </div>
         <div id="draggableTwo" class="ui-widget-content">
             <div style="height: 15px; background-color: darkgray; "></div>

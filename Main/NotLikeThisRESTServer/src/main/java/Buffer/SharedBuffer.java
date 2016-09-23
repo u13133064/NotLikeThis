@@ -4,7 +4,7 @@ package Buffer;
 import Composite.NetworkTree;
 import Composite.Node;
 
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -14,69 +14,43 @@ import java.util.concurrent.BlockingQueue;
 public class SharedBuffer implements SmartBufferInterface{
     private BlockingQueue<NetworkTree> frontBuffer;
     private NetworkTree currentTree;
+    private LinkedList<String> nodeList = new LinkedList<String>();
+    private LinkedList<String> informationQueue = new LinkedList<String>();
+    private HashMap<String,NetworkTree> uuidHashMap = new HashMap<String, NetworkTree>();
     public SharedBuffer()
     {
-        frontBuffer=new ArrayBlockingQueue<NetworkTree>(1000);
+        frontBuffer=new ArrayBlockingQueue<NetworkTree>(10000);
         currentTree = new Node();
         currentTree.setInformation("AWS");
         currentTree.setName("Root");
-        currentTree.setUUID(UUID.randomUUID().toString());
+        currentTree.setUUID("RootAWS");
+        currentTree.setLevel(1);
+        frontBuffer.add(currentTree);
 
     }
 
 
 
+
     public void constructTree() {
-        NetworkTree additionTree = null;
-        try {
-            System.out.println("Buffer has " +frontBuffer.size()+" elements");
-            additionTree = frontBuffer.take();
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
+        System.out.println(frontBuffer.toString());
+        while(!frontBuffer.isEmpty())
+        {
+            NetworkTree node = frontBuffer.remove();
+            if(!encountered(node))
+              consructJSON(node);
         }
 
-        for (int i =0;i< currentTree.getChildrenSize();i++)
+
+    }
+
+    private boolean encountered(NetworkTree node) {
+        if( uuidHashMap.containsKey(node.getUUID()))
+            return true;
+        else
         {
-            if(currentTree.getChild(i).getName().equals(additionTree.getName()))
-            {
-                combineTree(currentTree.getChild(i),additionTree);
-                return;
-            }
-        }
-        currentTree.add(additionTree);
-
-
-
-
-    } 
-
-    private void combineTree(NetworkTree current, NetworkTree addition) {
-        if(current==null||addition==null)
-        {
-            return;
-        }
-        if (current.getUUID().contains("TEMP"))
-        {
-            current.setUUID(addition.getUUID());
-            current.setInformation(addition.getInformation());
-        }
-        for(int i =0;i<addition.getChildrenSize();i++)
-        {
-            boolean found=false;
-            for(int j =0;j<current.getChildrenSize();j++)
-            {
-                if(current.getChild(j).getName().equals(addition.getChild(i).getName()))
-                {
-
-                    combineTree(current.getChild(j),addition.getChild(i));
-                    found=true;
-                }
-            }
-            if (!found)
-            {
-                current.add(addition.getChild(i));
-            }
+            uuidHashMap.put(node.getUUID(),node);
+            return false;
         }
     }
 
@@ -92,10 +66,48 @@ public class SharedBuffer implements SmartBufferInterface{
     }
 
 
-    public String getLatestTree() {
-        System.out.println("Constructing current tree");
+
+    private void consructJSON(NetworkTree node)
+    {
+        System.out.println(node.getName());
+        String jsonNode="{";
+        jsonNode+='"' + "Name" + '"' +":"+ '"' + node.getName() + '"';
+        jsonNode+='\n';
+        jsonNode+=","+'"' + "UUID" + '"'+ ":"+ '"' + node.getUUID() + '"';
+        jsonNode+='\n';
+        jsonNode+=","+'"' + "Level" + '"'+ ":"+ '"' + node.getLevel() + '"';
+        jsonNode+='\n';
+        jsonNode+=","+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"';
+        jsonNode+='\n';
+        jsonNode+=","+'"' + "Relationships" + '"'+ ":[";
+        jsonNode+='\n';
+        jsonNode+=node.getRelationships()+"]}";
+        nodeList.add(jsonNode);
+        informationQueue.add("{"+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"'+"}");
+    }
+
+    public String getJSONList() {
         constructTree();
-        System.out.println("Returning current tree");
-        return currentTree.toJSON();
+        String informationList='"' + "Information"+'"' +":[";
+        String output="{"+'"' + "NodesArray"+'"' +":[";
+        if(nodeList.isEmpty())
+        {
+            return "{"+'"' + "NodesArray"+'"' +":[],"+'"' + "Information"+'"'+":[]}";
+        }
+        int counter =0;
+        while(counter<10&&!nodeList.isEmpty())
+        {
+            counter++;
+            output+=nodeList.removeFirst()+",";
+            informationList+=informationQueue.removeFirst()+',';
+        }
+        output=output.substring(0,output.length()-1);
+        informationList=informationList.substring(0,informationList.length()-1);
+        informationList+="]";
+        output+="],";
+        output+=informationList;
+        output+="}";
+
+        return output;
     }
 }
