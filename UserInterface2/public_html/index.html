@@ -30,7 +30,7 @@
                class="w3-closenav w3-large">Close &times;</a>
             <p>Info goes here</p>
         </nav>
-<input type='file' accept='text/plain' class="w3-btn" style="width:100%; background-color: #146eb4;" onchange='openFile(event)'>
+        <input type='file' accept='text/plain' class="w3-btn" style="width:100%; background-color: #146eb4;" onchange='openFile(event)'>
         <div id="main">
             <!-- Write your comments here 
             <header class="w3-container" style="background-color: #146eb4;">
@@ -67,27 +67,51 @@
             }
 
             function scanNetwork() {
-                 var accessKey = prompt("Please enter your access key", "");
-		 var secretKey = prompt("Please enter your secret key", "");
- 		 var xhttp = new XMLHttpRequest();
- 		 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner?a_key="+accessKey+"&s_key="+secretKey, true);
-  		 xhttp.send();
-		setTimeout(function(){
-  		   startTimer();
-		},10000);
-		 
+                var accessKey = prompt("Please enter your access key", "");
+                var secretKey = prompt("Please enter your secret key", "");
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner?a_key=" + accessKey + "&s_key=" + secretKey, true);
+                xhttp.send();
+                setTimeout(function () {
+                    startTimer();
+                }, 10000);
+
 
 
             }
         </script>
-	
-	
+
+
         <div id="draggable" class="ui-widget-content">
             <div id="toolbar" style="height: 15px; background-color: #146eb4; "></div>
             <button class="w3-btn" onclick="scanNetwork()" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button>
             <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Pause Scan</button>
             <button class="w3-btn" onclick="doGetStuff()"style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Resume Scan</button>
+            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Up</button>
+            <button class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Down</button>
+            <div class="w3-dropdown-hover" style="width:100%">
+                <button class="w3-btn" style="width:100%; background-color: orange;">Scan From</button>
+
+                <div class="w3-dropdown-content w3-border">
+                    <a href="#">VPC</a>
+                    <a href="#">Subnetwork</a>
+                    <a href="#">Instance</a>
+                </div>
+            </div>
+            <div class="w3-dropdown-hover" style="width:100%">
+                <button class="w3-btn w3-orange" style="width:100%">Region</button>
+                <div class="w3-dropdown-content w3-border">
+                    <a href="#">US East (N. Virginia)</a>
+                    <a href="#">US West (Oregon)</a>
+                    <a href="#">Asia Pacific (Seoul)</a>
+                    <a href="#">Asia Pacific (Singapore)</a>
+                    <a href="#">Asia Pacific (Sydney)</a>
+                    <a href="#">Asia Pacific (Tokyo)</a>
+                    <a href="#">EU (Frankfurt)</a>
+                    <a href="#">EU (Ireland)</a>
+                </div>
+            </div>
         </div>
         <div id="draggableTwo" class="ui-widget-content">
             <div style="height: 15px; background-color: darkgray; "></div>
