@@ -72,9 +72,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				shape: 'dot',  
-				color: {background:'red', border:'black',highlight:{background:'red',border:'black'}},
-				font: {background: 'white'}						
+				image: 'Images/root.png'
 			});
 			break;
 			case "2":
@@ -83,9 +81,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				shape: 'dot',  
-				color: {background:'blue', border:'black',highlight:{background:'blue',border:'black'}},
-				font: {background: 'white'}						
+				image: 'Images/region.png'					
 			});
 			break;
 			case "3":
@@ -94,9 +90,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				shape: 'dot',  
-				color: {background:'yellow', border:'black',highlight:{background:'yellow',border:'black'}},
-				font: {background: 'white'}						
+				image: 'Images/VPC.png'						
 			});
 			break;
 			case "4":
@@ -105,9 +99,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				shape: 'dot',  
-				color: {background:'green', border:'black',highlight:{background:'green',border:'black'}},
-				font: {background: 'white'}						
+				image: 'Images/subnetwork.png'						
 			});
 			break;
 			case "5":
@@ -116,9 +108,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				shape: 'dot',  
-				color: {background:'orange', border:'black',highlight:{background:'orange',border:'black'}},
-				font: {background: 'white'}						
+				image: 'Images/Instance.png'					
 			});
 			break;
 			default:
@@ -300,7 +290,7 @@ function draw()
         {
 		interaction: {navigationButtons: true, keyboard: true, hover: true},
                 layout: {hierarchical: {direction: 'UD'}},
-                nodes: {borderWidth: 2},
+                nodes: {shape: 'circularImage', borderWidth:3, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
                 edges: {width: 2},
                 physics: {enabled: false},
 	};
