@@ -288,7 +288,7 @@ function draw()
 
 	var options =
         {
-		interaction: {navigationButtons: true, keyboard: true, hover: true},
+		interaction: {navigationButtons: true, keyboard: true, hover: true, hideEdgesOnDrag: true},
                 layout: {hierarchical: {direction: 'UD'}},
                 nodes: {shape: 'circularImage', borderWidth:3, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
                 edges: {width: 2},
@@ -304,9 +304,15 @@ function draw()
 
 	var container = document.getElementById("hierarchyVisualizerDiv");
 	networkHierarchy = new vis.Network(container, data, options);
+	
+	networkHierarchy.on( 'selectNode', function(properties) 
+	{
+		var ids = properties.nodes;
+		alert(ids);
+	});
 
-	networkHierarchy.on("selectNode", function (params)
-	{	});
+	//networkHierarchy.on("selectNode", function (params)
+	//{alert(params.getLabel);});
 	
 	//start Timer
 	//get JSON based on timer
