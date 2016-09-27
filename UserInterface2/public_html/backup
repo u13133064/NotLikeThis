@@ -17,9 +17,6 @@ var levelThreeArr = [];
 var levelFourArr = [];
 var levelFiveArr = [];
 
-var JSONBuffer = {};
-	var JSONCount = 0;
-
 var informationArray = new Object();
 
 function startTimer() 
@@ -31,47 +28,8 @@ function startTimer()
 	 
 function addNodesAndEdges() 
 {
-	if(!jQuery.isEmptyObject(JSONBuffer))
-	{
-		addNode(JSONBuffer.NodesArray[JSONCount].UUID, JSONBuffer.NodesArray[JSONCount].Name, JSONBuffer.NodesArray[JSONCount].Level);
-			
-		if(JSONBuffer.NodesArray[JSONCount].Relationships.length != 0)
-		{
-			for(j = 0; j < JSONBuffer.NodesArray[JSONCount].Relationships.length; j++)
-			{
-				addEdge(edgeNum, JSONBuffer.NodesArray[JSONCount].UUID, JSONBuffer.NodesArray[JSONCount].Relationships[j].UUID);
-				edgeNum = edgeNum + 1;
-			}
-		}
-		
-		JSONCount++;
-	}
+
 }
-	
-	
-	/*
-	if(!jQuery.isEmptyObject(JSONBuffer))
-	{
-		for(i = 0; i < JSONBuffer.NodesArray.length; i++)
-		{
-			addNode(JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Name, JSONBuffer.NodesArray[i].Level);
-			alert("node");
-			if(JSONBuffer.NodesArray[i].Relationships.length != 0)
-			{
-				for(j = 0; j < JSONBuffer.NodesArray[i].Relationships.length; j++)
-				{
-					addEdge(edgeNum, JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Relationships[j].UUID);
-					edgeNum = edgeNum + 1;
-				}
-			}
-			delete JSONBuffer[JSONBuffer.NodesArray[i].UUID];
-		}
-		
-		
-	}
-	*/
-
-
 	 
 function stopTimer()
 {
@@ -234,6 +192,9 @@ function removeEdge(idIn)
 	}
 }
 
+
+var JSONThings;
+
 var openFile = function (event)
 {
 	var input = event.target;
@@ -252,9 +213,32 @@ var openFile = function (event)
 //Function that starts traverse
 function readInJSON(jsonIn)
 {
+	
+	JSONThings = jsonIn;
+	
 	var obj = JSON.parse(jsonIn);
 	
-	Object.assign(JSONBuffer, obj);
+	for(i = 0; i < obj.NodesArray.length; i++)
+	{
+		addNode(obj.NodesArray[i].UUID, obj.NodesArray[i].Name, obj.NodesArray[i].Level);
+		
+		if(obj.NodesArray[i].Relationships.length != 0)
+		{
+			for(j = 0; j < obj.NodesArray[i].Relationships.length; j++)
+			{
+				addEdge(edgeNum, obj.NodesArray[i].UUID, obj.NodesArray[i].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+	}
+	
+	for(i = 0; i < obj.Information.length; i++)
+	{
+		informationArray[obj.NodesArray[i].UUID] = obj.Information[i];
+		//alert(informationArray[obj.NodesArray[i].UUID].InfoStuff);
+	}
+		
+	
 }
 
 
