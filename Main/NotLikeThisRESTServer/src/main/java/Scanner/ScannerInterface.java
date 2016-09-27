@@ -11,7 +11,7 @@ import java.util.LinkedList;
  */
 public interface ScannerInterface extends Runnable {
     void scanFullNetwork();
-
+    void scanRegion(String region);
     NetworkTree scanNetworkFrom(String level, String identifier, Credential credentials);
 
     NetworkTree resumeScan(LinkedList<String> tokens, Credential credentials);

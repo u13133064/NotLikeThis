@@ -15,7 +15,7 @@ public class SharedBuffer implements SmartBufferInterface{
     private BlockingQueue<NetworkTree> frontBuffer;
     private NetworkTree currentTree;
     private LinkedList<String> nodeList = new LinkedList<String>();
-    private LinkedList<String> informationQueue = new LinkedList<String>();
+    private HashMap<String,String> informationHashMap = new HashMap<String,String>();
     private HashMap<String,NetworkTree> uuidHashMap = new HashMap<String, NetworkTree>();
     public SharedBuffer()
     {
@@ -82,12 +82,11 @@ public class SharedBuffer implements SmartBufferInterface{
         jsonNode+='\n';
         jsonNode+=node.getRelationships()+"]}";
         nodeList.add(jsonNode);
-        informationQueue.add("{"+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"'+"}");
+        informationHashMap.put(node.getUUID(),"{"+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"'+"}");
     }
 
     public String getJSONList() {
         constructTree();
-        String informationList='"' + "Information"+'"' +":[";
         String output="{"+'"' + "NodesArray"+'"' +":[";
         if(nodeList.isEmpty())
         {
@@ -98,16 +97,16 @@ public class SharedBuffer implements SmartBufferInterface{
         {
             counter++;
             output+=nodeList.removeFirst()+",";
-            informationList+=informationQueue.removeFirst()+',';
         }
         output=output.substring(0,output.length()-1);
-        informationList=informationList.substring(0,informationList.length()-1);
-        informationList+="]";
         output+="],";
-        informationList='"' + "Information"+'"' +":[]";
-        output+=informationList;
+
         output+="}";
 
         return output;
+    }
+
+    public String getInformation(String uuid) {
+        return informationHashMap.get(uuid);
     }
 }

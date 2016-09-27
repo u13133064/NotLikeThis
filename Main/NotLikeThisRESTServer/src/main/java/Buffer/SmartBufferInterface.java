@@ -10,5 +10,5 @@ public interface SmartBufferInterface {
     void constructTree();
     void addToBuffer(NetworkTree tree);
     String getJSONList();
-
+    String getInformation(String uuid);
 }

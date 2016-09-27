@@ -35,7 +35,6 @@ public class VpcScannerThread implements Runnable{
             NetworkTree node= new Node();
             node.setName(vpcs.get(i).getVpcId());
             node.setUUID(vpcs.get(i).getVpcId());
-           //node.setUUID(UUID.randomUUID().toString());
             node.setInformation("{Vpc Information : " + vpcs.get(i).toString() + " }");
             node.setLevel(3);
             node.addRelationship(regionName);

@@ -46,7 +46,6 @@ public class AWSScanner implements ScannerInterface {
         {
             System.out.println("Setting region: "+regions.get(i).getRegionName());  NetworkTree tree = new Node();
             tree.setUUID(regions.get(i).getRegionName());
-            //tree.setUUID(UUID.randomUUID().toString());
             tree.setName(regions.get(i).getRegionName());
             tree.setInformation("Region Information : "+regions.get(i).toString());
             tree.setLevel(2);
@@ -64,6 +63,29 @@ public class AWSScanner implements ScannerInterface {
 
 
         }
+
+    }
+
+    public void scanRegion(String region) {
+
+        System.out.println("Setting region: "+region);
+        NetworkTree tree = new Node();
+        tree.setUUID(region);
+        tree.setName(region);
+        tree.setInformation("Region Information : "+RegionUtils.getRegion(region).toString());
+        tree.setLevel(2);
+        tree.addRelationship("RootAWS");
+        buffer.addToBuffer(tree);
+        AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
+        threadEc2.setRegion(RegionUtils.getRegion(region));
+
+        //launch a Vpc scanner
+        new Thread(new VpcScannerThread(region,threadEc2,buffer)).start();
+        //launch a subnetScanner
+        new Thread(new SubNetworkScannerThread(region,threadEc2,buffer)).start();
+        //launch a instance scanner
+        new Thread(new InstanceScannerThread(region,threadEc2,buffer)).start();
+
 
     }
 

@@ -1,6 +1,7 @@
 import Buffer.SharedBuffer;
 import Credentials.Credential;
 import ParemeterBeans.CredentialBean;
+import ParemeterBeans.UUIDBean;
 import Scanner.AWSScanner;
 
 import javax.ws.rs.*;
@@ -43,6 +44,18 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    @GET
+    @Path("/getInformation")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object getInformation(@BeanParam UUIDBean paramBean) {
+        return Response.ok() //200
+                .entity(sharedBuffer.getInformation(paramBean.uuid),new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/validate")
