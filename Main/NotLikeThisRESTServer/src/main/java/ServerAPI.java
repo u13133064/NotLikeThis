@@ -7,8 +7,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.lang.annotation.Annotation;
-
-
 // The Java class will be hosted at the URI path "/services"
 @Path("/services")
 public class ServerAPI {

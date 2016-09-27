@@ -77,7 +77,6 @@ public class SharedBuffer implements SmartBufferInterface{
         jsonNode+='\n';
         jsonNode+=","+'"' + "Level" + '"'+ ":"+ '"' + node.getLevel() + '"';
         jsonNode+='\n';
-        jsonNode+=","+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"';
         jsonNode+='\n';
         jsonNode+=","+'"' + "Relationships" + '"'+ ":[";
         jsonNode+='\n';
@@ -92,10 +91,10 @@ public class SharedBuffer implements SmartBufferInterface{
         String output="{"+'"' + "NodesArray"+'"' +":[";
         if(nodeList.isEmpty())
         {
-            return "{"+'"' + "NodesArray"+'"' +":[],"+'"' + "Information"+'"'+":[]}";
+            return null;
         }
         int counter =0;
-        while(counter<10&&!nodeList.isEmpty())
+        while(counter<3&&!nodeList.isEmpty())
         {
             counter++;
             output+=nodeList.removeFirst()+",";
@@ -105,6 +104,7 @@ public class SharedBuffer implements SmartBufferInterface{
         informationList=informationList.substring(0,informationList.length()-1);
         informationList+="]";
         output+="],";
+        informationList='"' + "Information"+'"' +":[]";
         output+=informationList;
         output+="}";
 

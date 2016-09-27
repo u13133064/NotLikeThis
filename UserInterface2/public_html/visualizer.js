@@ -1,7 +1,7 @@
 var Nodes, Relationships;
 
 var nodeInfo = new Array();
-
+var finished =false;
 
 var edgeNum = 0;
 var nodeCount = 0;
@@ -28,10 +28,7 @@ function doGetStuff()
     {
       if(this.responseText==null)
       {
-	stopTimer();
-	setTimeout(function(){
-   	   startTimer();
-	}, 5000);
+	finished =true;
       }
       
     else
@@ -39,6 +36,10 @@ function doGetStuff()
 	
 	var jsonIn = this.responseText;
 	readInJSON(jsonIn);
+	if(!false)
+	{
+		doGetStuff();
+	}
 
     }
    }
