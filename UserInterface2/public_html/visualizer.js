@@ -399,10 +399,30 @@ function draw()
 	var options =
         {
 		interaction: {navigationButtons: true, keyboard: true, hover: true, hideEdgesOnDrag: true},
-                layout: {hierarchical: {direction: 'UD'}},
                 nodes: {shape: 'circularImage', borderWidth:3, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
-                edges: {width: 2},
-                physics: {enabled: false},
+                "edges": {
+			width: 2,
+    "smooth": {
+	    "type":"dynamic",
+      "forceDirection": "none",
+      "roundness": 1.0
+    }
+  },
+		physics: {enabled: false},
+		layout: {
+		    improvedLayout:true,
+		    hierarchical: {
+		      enabled:true,
+		      levelSeparation: 500,
+		      nodeSpacing: 300,
+		      //treeSpacing: 300,
+		      blockShifting: true,
+		      edgeMinimization: true,
+		      parentCentralization: true,
+		      direction: 'UD',        // UD, DU, LR, RL
+		      sortMethod: 'directed'   // hubsize, directed
+		    }
+	    }
 	};
 
 	var data =
