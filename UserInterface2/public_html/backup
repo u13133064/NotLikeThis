@@ -1,7 +1,6 @@
 var Nodes, Relationships;
 
 var nodeInfo = new Array();
-var finished =false;
 
 var edgeNum = 0;
 var nodeCount = 0;
@@ -18,9 +17,6 @@ var levelThreeArr = [];
 var levelFourArr = [];
 var levelFiveArr = [];
 
-var JSONBuffer = {};
-	var JSONCount = 0;
-
 var informationArray = new Object();
 
 function startTimer() 
@@ -32,71 +28,8 @@ function startTimer()
 	 
 function addNodesAndEdges() 
 {
-	if(!jQuery.isEmptyObject(JSONBuffer))
-	{
-		addNode(JSONBuffer.NodesArray[JSONCount].UUID, JSONBuffer.NodesArray[JSONCount].Name, JSONBuffer.NodesArray[JSONCount].Level);
-			
-		if(JSONBuffer.NodesArray[JSONCount].Relationships.length != 0)
-		{
-			for(j = 0; j < JSONBuffer.NodesArray[JSONCount].Relationships.length; j++)
-			{
-				addEdge(edgeNum, JSONBuffer.NodesArray[JSONCount].UUID, JSONBuffer.NodesArray[JSONCount].Relationships[j].UUID);
-				edgeNum = edgeNum + 1;
-			}
-		}
-		
-		JSONCount++;
-	}
+
 }
-	
-<<<<<<< HEAD
- 		
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) 
-    {
-      if(this.responseText==null)
-      {
-	finished =true;
-      }
-      
-    else
-    {
-	
-	var jsonIn = this.responseText;
-	readInJSON(jsonIn);
-	if(!false)
-	{
-		doGetStuff();
-	}
-
-    }
-   }
-=======
-	
-	/*
-	if(!jQuery.isEmptyObject(JSONBuffer))
-	{
-		for(i = 0; i < JSONBuffer.NodesArray.length; i++)
-		{
-			addNode(JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Name, JSONBuffer.NodesArray[i].Level);
-			alert("node");
-			if(JSONBuffer.NodesArray[i].Relationships.length != 0)
-			{
-				for(j = 0; j < JSONBuffer.NodesArray[i].Relationships.length; j++)
-				{
-					addEdge(edgeNum, JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Relationships[j].UUID);
-					edgeNum = edgeNum + 1;
-				}
-			}
-			delete JSONBuffer[JSONBuffer.NodesArray[i].UUID];
-		}
-		
-		
->>>>>>> df792a70f72f7df1c94c244525327439b955f544
-	}
-	*/
-
-
 	 
 function stopTimer()
 {
@@ -259,6 +192,9 @@ function removeEdge(idIn)
 	}
 }
 
+
+var JSONThings;
+
 var openFile = function (event)
 {
 	var input = event.target;
@@ -277,9 +213,32 @@ var openFile = function (event)
 //Function that starts traverse
 function readInJSON(jsonIn)
 {
+	
+	JSONThings = jsonIn;
+	
 	var obj = JSON.parse(jsonIn);
 	
-	Object.assign(JSONBuffer, obj);
+	for(i = 0; i < obj.NodesArray.length; i++)
+	{
+		addNode(obj.NodesArray[i].UUID, obj.NodesArray[i].Name, obj.NodesArray[i].Level);
+		
+		if(obj.NodesArray[i].Relationships.length != 0)
+		{
+			for(j = 0; j < obj.NodesArray[i].Relationships.length; j++)
+			{
+				addEdge(edgeNum, obj.NodesArray[i].UUID, obj.NodesArray[i].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+	}
+	
+	for(i = 0; i < obj.Information.length; i++)
+	{
+		informationArray[obj.NodesArray[i].UUID] = obj.Information[i];
+		//alert(informationArray[obj.NodesArray[i].UUID].InfoStuff);
+	}
+		
+	
 }
 
 
@@ -424,30 +383,10 @@ function draw()
 	var options =
         {
 		interaction: {navigationButtons: true, keyboard: true, hover: true, hideEdgesOnDrag: true},
+                layout: {hierarchical: {direction: 'UD'}},
                 nodes: {shape: 'circularImage', borderWidth:3, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
-                "edges": {
-			width: 2,
-    "smooth": {
-	    "type":"dynamic",
-      "forceDirection": "none",
-      "roundness": 1.0
-    }
-  },
-		physics: {enabled: false},
-		layout: {
-		    improvedLayout:true,
-		    hierarchical: {
-		      enabled:true,
-		      levelSeparation: 500,
-		      nodeSpacing: 300,
-		      //treeSpacing: 300,
-		      blockShifting: true,
-		      edgeMinimization: true,
-		      parentCentralization: true,
-		      direction: 'UD',        // UD, DU, LR, RL
-		      sortMethod: 'directed'   // hubsize, directed
-		    }
-	    }
+                edges: {width: 2},
+                physics: {enabled: false},
 	};
 
 	var data =
@@ -471,37 +410,5 @@ function draw()
 	
 	//start Timer
 	//get JSON based on timer
-
-}
-
-function doGetStuff() 
-{
-	var xhttp = new XMLHttpRequest();
-	
- 		
-  xhttp.onreadystatechange = function() 
-  {
-    if (this.readyState == 4 && this.status == 200) 
-    {
-      if(this.responseText==null)
-      {
-	finished =true;
-      }
-      
-      else
-      {
-	
-	var jsonIn = this.responseText;
-	readInJSON(jsonIn);
-	if(!false)
-	{
-		doGetStuff();
-	}
-
-      }
-     }
-   }
-	 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
-  	 xhttp.send();
 
 }
