@@ -1,112 +1,59 @@
 var Nodes, Relationships;
 
 var nodeInfo = new Array();
-var finished =false;
+
 
 var edgeNum = 0;
 var nodeCount = 0;
 
-var edgeIndex = 0;
-var nodeIndex = 0;
-
 var timer;
 var  timerIsActive = false;
 
-var levelOneArr = [];
-var levelTwoArr = [];
-var levelThreeArr = [];
-var levelFourArr = [];
-var levelFiveArr = [];
-
-var JSONBuffer = {};
-	var JSONCount = 0;
-
 var informationArray = new Object();
-function doGetStuff() 
-{
-  var xhttp = new XMLHttpRequest();	
-  xhttp.onreadystatechange = function() 
-  {
-    if (this.readyState == 4 && this.status == 200) 
-    {
-      if(this.responseText==null)
-      {
-	finished =true;
-      }
-      
-      else
-      {
-	
-	
-	if(!false)
-	{
-		var jsonIn = this.responseText;
-		readInJSON(jsonIn);
-		doGetStuff();
-	}
-
-      }
-     }
-   }
-	 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
-  	 xhttp.send();
-
-}
-
 
 function startTimer() 
 {
-	timer = setInterval(addNodesAndEdges, 1000);
+	//timer = setInterval(doGetStuff, 5000);
 	
 	timerIsActive = true;
 }
-	 
-function addNodesAndEdges() 
+var finished=false;
+
+function doGetStuff() 
 {
-	if(!jQuery.isEmptyObject(JSONBuffer))
-	{
-		addNode(JSONBuffer.NodesArray[JSONCount].UUID, JSONBuffer.NodesArray[JSONCount].Name, JSONBuffer.NodesArray[JSONCount].Level);
-			
-		if(JSONBuffer.NodesArray[JSONCount].Relationships.length != 0)
-		{
-			for(j = 0; j < JSONBuffer.NodesArray[JSONCount].Relationships.length; j++)
-			{
-				addEdge(edgeNum, JSONBuffer.NodesArray[JSONCount].UUID, JSONBuffer.NodesArray[JSONCount].Relationships[j].UUID);
-				edgeNum = edgeNum + 1;
-			}
-		}
-		
-		JSONCount++;
-	}
-}
 	
-
- 
-	/*
-	if(!jQuery.isEmptyObject(JSONBuffer))
+	
+	var xhttp = new XMLHttpRequest();
+	if(finished)
+		return;
+ 		
+  xhttp.onreadystatechange = function() {
+   	  
+    if (this.readyState == 4 && this.status == 200) 
+    {
+	    
+      if(finished)
+		return;	    
+      if(this.responseText=="null")
+      {
+	      finished=true;
+      }
+      	if(!finished)    
 	{
-		for(i = 0; i < JSONBuffer.NodesArray.length; i++)
-		{
-			
-(JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Name, JSONBuffer.NodesArray[i].Level);
-			alert("node");
-			if(JSONBuffer.NodesArray[i].Relationships.length != 0)
-			{
-				for(j = 0; j < JSONBuffer.NodesArray[i].Relationships.length; j++)
-				{
-					addEdge(edgeNum, JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Relationships[j].UUID);
-					edgeNum = edgeNum + 1;
-				}
-			}
-			delete JSONBuffer[JSONBuffer.NodesArray[i].UUID];
-		}
-		
-		
->>>>>>> df792a70f72f7df1c94c244525327439b955f544
+	
+		var jsonIn = this.responseText;
+	        readInJSON(jsonIn);
+		doGetStuff();
 	}
-	*/
+      
 
+   }
+}
 
+		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
+		xhttp.send();
+
+}
 	 
 function stopTimer()
 {
@@ -134,7 +81,6 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				image: 'Images/root.png'
 			});
-			levelOneArr.push(idIn);
 			break;
 			case "2":
 			Nodes.add(
@@ -144,7 +90,6 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				image: 'Images/region.png'					
 			});
-			levelTwoArr.push(idIn);
 			break;
 			case "3":
 			Nodes.add(
@@ -154,7 +99,6 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				image: 'Images/VPC.png'						
 			});
-			levelThreeArr.push(idIn);
 			break;
 			case "4":
 			Nodes.add(
@@ -164,7 +108,6 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				image: 'Images/subnetwork.png'						
 			});
-			levelFourArr.push(idIn);
 			break;
 			case "5":
 			Nodes.add(
@@ -174,7 +117,6 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				image: 'Images/Instance.png'					
 			});
-			levelFiveArr.push(idIn);
 			break;
 			default:
 			Nodes.add(
@@ -247,8 +189,7 @@ function updateEdge(idIn, fromIn, inTo)
 		{
 			id: idIn,
 			from: fromIn,
-			to: inTo,
-			hidden: true
+			to: inTo
 		});
 	}
 	catch (err)
@@ -269,6 +210,9 @@ function removeEdge(idIn)
 	}
 }
 
+
+var JSONThings;
+
 var openFile = function (event)
 {
 	var input = event.target;
@@ -287,9 +231,28 @@ var openFile = function (event)
 //Function that starts traverse
 function readInJSON(jsonIn)
 {
+	
+	JSONThings = jsonIn;
+	
 	var obj = JSON.parse(jsonIn);
 	
-	Object.assign(JSONBuffer, obj);
+	for(i = 0; i < obj.NodesArray.length; i++)
+	{
+		addNode(obj.NodesArray[i].UUID, obj.NodesArray[i].Name, obj.NodesArray[i].Level);
+		
+		if(obj.NodesArray[i].Relationships.length != 0)
+		{
+			for(j = 0; j < obj.NodesArray[i].Relationships.length; j++)
+			{
+				addEdge(edgeNum, obj.NodesArray[i].UUID, obj.NodesArray[i].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+	}
+	
+	
+		
+	
 }
 
 
@@ -313,111 +276,6 @@ function traverse(node, level)
 	}
 }
 
-function clearNodesAndEdges()
-{
-	var removedIds = Nodes.clear();
-	removedIds = Relationships.clear();
-	
-	levelOneArr = [];
-	levelTwoArr = [];
-	levelThreeArr = [];
-	levelFourArr = [];
-	levelFiveArr = [];
-}
-
-function hideParentEdges()
-{
-	for(var i = 0; i < Relationships.length; i++)
-	{
-		if(levelOneArr.indexOf(Relationships.get(i).from) != -1 && levelOneArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelTwoArr.indexOf(Relationships.get(i).from) != -1 && levelTwoArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelThreeArr.indexOf(Relationships.get(i).from) != -1 && levelThreeArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelFourArr.indexOf(Relationships.get(i).from) != -1 && levelFourArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelFiveArr.indexOf(Relationships.get(i).from) != -1 && levelFiveArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-	}
-}
-
-function hideSiblingEdges()
-{
-	for(var i = 0; i < Relationships.length; i++)
-	{
-		if(levelOneArr.indexOf(Relationships.get(i).from) != -1 && levelOneArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelTwoArr.indexOf(Relationships.get(i).from) != -1 && levelTwoArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelThreeArr.indexOf(Relationships.get(i).from) != -1 && levelThreeArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelFourArr.indexOf(Relationships.get(i).from) != -1 && levelFourArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-		else 	if(levelFiveArr.indexOf(Relationships.get(i).from) != -1 && levelFiveArr.indexOf(Relationships.get(i).to) != -1)
-		{
-			Relationships.update(
-			{
-				id: Relationships.get(i).id,
-				hidden: true
-			});
-		}
-	}
-}
 
 function draw()
 {
@@ -434,30 +292,10 @@ function draw()
 	var options =
         {
 		interaction: {navigationButtons: true, keyboard: true, hover: true, hideEdgesOnDrag: true},
+                layout: {hierarchical: {direction: 'UD'}},
                 nodes: {shape: 'circularImage', borderWidth:3, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
-                "edges": {
-			width: 2,
-    "smooth": {
-	    "type":"dynamic",
-      "forceDirection": "none",
-      "roundness": 1.0
-    }
-  },
-		physics: {enabled: false},
-		layout: {
-		    improvedLayout:true,
-		    hierarchical: {
-		      enabled:true,
-		      levelSeparation: 500,
-		      nodeSpacing: 300,
-		      //treeSpacing: 300,
-		      blockShifting: true,
-		      edgeMinimization: true,
-		      parentCentralization: true,
-		      direction: 'UD',        // UD, DU, LR, RL
-		      sortMethod: 'directed'   // hubsize, directed
-		    }
-	    }
+                edges: {width: 2},
+                physics: {enabled: false},
 	};
 
 	var data =
@@ -473,7 +311,7 @@ function draw()
 	networkHierarchy.on( 'selectNode', function(properties) 
 	{
 		var ids = properties.nodes;
-		alert("Send to server " + ids);
+		alert(ids);
 	});
 
 	//networkHierarchy.on("selectNode", function (params)
@@ -483,4 +321,3 @@ function draw()
 	//get JSON based on timer
 
 }
-
