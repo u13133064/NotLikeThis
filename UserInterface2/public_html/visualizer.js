@@ -9,31 +9,40 @@ var nodeCount = 0;
 var timer;
 var  timerIsActive = false;
 
-var informationArray = new Object();
+var JSONBuffer = [];
+var bufferCount = 0;
+
+var finished=false;
+var informationJSON;
 
 function startTimer() 
 {
-	//timer = setInterval(doGetStuff, 5000);
+	timer = setInterval(addNodesAndEdges, 1000);
 	
 	timerIsActive = true;
 }
-var finished=false;
 
-function doGetStuff() 
+
+function getNodeFromServer() 
 {
 	
-	
+
 	var xhttp = new XMLHttpRequest();
-	if(finished)
-		return;
+	  if(finished)
+	  {
+		  return;
+	  }
  		
   xhttp.onreadystatechange = function() {
+	  if(finished)
+	  {
+		  return;
+	  }
+	  
    	  
     if (this.readyState == 4 && this.status == 200) 
     {
 	    
-      if(finished)
-		return;	    
       if(this.responseText=="null")
       {
 	      finished=true;
@@ -43,7 +52,8 @@ function doGetStuff()
 	
 		var jsonIn = this.responseText;
 	        readInJSON(jsonIn);
-		doGetStuff();
+		addNodesAndEdges() ;
+		getNodeFromServer();
 	}
       
 
@@ -53,8 +63,9 @@ function doGetStuff()
 		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
 		xhttp.send();
 
+
 }
-	 
+	
 function stopTimer()
 {
 	clearInterval(timer);
@@ -65,6 +76,27 @@ function resumeTimer()
 {
 	if(!timerIsActive)
 		timer = setInterval(flashText, 1000);
+}
+function addNodesAndEdges() 
+{
+	
+	if(JSONBuffer.length > bufferCount)
+	{
+		for(var k = 0; k< JSONBuffer[bufferCount].NodesArray.length; k++)
+		{
+			addNode(JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Name, JSONBuffer[bufferCount].NodesArray[k].Level);
+		
+		if(JSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
+		{
+			for(j = 0; j < JSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+			{
+				addEdge(edgeNum, JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+	}
+		bufferCount=bufferCount+1;
+	}
 }
 
 function addNode(idIn, labelIn, levelIn)
@@ -232,10 +264,8 @@ var openFile = function (event)
 function readInJSON(jsonIn)
 {
 	
-	JSONThings = jsonIn;
-	
 	var obj = JSON.parse(jsonIn);
-	
+	/*
 	for(i = 0; i < obj.NodesArray.length; i++)
 	{
 		addNode(obj.NodesArray[i].UUID, obj.NodesArray[i].Name, obj.NodesArray[i].Level);
@@ -249,32 +279,22 @@ function readInJSON(jsonIn)
 			}
 		}
 	}
+	*/
+
+	JSONBuffer.push(obj);
 	
 	
 		
 	
 }
-
-
-
-
-function traverse(node, level)
+function clearNodesAndEdges()
 {
-	nodeCount++;
-
-	addNode(nodeCount, node.Name, level);
-
-	level = level + 1;
-	
-	for (var i = 0, len = node.Children.length; i < len; i++)
-	{
-		//addEdge(edgeNum, nodeCount, i);
-		addEdge(edgeNum, node.UUID,	node.Children[i].UUID);
-
-		edgeNum = edgeNum + 1;
-		traverse(node.Children[i], level);
-	}
+	var removedIds = Nodes.clear();
+	removedIds = Relationships.clear();
+	JSONBuffer = [];
 }
+
+
 
 
 function draw()
@@ -286,16 +306,33 @@ function draw()
 
 	Relationships = new vis.DataSet();
 
-	//Relationships.on('*', function ()
-	//{     });
-
 	var options =
         {
 		interaction: {navigationButtons: true, keyboard: true, hover: true, hideEdgesOnDrag: true},
-                layout: {hierarchical: {direction: 'UD'}},
-                nodes: {shape: 'circularImage', borderWidth:3, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
-                edges: {width: 2},
-                physics: {enabled: false},
+                nodes: {shape: 'circularImage', borderWidth:1, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
+                "edges": {
+			width: 2,
+    "smooth": {
+	    "type":"dynamic",
+      "forceDirection": "none",
+      "roundness": 0.0
+    }
+  },
+		physics: {enabled: false},
+		layout: {
+		    improvedLayout:true,
+		    hierarchical: {
+		      enabled:true,
+		      levelSeparation: 500,
+		      nodeSpacing: 300,
+		      //treeSpacing: 300,
+		      blockShifting: true,
+		      edgeMinimization: true,
+		      parentCentralization: true,
+		      direction: 'UD',        // UD, DU, LR, RL
+		      sortMethod: 'directed'   // hubsize, directed
+		    }
+	    }
 	};
 
 	var data =
@@ -311,13 +348,7 @@ function draw()
 	networkHierarchy.on( 'selectNode', function(properties) 
 	{
 		var ids = properties.nodes;
-		alert(ids);
+		alert("Send to server " + ids);
 	});
-
-	//networkHierarchy.on("selectNode", function (params)
-	//{alert(params.getLabel);});
-	
-	//start Timer
-	//get JSON based on timer
 
 }
