@@ -22,6 +22,37 @@ var JSONBuffer = {};
 	var JSONCount = 0;
 
 var informationArray = new Object();
+function doGetStuff() 
+{
+  var xhttp = new XMLHttpRequest();	
+  xhttp.onreadystatechange = function() 
+  {
+    if (this.readyState == 4 && this.status == 200) 
+    {
+      if(this.responseText==null)
+      {
+	finished =true;
+      }
+      
+      else
+      {
+	
+	
+	if(!false)
+	{
+		var jsonIn = this.responseText;
+		readInJSON(jsonIn);
+		doGetStuff();
+	}
+
+      }
+     }
+   }
+	 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
+  	 xhttp.send();
+
+}
+
 
 function startTimer() 
 {
@@ -49,36 +80,15 @@ function addNodesAndEdges()
 	}
 }
 	
-<<<<<<< HEAD
- 		
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) 
-    {
-      if(this.responseText==null)
-      {
-	finished =true;
-      }
-      
-    else
-    {
-	
-	var jsonIn = this.responseText;
-	readInJSON(jsonIn);
-	if(!false)
-	{
-		doGetStuff();
-	}
 
-    }
-   }
-=======
-	
+ 
 	/*
 	if(!jQuery.isEmptyObject(JSONBuffer))
 	{
 		for(i = 0; i < JSONBuffer.NodesArray.length; i++)
 		{
-			addNode(JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Name, JSONBuffer.NodesArray[i].Level);
+			
+(JSONBuffer.NodesArray[i].UUID, JSONBuffer.NodesArray[i].Name, JSONBuffer.NodesArray[i].Level);
 			alert("node");
 			if(JSONBuffer.NodesArray[i].Relationships.length != 0)
 			{
@@ -474,34 +484,3 @@ function draw()
 
 }
 
-function doGetStuff() 
-{
-	var xhttp = new XMLHttpRequest();
-	
- 		
-  xhttp.onreadystatechange = function() 
-  {
-    if (this.readyState == 4 && this.status == 200) 
-    {
-      if(this.responseText==null)
-      {
-	finished =true;
-      }
-      
-      else
-      {
-	
-	var jsonIn = this.responseText;
-	readInJSON(jsonIn);
-	if(!false)
-	{
-		doGetStuff();
-	}
-
-      }
-     }
-   }
-	 xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
-  	 xhttp.send();
-
-}
