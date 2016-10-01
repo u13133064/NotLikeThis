@@ -23,7 +23,7 @@ public class ServerAPI {
         credentials.setPrivate_key(paramBean.s_key);
         System.out.println(paramBean.a_key);
         System.out.println(paramBean.s_key);
-        new Thread(new AWSScanner(credentials,sharedBuffer,1)).start();
+        new Thread(new AWSScanner(credentials,sharedBuffer,"",1)).start();
 
 
         return Response.ok() //200
@@ -33,6 +33,29 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+
+    @GET
+    @Path("/regionScan")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object ScanRegion(@BeanParam CredentialBean paramBean,@BeanParam UUIDBean uuidBean) {
+        sharedBuffer=new SharedBuffer();
+        Credential credentials= new Credential();
+        credentials.setAccess_key(paramBean.a_key);
+        credentials.setPrivate_key(paramBean.s_key);
+        System.out.println(paramBean.a_key);
+        System.out.println(paramBean.s_key);
+        new Thread(new AWSScanner(credentials,sharedBuffer,uuidBean.uuid,2)).start();
+
+
+        return Response.ok() //200
+                .entity("Region Scan Started",new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+
+
     @GET
     @Path("/getLatestTree")
     @Produces(MediaType.APPLICATION_JSON)

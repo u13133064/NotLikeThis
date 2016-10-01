@@ -28,6 +28,10 @@ public class InstanceScannerThread implements Runnable
         this.buffer=buffer;
 
     }
+
+    public InstanceScannerThread(String regionName, String uuid, String vpc, AmazonEC2 ec2, SharedBuffer buffer) {
+    }
+
     public void scanContext()
     {
 
@@ -46,7 +50,7 @@ public class InstanceScannerThread implements Runnable
                     System.out.println("Adding instance for : "+regionName);
                     NetworkTree instanceNode= new Node();
                     instanceNode.setUUID(instances.get(j).getInstanceId());
-                    //instanceNode.setUUID(UUID.randomUUID().toString());
+
                     instanceNode.setName(instances.get(j).getInstanceId());
                     instanceNode.setInformation("{Instance Information : " + instances.get(j).toString() + " }");
                     instanceNode.setLevel(5);

@@ -25,8 +25,9 @@ public class AWSScanner implements ScannerInterface {
     int option;
     private AmazonEC2 ec2;
     private  AWSCredentials credentials;
+    String uuid;
 
-    public AWSScanner(Credential clientCredentials, SharedBuffer sharedBuffer, int option)
+    public AWSScanner(Credential clientCredentials, SharedBuffer sharedBuffer,String uuid, int option)
     {
         this.clientCredentials=clientCredentials;
         this.option=option;
@@ -34,6 +35,7 @@ public class AWSScanner implements ScannerInterface {
         System.out.println("Authorising credentials ");
         credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         ec2 = new AmazonEC2Client(credentials);
+        this.uuid=uuid;
     }
     public void scanFullNetwork() {
 
@@ -89,14 +91,50 @@ public class AWSScanner implements ScannerInterface {
 
     }
 
-    public NetworkTree scanNetworkFrom(String level,String identifier, Credential clientCredentials) {
-        String region;
-         if(level.equals("Vpc"))
-         {
-
-         }
-        return null;
+    public void scanNetworkFrom(String level, String identifier) {
+        if (level.equals("Vpc"))
+        {
+            scanVpcs(identifier);
+        }
+        else if (level.equals("Subnetwork"))
+        {
+            scanSubnetworks(identifier);
+        }
+        else if (level.equals("Instance"))
+        {
+            scanSubnetworks(identifier);
+        }
     }
+
+    private void scanSubnetworks(String identifier) {
+
+
+    }
+
+    private void scanVpcs(String identifier) {
+        //Look through each region for vpc
+        System.out.println("Scanning Regions ");
+
+        DescribeRegionsResult regionsResult= ec2.describeRegions();
+        List<Region> regions= regionsResult.getRegions();
+
+        for(int i =0;i<regions.size();i++)
+        {
+            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
+            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
+
+            //launch a Vpc scanner
+            new Thread(new VpcScannerThread(regions.get(i).getRegionName(),identifier,threadEc2,buffer)).start();
+
+
+
+
+        }
+
+
+
+    }
+
 
     public NetworkTree resumeScan(LinkedList<String> tokens, Credential credentials) {
         return null;
@@ -115,6 +153,8 @@ public class AWSScanner implements ScannerInterface {
         {
             case 1:
                 scanFullNetwork();
+            case 2:
+                scanRegion(this.uuid);
             default:;
         }
     }
