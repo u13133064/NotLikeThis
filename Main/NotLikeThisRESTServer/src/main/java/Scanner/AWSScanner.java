@@ -4,6 +4,7 @@ import Buffer.SharedBuffer;
 import Composite.NetworkTree;
 import Composite.Node;
 import Credentials.Credential;
+import ParemeterBeans.OptionBean;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.RegionUtils;
@@ -22,20 +23,18 @@ import java.util.List;
 public class AWSScanner implements ScannerInterface {
     SharedBuffer buffer;
     Credential clientCredentials;
-    int option;
+    OptionBean option;
     private AmazonEC2 ec2;
     private  AWSCredentials credentials;
-    String uuid;
 
-    public AWSScanner(Credential clientCredentials, SharedBuffer sharedBuffer,String uuid, int option)
+    public AWSScanner(Credential clientCredentials, SharedBuffer sharedBuffer, OptionBean option)
     {
         this.clientCredentials=clientCredentials;
         this.option=option;
-        buffer=sharedBuffer;
+        this.buffer=sharedBuffer;
         System.out.println("Authorising credentials ");
         credentials = new BasicAWSCredentials(clientCredentials.getAccess_key(),clientCredentials.getPrivate_key());
         ec2 = new AmazonEC2Client(credentials);
-        this.uuid=uuid;
     }
     public void scanFullNetwork() {
 
@@ -102,11 +101,56 @@ public class AWSScanner implements ScannerInterface {
         }
         else if (level.equals("Instance"))
         {
-            scanSubnetworks(identifier);
+            scanInstances(identifier);
+        }
+        else if(level.equals("Region"))
+        {
+            scanRegion(identifier);
+        }
+        else
+        {
+            scanFullNetwork();
         }
     }
 
+    private void scanInstances(String identifier) {
+        //Look through each region for instance
+        System.out.println("Scanning Regions ");
+
+        DescribeRegionsResult regionsResult= ec2.describeRegions();
+        List<Region> regions= regionsResult.getRegions();
+
+        for(int i =0;i<regions.size();i++)
+        {
+            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
+            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
+
+            //launch a Vpc scanner
+            new Thread(new InstanceScannerThread(regions.get(i).getRegionName(),identifier,"",threadEc2,buffer)).start();
+            //delegate scan to the thread if it finds the id
+
+        }
+
+    }
+
     private void scanSubnetworks(String identifier) {
+        //Look through each region for subnet
+        System.out.println("Scanning Regions ");
+
+        DescribeRegionsResult regionsResult= ec2.describeRegions();
+        List<Region> regions= regionsResult.getRegions();
+
+        for(int i =0;i<regions.size();i++)
+        {
+            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
+            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
+
+            //launch a subnet scanner
+            new Thread(new SubNetworkScannerThread(regions.get(i).getRegionName(),identifier,"",threadEc2,buffer)).start();
+            //delegate scan to the thread if it finds the id
+
+        }
+
 
 
     }
@@ -125,9 +169,7 @@ public class AWSScanner implements ScannerInterface {
 
             //launch a Vpc scanner
             new Thread(new VpcScannerThread(regions.get(i).getRegionName(),identifier,threadEc2,buffer)).start();
-
-
-
+            //delegate scan to the thread if it finds the id
 
         }
 
@@ -149,13 +191,42 @@ public class AWSScanner implements ScannerInterface {
     }
 
     public void run() {
-        switch (option)
+        switch (option.getScannChoice())
         {
             case 1:
                 scanFullNetwork();
+                break;
             case 2:
-                scanRegion(this.uuid);
+                scanRegion(option.getIdentifier());
+                break;
+            case 3:
+                scanNetworkFrom(option.getLevel(),option.getIdentifier());
+                break;
+            case 4:
+                scanUnknown();
+                break;
+
             default:;
         }
     }
+
+    private void scanUnknown() {
+        //Look through each region for entity
+        System.out.println("Scanning Regions ");
+
+        DescribeRegionsResult regionsResult= ec2.describeRegions();
+        List<Region> regions= regionsResult.getRegions();
+
+        for(int i =0;i<regions.size();i++)
+        {
+            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
+            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
+
+            new Thread(new VpcScannerThread(regions.get(i).getRegionName(),option.getIdentifier(),threadEc2,buffer)).start();
+            new Thread(new SubNetworkScannerThread(regions.get(i).getRegionName(),option.getIdentifier(),"",threadEc2,buffer)).start();
+            new Thread(new SubNetworkScannerThread(regions.get(i).getRegionName(),option.getIdentifier(),"",threadEc2,buffer)).start();
+        }
+    }
+
+
 }

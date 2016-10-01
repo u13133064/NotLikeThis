@@ -82,7 +82,7 @@ public class SubNetworkScannerThread implements Runnable {
 
         DescribeSubnetsResult describeSubnetsResult = ec2.describeSubnets(describeSubnetsRequest);
         List<Subnet> subnets = describeSubnetsResult.getSubnets();
-        if(identifier.equals(""))
+        if(identifier.equals("") && subnets.size()>0)
         {
             new Thread(new InstanceScannerThread(this.regionName,uuid,"Subnet",this.ec2,buffer)).start();
         }

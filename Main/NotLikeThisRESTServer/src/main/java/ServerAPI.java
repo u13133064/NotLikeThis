@@ -1,6 +1,7 @@
 import Buffer.SharedBuffer;
 import Credentials.Credential;
 import ParemeterBeans.CredentialBean;
+import ParemeterBeans.OptionBean;
 import ParemeterBeans.UUIDBean;
 import Scanner.AWSScanner;
 
@@ -23,7 +24,9 @@ public class ServerAPI {
         credentials.setPrivate_key(paramBean.s_key);
         System.out.println(paramBean.a_key);
         System.out.println(paramBean.s_key);
-        new Thread(new AWSScanner(credentials,sharedBuffer,"",1)).start();
+        OptionBean options = new OptionBean();
+        options.setScannChoice(1);
+        new Thread(new AWSScanner(credentials,sharedBuffer,options)).start();
 
 
         return Response.ok() //200
@@ -44,7 +47,10 @@ public class ServerAPI {
         credentials.setPrivate_key(paramBean.s_key);
         System.out.println(paramBean.a_key);
         System.out.println(paramBean.s_key);
-        new Thread(new AWSScanner(credentials,sharedBuffer,uuidBean.uuid,2)).start();
+        OptionBean options = new OptionBean();
+        options.setScannChoice(2);
+        options.setIdentifier(uuidBean.uuid);
+        new Thread(new AWSScanner(credentials,sharedBuffer,options)).start();
 
 
         return Response.ok() //200
