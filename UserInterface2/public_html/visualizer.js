@@ -60,10 +60,8 @@ function getNodeFromServer()
 		}
 	}
 
-		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
-		xhttp.send();
-
-
+	xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
+	xhttp.send();
 }
 	
 function stopTimer()
@@ -85,16 +83,17 @@ function addNodesAndEdges()
 		for(var k = 0; k< JSONBuffer[bufferCount].NodesArray.length; k++)
 		{
 			addNode(JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Name, JSONBuffer[bufferCount].NodesArray[k].Level);
-		
-		if(JSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
-		{
-			for(j = 0; j < JSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+			
+			if(JSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
-				addEdge(edgeNum, JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
-				edgeNum = edgeNum + 1;
+				for(j = 0; j < JSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+				{
+					addEdge(edgeNum, JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
+					edgeNum = edgeNum + 1;
+				}
 			}
 		}
-	}
+		
 		bufferCount=bufferCount+1;
 	}
 }
@@ -263,30 +262,11 @@ var openFile = function (event)
 //Function that starts traverse
 function readInJSON(jsonIn)
 {
-	
 	var obj = JSON.parse(jsonIn);
-	/*
-	for(i = 0; i < obj.NodesArray.length; i++)
-	{
-		addNode(obj.NodesArray[i].UUID, obj.NodesArray[i].Name, obj.NodesArray[i].Level);
-		
-		if(obj.NodesArray[i].Relationships.length != 0)
-		{
-			for(j = 0; j < obj.NodesArray[i].Relationships.length; j++)
-			{
-				addEdge(edgeNum, obj.NodesArray[i].UUID, obj.NodesArray[i].Relationships[j].UUID);
-				edgeNum = edgeNum + 1;
-			}
-		}
-	}
-	*/
 
 	JSONBuffer.push(obj);
-	
-	
-		
-	
 }
+
 function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
@@ -294,45 +274,75 @@ function clearNodesAndEdges()
 	JSONBuffer = [];
 }
 
-
-
-
 function draw()
 {
 	Nodes = new vis.DataSet();
-
-	//Nodes.on('*', function ()
-	//{	});
 
 	Relationships = new vis.DataSet();
 
 	var options =
         {
-		interaction: {navigationButtons: true, keyboard: true, hover: true, hideEdgesOnDrag: true},
-                nodes: {shape: 'circularImage', borderWidth:1, size:40,shapeProperties: { useBorderWithImage:true}, color: {background:'white', border:'black', highlight:{background:' #3498db ',border:' #black '}},font: {background: 'white', size: 14}	},
-                "edges": {
+		interaction: 
+		{
+			navigationButtons: true, 
+			keyboard: true, hover: true, 
+			hideEdgesOnDrag: true
+		},
+                nodes: 
+		{
+			shape: 'circularImage', 
+			borderWidth:1, size:40,
+			shapeProperties: 
+			{ 
+				useBorderWithImage:true
+			},
+			color: 
+			{
+				background:'white', 
+				border:'black', 
+				highlight:
+				{
+					background:' #3498db ',
+					border:' #black '
+				}
+			},
+			font: 
+			{
+				background: 'white', 
+				size: 14
+			}	
+		
+		},
+                edges: 
+		{
 			width: 2,
-    "smooth": {
-	    "type":"dynamic",
-      "forceDirection": "none",
-      "roundness": 0.0
-    }
-  },
-		physics: {enabled: false},
-		layout: {
-		    improvedLayout:true,
-		    hierarchical: {
-		      enabled:true,
-		      levelSeparation: 500,
-		      nodeSpacing: 300,
-		      //treeSpacing: 300,
-		      blockShifting: true,
-		      edgeMinimization: true,
-		      parentCentralization: true,
-		      direction: 'UD',        // UD, DU, LR, RL
-		      sortMethod: 'directed'   // hubsize, directed
-		    }
-	    }
+			smooth: 
+			{
+				type:"dynamic",
+				forceDirection: "none",
+				roundness: 0.0
+			}
+		},
+		physics: 
+		{
+			enabled: false
+		},
+		layout: 
+		{
+			improvedLayout:true,
+			hierarchical: 
+			{
+				enabled:true,
+				levelSeparation: 500,
+				nodeSpacing: 300,
+				//treeSpacing: 300,
+				blockShifting: true,
+				edgeMinimization: true,
+				parentCentralization: true,
+				direction: 'UD',        // UD, DU, LR, RL
+				sortMethod: 'directed'   // hubsize, directed
+			}
+		}
 	};
 
 	var data =
@@ -343,12 +353,13 @@ function draw()
 
 
 	var container = document.getElementById("hierarchyVisualizerDiv");
+	
 	networkHierarchy = new vis.Network(container, data, options);
 	
 	networkHierarchy.on( 'selectNode', function(properties) 
 	{
 		var ids = properties.nodes;
-		alert("Send to server " + ids);
+		//alert("Send to server " + ids);
 	});
 
 }
