@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<title>Nimbus Network Visualiser</title>
+	</head>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="shortcut icon" href="Images/logo.ico"/>
 	
 	<script src="visualizer.js"></script>
 	<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
@@ -16,7 +21,6 @@
 		#draggableTwo { width: 150px; background-color: white; border-radius: 5px; box-shadow: 0px 0px 20px #888888; display: inline-block;}
 	</style>
 	
-
 	<script>
 		$(function () 
 		{
@@ -29,16 +33,20 @@
 	</script>
 	
 	<body onload="draw();" style="background-image: url('Images/cloud.jpg'); background-repeat: no-repeat; background-attachment: fixed;background-size: 100%;">
+		
 		<nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
 			<a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-large">Close &times;</a>
 			<p>Info goes here</p>
 		</nav>
+		
 		<div id="topBar" style="background-color: #146eb4; width: 100%;">
-		<font color="white">Access Key:</font> <input type="password" name="access">
-		<font color="white">Secret Key:</font> <input type="password" name="secret">
-		<input id='hideMe' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
-		<button id="Login" class="w3-btn" style="background-color: #146eb4;">Login</button>
-		<button id="Logout" class="w3-btn" style="background-color: #146eb4;">Logout</button>
+			<font color="white">Access Key:</font> <input type="password" name="access">
+			<font color="white">Secret Key:</font> <input type="password" name="secret">
+			
+			<button id="Login" class="w3-btn" style="background-color: #146eb4;">Login</button>
+			<button id="Logout" class="w3-btn" style="background-color: #146eb4;">Logout</button>
+			
+			<input id='hideMe' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
 		</div>
 		
 		<div id="main">
@@ -47,14 +55,6 @@
 		</div>
 
 		<script>
-		
-
-			function hideForManual()
-			{
-				document.getElementById("hideMe").style.visibility = "hidden";
-				document.getElementById("hideMe2").style.visibility = "hidden";
-			}
-	
 			function w3_open() 
 			{
 				document.getElementById("main").style.marginLeft = "25%";

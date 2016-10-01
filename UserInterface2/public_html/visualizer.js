@@ -2,7 +2,6 @@ var Nodes, Relationships;
 
 var nodeInfo = new Array();
 
-
 var edgeNum = 0;
 var nodeCount = 0;
 
@@ -25,40 +24,41 @@ function startTimer()
 
 function getNodeFromServer() 
 {
-	
-
 	var xhttp = new XMLHttpRequest();
-	  if(finished)
-	  {
-		  return;
-	  }
+	
+	if(finished)
+	{
+		return;
+	}
  		
-  xhttp.onreadystatechange = function() {
-	  if(finished)
-	  {
-		  return;
-	  }
+	xhttp.onreadystatechange = function() 
+	{
+		 if(finished)
+		{
+			return;
+		}
 	  
    	  
-    if (this.readyState == 4 && this.status == 200) 
-    {
+		if (this.readyState == 4 && this.status == 200) 
+		{
 	    
-      if(this.responseText=="null")
-      {
-	      finished=true;
-      }
-      	if(!finished)    
-	{
+			if(this.responseText=="null")
+			{
+				finished=true;
+			}
+			
+			if(!finished)    
+			{
 	
-		var jsonIn = this.responseText;
-	        readInJSON(jsonIn);
-		addNodesAndEdges() ;
-		getNodeFromServer();
-	}
+				var jsonIn = this.responseText;
+				readInJSON(jsonIn);
+				addNodesAndEdges() ;
+				getNodeFromServer();
+			}
       
 
-   }
-}
+		}
+	}
 
 		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
 		xhttp.send();
