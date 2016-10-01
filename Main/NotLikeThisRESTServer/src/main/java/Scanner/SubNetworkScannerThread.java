@@ -47,7 +47,6 @@ public class SubNetworkScannerThread implements Runnable {
             System.out.println("Adding subnet for : "+regionName);
             NetworkTree tree= new Node();
             tree.setUUID(subnets.get(i).getSubnetId());
-            //tree.setUUID(UUID.randomUUID().toString());
             tree.setName(subnets.get(i).getSubnetId());
             tree.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
             tree.setLevel(4);
@@ -73,7 +72,7 @@ public class SubNetworkScannerThread implements Runnable {
         DescribeSubnetsRequest describeSubnetsRequest;
         if(identifier.equals("Vpc"))
         {
-            Filter vpcFilter = new Filter("vpc-id ").withValues(uuid);
+            Filter vpcFilter = new Filter("vpc-id").withValues(uuid);
              describeSubnetsRequest= new DescribeSubnetsRequest().withFilters(vpcFilter);
         }
         else
@@ -89,7 +88,7 @@ public class SubNetworkScannerThread implements Runnable {
         }
 
         for(int i = 0; i<subnets.size();i++) {
-            System.out.println("Adding subnet for : "+regionName);
+            System.out.println("Found subnet at : "+regionName);
             NetworkTree tree= new Node();
             tree.setUUID(subnets.get(i).getSubnetId());
             tree.setName(subnets.get(i).getSubnetId());

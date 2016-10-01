@@ -96,7 +96,7 @@ public class AWSScanner implements ScannerInterface {
         {
             scanVpcs(identifier);
         }
-        else if (level.equals("Subnetwork"))
+        else if (level.equals("Subnet"))
         {
             scanSubnetworks(identifier);
         }
