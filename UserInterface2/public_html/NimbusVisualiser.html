@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" href="Images/logo.ico"/>
 	
 	<script src="visualizer.js"></script>
+	<script src="FileSaver.js"></script>
 	<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -48,7 +49,7 @@
 			
 			<input id='loadFile' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
 			<button id="saveFile" class="w3-btn" style="background-color: #146eb4;">Save current scan</button>
-			<button type='button'</button>
+			<button type='button' onclick="a()">file</button>
 		</div>
 		
 		<div id="main">
@@ -57,6 +58,11 @@
 		</div>
 
 		<script>
+		
+		function a()
+		{var file = new File(["Hello, world!"], "hello world.json", {type: "text/plain;charset=utf-8"});
+saveAs(file);
+		}
 			function w3_open() 
 			{
 				document.getElementById("main").style.marginLeft = "25%";
