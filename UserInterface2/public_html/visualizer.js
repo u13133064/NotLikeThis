@@ -1,5 +1,8 @@
 var Nodes, Relationships;
 
+var fileBufferCount = 0;
+
+
 var nodeInfo = new Array();
 
 var edgeNum = 0;
@@ -21,8 +24,7 @@ var readingFromServer = 0;
 
 function startTimer() 
 {
-	timer = setInterval(addNodesAndEdges, 1000);
-	
+	timer = setInterval(addNodesAndEdgesFile, 1000);
 	timerIsActive = true;
 }
 
@@ -97,6 +99,38 @@ function addNodesAndEdges()
 		
 		bufferCount=bufferCount+1;
 	}
+}
+
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+
+function addNodesAndEdgesFile() 
+{
+	
+	//for(var k = 0; k< FileJSONBuffer.length; k++)
+	//{
+		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
+			
+		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
+		{
+			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
+			{
+				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+		fileBufferCount = fileBufferCount + 1;
+	//}
+	
+	
 }
 
 function addNode(idIn, labelIn, levelIn)
@@ -277,6 +311,9 @@ function readInJSONFromFile(jsonIn)
 		obj2 = obj.NodesArray[k];
 		FileJSONBuffer.push(obj2);
 	}
+	//readingFromFile = 1;
+	//addNodesAndEdgesFile() ;
+	startTimer();
 }
 
 function clearNodesAndEdges()
@@ -284,11 +321,12 @@ function clearNodesAndEdges()
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
 	ServerJSONBuffer = [];
+	fileBufferCount = 0;
 }
 
 function getBufferContents()
 {
-	return FileJSONBuffer;//ServerJSONBuffer;
+	return ServerJSONBuffer;
 }
 
 function draw()

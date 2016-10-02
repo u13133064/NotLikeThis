@@ -70,45 +70,44 @@
 				secretKey=document.getElementById("secretKey").value;
 			}
 
-		function writeOutFile()
-		{
-			var bufferContents = getBufferContents();
-			
-			var str = "{\"NodesArray\":[";
-					
-			var obj;
-			var jsonString;
-			//alert(jsonString);
-			
-			for(var i = 0; i < bufferContents.length - 1; i++)
+			function writeOutFile()
 			{
+				var bufferContents = getBufferContents();
+				
+				var str = "{\"NodesArray\":[";
+						
+				var obj;
+				var jsonString;
+				
+				for(var i = 0; i < bufferContents.length - 1; i++)
+				{
+					obj = new Object();
+					
+					obj.Name = bufferContents[i].Name;
+					obj.UUID  =  bufferContents[i].UUID;
+					obj.Level =  bufferContents[i].Level;
+					obj.Relationships =  bufferContents[i].Relationships;
+					
+					jsonString= JSON.stringify(obj);
+					str = str + jsonString + ",";
+				}
+				
 				obj = new Object();
-				
-				obj.Name = bufferContents[i].Name;
-				obj.UUID  =  bufferContents[i].UUID;
-				obj.Level =  bufferContents[i].Level;
-				obj.Relationships =  bufferContents[i].Relationships;
-				
+					
+				obj.Name = bufferContents[bufferContents.length - 1].Name;
+				obj.UUID  =  bufferContents[bufferContents.length - 1].UUID;
+				obj.Level =  bufferContents[bufferContents.length - 1].Level;
+				obj.Relationships =  bufferContents[bufferContents.length - 1].Relationships;
+					
 				jsonString= JSON.stringify(obj);
-				str = str + jsonString + ",";
+				str = str + jsonString + "]}";
+					
+				var timestamp = new Date().getTime();
+				timestamp = timestamp + ".json";
+				
+				var file = new File([str], timestamp, {type: "text/plain;charset=utf-8"});
+				saveAs(file);
 			}
-			
-			obj = new Object();
-				
-			obj.Name = bufferContents[bufferContents.length - 1].Name;
-			obj.UUID  =  bufferContents[bufferContents.length - 1].UUID;
-			obj.Level =  bufferContents[bufferContents.length - 1].Level;
-			obj.Relationships =  bufferContents[bufferContents.length - 1].Relationships;
-				
-			jsonString= JSON.stringify(obj);
-			str = str + jsonString + "]}";
-				
-			//alert(str);
-			var timestamp = new Date().getTime();
-			timestamp = timestamp + ".json";
-			var file = new File([str], timestamp, {type: "text/plain;charset=utf-8"});
-			saveAs(file);
-		}
 
 			function w3_open() 
 			{
