@@ -91,7 +91,7 @@ function addNodesAndEdges()
 			{
 				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
+					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type);
 					edgeNum = edgeNum + 1;
 				}
 			}
@@ -123,7 +123,7 @@ function addNodesAndEdgesFile()
 		{
 			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
 			{
-				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID);
+				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type);
 				edgeNum = edgeNum + 1;
 			}
 		}
@@ -230,18 +230,79 @@ function removeNode(idIn)
 	}
 }
 
-function addEdge(idIn, fromIn, toIn)
+function addEdge(idIn, fromIn, toIn, type)
 {
-	try
+		try
 	{
-		Relationships.add(
+		switch (type) 
 		{
-			id: idIn,
-			from: fromIn,
-			to: toIn,
-		});
+			case 1:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'red',
+				dashes: true,
+				label: "lable"
+			});
+			break;
+			case 2:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'red',
+				dashes: true,
+				label: "lable"
+			});
+			break;
+			case 3:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'red',
+				dashes: true,
+				label: "lable"
+			});
+			break;
+			case 4:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'red',
+				dashes: true,
+				label: "lable"
+			});
+			break;
+			case 5:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'red',
+				dashes: true,
+				label: "lable"
+			});
+			break;
+			default:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'black',
+				dashes: false
+			});
+		}
 	}
-	catch (err)
+	catch (err) 
 	{
 		alert(err);
 	}
