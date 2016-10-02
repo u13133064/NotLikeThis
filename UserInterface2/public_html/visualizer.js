@@ -43,7 +43,7 @@ function getNodeFromServer()
 		{
 	    
 			if(this.responseText=="null")
-			{
+			{	alert("Scan finished");
 				finished=true;
 			}
 			

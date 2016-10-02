@@ -40,10 +40,10 @@
 		</nav>
 		
 		<div id="topBar" style="background-color: #146eb4; width: 100%;">
-			<font color="white">Access Key:</font> <input type="password" name="access">
-			<font color="white">Secret Key:</font> <input type="password" name="secret">
+			<font color="white">Access Key:</font> <input type="password" id="accessKey"name="access">
+			<font color="white">Secret Key:</font> <input type="password" id="secretKey"name="secret">
 			
-			<button id="Login" class="w3-btn" style="background-color: #146eb4;">Login</button>
+			<button id="Login" onclick='login()' class="w3-btn" style="background-color: #146eb4;">Login</button>
 			<button id="Logout" class="w3-btn" style="background-color: #146eb4;">Logout</button>
 			
 			<input id='loadFile' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
@@ -57,6 +57,14 @@
 		</div>
 
 		<script>
+		
+			var accessKey;
+			var secretKey;
+			function login()
+			{
+				accessKey=document.getElementById("accessKey").value;
+				secretKey=document.getElementById("secretKey").value;
+			}
 			function w3_open() 
 			{
 				document.getElementById("main").style.marginLeft = "25%";
@@ -121,8 +129,6 @@
 			function scanNetwork() 
 			{
 			
-				var accessKey = prompt("Please enter your access key", "");
-				var secretKey = prompt("Please enter your secret key", "");
 				var xhttp = new XMLHttpRequest();
 				
 				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner?a_key=" + accessKey + "&s_key=" + secretKey, true);
@@ -135,6 +141,23 @@
 				}, 10000);
 
 			}
+			function scanRegion(region) 
+			{
+			
+
+				var xhttp = new XMLHttpRequest();
+				
+				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/regionScan?a_key=" + accessKey + "&s_key=" + secretKey+"&uuid="+region, true);
+				xhttp.send();
+			
+				setTimeout(function () 
+				{
+					getNodeFromServer();
+					//startTimer();
+				}, 10000);
+
+			}
+			
 		</script>
 
 
@@ -152,7 +175,7 @@
 			<div class="w3-dropdown-hover" style="width:100%;">
 				<button class="w3-btn" style="width:100%; background-color: orange;">Region</button>
 					<div class="w3-dropdown-content w3-border">
-						<a href="#">US East (N. Virginia)</a>
+						<a href="#" onclick='scanRegion("us-east-1")'>US East (N. Virginia)</a>
 						<a href="#">US West (N. California)</a>
 						<a href="#">US West (Oregon)</a>
 						<a href="#">Asia Pacific (Seoul)</a>
