@@ -51,8 +51,7 @@
 			<button id="Logout" class="w3-btn" style="background-color: #146eb4;">Logout</button>
 			
 			<input id='loadFile' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
-			<button id="saveFile" class="w3-btn" style="background-color: #146eb4;">Save current scan</button>
-			<button type='button' onclick="a()">file</button>
+			<button id="saveFile" onclick="a()" class="w3-btn" style="background-color: #146eb4;">Save current scan</button>
 		</div>
 		
 		<div id="main">
@@ -71,9 +70,10 @@
 				secretKey=document.getElementById("secretKey").value;
 			}
 
-		function a()
-		{var file = new File(["Hello, world!"], "hello world.json", {type: "text/plain;charset=utf-8"});
-saveAs(file);
+		function writeOutFile()
+		{
+			var file = new File(["Hello, world!"], "hello world.json", {type: "text/plain;charset=utf-8"});
+			saveAs(file);
 		}
 
 			function w3_open() 
