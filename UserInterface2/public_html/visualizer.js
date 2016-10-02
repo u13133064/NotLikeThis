@@ -14,7 +14,6 @@ var bufferCount = 0;
 var finished=false;
 var informationJSON;
 
-
 function startTimer() 
 {
 	timer = setInterval(addNodesAndEdges, 1000);
@@ -255,6 +254,7 @@ var openFile = function (event)
 	
 	reader.readAsText(input.files[0]);
 };
+
 function readInJSON(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
