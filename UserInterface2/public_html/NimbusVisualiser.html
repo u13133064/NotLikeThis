@@ -138,8 +138,9 @@ saveAs(file);
 			}
 
 			function scanNetwork() 
-			{
-			
+			{	
+				finished=false;
+				clearNodesAndEdges();
 				var xhttp = new XMLHttpRequest();
 				
 				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner?a_key=" + accessKey + "&s_key=" + secretKey, true);
@@ -152,10 +153,48 @@ saveAs(file);
 				}, 10000);
 
 			}
+			function scanFrom()
+			{	
+				finished=false;
+				clearNodesAndEdges();
+				var uuid = document.getElementById("fromUUID").value;
+				var level;
+				if(uuid.startsWith("vpc"))
+				{
+					level="Vpc";
+				}
+				else if(uuid.startsWith("subnet"))
+				{
+					level="Subnet";
+				}
+				else if(uuid.startsWith("i"))
+				{
+					level="Instance";
+				}
+				else if(uuid.startsWith("-",2))
+				{
+					level="Region";
+				}
+				else
+				{
+					level="Unknown";
+				}
+				
+				var xhttp = new XMLHttpRequest();
+				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanFrom?a_key=" + accessKey + "&s_key=" + secretKey+"&level="+level+"&uuid="+uuid, true);
+				xhttp.send();
+			
+				setTimeout(function () 
+				{
+					getNodeFromServer();
+					//startTimer();
+				}, 10000);
+				
+			}
 			function scanRegion(region) 
 			{
-			
-
+				finished=false;
+				clearNodesAndEdges();
 				var xhttp = new XMLHttpRequest();
 				
 				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/regionScan?a_key=" + accessKey + "&s_key=" + secretKey+"&uuid="+region, true);
@@ -181,7 +220,7 @@ saveAs(file);
 				<button id="scanDownButton" class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Down</button>
 				
 				<button id="scanFromButton" class="w3-btn" onclick="textBox()" style="width:100%; background-color: orange;">Scan From</button>
-				<div id="scanFromInput" style="display: none; width: 100%; background-color: orange;"><input type="text" name="access" style="width: 70%;"><button style="width:30%;">Go</button></div>
+				<div id="scanFromInput" style="display: none; width: 100%; background-color: orange;"><input id="fromUUID" type="text" name="access" style="width: 70%;"><button style="width:30%;" onclick="scanFrom()">Go</button></div>
 			
 			<div class="w3-dropdown-hover" style="width:100%;">
 				<button class="w3-btn" style="width:100%; background-color: orange;">Region</button>
@@ -203,7 +242,7 @@ saveAs(file);
 		
 		<div id="draggableTwo" class="ui-widget-content" style="border: 1px solid grey; border-radius: 5px;">
 			<div style="border: 1px solid grey; height: 20px; border-top-right-radius: 5px; border-top-left-radius: 5px; background-color: darkgray; cursor: pointer;"></div>
-			<div style="height: 180px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: white; " id="information"><p>Information:</p></div>
+			<div style=" float: left; height: 180px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: white; " id="information"><p>Information:</p></div>
 		</div>
 		
 	

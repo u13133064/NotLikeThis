@@ -267,10 +267,12 @@ function clearNodesAndEdges()
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
 	JSONBuffer = [];
+	draw();
 }
 
 function draw()
 {
+	alert("redrawing");
 	Nodes = new vis.DataSet();
 
 	Relationships = new vis.DataSet();
@@ -353,7 +355,6 @@ function draw()
 	networkHierarchy.on( 'selectNode', function(properties) 
 	{
 		var ids = properties.nodes;
-				var ids = properties.nodes;
 		var xhttp = new XMLHttpRequest();
 	
 
@@ -367,6 +368,7 @@ function draw()
 				if(this.responseText!="null")
 				{	
 					document.getElementById("information").innerHTML =this.responseText ;
+					document.getElementById("fromUUID").value =ids ;
 				}
 				
 			}
