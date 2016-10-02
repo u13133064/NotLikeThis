@@ -320,9 +320,12 @@ function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
-	draw();
-	ServerJSONBuffer = [];
+		ServerJSONBuffer = [];
 	fileBufferCount = 0;
+	bufferCount = 0;
+	
+	draw();
+
 }
 
 function getBufferContents()
