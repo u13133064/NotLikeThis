@@ -353,5 +353,28 @@ function draw()
 	networkHierarchy.on( 'selectNode', function(properties) 
 	{
 		var ids = properties.nodes;
+				var ids = properties.nodes;
+		var xhttp = new XMLHttpRequest();
+	
+
+ 		
+		xhttp.onreadystatechange = function() 
+		{
+			
+		  
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				if(this.responseText!="null")
+				{	
+					document.getElementById("information").innerHTML =this.responseText ;
+				}
+				
+			}
+			
+			
+		};
+		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getInformation?uuid="+ids, true);
+		xhttp.send();
+
 	});
 }
