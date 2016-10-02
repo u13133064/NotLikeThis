@@ -46,10 +46,10 @@ public class InstanceScannerThread implements Runnable
             DescribeInstancesRequest newInstanceRequest = new DescribeInstancesRequest().withNextToken(nextToken);
             newInstanceRequest.setMaxResults(100);
             DescribeInstancesResult instancesResult = ec2.describeInstances(newInstanceRequest);
-            List<Reservation> reservations= instancesResult.getReservations();
-            System.out.println(reservations.size());
-            for(int i =0;i<reservations.size();i++) {
-                List<Instance> instances =reservations.get(i).getInstances();
+                List<Reservation> reservations= instancesResult.getReservations();
+                System.out.println(reservations.size());
+                for(int i =0;i<reservations.size();i++) {
+                    List<Instance> instances =reservations.get(i).getInstances();
                 for(int j =0;j<instances.size();j++)
                 {
                     System.out.println("Adding instance for : "+regionName);
@@ -96,7 +96,17 @@ public class InstanceScannerThread implements Runnable
         else{
             describeInstancesRequest= new DescribeInstancesRequest().withInstanceIds(uuid);
         }
-        DescribeInstancesResult instancesResult = ec2.describeInstances(describeInstancesRequest);
+        DescribeInstancesResult instancesResult;
+        try
+        {
+         instancesResult = ec2.describeInstances(describeInstancesRequest);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
         List<Reservation> reservations= instancesResult.getReservations();
         for(int i =0;i<reservations.size();i++) {
             List<Instance> instances =reservations.get(i).getInstances();

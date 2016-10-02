@@ -8,5 +8,6 @@ import javax.ws.rs.QueryParam;
 public class UUIDBean {
     @QueryParam("uuid")
     public String uuid;
-
+    @QueryParam("level")
+    public String level;
 }

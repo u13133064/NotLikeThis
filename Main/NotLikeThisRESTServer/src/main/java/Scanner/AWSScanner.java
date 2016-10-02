@@ -203,30 +203,13 @@ public class AWSScanner implements ScannerInterface {
                 scanNetworkFrom(option.getLevel(),option.getIdentifier());
                 break;
             case 4:
-                scanUnknown();
-                break;
+
+            break;
 
             default:;
         }
     }
 
-    private void scanUnknown() {
-        //Look through each region for entity
-        System.out.println("Scanning Regions ");
-
-        DescribeRegionsResult regionsResult= ec2.describeRegions();
-        List<Region> regions= regionsResult.getRegions();
-
-        for(int i =0;i<regions.size();i++)
-        {
-            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
-            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
-
-            new Thread(new VpcScannerThread(regions.get(i).getRegionName(),option.getIdentifier(),threadEc2,buffer)).start();
-            new Thread(new SubNetworkScannerThread(regions.get(i).getRegionName(),option.getIdentifier(),"",threadEc2,buffer)).start();
-            new Thread(new SubNetworkScannerThread(regions.get(i).getRegionName(),option.getIdentifier(),"",threadEc2,buffer)).start();
-        }
-    }
 
 
 }

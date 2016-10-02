@@ -73,7 +73,14 @@ public class SubNetworkScannerThread implements Runnable {
         if(identifier.equals("Vpc"))
         {
             Filter vpcFilter = new Filter("vpc-id").withValues(uuid);
-             describeSubnetsRequest= new DescribeSubnetsRequest().withFilters(vpcFilter);
+            try {
+                describeSubnetsRequest = new DescribeSubnetsRequest().withFilters(vpcFilter);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return;
+            }
         }
         else
         {

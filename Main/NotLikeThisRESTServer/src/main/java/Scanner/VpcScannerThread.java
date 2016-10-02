@@ -56,7 +56,16 @@ public class VpcScannerThread implements Runnable{
     public void scanOnly()
     {
         DescribeVpcsRequest describeVpcsRequest = new DescribeVpcsRequest().withVpcIds(uuid);
-        DescribeVpcsResult describeVpcsResult = ec2.describeVpcs(describeVpcsRequest);
+        DescribeVpcsResult describeVpcsResult;
+        try
+        {
+            describeVpcsResult = ec2.describeVpcs(describeVpcsRequest);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
         List<Vpc> vpcs = describeVpcsResult.getVpcs();
         if (vpcs.size()>0)
         {

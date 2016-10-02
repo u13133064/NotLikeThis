@@ -1,5 +1,8 @@
 var Nodes, Relationships;
 
+var fileBufferCount = 0;
+
+
 var nodeInfo = new Array();
 
 var edgeNum = 0;
@@ -8,16 +11,20 @@ var nodeCount = 0;
 var timer;
 var  timerIsActive = false;
 
-var JSONBuffer = [];
+var ServerJSONBuffer = [];
 var bufferCount = 0;
+
+var FileJSONBuffer = [];
 
 var finished=false;
 var informationJSON;
 
+var readingFromFile = 0;
+var readingFromServer = 0;
+
 function startTimer() 
 {
-	timer = setInterval(addNodesAndEdges, 1000);
-	
+	timer = setInterval(addNodesAndEdgesFile, 1000);
 	timerIsActive = true;
 }
 
@@ -52,7 +59,7 @@ function getNodeFromServer()
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			if(this.responseText=="null")
-			{	alert("Scan finished");
+			{	
 				finished=true;
 			}
 			
@@ -60,7 +67,7 @@ function getNodeFromServer()
 			{
 	
 				var jsonIn = this.responseText;
-				readInJSON(jsonIn);
+				readInJSONFromServer(jsonIn);
 				addNodesAndEdges() ;
 				getNodeFromServer();
 			}
@@ -74,17 +81,17 @@ function getNodeFromServer()
 
 function addNodesAndEdges() 
 {
-	if(JSONBuffer.length > bufferCount)
+	if(ServerJSONBuffer.length > bufferCount)
 	{
-		for(var k = 0; k< JSONBuffer[bufferCount].NodesArray.length; k++)
+		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
 		{
-			addNode(JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Name, JSONBuffer[bufferCount].NodesArray[k].Level);
+			addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
 			
-			if(JSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
+			if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
-				for(j = 0; j < JSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					addEdge(edgeNum, JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
+					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
 					edgeNum = edgeNum + 1;
 				}
 			}
@@ -92,6 +99,38 @@ function addNodesAndEdges()
 		
 		bufferCount=bufferCount+1;
 	}
+}
+
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+
+function addNodesAndEdgesFile() 
+{
+	
+	//for(var k = 0; k< FileJSONBuffer.length; k++)
+	//{
+		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
+			
+		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
+		{
+			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
+			{
+				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID);
+				edgeNum = edgeNum + 1;
+			}
+		}
+		fileBufferCount = fileBufferCount + 1;
+	//}
+	
+	
 }
 
 function addNode(idIn, labelIn, levelIn)
@@ -249,30 +288,50 @@ var openFile = function (event)
 	{
 		var text = reader.result;
 		console.log(reader.result.substring(0, 200));
-		readInJSON(text);
+		readInJSONFromFile(text);
 	};
 	
 	reader.readAsText(input.files[0]);
 };
 
-function readInJSON(jsonIn)
+function readInJSONFromServer(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
 
-	JSONBuffer.push(obj);
+	ServerJSONBuffer.push(obj);
+}
+
+function readInJSONFromFile(jsonIn)
+{
+	var obj = JSON.parse(jsonIn);
+	var obj2;
+	
+	for(var k = 0; k< obj.NodesArray.length; k++)
+	{
+		obj2 = obj.NodesArray[k];
+		FileJSONBuffer.push(obj2);
+	}
+	//readingFromFile = 1;
+	//addNodesAndEdgesFile() ;
+	startTimer();
 }
 
 function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
-	JSONBuffer = [];
 	draw();
+	ServerJSONBuffer = [];
+	fileBufferCount = 0;
+}
+
+function getBufferContents()
+{
+	return ServerJSONBuffer;
 }
 
 function draw()
 {
-	alert("redrawing");
 	Nodes = new vis.DataSet();
 
 	Relationships = new vis.DataSet();
