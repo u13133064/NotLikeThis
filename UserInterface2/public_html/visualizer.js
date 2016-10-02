@@ -8,8 +8,10 @@ var nodeCount = 0;
 var timer;
 var  timerIsActive = false;
 
-var JSONBuffer = [];
+var ServerJSONBuffer = [];
 var bufferCount = 0;
+
+var FileJSONBuffer = [];
 
 var finished=false;
 var informationJSON;
@@ -55,7 +57,7 @@ function getNodeFromServer()
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			if(this.responseText=="null")
-			{	alert("Scan finished");
+			{	
 				finished=true;
 			}
 			
@@ -77,17 +79,17 @@ function getNodeFromServer()
 
 function addNodesAndEdges() 
 {
-	if(JSONBuffer.length > bufferCount)
+	if(ServerJSONBuffer.length > bufferCount)
 	{
-		for(var k = 0; k< JSONBuffer[bufferCount].NodesArray.length; k++)
+		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
 		{
-			addNode(JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Name, JSONBuffer[bufferCount].NodesArray[k].Level);
+			addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
 			
-			if(JSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
+			if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
-				for(j = 0; j < JSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					addEdge(edgeNum, JSONBuffer[bufferCount].NodesArray[k].UUID, JSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
+					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
 					edgeNum = edgeNum + 1;
 				}
 			}
@@ -252,7 +254,7 @@ var openFile = function (event)
 	{
 		var text = reader.result;
 		console.log(reader.result.substring(0, 200));
-		readInJSON(text);
+		readInJSONFromFile(text);
 	};
 	
 	reader.readAsText(input.files[0]);
@@ -262,14 +264,31 @@ function readInJSONFromServer(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
 
-	JSONBuffer.push(obj);
+	ServerJSONBuffer.push(obj);
+}
+
+function readInJSONFromFile(jsonIn)
+{
+	var obj = JSON.parse(jsonIn);
+	var obj2;
+	
+	for(var k = 0; k< obj.NodesArray.length; k++)
+	{
+		obj2 = obj.NodesArray[k];
+		FileJSONBuffer.push(obj2);
+	}
 }
 
 function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
-	JSONBuffer = [];
+	ServerJSONBuffer = [];
+}
+
+function getBufferContents()
+{
+	return FileJSONBuffer;//ServerJSONBuffer;
 }
 
 function draw()

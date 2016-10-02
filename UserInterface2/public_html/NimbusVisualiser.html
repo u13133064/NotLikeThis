@@ -51,7 +51,7 @@
 			<button id="Logout" class="w3-btn" style="background-color: #146eb4;">Logout</button>
 			
 			<input id='loadFile' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
-			<button id="saveFile" onclick="a()" class="w3-btn" style="background-color: #146eb4;">Save current scan</button>
+			<button id="saveFile" onclick="writeOutFile()" class="w3-btn" style="background-color: #146eb4;">Save current scan</button>
 		</div>
 		
 		<div id="main">
@@ -72,7 +72,41 @@
 
 		function writeOutFile()
 		{
-			var file = new File(["Hello, world!"], "hello world.json", {type: "text/plain;charset=utf-8"});
+			var bufferContents = getBufferContents();
+			
+			var str = "{\"NodesArray\":[";
+					
+			var obj;
+			var jsonString;
+			//alert(jsonString);
+			
+			for(var i = 0; i < bufferContents.length - 1; i++)
+			{
+				obj = new Object();
+				
+				obj.Name = bufferContents[i].Name;
+				obj.UUID  =  bufferContents[i].UUID;
+				obj.Level =  bufferContents[i].Level;
+				obj.Relationships =  bufferContents[i].Relationships;
+				
+				jsonString= JSON.stringify(obj);
+				str = str + jsonString + ",";
+			}
+			
+			obj = new Object();
+				
+			obj.Name = bufferContents[bufferContents.length - 1].Name;
+			obj.UUID  =  bufferContents[bufferContents.length - 1].UUID;
+			obj.Level =  bufferContents[bufferContents.length - 1].Level;
+			obj.Relationships =  bufferContents[bufferContents.length - 1].Relationships;
+				
+			jsonString= JSON.stringify(obj);
+			str = str + jsonString + "]}";
+				
+			//alert(str);
+			var timestamp = new Date().getTime();
+			timestamp = timestamp + ".json";
+			var file = new File([str], timestamp, {type: "text/plain;charset=utf-8"});
 			saveAs(file);
 		}
 
