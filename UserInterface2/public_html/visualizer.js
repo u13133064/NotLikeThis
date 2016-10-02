@@ -14,6 +14,7 @@ var bufferCount = 0;
 var finished=false;
 var informationJSON;
 
+
 function startTimer() 
 {
 	timer = setInterval(addNodesAndEdges, 1000);
@@ -21,6 +22,17 @@ function startTimer()
 	timerIsActive = true;
 }
 
+function stopTimer()
+{
+	clearInterval(timer);
+	timerIsActive = false;
+}
+			
+function resumeTimer()
+{
+	if(!timerIsActive)
+		timer = setInterval(flashText, 1000);
+}
 
 function getNodeFromServer() 
 {
@@ -38,10 +50,8 @@ function getNodeFromServer()
 			return;
 		}
 	  
-   	  
 		if (this.readyState == 4 && this.status == 200) 
 		{
-	    
 			if(this.responseText=="null")
 			{	alert("Scan finished");
 				finished=true;
@@ -55,8 +65,6 @@ function getNodeFromServer()
 				addNodesAndEdges() ;
 				getNodeFromServer();
 			}
-      
-
 		}
 	}
 
@@ -64,20 +72,9 @@ function getNodeFromServer()
 	xhttp.send();
 }
 	
-function stopTimer()
-{
-	clearInterval(timer);
-	timerIsActive = false;
-}
-			
-function resumeTimer()
-{
-	if(!timerIsActive)
-		timer = setInterval(flashText, 1000);
-}
+
 function addNodesAndEdges() 
 {
-	
 	if(JSONBuffer.length > bufferCount)
 	{
 		for(var k = 0; k< JSONBuffer[bufferCount].NodesArray.length; k++)
@@ -242,7 +239,7 @@ function removeEdge(idIn)
 }
 
 
-var JSONThings;
+
 
 var openFile = function (event)
 {
@@ -258,8 +255,6 @@ var openFile = function (event)
 	
 	reader.readAsText(input.files[0]);
 };
-
-//Function that starts traverse
 function readInJSON(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
@@ -351,7 +346,6 @@ function draw()
                 edges: Relationships
 	};
 
-
 	var container = document.getElementById("hierarchyVisualizerDiv");
 	
 	networkHierarchy = new vis.Network(container, data, options);
@@ -359,7 +353,5 @@ function draw()
 	networkHierarchy.on( 'selectNode', function(properties) 
 	{
 		var ids = properties.nodes;
-		//alert("Send to server " + ids);
 	});
-
 }
