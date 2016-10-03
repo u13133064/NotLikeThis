@@ -70,12 +70,16 @@
 				document.getElementById("Login").style.display = "none";
 				accessKey=document.getElementById("accessKey").value;
 				secretKey=document.getElementById("secretKey").value;
+				document.getElementById("accessKey").style.display = "none";
+				document.getElementById("secretKey").style.display = "none";
 			}
 			
 			function logout()
 			{
 				document.getElementById("Logout").style.display = "none";
 				document.getElementById("Login").style.display = "inline";
+				document.getElementById("accessKey").style.display = "inline";
+				document.getElementById("secretKey").style.display = "inline";
 			}
 
 			function writeOutFile()
