@@ -95,7 +95,7 @@ function addNodesAndEdges()
 			{
 				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type);
 					edgeNum = edgeNum + 1;
 				}
 			}
@@ -103,6 +103,8 @@ function addNodesAndEdges()
 		
 					sleep(500);
 					bufferCount=bufferCount+1;
+				
+		
 	}
 }
 
@@ -120,21 +122,21 @@ function sleep(milliseconds) {
 function addNodesAndEdgesFile() 
 {
 	
-	if(FileJSONBuffer.length > fileBufferCount)
-	{
+	//for(var k = 0; k< FileJSONBuffer.length; k++)
+	//{
 		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
 			
 		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
 		{
 			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
 			{
-				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type, FileJSONBuffer[fileBufferCount].Level);
+				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type);
 				edgeNum = edgeNum + 1;
 			}
 		}
 
 		fileBufferCount = fileBufferCount + 1;
-	}
+	//}
 	
 	
 }
@@ -151,21 +153,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/root.png',
-				color: 
-				{
-					background:'white', 
-					border:'black', 
-					highlight:
-					{
-						background:'white',
-						border: 'red '
-					},
-					hover: 
-					{
-						border: 'red'
-					}
-				}
+				image: 'Images/root.png'
 			});
 			break;
 			case "2":
@@ -174,21 +162,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/region.png',
-				color: 
-				{
-					background:'white', 
-					border:'black', 
-					highlight:
-					{
-						background:'white',
-						border: 'blue '
-					},
-					hover: 
-					{
-						border: 'blue'
-					}
-				}
+				image: 'Images/region.png'					
 			});
 			break;
 			case "3":
@@ -197,21 +171,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/VPC.png',
-				color: 
-				{
-					background:'white', 
-					border:'black', 
-					highlight:
-					{
-						background:'white',
-						border: 'yellow '
-					},
-					hover: 
-					{
-						border: 'yellow'
-					}
-				}				
+				image: 'Images/VPC.png'						
 			});
 			break;
 			case "4":
@@ -220,21 +180,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/subnetwork.png',
-				color: 
-				{
-					background:'white', 
-					border:'black', 
-					highlight:
-					{
-						background:'white',
-						border: 'green '
-					},
-					hover: 
-					{
-						border: 'green'
-					}
-				}				
+				image: 'Images/subnetwork.png'						
 			});
 			break;
 			case "5":
@@ -243,21 +189,7 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/Instance.png',
-				color: 
-				{
-					background:'white', 
-					border:'black', 
-					highlight:
-					{
-						background:'white',
-						border: 'orange '
-					},
-					hover: 
-					{
-						border: 'orange'
-					}
-				}				
+				image: 'Images/Instance.png'					
 			});
 			break;
 			default:
@@ -306,79 +238,57 @@ function removeNode(idIn)
 	}
 }
 
-function addEdge(idIn, fromIn, toIn, type, level)
+function addEdge(idIn, fromIn, toIn, type)
 {
 		try
 	{
-		switch (level) 
+		switch (type) 
 		{
-			case "1":
-			Relationships.add(
-			{
-				id: idIn,
-				from: fromIn,
-				to: toIn,
-				dashes: false,
-				label: "lable",
-				color: 
-				{
-					color:'black',
-					highlight:'red',
-					hover: 'red'
-				},
-
-			});
-			break;
-			case "2":
+			case 1:
 			Relationships.add(
 			{
 				id: idIn,
 				from: fromIn,
 				to: toIn,
 				color: 'red',
-				dashes: false,
-				label: "lable",
-				color: 
-				{
-					color:'black',
-					highlight:'blue',
-					hover: 'blue'
-				},
+				dashes: true,
+				label: "lable"
 			});
 			break;
-			case "3":
+			case 2:
 			Relationships.add(
 			{
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				dashes: false,
-				label: "lable",
-				color: 
-				{
-					color:'black',
-					highlight:'yellow',
-					hover: 'yellow'
-				},
+				color: 'red',
+				dashes: true,
+				label: "lable"
 			});
 			break;
-			case "4":
+			case 3:
 			Relationships.add(
 			{
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				dashes: false,
-				label: "lable",
-				color: 
-				{
-					color:'black',
-					highlight:'green',
-					hover: 'green'
-				},
+				color: 'red',
+				dashes: true,
+				label: "lable"
 			});
 			break;
-			case "5":
+			case 4:
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				color: 'red',
+				dashes: true,
+				label: "lable"
+			});
+			break;
+			case 5:
 			Relationships.add(
 			{
 				id: idIn,
@@ -395,7 +305,8 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				color: 'black'
+				color: 'black',
+				dashes: false
 			});
 		}
 	}
@@ -509,8 +420,7 @@ function draw()
                 nodes: 
 		{
 			shape: 'circularImage', 
-			borderWidth:3,
-			size:40,
+			borderWidth:1, size:40,
 			shapeProperties: 
 			{ 
 				useBorderWithImage:true
@@ -521,14 +431,9 @@ function draw()
 				border:'black', 
 				highlight:
 				{
-					background:'white',
-					border: 'black '
-				},
-				hover: 
-				{
-					border: 'black'
+					background:' #3498db ',
+					border:' #black '
 				}
-
 			},
 			font: 
 			{
