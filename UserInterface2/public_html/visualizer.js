@@ -490,7 +490,7 @@ function draw()
 			{
 				if(this.responseText!="null")
 				{	
-					document.getElementById("information").innerHTML =this.responseText ;
+					document.getElementById("information").value =this.responseText ;
 					document.getElementById("fromUUID").value =ids ;
 				}
 				
