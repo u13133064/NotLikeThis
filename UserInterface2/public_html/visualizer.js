@@ -24,7 +24,7 @@ var readingFromServer = 0;
 
 function startTimer() 
 {
-	timer = setInterval(addNodesAndEdgesFile, 1000);
+	timer = setInterval(addNodesAndEdgesFile, 100);
 	timerIsActive = true;
 }
 
@@ -46,6 +46,7 @@ function getNodeFromServer()
 	
 	if(finished)
 	{
+		alert("Scan finnished");
 		return;
 	}
  		
@@ -53,6 +54,7 @@ function getNodeFromServer()
 	{
 		 if(finished)
 		{
+			alert("Scan finnished");
 			return;
 		}
 	  
@@ -70,6 +72,8 @@ function getNodeFromServer()
 				readInJSONFromServer(jsonIn);
 				addNodesAndEdges() ;
 				getNodeFromServer();
+				
+			
 			}
 		}
 	}
@@ -97,7 +101,10 @@ function addNodesAndEdges()
 			}
 		}
 		
-		bufferCount=bufferCount+1;
+					sleep(500);
+					bufferCount=bufferCount+1;
+				
+		
 	}
 }
 
@@ -127,6 +134,7 @@ function addNodesAndEdgesFile()
 				edgeNum = edgeNum + 1;
 			}
 		}
+
 		fileBufferCount = fileBufferCount + 1;
 	//}
 	
@@ -381,7 +389,8 @@ function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
-		ServerJSONBuffer = [];
+	ServerJSONBuffer = [];
+	FileJSONBuffer = [];
 	fileBufferCount = 0;
 	bufferCount = 0;
 	
@@ -453,8 +462,8 @@ function draw()
 			hierarchical: 
 			{
 				enabled:true,
-				levelSeparation: 500,
-				nodeSpacing: 300,
+				levelSeparation: 200,
+				nodeSpacing: 200,
 				//treeSpacing: 300,
 				blockShifting: true,
 				edgeMinimization: true,
