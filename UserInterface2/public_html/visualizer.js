@@ -95,7 +95,7 @@ function addNodesAndEdges()
 			{
 				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type);
+					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
 					edgeNum = edgeNum + 1;
 				}
 			}
@@ -103,8 +103,6 @@ function addNodesAndEdges()
 		
 					sleep(500);
 					bufferCount=bufferCount+1;
-				
-		
 	}
 }
 
@@ -122,22 +120,22 @@ function sleep(milliseconds) {
 function addNodesAndEdgesFile() 
 {
 	
-	//for(var k = 0; k< FileJSONBuffer.length; k++)
-	//{
+	if(FileJSONBuffer.length > fileBufferCount)
+	{
 		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
 			
 		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
 		{
 			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
 			{
-				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type);
+				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type, FileJSONBuffer[fileBufferCount].Level);
 				edgeNum = edgeNum + 1;
 			}
 		}
 
 
 		fileBufferCount = fileBufferCount + 1;
-	//}
+	}
 	
 	
 }
@@ -154,7 +152,21 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/root.png'
+				image: 'Images/root.png',
+				color: 
+				{
+					background:'white', 
+					border:'black', 
+					highlight:
+					{
+						background:'white',
+						border: 'red '
+					},
+					hover: 
+					{
+						border: 'red'
+					}
+				}
 			});
 			break;
 			case "2":
@@ -163,7 +175,21 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/region.png'					
+				image: 'Images/region.png',
+				color: 
+				{
+					background:'white', 
+					border:'black', 
+					highlight:
+					{
+						background:'white',
+						border: 'blue '
+					},
+					hover: 
+					{
+						border: 'blue'
+					}
+				}
 			});
 			break;
 			case "3":
@@ -172,7 +198,21 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/VPC.png'						
+				image: 'Images/VPC.png',
+				color: 
+				{
+					background:'white', 
+					border:'black', 
+					highlight:
+					{
+						background:'white',
+						border: 'yellow '
+					},
+					hover: 
+					{
+						border: 'yellow'
+					}
+				}				
 			});
 			break;
 			case "4":
@@ -181,7 +221,21 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/subnetwork.png'						
+				image: 'Images/subnetwork.png',
+				color: 
+				{
+					background:'white', 
+					border:'black', 
+					highlight:
+					{
+						background:'white',
+						border: 'green '
+					},
+					hover: 
+					{
+						border: 'green'
+					}
+				}				
 			});
 			break;
 			case "5":
@@ -190,7 +244,21 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/Instance.png'					
+				image: 'Images/Instance.png',
+				color: 
+				{
+					background:'white', 
+					border:'black', 
+					highlight:
+					{
+						background:'white',
+						border: 'orange '
+					},
+					hover: 
+					{
+						border: 'orange'
+					}
+				}				
 			});
 			break;
 			default:
@@ -239,57 +307,79 @@ function removeNode(idIn)
 	}
 }
 
-function addEdge(idIn, fromIn, toIn, type)
+function addEdge(idIn, fromIn, toIn, type, level)
 {
 		try
 	{
-		switch (type) 
+		switch (level) 
 		{
-			case 1:
+			case "1":
+			Relationships.add(
+			{
+				id: idIn,
+				from: fromIn,
+				to: toIn,
+				dashes: false,
+				label: "lable",
+				color: 
+				{
+					color:'black',
+					highlight:'red',
+					hover: 'red'
+				},
+
+			});
+			break;
+			case "2":
 			Relationships.add(
 			{
 				id: idIn,
 				from: fromIn,
 				to: toIn,
 				color: 'red',
-				dashes: true,
-				label: "lable"
+				dashes: false,
+				label: "lable",
+				color: 
+				{
+					color:'black',
+					highlight:'blue',
+					hover: 'blue'
+				},
 			});
 			break;
-			case 2:
+			case "3":
 			Relationships.add(
 			{
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				color: 'red',
-				dashes: true,
-				label: "lable"
+				dashes: false,
+				label: "lable",
+				color: 
+				{
+					color:'black',
+					highlight:'yellow',
+					hover: 'yellow'
+				},
 			});
 			break;
-			case 3:
+			case "4":
 			Relationships.add(
 			{
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				color: 'red',
-				dashes: true,
-				label: "lable"
+				dashes: false,
+				label: "lable",
+				color: 
+				{
+					color:'black',
+					highlight:'green',
+					hover: 'green'
+				},
 			});
 			break;
-			case 4:
-			Relationships.add(
-			{
-				id: idIn,
-				from: fromIn,
-				to: toIn,
-				color: 'red',
-				dashes: true,
-				label: "lable"
-			});
-			break;
-			case 5:
+			case "5":
 			Relationships.add(
 			{
 				id: idIn,
@@ -306,8 +396,7 @@ function addEdge(idIn, fromIn, toIn, type)
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				color: 'black',
-				dashes: false
+				color: 'black'
 			});
 		}
 	}
@@ -421,7 +510,8 @@ function draw()
                 nodes: 
 		{
 			shape: 'circularImage', 
-			borderWidth:1, size:40,
+			borderWidth:3,
+			size:40,
 			shapeProperties: 
 			{ 
 				useBorderWithImage:true
@@ -432,9 +522,14 @@ function draw()
 				border:'black', 
 				highlight:
 				{
-					background:' #3498db ',
-					border:' #black '
+					background:'white',
+					border: 'black '
+				},
+				hover: 
+				{
+					border: 'black'
 				}
+
 			},
 			font: 
 			{
