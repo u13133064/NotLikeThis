@@ -269,8 +269,7 @@ function addNode(idIn, labelIn, levelIn)
 				label: labelIn,
 				level: levelIn,
 				shape: 'dot',  
-				color: {background:'white', border:'black',highlight:{background:'white',border:'black'}},
-				font: {background: 'white'}						
+				color: {background:'white', border:'black',highlight:{background:'white',border:'black'}}
 			});
 		}
 	}
@@ -521,8 +520,7 @@ function draw()
 			},
 			font: 
 			{
-				background: 'white', 
-				size: 14
+				size:15, color:'white', face:'courier', strokeWidth:3, strokeColor:'black'
 			}	
 		
 		},
