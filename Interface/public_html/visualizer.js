@@ -24,7 +24,7 @@ var readingFromServer = 0;
 
 function startTimer() 
 {
-	timer = setInterval(addNodesAndEdgesFile, 100);
+	timer = setInterval(addNodesAndEdgesFile, 10);
 	timerIsActive = true;
 }
 
@@ -37,7 +37,7 @@ function stopTimer()
 function resumeTimer()
 {
 	if(!timerIsActive)
-		timer = setInterval(flashText, 1000);
+		timer = setInterval(flashText, 10);
 }
 
 function getNodeFromServer() 
