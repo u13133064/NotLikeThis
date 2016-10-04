@@ -152,19 +152,19 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/root.png',
 				color: 
-				{
-					background:'white', 
+				{//#ff8c1a
+					background:'#ff8c1a', 
 					border:'black', 
 					highlight:
 					{
-						background:'white',
-						border: 'red '
+						background:'#ff8c1a',
+						border: '#D35A1A'
 					},
 					hover: 
 					{
-						border: 'red'
+						background:'#ff8c1a',
+						border: '#D35A1A'
 					}
 				}
 			});
@@ -175,19 +175,19 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/region.png',
 				color: 
 				{
-					background:'white', 
+					background:'#00ccff', 
 					border:'black', 
 					highlight:
 					{
-						background:'white',
-						border: 'blue '
+						background:'#00ccff',
+						border: '#0C11A8'
 					},
 					hover: 
 					{
-						border: 'blue'
+						background:'#00ccff',
+						border: '#0C11A8'
 					}
 				}
 			});
@@ -198,19 +198,19 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/VPC.png',
 				color: 
 				{
-					background:'white', 
+					background:'#66ff33', 
 					border:'black', 
 					highlight:
 					{
-						background:'white',
-						border: 'yellow '
+						background:'#66ff33',
+						border: '#0C943D'
 					},
 					hover: 
 					{
-						border: 'yellow'
+						background:'#66ff33',
+						border: '#0C943D'
 					}
 				}				
 			});
@@ -221,19 +221,19 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/subnetwork.png',
 				color: 
 				{
-					background:'white', 
+					background:'#FF3C28', 
 					border:'black', 
 					highlight:
 					{
-						background:'white',
-						border: 'green '
+						background:'#FF3C28',
+						border: '#990000 '
 					},
 					hover: 
 					{
-						border: 'green'
+						background:'#FF3C28',
+						border: '#990000'
 					}
 				}				
 			});
@@ -244,19 +244,19 @@ function addNode(idIn, labelIn, levelIn)
 				id: idIn,
 				label: labelIn,
 				level: levelIn,
-				image: 'Images/Instance.png',
 				color: 
 				{
-					background:'white', 
+					background:'#F9EE45', 
 					border:'black', 
 					highlight:
 					{
-						background:'white',
-						border: 'orange '
+						background:'#F9EE45',
+						border: '#D5A611'
 					},
 					hover: 
 					{
-						border: 'orange'
+						background:'#F9EE45',
+						border: '#D5A611'
 					}
 				}				
 			});
@@ -320,12 +320,11 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				from: fromIn,
 				to: toIn,
 				dashes: false,
-				label: "lable",
 				color: 
 				{
 					color:'black',
-					highlight:'red',
-					hover: 'red'
+					highlight:'#D35A1A',
+					hover: '#D35A1A'
 				},
 
 			});
@@ -336,14 +335,13 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				id: idIn,
 				from: fromIn,
 				to: toIn,
-				color: 'red',
 				dashes: false,
-				label: "lable",
+				//label: "lable",
 				color: 
 				{
 					color:'black',
-					highlight:'blue',
-					hover: 'blue'
+					highlight:'#0C11A8',
+					hover: '#0C11A8'
 				},
 			});
 			break;
@@ -354,12 +352,12 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				from: fromIn,
 				to: toIn,
 				dashes: false,
-				label: "lable",
+				//label: "lable",
 				color: 
 				{
 					color:'black',
-					highlight:'yellow',
-					hover: 'yellow'
+					highlight:'#0C943D',
+					hover: '#0C943D'
 				},
 			});
 			break;
@@ -370,24 +368,13 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				from: fromIn,
 				to: toIn,
 				dashes: false,
-				label: "lable",
+				//label: "lable",
 				color: 
 				{
 					color:'black',
-					highlight:'green',
-					hover: 'green'
+					highlight:'#990000',
+					hover: '#990000'
 				},
-			});
-			break;
-			case "5":
-			Relationships.add(
-			{
-				id: idIn,
-				from: fromIn,
-				to: toIn,
-				color: 'red',
-				dashes: true,
-				label: "lable"
 			});
 			break;
 			default:
@@ -509,7 +496,7 @@ function draw()
 		},
                 nodes: 
 		{
-			shape: 'circularImage', 
+			shape: 'dot', 
 			borderWidth:3,
 			size:40,
 			shapeProperties: 
