@@ -240,8 +240,9 @@
 				{
 					level="Unknown";
 				}
+				
 				var xhttp = new XMLHttpRequest();
-				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanFrom?uuid="+uuid+"&level="+level, true);
+				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanFrom?uuid="+uuid, true);
 				xhttp.send();
 			
 				setTimeout(function () 

@@ -14,16 +14,12 @@ import java.lang.annotation.Annotation;
 public class ServerAPI {
     // The Java method will process HTTP GET requests
     static SharedBuffer sharedBuffer = new SharedBuffer();
+    static Credential credentials;
     @GET
     @Path("/startScanner")
     @Produces(MediaType.TEXT_PLAIN)
-    public Object ScanNetwork(@BeanParam CredentialBean paramBean) {
+    public Object ScanNetwork() {
         sharedBuffer=new SharedBuffer();
-        Credential credentials= new Credential();
-        credentials.setAccess_key(paramBean.a_key);
-        credentials.setPrivate_key(paramBean.s_key);
-        System.out.println(paramBean.a_key);
-        System.out.println(paramBean.s_key);
         OptionBean options = new OptionBean();
         options.setScannChoice(1);
         new Thread(new AWSScanner(credentials,sharedBuffer,options)).start();
@@ -40,13 +36,8 @@ public class ServerAPI {
     @GET
     @Path("/regionScan")
     @Produces(MediaType.TEXT_PLAIN)
-    public Object ScanRegion(@BeanParam CredentialBean paramBean,@BeanParam UUIDBean uuidBean) {
+    public Object ScanRegion(@BeanParam UUIDBean uuidBean) {
         sharedBuffer=new SharedBuffer();
-        Credential credentials= new Credential();
-        credentials.setAccess_key(paramBean.a_key);
-        credentials.setPrivate_key(paramBean.s_key);
-        System.out.println(paramBean.a_key);
-        System.out.println(paramBean.s_key);
         OptionBean options = new OptionBean();
         options.setScannChoice(2);
         options.setIdentifier(uuidBean.uuid);
@@ -64,13 +55,8 @@ public class ServerAPI {
     @GET
     @Path("/scanFrom")
     @Produces(MediaType.TEXT_PLAIN)
-    public Object ScanFrom(@BeanParam CredentialBean paramBean,@BeanParam UUIDBean uuidBean) {
+    public Object ScanFro(@BeanParam UUIDBean uuidBean) {
         sharedBuffer=new SharedBuffer();
-        Credential credentials= new Credential();
-        credentials.setAccess_key(paramBean.a_key);
-        credentials.setPrivate_key(paramBean.s_key);
-        System.out.println(paramBean.a_key);
-        System.out.println(paramBean.s_key);
         OptionBean options = new OptionBean();
         options.setScannChoice(3);
         options.setIdentifier(uuidBean.uuid);
@@ -115,7 +101,7 @@ public class ServerAPI {
     @Produces(MediaType.APPLICATION_XML)
 
     public Response createCredentials(@BeanParam CredentialBean paramBean) {
-        Credential credentials= new Credential();
+        credentials= new Credential();
         credentials.setAccess_key(paramBean.a_key);
         credentials.setPrivate_key(paramBean.s_key);
         credentials.validate();

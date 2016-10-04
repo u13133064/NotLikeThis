@@ -21,9 +21,9 @@ import java.util.List;
  * Created by Jedd Shneier.
  */
 public class AWSScanner implements ScannerInterface {
-    SharedBuffer buffer;
-    Credential clientCredentials;
-    OptionBean option;
+    private SharedBuffer buffer;
+    private Credential clientCredentials;
+    private OptionBean option;
     private AmazonEC2 ec2;
     private  AWSCredentials credentials;
 
