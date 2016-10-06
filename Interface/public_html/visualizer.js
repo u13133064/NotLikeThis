@@ -46,7 +46,8 @@ function getNodeFromServer()
 	
 	if(finished)
 	{
-		alert("Scan finnished");
+		alert("Scan Finnished");
+		stopScan()
 		return;
 	}
  		
