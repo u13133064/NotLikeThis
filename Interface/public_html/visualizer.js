@@ -122,9 +122,8 @@ function sleep(milliseconds) {
 
 function addNodesAndEdgesFile() 
 {
-	
 	if(FileJSONBuffer.length > fileBufferCount)
-	{
+	{var k;
 		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
 			
 		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
@@ -135,13 +134,133 @@ function addNodesAndEdgesFile()
 				edgeNum = edgeNum + 1;
 			}
 		}
-
-
+		/*
+		if(FileJSONBuffer[fileBufferCount].SecurityGroups.length != 0)
+		{
+			//for(j = 0; j < FileJSONBuffer[fileBufferCount].SecurityGroups.length; j++)
+			//{
+				//addToSecurityGroups(FileJSONBuffer[fileBufferCount].SecurityGroups[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
+			//}
+		}
+		
+		if(FileJSONBuffer[fileBufferCount].Networkinterfaces.length != 0)
+		{
+			//for(j = 0; j < FileJSONBuffer[fileBufferCount].Networkinterfaces.length; j++)
+			//{
+				//addToNetworkInterfacesArr(FileJSONBuffer[fileBufferCount].Networkinterfaces[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
+			//}
+		}
+		*/
 		fileBufferCount = fileBufferCount + 1;
 	}
 	
-	
+	//addToSecurityGroups(1);
 }
+
+var securityGroupsArr = [];
+var securityGroupCount = 0;
+
+var networkInterfacesArr = [];
+var networkInterfaceCount = 0;
+
+var calledAlready = 0;
+
+function addToSecurityGroups(groupId, nodeID)
+{
+	var contains = false;
+	var index;
+	
+	for(var i = 0; i < securityGroupsArr.length; i++)
+	{
+		if(securityGroupsArr[i].ID == groupId)
+		{
+			contains = true;
+			index = i;
+		}
+	}
+	
+	if(contains == false)	
+	{
+		securityGroupsArr[securityGroupCount] = {ID: groupId, Nodes:[]};
+		index = securityGroupCount;
+		securityGroupCount = securityGroupCount + 1;
+	}
+	
+	securityGroupsArr[index].Nodes.push(nodeID);
+}
+
+function addToList()
+{
+	var dropdown = document.getElementById("MyDropDownList");
+	var opt = document.createElement("option"); 
+	opt.text = 'something';
+	opt.value = 'somethings value';
+	dropdown.options.add(opt);
+}
+
+function addToNetworkInterfacesArr(interfaceId, nodeID)
+{
+	var contains = false;
+	var index;
+	
+	for(var i = 0; i < networkInterfacesArr.length; i++)
+	{
+		if(networkInterfacesArr[i].ID == interfaceId)
+		{
+			contains = true;
+			index = i;
+		}
+	}
+	
+	if(contains == false)	
+	{
+		networkInterfacesArr[networkInterfaceCount] = {ID: interfaceId, Nodes:[]};
+		index = networkInterfaceCount;
+		networkInterfaceCount = networkInterfaceCount + 1;
+	}
+	
+	networkInterfacesArr[index].Nodes.push(nodeID);
+}
+
+
+function doCrap()
+{
+	var dropdown = document.getElementById("MyDropDownList");
+var opt = document.createElement("option"); 
+opt.text = 'something';
+opt.value = 'somethings value';
+dropdown.options.add(opt);
+}
+
+
+window.test = function(e){
+    if(e.value=="AN01"){
+        alert(e.value);
+    }
+    else if(e.value=="AN02"){
+        alert(e.value);       
+    }
+    else if(e.value == "AN03"){
+       alert(e.value);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function addNode(idIn, labelIn, levelIn)
 {
@@ -156,7 +275,7 @@ function addNode(idIn, labelIn, levelIn)
 				label: labelIn,
 				level: levelIn,
 				color: 
-				{//#ff8c1a
+				{
 					background:'#ff8c1a', 
 					border:'black', 
 					highlight:
@@ -453,7 +572,7 @@ function readInJSONFromFile(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
 	var obj2;
-	
+	clearNodesAndEdges();
 	for(var k = 0; k< obj.NodesArray.length; k++)
 	{
 		obj2 = obj.NodesArray[k];
@@ -531,9 +650,9 @@ function draw()
 			width: 2,
 			smooth: 
 			{
-				type:"dynamic",
+				type:"continuous",
 				forceDirection: "none",
-				roundness: 0.0
+				roundness: 0.5
 			}
 		},
 		physics: 

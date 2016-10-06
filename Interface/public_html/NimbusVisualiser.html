@@ -329,7 +329,22 @@
 				
 				<button id="scanFromButton" class="w3-btn" onclick="textBox()" style="width:100%; background-color: orange;">Scan From</button>
 				<div id="scanFromInput" style="display: none; width: 100%; background-color: orange;"><input id="fromUUID" type="text" name="access" style="width: 70%;"><button style="width:30%;" onclick="scanFrom()">Go</button></div>
+			<button onclick="docrap()">crap</button>
 			
+			<div class="w3-dropdown-hover" style="width:100%;">
+				<button class="w3-btn" style="width:100%; background-color: orange;">Region</button>
+					<div class="w3-dropdown-content w3-border">
+						<select name = "navyOp" onchange="test(this);"> 
+						<option selected = "selected">Select a Navy Op Area</option>
+						<option value = "AN01">AN01</option>
+						<option value = "AN02">AN02</option>
+						<option value = "AN03">AN03</option>
+						</select>
+						</div>
+				</button>
+			</div>
+		
+				
 			<div class="w3-dropdown-hover" style="width:100%;">
 				<button class="w3-btn" style="width:100%; background-color: orange;">Region</button>
 					<div class="w3-dropdown-content w3-border">

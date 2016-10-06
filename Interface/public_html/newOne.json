@@ -1,0 +1,17 @@
+{"NodesArray":
+[
+{"Name":"Root","UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"}],
+"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
+{"Name":"1","UUID":"2", "Level":"2", "Relationships":[],
+"SecurityGroups":[{"UUID":"c"}, {"UUID":"d"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
+{"Name":"2","UUID":"3", "Level":"2", "Relationships":[],
+"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
+{"Name":"3","UUID":"4", "Level":"2", "Relationships":[],
+"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
+{"Name":"4","UUID":"5", "Level":"2", "Relationships":[],
+"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
+{"Name":"5","UUID":"6", "Level":"2", "Relationships":[],
+"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"j"}]}
+
+
+]}
