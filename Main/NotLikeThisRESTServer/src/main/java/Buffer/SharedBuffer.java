@@ -76,7 +76,10 @@ public class SharedBuffer implements SmartBufferInterface{
         jsonNode+=","+'"' + "UUID" + '"'+ ":"+ '"' + node.getUUID() + '"';
         jsonNode+='\n';
         jsonNode+=","+'"' + "Level" + '"'+ ":"+ '"' + node.getLevel() + '"';
-
+        jsonNode+='\n';
+        jsonNode+=","+'"' + "SecurityGroups" + '"'+ ":[" + node.getSecurityGroups() +"]";
+        jsonNode+='\n';
+        jsonNode+=","+'"' + "NetworkInterfaces" + '"'+ ":[" + node.getNetworkInterfaces()+ "]";
         jsonNode+='\n';
         jsonNode+=","+'"' + "Relationships" + '"'+ ":[";
         jsonNode+=node.getRelationships()+"]}";

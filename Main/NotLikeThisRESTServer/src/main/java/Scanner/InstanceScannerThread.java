@@ -42,32 +42,18 @@ public class InstanceScannerThread implements Runnable
 
 
         String nextToken = "";
-        do {
+        do
+        {
             DescribeInstancesRequest newInstanceRequest = new DescribeInstancesRequest().withNextToken(nextToken);
             newInstanceRequest.setMaxResults(100);
             DescribeInstancesResult instancesResult = ec2.describeInstances(newInstanceRequest);
-                List<Reservation> reservations= instancesResult.getReservations();
-                System.out.println(reservations.size());
-                for(int i =0;i<reservations.size();i++) {
-                    List<Instance> instances =reservations.get(i).getInstances();
-                for(int j =0;j<instances.size();j++)
-                {
-                    System.out.println("Adding instance for : "+regionName);
-                    NetworkTree instanceNode= new Node();
-                    instanceNode.setUUID(instances.get(j).getInstanceId());
-                    instanceNode.setName(instances.get(j).getInstanceId());
-                    instanceNode.setInformation("{Instance Information : " + instances.get(j).toString() + " }");
-                    instanceNode.setLevel(5);
-                    instanceNode.addRelationship(instances.get(j).getSubnetId());
-                    buffer.addToBuffer(instanceNode);
+            List<Reservation> reservations= instancesResult.getReservations();
 
-
-                }
-
-            }
+            addInstances(reservations);
             nextToken = instancesResult.getNextToken();
 
-        } while (nextToken!=null);
+        }
+        while (nextToken!=null);
         }
 
     public void run() {
@@ -108,22 +94,34 @@ public class InstanceScannerThread implements Runnable
         }
 
         List<Reservation> reservations= instancesResult.getReservations();
-        for(int i =0;i<reservations.size();i++) {
-            List<Instance> instances =reservations.get(i).getInstances();
-            for(int j =0;j<instances.size();j++)
-            {
-                System.out.println("Adding instance for : "+regionName);
-                NetworkTree instanceNode= new Node();
+        addInstances(reservations);
+
+
+
+        }
+
+    private void addInstances(List<Reservation> reservations) {
+
+        for (int i = 0; i < reservations.size(); i++) {
+            List<Instance> instances = reservations.get(i).getInstances();
+            for (int j = 0; j < instances.size(); j++) {
+                System.out.println("Adding instance for : " + regionName);
+                NetworkTree instanceNode = new Node();
                 instanceNode.setUUID(instances.get(j).getInstanceId());
                 instanceNode.setName(instances.get(j).getInstanceId());
                 instanceNode.setInformation("{Instance Information : " + instances.get(j).toString() + " }");
                 instanceNode.setLevel(5);
                 instanceNode.addRelationship(instances.get(j).getSubnetId());
+                List<GroupIdentifier> securityGroups = instances.get(j).getSecurityGroups();
+                for (int k = 0; k < securityGroups.size(); k++) {
+                    instanceNode.addSecurityGroup(securityGroups.get(k).getGroupId());
+                }
+                List<InstanceNetworkInterface> networkInterfaces = instances.get(j).getNetworkInterfaces();
+                for (int k = 0; k < networkInterfaces.size(); k++) {
+                    instanceNode.addNetworkInterface(networkInterfaces.get(k).getNetworkInterfaceId());
+                }
                 buffer.addToBuffer(instanceNode);
-
             }
-
         }
-
     }
 }

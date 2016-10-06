@@ -96,13 +96,14 @@ function addNodesAndEdges()
 			{
 				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
+					
 					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
 					edgeNum = edgeNum + 1;
 				}
 			}
 		}
 		
-					sleep(500);
+				
 					bufferCount=bufferCount+1;
 	}
 }

@@ -10,6 +10,8 @@ public class Node implements NetworkTree {
     private String uuid;
     private int level;
     private LinkedList<String> relationships=null;
+    private LinkedList<String> securityGroups=null;
+    private LinkedList<String> networkInterfaces=null;
     private String name;
 
     public String getUUID() {
@@ -56,25 +58,54 @@ public class Node implements NetworkTree {
         relationships.add(UUID);
     }
 
-    public String getRelationships() {
-        if(relationships==null)
+    public void addSecurityGroup(String UUID) {
+        if(securityGroups==null)
+        {
+            securityGroups= new LinkedList<String>();
+        }
+        securityGroups.add(UUID);
+
+    }
+    private String getList(LinkedList<String> list)
+    {
+        if(list==null)
         {
             return "";
         }
         else
         {
             String output="";
-            for(int i = 0;i<relationships.size();i++)
+            for(int i = 0;i<list.size();i++)
             {
-                output+="{"+'"' + "UUID" + '"'+ ":"+'"' +relationships.get(i)+ '"'+"},";
+                output+="{"+'"' + "UUID" + '"'+ ":"+'"' +list.get(i)+ '"'+"},";
             }
             output=output.substring(0,output.length()-1);
             return output;
         }
+
     }
 
-    public boolean equals(String uuid) {
-        return this.uuid.equals(uuid);
+    public String getSecurityGroups() {
+        return getList(securityGroups);
+
+    }
+
+    public void addNetworkInterface(String UUID) {
+        if(networkInterfaces==null)
+        {
+            networkInterfaces= new LinkedList<String>();
+        }
+        networkInterfaces.add(UUID);
+
+    }
+
+    public String getNetworkInterfaces() {
+        return getList(networkInterfaces)
+;
+    }
+
+    public String getRelationships() {
+            return  getList(relationships);
     }
 
 
