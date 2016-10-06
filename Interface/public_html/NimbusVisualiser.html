@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet" href="/styles/style.css">
 	<link rel="shortcut icon" href="Images/logo.ico"/>
 	
 	<script src="visualizer.js"></script>
@@ -23,6 +24,36 @@
 	<style>
 		#draggable { width: 150px; background-color: white; border-radius: 5px; box-shadow: 0px 0px 20px #888888; display: inline-block;}
 		#draggableTwo { width: 150px; background-color: white; border-radius: 5px; box-shadow: 0px 0px 20px #888888; display: inline-block;}
+	
+		.loader {
+	 width: 100px;
+    height: 100px;
+
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+			  border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+			}
+
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
 	</style>
 	
 	<script>
@@ -44,8 +75,8 @@
 		</nav>
 		
 		<div id="topBar" style="background-color: #146eb4; width: 100%;">
-			<font color="white">Access Key:</font> <input type="password" id="accessKey"name="access">
-			<font color="white">Secret Key:</font> <input type="password" id="secretKey"name="secret">
+			<font id="a_label"color="white">Access Key:</font> <input type="password" id="accessKey" name="access">
+			<font  id="s_label"color="white">Secret Key:</font> <input type="password" id="secretKey"name="secret">
 			
 			<button id="Login" onclick='login()' class="w3-btn" style="background-color: #146eb4;">Login</button>
 			<button id="Logout" onclick='logout()' class="w3-btn" style="background-color: #146eb4; display: none;">Logout</button>
@@ -53,9 +84,10 @@
 			<input id='loadFile' type='file' accept='text/plain' style="background-color: #146eb4;" class="w3-btn" onchange='openFile(event)'>
 			<button id="saveFile" onclick="writeOutFile()" class="w3-btn" style="background-color: #146eb4;">Save current scan</button>
 		</div>
-		
+		<div id = "loadicon" style="display:none"class="loader"></div>
 		<div id="main">
 			<div id = "hierarchyVisualizerDiv"style="position: absolute; height: 90%; width: 100%;">
+			
 			</div>	
 		</div>
 
@@ -72,7 +104,9 @@
 				secretKey=document.getElementById("secretKey").value;
 				document.getElementById("accessKey").style.display = "none";
 				document.getElementById("secretKey").style.display = "none";
-				
+				document.getElementById("a_label").style.display = "none";
+				document.getElementById("s_label").style.display = "none";
+				document.getElementById("loadicon").style.display = "inline";
 				var xhttp = new XMLHttpRequest();
 	
 	
@@ -81,11 +115,13 @@
 	
 					if (this.readyState == 4 && this.status == 200) 
 					{
+						document.getElementById("loadicon").style.display = "none";
 						if(!this.responseText.startsWith("Success"))
 						{
 							logout();
 						}
 						alert(this.responseText);
+		
 						
 
 					
@@ -103,6 +139,8 @@
 				document.getElementById("Login").style.display = "inline";
 				document.getElementById("accessKey").style.display = "inline";
 				document.getElementById("secretKey").style.display = "inline";
+					document.getElementById("a_label").style.display = "inline";
+				document.getElementById("s_label").style.display = "inline";
 			}
 
 			function writeOutFile()
@@ -213,9 +251,10 @@
 				
 				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/startScanner", true);
 				xhttp.send();
-			
+				document.getElementById("loadicon").style.display = "inline";
 				setTimeout(function () 
 				{
+					document.getElementById("loadicon").style.display = "none";
 					getNodeFromServer();
 					//startTimer();
 				}, 10000);
@@ -250,9 +289,10 @@
 				var xhttp = new XMLHttpRequest();
 				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanFrom?uuid="+uuid+"&level="+level, true);
 				xhttp.send();
-			
+				document.getElementById("loadicon").style.display = "inline";
 				setTimeout(function () 
 				{
+					document.getElementById("loadicon").style.display = "none";
 					getNodeFromServer();
 					//startTimer();
 				}, 10000);
@@ -266,10 +306,12 @@
 				
 				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/regionScan?uuid="+region, true);
 				xhttp.send();
-			
+				document.getElementById("loadicon").style.display = "inline";
 				setTimeout(function () 
 				{
+					document.getElementById("loadicon").style.display = "none";
 					getNodeFromServer();
+					
 				}, 10000);
 
 			}
