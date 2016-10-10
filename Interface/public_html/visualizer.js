@@ -112,8 +112,25 @@ function addNodesAndEdges()
 					edgeNum = edgeNum + 1;
 				}
 			}
+			
+			if(ServerJSONBuffer[fileBufferCount].SecurityGroups.length != 0)
+			{
+				for(j = 0; j < ServerJSONBuffer[bufferCount].SecurityGroups.length; j++)
+				{
+					addToSecurityGroups(ServerJSONBuffer[bufferCount].SecurityGroups[j].UUID, ServerJSONBuffer[bufferCount].UUID)
+				}
+			}
+			
+			if(ServerJSONBuffer[fileBufferCount].Networkinterfaces.length != 0)
+			{
+				for(j = 0; j < ServerJSONBuffer[bufferCount].Networkinterfaces.length; j++)
+				{
+					addToNetworkInterfaces(ServerJSONBuffer[bufferCount].Networkinterfaces[j].UUID, ServerJSONBuffer[bufferCount].UUID)
+				}
+			}
+		
+			bufferCount=bufferCount+1;
 		}
-		bufferCount=bufferCount+1;
 	}
 }
 
@@ -950,5 +967,6 @@ function draw()
 	networkHierarchy.on( 'deselectNode', function(properties) 
 	{
 		hideSecurityGroup();
+		hideNetworkInterface();
 	});
 }
