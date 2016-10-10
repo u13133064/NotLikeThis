@@ -56,7 +56,7 @@ function getNodeFromServer()
 	if(finished)
 	{
 		alert("Scan Finnished");
-		document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
+		stopScan()
 		return;
 	}
  		
