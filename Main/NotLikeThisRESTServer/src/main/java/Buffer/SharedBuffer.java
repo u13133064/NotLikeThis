@@ -4,7 +4,8 @@ package Buffer;
 import Composite.NetworkTree;
 import Composite.Node;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -13,10 +14,13 @@ import java.util.concurrent.BlockingQueue;
  */
 public class SharedBuffer implements SmartBufferInterface{
     private BlockingQueue<NetworkTree> frontBuffer;
+    private int state=0;
     private NetworkTree currentTree;
     private LinkedList<String> nodeList = new LinkedList<String>();
     private HashMap<String,String> informationHashMap = new HashMap<String,String>();
     private HashMap<String,NetworkTree> uuidHashMap = new HashMap<String, NetworkTree>();
+    Integer threadNotifier;
+
     public SharedBuffer()
     {
         frontBuffer=new ArrayBlockingQueue<NetworkTree>(10000);
@@ -110,5 +114,37 @@ public class SharedBuffer implements SmartBufferInterface{
 
     public String getInformation(String uuid) {
         return informationHashMap.get(uuid);
+    }
+
+    public void removeRoot() {
+        frontBuffer.remove();
+    }
+
+    public void stopThreads() {
+        state=2;
+
+    }
+
+    public void pauseThreads() {
+        state=1;
+
+    }
+
+    public void resumeThreads() {
+        state =0;
+        synchronized (threadNotifier)
+        {
+            threadNotifier.notifyAll();
+        }
+
+    }
+
+    public int getState() {
+        return state;
+    }
+
+
+    public Integer getThreadNotifier() {
+        return threadNotifier;
     }
 }

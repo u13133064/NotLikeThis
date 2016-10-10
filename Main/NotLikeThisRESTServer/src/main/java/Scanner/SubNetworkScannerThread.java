@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Jedd Sheneier.
  */
-public class SubNetworkScannerThread implements Runnable {
+public class SubNetworkScannerThread implements ThreadedScannerInterface{
     private String regionName;
     private AmazonEC2 ec2;
     private SharedBuffer buffer;
@@ -51,6 +51,21 @@ public class SubNetworkScannerThread implements Runnable {
             tree.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
             tree.setLevel(4);
             tree.addRelationship(subnets.get(i).getVpcId());
+            if(buffer.getState()==1)
+            {
+                synchronized(buffer.getThreadNotifier())
+                {
+                    try {
+                        buffer.getThreadNotifier().wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(buffer.getState()==2)
+            {
+                return;
+            }
             buffer.addToBuffer(tree);
 
         }
@@ -68,7 +83,7 @@ public class SubNetworkScannerThread implements Runnable {
         }
     }
 
-    private void scanOnly() {
+    public void scanOnly() {
         DescribeSubnetsRequest describeSubnetsRequest;
         if(identifier.equals("Vpc"))
         {
@@ -102,6 +117,21 @@ public class SubNetworkScannerThread implements Runnable {
             tree.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
             tree.setLevel(4);
             tree.addRelationship(subnets.get(i).getVpcId());
+            if(buffer.getState()==1)
+            {
+                synchronized(buffer.getThreadNotifier())
+                {
+                    try {
+                        buffer.getThreadNotifier().wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(buffer.getState()==2)
+            {
+                return;
+            }
             buffer.addToBuffer(tree);
 
         }

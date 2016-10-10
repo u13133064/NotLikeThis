@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Jedd Shneier
  */
-public class InstanceScannerThread implements Runnable
+public class InstanceScannerThread implements ThreadedScannerInterface
 {
 
     private String identifier="";
@@ -67,7 +67,7 @@ public class InstanceScannerThread implements Runnable
         }
     }
 
-    private void scanOnly() {
+    public void scanOnly() {
         DescribeInstancesRequest describeInstancesRequest;
         if(identifier.equals("Vpc"))
         {
@@ -119,6 +119,21 @@ public class InstanceScannerThread implements Runnable
                 List<InstanceNetworkInterface> networkInterfaces = instances.get(j).getNetworkInterfaces();
                 for (int k = 0; k < networkInterfaces.size(); k++) {
                     instanceNode.addNetworkInterface(networkInterfaces.get(k).getNetworkInterfaceId());
+                }
+                if(buffer.getState()==1)
+                {
+                    synchronized(buffer.getThreadNotifier())
+                    {
+                        try {
+                            buffer.getThreadNotifier().wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                if(buffer.getState()==2)
+                {
+                    return;
                 }
                 buffer.addToBuffer(instanceNode);
             }

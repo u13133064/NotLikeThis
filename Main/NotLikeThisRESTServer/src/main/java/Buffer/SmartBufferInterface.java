@@ -11,4 +11,10 @@ public interface SmartBufferInterface {
     void addToBuffer(NetworkTree tree);
     String getJSONList();
     String getInformation(String uuid);
+    void removeRoot();
+    void stopThreads();
+    void pauseThreads();
+    void resumeThreads();
+    int getState();
+    Integer getThreadNotifier();
 }

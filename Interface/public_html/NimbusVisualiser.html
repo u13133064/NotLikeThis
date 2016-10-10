@@ -224,21 +224,47 @@
 				}
 				else if(stage == 1)
 				{
-					stopTimer()
+					paused=false;
 					document.getElementById("scanNetworkButton").innerHTML = "Resume Scan";
+					
+					var xhttp = new XMLHttpRequest();
+				
+					xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/pauseScan", true);
+					xhttp.send();
 					stage = 2;
+					
 				}
 				else if(stage == 2)
 				{
+					paused=true;
 					document.getElementById("scanNetworkButton").innerHTML = "Pause Scan";
+		
+					
+					var xhttp = new XMLHttpRequest();
+				
+					xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/resumeScan", true);
+					xhttp.send();
+					setTimeout(function () 
+					{
+					document.getElementById("loadicon").style.display = "none";
+					getNodeFromServer();
+				
+					}, 3000);
 					stage = 1;
+	
+					
 				}
 			}
 			
 			function stopScan()
 			{
 				stage = 0;
+				finished=true;
 				document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
+				var xhttp = new XMLHttpRequest();
+				
+				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/stopScan", true);
+				xhttp.send();
 			}
 			
 			function textBox()

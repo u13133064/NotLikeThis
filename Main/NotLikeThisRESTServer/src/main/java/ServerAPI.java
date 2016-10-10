@@ -51,11 +51,52 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    @GET
+    @Path("/pauseScan")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object PauseScan(@BeanParam UUIDBean uuidBean) {
+       sharedBuffer.pauseThreads();
+
+        return Response.ok() //200
+                .entity("Scan Paused",new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+    @GET
+    @Path("/resumeScan")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object ResumeScan(@BeanParam UUIDBean uuidBean) {
+        sharedBuffer.resumeThreads();
+
+        return Response.ok() //200
+                .entity("Scan Resumed",new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+    @GET
+    @Path("/stopScan")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object StopScan(@BeanParam UUIDBean uuidBean) {
+        sharedBuffer.stopThreads();
+
+        return Response.ok() //200
+                .entity("Scan Stopped",new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+
+
 
     @GET
     @Path("/scanFrom")
     @Produces(MediaType.TEXT_PLAIN)
-    public Object ScanFro(@BeanParam UUIDBean uuidBean) {
+    public Object ScanFrom(@BeanParam UUIDBean uuidBean) {
         sharedBuffer=new SharedBuffer();
         OptionBean options = new OptionBean();
         options.setScannChoice(3);

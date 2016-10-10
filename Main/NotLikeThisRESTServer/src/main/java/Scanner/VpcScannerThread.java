@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Jedd Shneier.
  */
-public class VpcScannerThread implements Runnable{
+public class VpcScannerThread implements ThreadedScannerInterface{
     private String regionName;
     private  AmazonEC2 ec2;
     private SharedBuffer buffer;
@@ -48,6 +48,21 @@ public class VpcScannerThread implements Runnable{
             node.setInformation("{Vpc Information : " + vpcs.get(i).toString() + " }");
             node.setLevel(3);
             node.addRelationship(regionName);
+            if(buffer.getState()==1)
+            {
+                synchronized(buffer.getThreadNotifier())
+                {
+                    try {
+                        buffer.getThreadNotifier().wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(buffer.getState()==2)
+            {
+                return;
+            }
             buffer.addToBuffer(node);
 
         }
@@ -82,6 +97,21 @@ public class VpcScannerThread implements Runnable{
             node.setInformation("{Vpc Information : " + vpcs.get(i).toString() + " }");
             node.setLevel(3);
             node.addRelationship(regionName);
+            if(buffer.getState()==1)
+            {
+                synchronized(buffer.getThreadNotifier())
+                {
+                    try {
+                        buffer.getThreadNotifier().wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(buffer.getState()==2)
+            {
+                return;
+            }
             buffer.addToBuffer(node);
 
         }

@@ -16,6 +16,7 @@ var bufferCount = 0;
 var FileJSONBuffer = [];
 
 var finished=false;
+var paused = false;
 var informationJSON;
 
 var readingFromFile = 0;
@@ -63,7 +64,8 @@ function getNodeFromServer()
 	{
 		 if(finished)
 		{
-			alert("Scan finnished");
+			alert("Scan Finnished");
+			document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
 			return;
 		}
 	  
@@ -71,11 +73,12 @@ function getNodeFromServer()
 		{
 			if(this.responseText=="null")
 			{	
-				alert("Scan finnished");
-				finished=true;
+				alert("Scan Finnished");
+				document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
+				return;
 			}
 			
-			if(!finished)    
+			if(!finished&&!paused)    
 			{
 	
 				var jsonIn = this.responseText;

@@ -51,6 +51,21 @@ public class AWSScanner implements ScannerInterface {
             tree.setInformation("Region Information : "+regions.get(i).toString());
             tree.setLevel(2);
             tree.addRelationship("RootAWS");
+            if(buffer.getState()==1)
+            {
+                synchronized(buffer.getThreadNotifier())
+                {
+                    try {
+                        buffer.getThreadNotifier().wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(buffer.getState()==2)
+            {
+                  return;
+            }
             buffer.addToBuffer(tree);
             AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
             threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
@@ -116,7 +131,7 @@ public class AWSScanner implements ScannerInterface {
     private void scanInstances(String identifier) {
         //Look through each region for instance
         System.out.println("Scanning Regions ");
-
+        buffer.removeRoot();
         DescribeRegionsResult regionsResult= ec2.describeRegions();
         List<Region> regions= regionsResult.getRegions();
 
@@ -136,7 +151,7 @@ public class AWSScanner implements ScannerInterface {
     private void scanSubnetworks(String identifier) {
         //Look through each region for subnet
         System.out.println("Scanning Regions ");
-
+        buffer.removeRoot();
         DescribeRegionsResult regionsResult= ec2.describeRegions();
         List<Region> regions= regionsResult.getRegions();
 
@@ -158,6 +173,7 @@ public class AWSScanner implements ScannerInterface {
     private void scanVpcs(String identifier) {
         //Look through each region for vpc
         System.out.println("Scanning Regions ");
+        buffer.removeRoot();
 
         DescribeRegionsResult regionsResult= ec2.describeRegions();
         List<Region> regions= regionsResult.getRegions();
