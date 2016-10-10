@@ -224,7 +224,7 @@
 				}
 				else if(stage == 1)
 				{
-					paused=false;
+					paused=true;
 					document.getElementById("scanNetworkButton").innerHTML = "Resume Scan";
 					
 					var xhttp = new XMLHttpRequest();
@@ -236,7 +236,7 @@
 				}
 				else if(stage == 2)
 				{
-					paused=true;
+					paused=false;
 					document.getElementById("scanNetworkButton").innerHTML = "Pause Scan";
 		
 					
@@ -291,6 +291,8 @@
 			}
 			function scanFrom()
 			{	
+				document.getElementById("scanNetworkButton").innerHTML = "Pause Scan";
+				stage = 1;
 				finished=false;
 				clearNodesAndEdges();
 				var uuid = document.getElementById("fromUUID").value;
@@ -328,7 +330,9 @@
 				
 			}
 			function scanRegion(region) 
-			{
+			{	
+				document.getElementById("scanNetworkButton").innerHTML = "Pause Scan";
+				stage = 1;
 				finished=false;
 				clearNodesAndEdges();
 				var xhttp = new XMLHttpRequest();

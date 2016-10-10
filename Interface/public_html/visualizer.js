@@ -55,8 +55,8 @@ function getNodeFromServer()
 	
 	if(finished)
 	{
-		alert("Scan Finnished");
-		stopScan()
+		alert("Scan Finished");
+		stopScan();
 		return;
 	}
  		
@@ -64,7 +64,7 @@ function getNodeFromServer()
 	{
 		 if(finished)
 		{
-			alert("Scan Finnished");
+			alert("Scan Finished");
 			document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
 			return;
 		}
@@ -73,7 +73,7 @@ function getNodeFromServer()
 		{
 			if(this.responseText=="null")
 			{	
-				alert("Scan Finnished");
+				alert("Scan Finished");
 				document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
 				return;
 			}
@@ -116,24 +116,10 @@ function addNodesAndEdges()
 				}
 			}
 			
-			if(ServerJSONBuffer[fileBufferCount].SecurityGroups.length != 0)
-			{
-				for(j = 0; j < ServerJSONBuffer[bufferCount].SecurityGroups.length; j++)
-				{
-					addToSecurityGroups(ServerJSONBuffer[bufferCount].SecurityGroups[j].UUID, ServerJSONBuffer[bufferCount].UUID)
-				}
-			}
-			
-			if(ServerJSONBuffer[fileBufferCount].Networkinterfaces.length != 0)
-			{
-				for(j = 0; j < ServerJSONBuffer[bufferCount].Networkinterfaces.length; j++)
-				{
-					addToNetworkInterfaces(ServerJSONBuffer[bufferCount].Networkinterfaces[j].UUID, ServerJSONBuffer[bufferCount].UUID)
-				}
-			}
 		
-			bufferCount=bufferCount+1;
+			
 		}
+		bufferCount=bufferCount+1;
 	}
 }
 
@@ -721,7 +707,6 @@ var openFile = function (event)
 function readInJSONFromServer(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
-
 	ServerJSONBuffer.push(obj);
 }
 
@@ -963,13 +948,7 @@ function draw()
 		xhttp.send();
 		
 		
-		 showSecurityGroup(ids);
-		showNetworkInterface(ids);
+	
 	});
 	
-	networkHierarchy.on( 'deselectNode', function(properties) 
-	{
-		hideSecurityGroup();
-		hideNetworkInterface();
-	});
 }
