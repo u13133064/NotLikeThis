@@ -2,7 +2,6 @@ var Nodes, Relationships;
 
 var fileBufferCount = 0;
 
-
 var nodeInfo = new Array();
 
 var edgeNum = 0;
@@ -21,6 +20,15 @@ var informationJSON;
 
 var readingFromFile = 0;
 var readingFromServer = 0;
+
+var securityGroupsArr = [];
+var securityGroupCount = 0;
+
+var networkInterfacesArr = [];
+var networkInterfaceCount = 0;
+
+var allNodes = [];
+var allEdges = [];
 
 function startTimer() 
 {
@@ -92,6 +100,7 @@ function addNodesAndEdges()
 		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
 		{
 			addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+			allNodes.push(ServerJSONBuffer[bufferCount].NodesArray[k].UUID);
 			
 			if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
@@ -99,157 +108,242 @@ function addNodesAndEdges()
 				{
 					
 					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+					allEdges.push(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID);
 					edgeNum = edgeNum + 1;
 				}
 			}
 		}
-		
-				
-					bufferCount=bufferCount+1;
+		bufferCount=bufferCount+1;
 	}
-}
-
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
 }
 
 
 function addNodesAndEdgesFile() 
 {
 	if(FileJSONBuffer.length > fileBufferCount)
-	{var k;
+	{
 		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
-			
+		allNodes.push(FileJSONBuffer[fileBufferCount].UUID);
+		
 		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
 		{
 			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
 			{
 				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type, FileJSONBuffer[fileBufferCount].Level);
+				allEdges.push(edgeNum, edgeNum);
 				edgeNum = edgeNum + 1;
 			}
 		}
-		/*
+		
 		if(FileJSONBuffer[fileBufferCount].SecurityGroups.length != 0)
 		{
-			//for(j = 0; j < FileJSONBuffer[fileBufferCount].SecurityGroups.length; j++)
-			//{
-				//addToSecurityGroups(FileJSONBuffer[fileBufferCount].SecurityGroups[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
-			//}
+			for(j = 0; j < FileJSONBuffer[fileBufferCount].SecurityGroups.length; j++)
+			{
+				addToSecurityGroups(FileJSONBuffer[fileBufferCount].SecurityGroups[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
+			}
 		}
 		
 		if(FileJSONBuffer[fileBufferCount].Networkinterfaces.length != 0)
 		{
-			//for(j = 0; j < FileJSONBuffer[fileBufferCount].Networkinterfaces.length; j++)
-			//{
-				//addToNetworkInterfacesArr(FileJSONBuffer[fileBufferCount].Networkinterfaces[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
-			//}
+			for(j = 0; j < FileJSONBuffer[fileBufferCount].Networkinterfaces.length; j++)
+			{
+				addToNetworkInterfaces(FileJSONBuffer[fileBufferCount].Networkinterfaces[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
+			}
 		}
-		*/
+		
 		fileBufferCount = fileBufferCount + 1;
 	}
-	
-	//addToSecurityGroups(1);
 }
 
-var securityGroupsArr = [];
-var securityGroupCount = 0;
 
-var networkInterfacesArr = [];
-var networkInterfaceCount = 0;
-
-var calledAlready = 0;
 
 function addToSecurityGroups(groupId, nodeID)
 {
 	var contains = false;
 	var index;
 	
+	index = containsSecurityGroup(groupId);
+	if(index == -1)	
+	{
+		securityGroupsArr[securityGroupCount] = {ID: groupId, Nodes:[], Relationships:[]};
+		
+		index = securityGroupCount;
+		securityGroupCount = securityGroupCount + 1;
+		securityGroupsArr[index].Nodes.push(nodeID);
+		allNodes.push(nodeID);
+	}
+	else if(!securityGroupContainsNode(index, nodeID))
+	{
+		securityGroupsArr[index].Nodes.push(nodeID);
+		//allNodes.push(nodeID);
+	}
+	
+	var id;
+	
+	for(var i = 0; i < securityGroupsArr[index].Nodes.length; i++)
+	{
+		id = groupId + "_" + nodeID + "_" + securityGroupsArr[index].Nodes[i];
+		
+		if(securityGroupsArr[index].Nodes[i] != nodeID)
+		{
+			addEdgeSecurity(id, securityGroupsArr[index].Nodes[i], nodeID,groupId);
+			//allEdges.push(id);
+			securityGroupsArr[index].Relationships.push(id);
+		}
+	}
+}
+
+function containsSecurityGroup(groupId)
+{
 	for(var i = 0; i < securityGroupsArr.length; i++)
 	{
 		if(securityGroupsArr[i].ID == groupId)
 		{
-			contains = true;
-			index = i;
+			return i;
 		}
 	}
 	
-	if(contains == false)	
+	return -1;
+}
+
+function securityGroupContainsNode(index, nodeID)
+{
+	for(var i = 0; i < securityGroupsArr[index].Nodes.length; i++)
 	{
-		securityGroupsArr[securityGroupCount] = {ID: groupId, Nodes:[]};
-		index = securityGroupCount;
-		securityGroupCount = securityGroupCount + 1;
+		if(securityGroupsArr[index].Nodes[i] == nodeID)
+		{
+			return true;
+		}
 	}
 	
-	securityGroupsArr[index].Nodes.push(nodeID);
+	return false;
 }
 
-function addToList()
+function showSecurityGroup(nodeID)
 {
-	var dropdown = document.getElementById("MyDropDownList");
-	var opt = document.createElement("option"); 
-	opt.text = 'something';
-	opt.value = 'somethings value';
-	dropdown.options.add(opt);
+	hideAllNodesAndEdges();
+	
+	for(var i = 0; i < securityGroupsArr.length; i++)
+	{
+		if(securityGroupContainsNode(i, nodeID))
+		{
+			for(var j = 0; j < securityGroupsArr[i].Nodes.length; j++)
+				showNode(securityGroupsArr[i].Nodes[j]);
+			
+			for(var j = 0; j < securityGroupsArr[i].Relationships.length; j++)
+				showEdge(securityGroupsArr[i].Relationships[j]);
+		}
+	}
 }
 
-function addToNetworkInterfacesArr(interfaceId, nodeID)
+function hideSecurityGroup()
+{
+	showAllNodesAndEdges();
+	
+	for(var i = 0; i < securityGroupsArr.length; i++)
+	{
+		for(var j = 0; j < securityGroupsArr[i].Relationships.length; j++)
+			hideEdge(securityGroupsArr[i].Relationships[j]);
+	}
+}
+
+
+
+function addToNetworkInterfaces(groupId, nodeID)
 {
 	var contains = false;
 	var index;
 	
+	index = containsNetworkInterface(groupId);
+	if(index == -1)	
+	{
+		networkInterfacesArr[networkInterfaceCount] = {ID: groupId, Nodes:[], Relationships:[]};
+		
+		index = networkInterfaceCount;
+		networkInterfaceCount = networkInterfaceCount + 1;
+		networkInterfacesArr[index].Nodes.push(nodeID);
+		allNodes.push(nodeID);
+	}
+	else if(!networkInterfaceContainsNode(index, nodeID))
+	{
+		networkInterfacesArr[index].Nodes.push(nodeID);
+		//allNodes.push(nodeID);
+	}
+	
+	var id;
+	
+	for(var i = 0; i < networkInterfacesArr[index].Nodes.length; i++)
+	{
+		id = groupId + "_" + nodeID + "_" + networkInterfacesArr[index].Nodes[i];
+		
+		if(networkInterfacesArr[index].Nodes[i] != nodeID)
+		{
+			addEdgeNetwork(id, networkInterfacesArr[index].Nodes[i], nodeID,groupId);
+			//allEdges.push(id);
+			networkInterfacesArr[index].Relationships.push(id);
+		}
+	}
+}
+
+
+function containsNetworkInterface(groupId)
+{
 	for(var i = 0; i < networkInterfacesArr.length; i++)
 	{
-		if(networkInterfacesArr[i].ID == interfaceId)
+		if(networkInterfacesArr[i].ID == groupId)
 		{
-			contains = true;
-			index = i;
+			return i;
 		}
 	}
 	
-	if(contains == false)	
+	return -1;
+}
+function networkInterfaceContainsNode(index, nodeID)
+{
+	for(var i = 0; i < networkInterfacesArr[index].Nodes.length; i++)
 	{
-		networkInterfacesArr[networkInterfaceCount] = {ID: interfaceId, Nodes:[]};
-		index = networkInterfaceCount;
-		networkInterfaceCount = networkInterfaceCount + 1;
+		if(networkInterfacesArr[index].Nodes[i] == nodeID)
+		{
+			return true;
+		}
 	}
 	
-	networkInterfacesArr[index].Nodes.push(nodeID);
+	return false;
 }
 
-
-function doCrap()
+function showNetworkInterface(nodeID)
 {
-	var dropdown = document.getElementById("MyDropDownList");
-var opt = document.createElement("option"); 
-opt.text = 'something';
-opt.value = 'somethings value';
-dropdown.options.add(opt);
+	//hideAllNodesAndEdges();
+	
+	for(var i = 0; i < networkInterfacesArr.length; i++)
+	{
+		if(networkInterfaceContainsNode(i, nodeID))
+		{
+			for(var j = 0; j < securityGroupsArr[i].Nodes.length; j++)
+				showNode(networkInterfacesArr[i].Nodes[j]);
+			
+			for(var j = 0; j < securityGroupsArr[i].Relationships.length; j++)
+				showEdge(networkInterfacesArr[i].Relationships[j]);
+		}
+	}
+}
+function hideNetworkInterface()
+{
+	//showAllNodesAndEdges();
+	
+	for(var i = 0; i < networkInterfacesArr.length; i++)
+	{
+		for(var j = 0; j < networkInterfacesArr[i].Relationships.length; j++)
+			hideEdge(networkInterfacesArr[i].Relationships[j]);
+	}
 }
 
 
-window.test = function(e){
-    if(e.value=="AN01"){
-        alert(e.value);
-    }
-    else if(e.value=="AN02"){
-        alert(e.value);       
-    }
-    else if(e.value == "AN03"){
-       alert(e.value);
-    }
-}
+
+/*
 
 
-
-
-
-
+*/
 
 
 
@@ -428,6 +522,8 @@ function removeNode(idIn)
 	}
 }
 
+
+
 function addEdge(idIn, fromIn, toIn, type, level)
 {
 		try
@@ -513,6 +609,45 @@ function addEdge(idIn, fromIn, toIn, type, level)
 		alert(err);
 	}
 }
+function addEdgeSecurity(idIn, fromIn, toIn, group)
+{
+	Relationships.add(
+	{
+		id: idIn,
+		from: fromIn,
+		to: toIn,
+		dashes: false,
+		hidden: true,
+		label: group,
+		color: 
+		{
+			color:'black',
+			highlight:'#D35A1A',
+			hover: '#D35A1A'
+		},
+
+	});
+}
+
+function addEdgeNetwork(idIn, fromIn, toIn, group)
+{
+	Relationships.add(
+	{
+		id: idIn,
+		from: fromIn,
+		to: toIn,
+		dashes: false,
+		hidden: true,
+		label: group,
+		color: 
+		{
+			color:'black',
+			highlight:'#D35A1A',
+			hover: '#D35A1A'
+		},
+
+	});
+}
 
 function updateEdge(idIn, fromIn, inTo)
 {
@@ -542,6 +677,8 @@ function removeEdge(idIn)
 		alert(err);
 	}
 }
+
+
 
 
 
@@ -601,6 +738,104 @@ function getBufferContents()
 	return ServerJSONBuffer;
 }
 
+
+
+function hideNode(idIn)
+{
+	try 
+	{
+		Nodes.update(
+		{
+			id: idIn,
+			hidden: true
+		});
+	}
+	catch (err)
+	{
+		alert(err);
+	}
+}
+
+function showNode(idIn)
+{
+	try 
+	{
+		Nodes.update(
+		{
+			id: idIn,
+			hidden: false
+		});
+	}
+	catch (err)
+	{
+		alert(err);
+	}
+}
+
+function hideEdge(idIn)
+{
+	try 
+	{
+		Relationships.update(
+		{
+			id: idIn,
+			hidden: true
+		});
+	}
+	catch (err)
+	{
+		alert(err);
+	}
+}
+
+function showEdge(idIn)
+{
+	try 
+	{
+		Relationships.update(
+		{
+			id: idIn,
+			hidden: false
+		});
+	}
+	catch (err)
+	{
+		alert(err);
+	}
+}
+
+
+
+
+
+
+
+
+
+function hideAllNodesAndEdges()
+{
+	for(i = 0; i < allNodes.length; i++)
+		hideNode(allNodes[i]);
+
+	for(j = 0; j < allEdges.length; j++)
+		hideEdge(allEdges[j]);
+}
+
+function showAllNodesAndEdges()
+{
+	for(i = 0; i < allNodes.length; i++)
+		showNode(allNodes[i]);
+
+	for(j = 0; j < allEdges.length; j++)
+		showEdge(allEdges[j]);
+}
+
+
+
+
+
+
+
 function draw()
 {
 	Nodes = new vis.DataSet();
@@ -652,7 +887,7 @@ function draw()
 			{
 				type:"continuous",
 				forceDirection: "none",
-				roundness: 0.5
+				roundness: 0.0
 			}
 		},
 		physics: 
@@ -692,12 +927,8 @@ function draw()
 		var ids = properties.nodes;
 		var xhttp = new XMLHttpRequest();
 	
-
- 		
 		xhttp.onreadystatechange = function() 
 		{
-			
-		  
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				if(this.responseText!="null")
@@ -705,13 +936,19 @@ function draw()
 					document.getElementById("information").value =this.responseText ;
 					document.getElementById("fromUUID").value =ids ;
 				}
-				
 			}
-			
-			
 		};
+		
 		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getInformation?uuid="+ids, true);
 		xhttp.send();
-
+		
+		
+		 showSecurityGroup(ids);
+		showNetworkInterface(ids);
+	});
+	
+	networkHierarchy.on( 'deselectNode', function(properties) 
+	{
+		hideSecurityGroup();
 	});
 }
