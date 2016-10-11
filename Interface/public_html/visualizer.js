@@ -1,54 +1,84 @@
-var Nodes, Relationships;
+/*Containers used by vis.js to store nodes*/
+var Nodes;
 
-var fileBufferCount = 0;
+/*Containers used by vis.js to store relationships*/
+var Relationships;
 
-var nodeInfo = new Array();
-
-var edgeNum = 0;
-var nodeCount = 0;
-
-var timer;
-var  timerIsActive = false;
-
-var ServerJSONBuffer = [];
+/*
+An integer that keeps track of the current index of the .json being  processed.
+This buffer is dedicated to reading from the server sent .json.
+*/
 var bufferCount = 0;
 
+/*
+An integer that keeps track of the current index of the .json being  processed.
+This buffer is dedicated to reading from the local file .json.
+*/
+var fileBufferCount = 0;
+
+/*
+An array that stores objects from the .json
+This buffer is dedicated to reading from the server sent .json.
+*/
+var ServerJSONBuffer = [];
+
+/*
+An array that stores objects from the .json
+This buffer is dedicated to reading from the local file .json.
+*/
 var FileJSONBuffer = [];
+
+/*
+An integer that keeps track of the amount of nodes.
+nodeCount is also used as the id for nodes in the Nodes container.
+*/
+var nodeCount = 0;
+
+/*
+An integer that keeps track of the amount of nodes.
+edgeNum is also used as the id for relationships in the Relationships container.
+*/
+var edgeNum = 0;
+
+/*
+An interval variable that determines the rate at which nodes are added to the visualiser,
+when read from a local file.
+*/
+var timer;
+
 
 var finished=false;
 var paused = false;
+
 var informationJSON;
 
 var readingFromFile = 0;
 var readingFromServer = 0;
 
-var securityGroupsArr = [];
-var securityGroupCount = 0;
+//var securityGroupsArr = [];
+//var securityGroupCount = 0;
 
-var networkInterfacesArr = [];
-var networkInterfaceCount = 0;
+//var networkInterfacesArr = [];
+//var networkInterfaceCount = 0;
 
-var allNodes = [];
-var allEdges = [];
+//var allNodes = [];
+//var allEdges = [];
 
+/*Starts the timer*/
 function startTimer() 
 {
 	timer = setInterval(addNodesAndEdgesFile, 10);
 	timerIsActive = true;
 }
 
+/*Stops the timer*/
 function stopTimer()
 {
 	clearInterval(timer);
 	timerIsActive = false;
 }
-			
-function resumeTimer()
-{
-	if(!timerIsActive)
-		timer = setInterval(flashText, 10);
-}
 
+/*Reads node from the server's .json*/
 function getNodeFromServer() 
 {
 	var xhttp = new XMLHttpRequest();
@@ -85,8 +115,6 @@ function getNodeFromServer()
 				readInJSONFromServer(jsonIn);
 				addNodesAndEdges() ;
 				getNodeFromServer();
-				
-			
 			}
 		}
 	}
@@ -95,7 +123,7 @@ function getNodeFromServer()
 	xhttp.send();
 }
 	
-
+/*Reads node from the server's .json*/
 function addNodesAndEdges() 
 {
 	if(ServerJSONBuffer.length > bufferCount)
@@ -140,7 +168,7 @@ function addNodesAndEdgesFile()
 				edgeNum = edgeNum + 1;
 			}
 		}
-		
+		/*
 		if(FileJSONBuffer[fileBufferCount].SecurityGroups.length != 0)
 		{
 			for(j = 0; j < FileJSONBuffer[fileBufferCount].SecurityGroups.length; j++)
@@ -156,7 +184,7 @@ function addNodesAndEdgesFile()
 				addToNetworkInterfaces(FileJSONBuffer[fileBufferCount].Networkinterfaces[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
 			}
 		}
-		
+		*/
 		fileBufferCount = fileBufferCount + 1;
 	}
 }
