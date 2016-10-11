@@ -20,6 +20,7 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
     private SharedBuffer buffer;
     private String identifier = "";
     private String uuid ="";
+	private String typeScan="";
 
    SubNetworkScannerThread(String regionName, AmazonEC2 ec2,SharedBuffer buffer)
     {
@@ -35,6 +36,15 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
         this.buffer=buffer;
         this.uuid=uuid;
         this.identifier=identifier;
+    }
+	
+	public SubNetworkScannerThread(String regionName, String uuid,String identifier, AmazonEC2 ec2, SharedBuffer buffer, String typeScan) {
+        this.regionName=regionName;
+        this.ec2=ec2;
+        this.buffer=buffer;
+        this.uuid=uuid;
+        this.identifier=identifier;
+		this.typeScan=typeScan;
     }
 
     public void scanContext()
@@ -77,13 +87,17 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
         if(uuid.equals("")) {
             scanContext();
         }
+		else if(typeScan.equals("up")
+		{
+			scanUp();
+		}
         else
         {
             scanOnly();
         }
     }
-
-    public void scanOnly() {
+	
+	public void scanOnly() {
         DescribeSubnetsRequest describeSubnetsRequest;
         if(identifier.equals("Vpc"))
         {
@@ -136,5 +150,31 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
 
         }
 
+    }
+
+    public void scanUp() {
+        DescribeSubnetsRequest describeSubnetsRequest;
+        if(identifier.equals("Vpc"))
+        {
+            Filter vpcFilter = new Filter("vpc-id").withValues(uuid);
+            try {
+                describeSubnetsRequest = new DescribeSubnetsRequest().withFilters(vpcFilter);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return;
+            }
+        }
+        else
+        {
+             describeSubnetsRequest = new DescribeSubnetsRequest().withSubnetIds(uuid);
+        }
+
+        DescribeSubnetsResult describeSubnetsResult = ec2.describeSubnets(describeSubnetsRequest);
+        List<Subnet> subnets = describeSubnetsResult.getSubnets();
+		uuid = subnets.get(0).getVpcId();
+		
+		new Thread(new SubNetworkScannerThread(regionName,uuid,"",ec2,buffer)).start();
     }
 }
