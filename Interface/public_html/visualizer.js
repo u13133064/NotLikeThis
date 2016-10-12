@@ -46,7 +46,6 @@ when read from a local file.
 */
 var timer;
 
-
 var finished=false;
 var paused = false;
 
@@ -54,16 +53,6 @@ var informationJSON;
 
 var readingFromFile = 0;
 var readingFromServer = 0;
-
-//var securityGroupsArr = [];
-//var securityGroupCount = 0;
-
-//var networkInterfacesArr = [];
-//var networkInterfaceCount = 0;
-
-//var allNodes = [];
-//var allEdges = [];
-
 /*Starts the timer*/
 function startTimer() 
 {
@@ -78,7 +67,7 @@ function stopTimer()
 	timerIsActive = false;
 }
 
-/*Reads node from the server's .json*/
+/*Reads in nodes from the server's .json objects passed to the browser*/
 function getNodeFromServer() 
 {
 	var xhttp = new XMLHttpRequest();
@@ -123,7 +112,7 @@ function getNodeFromServer()
 	xhttp.send();
 }
 	
-/*Reads node from the server's .json*/
+/*The .json objects are processed and their information is added to the visualiser*/
 function addNodesAndEdges() 
 {
 	if(ServerJSONBuffer.length > bufferCount)
@@ -137,21 +126,18 @@ function addNodesAndEdges()
 			{
 				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					
 					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
-					allEdges.push(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID);
+					
 					edgeNum = edgeNum + 1;
 				}
 			}
-			
-		
-			
 		}
 		bufferCount=bufferCount+1;
 	}
 }
 
 
+/*The .json objects are processed and their information is added to the visualiser.*/
 function addNodesAndEdgesFile() 
 {
 	if(FileJSONBuffer.length > fileBufferCount)
@@ -164,232 +150,16 @@ function addNodesAndEdgesFile()
 			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
 			{
 				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type, FileJSONBuffer[fileBufferCount].Level);
-				allEdges.push(edgeNum, edgeNum);
+				
 				edgeNum = edgeNum + 1;
 			}
 		}
-		/*
-		if(FileJSONBuffer[fileBufferCount].SecurityGroups.length != 0)
-		{
-			for(j = 0; j < FileJSONBuffer[fileBufferCount].SecurityGroups.length; j++)
-			{
-				addToSecurityGroups(FileJSONBuffer[fileBufferCount].SecurityGroups[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
-			}
-		}
 		
-		if(FileJSONBuffer[fileBufferCount].Networkinterfaces.length != 0)
-		{
-			for(j = 0; j < FileJSONBuffer[fileBufferCount].Networkinterfaces.length; j++)
-			{
-				addToNetworkInterfaces(FileJSONBuffer[fileBufferCount].Networkinterfaces[j].UUID, FileJSONBuffer[fileBufferCount].UUID)
-			}
-		}
-		*/
 		fileBufferCount = fileBufferCount + 1;
 	}
 }
 
-
-
-function addToSecurityGroups(groupId, nodeID)
-{
-	var contains = false;
-	var index;
-	
-	index = containsSecurityGroup(groupId);
-	if(index == -1)	
-	{
-		securityGroupsArr[securityGroupCount] = {ID: groupId, Nodes:[], Relationships:[]};
-		
-		index = securityGroupCount;
-		securityGroupCount = securityGroupCount + 1;
-		securityGroupsArr[index].Nodes.push(nodeID);
-		allNodes.push(nodeID);
-	}
-	else if(!securityGroupContainsNode(index, nodeID))
-	{
-		securityGroupsArr[index].Nodes.push(nodeID);
-		//allNodes.push(nodeID);
-	}
-	
-	var id;
-	
-	for(var i = 0; i < securityGroupsArr[index].Nodes.length; i++)
-	{
-		id = groupId + "_" + nodeID + "_" + securityGroupsArr[index].Nodes[i];
-		
-		if(securityGroupsArr[index].Nodes[i] != nodeID)
-		{
-			addEdgeSecurity(id, securityGroupsArr[index].Nodes[i], nodeID,groupId);
-			//allEdges.push(id);
-			securityGroupsArr[index].Relationships.push(id);
-		}
-	}
-}
-
-function containsSecurityGroup(groupId)
-{
-	for(var i = 0; i < securityGroupsArr.length; i++)
-	{
-		if(securityGroupsArr[i].ID == groupId)
-		{
-			return i;
-		}
-	}
-	
-	return -1;
-}
-
-function securityGroupContainsNode(index, nodeID)
-{
-	for(var i = 0; i < securityGroupsArr[index].Nodes.length; i++)
-	{
-		if(securityGroupsArr[index].Nodes[i] == nodeID)
-		{
-			return true;
-		}
-	}
-	
-	return false;
-}
-
-function showSecurityGroup(nodeID)
-{
-	hideAllNodesAndEdges();
-	
-	for(var i = 0; i < securityGroupsArr.length; i++)
-	{
-		if(securityGroupContainsNode(i, nodeID))
-		{
-			for(var j = 0; j < securityGroupsArr[i].Nodes.length; j++)
-				showNode(securityGroupsArr[i].Nodes[j]);
-			
-			for(var j = 0; j < securityGroupsArr[i].Relationships.length; j++)
-				showEdge(securityGroupsArr[i].Relationships[j]);
-		}
-	}
-}
-
-function hideSecurityGroup()
-{
-	showAllNodesAndEdges();
-	
-	for(var i = 0; i < securityGroupsArr.length; i++)
-	{
-		for(var j = 0; j < securityGroupsArr[i].Relationships.length; j++)
-			hideEdge(securityGroupsArr[i].Relationships[j]);
-	}
-}
-
-
-
-function addToNetworkInterfaces(groupId, nodeID)
-{
-	var contains = false;
-	var index;
-	
-	index = containsNetworkInterface(groupId);
-	if(index == -1)	
-	{
-		networkInterfacesArr[networkInterfaceCount] = {ID: groupId, Nodes:[], Relationships:[]};
-		
-		index = networkInterfaceCount;
-		networkInterfaceCount = networkInterfaceCount + 1;
-		networkInterfacesArr[index].Nodes.push(nodeID);
-		allNodes.push(nodeID);
-	}
-	else if(!networkInterfaceContainsNode(index, nodeID))
-	{
-		networkInterfacesArr[index].Nodes.push(nodeID);
-		//allNodes.push(nodeID);
-	}
-	
-	var id;
-	
-	for(var i = 0; i < networkInterfacesArr[index].Nodes.length; i++)
-	{
-		id = groupId + "_" + nodeID + "_" + networkInterfacesArr[index].Nodes[i];
-		
-		if(networkInterfacesArr[index].Nodes[i] != nodeID)
-		{
-			addEdgeNetwork(id, networkInterfacesArr[index].Nodes[i], nodeID,groupId);
-			//allEdges.push(id);
-			networkInterfacesArr[index].Relationships.push(id);
-		}
-	}
-}
-
-
-function containsNetworkInterface(groupId)
-{
-	for(var i = 0; i < networkInterfacesArr.length; i++)
-	{
-		if(networkInterfacesArr[i].ID == groupId)
-		{
-			return i;
-		}
-	}
-	
-	return -1;
-}
-function networkInterfaceContainsNode(index, nodeID)
-{
-	for(var i = 0; i < networkInterfacesArr[index].Nodes.length; i++)
-	{
-		if(networkInterfacesArr[index].Nodes[i] == nodeID)
-		{
-			return true;
-		}
-	}
-	
-	return false;
-}
-
-function showNetworkInterface(nodeID)
-{
-	//hideAllNodesAndEdges();
-	
-	for(var i = 0; i < networkInterfacesArr.length; i++)
-	{
-		if(networkInterfaceContainsNode(i, nodeID))
-		{
-			for(var j = 0; j < securityGroupsArr[i].Nodes.length; j++)
-				showNode(networkInterfacesArr[i].Nodes[j]);
-			
-			for(var j = 0; j < securityGroupsArr[i].Relationships.length; j++)
-				showEdge(networkInterfacesArr[i].Relationships[j]);
-		}
-	}
-}
-function hideNetworkInterface()
-{
-	//showAllNodesAndEdges();
-	
-	for(var i = 0; i < networkInterfacesArr.length; i++)
-	{
-		for(var j = 0; j < networkInterfacesArr[i].Relationships.length; j++)
-			hideEdge(networkInterfacesArr[i].Relationships[j]);
-	}
-}
-
-
-
-/*
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
+/*Adds nodes to the visualiser. They are formatted according to the 'levelIn' variable*/
 function addNode(idIn, labelIn, levelIn)
 {
 	try
@@ -528,36 +298,7 @@ function addNode(idIn, labelIn, levelIn)
 	}
 }
 
-function updateNode(idIn, labelIn)
-{
-	try 
-	{
-		Nodes.update(
-		{
-			id: idIn,
-			label: labelIn
-		});
-	}
-	catch (err)
-	{
-		alert(err);
-	}
-}
-
-function removeNode(idIn)
-{
-	try
-	{
-		Nodes.remove({id: idIn});
-	}
-	catch (err)
-	{
-		alert(err);
-	}
-}
-
-
-
+/*Adds efges to the visualiser. They are formatted according to the 'level' variable*/
 function addEdge(idIn, fromIn, toIn, type, level)
 {
 		try
@@ -643,46 +384,47 @@ function addEdge(idIn, fromIn, toIn, type, level)
 		alert(err);
 	}
 }
-function addEdgeSecurity(idIn, fromIn, toIn, group)
-{
-	Relationships.add(
-	{
-		id: idIn,
-		from: fromIn,
-		to: toIn,
-		dashes: false,
-		hidden: true,
-		label: group,
-		color: 
-		{
-			color:'black',
-			highlight:'#D35A1A',
-			hover: '#D35A1A'
-		},
 
-	});
+/*
+The update node function as specified in vis.js tutorials.
+Currently, is is not in use, but is useful as a reference, should it become needed.
+*/
+function updateNode(idIn, labelIn)
+{
+	try 
+	{
+		Nodes.update(
+		{
+			id: idIn,
+			label: labelIn
+		});
+	}
+	catch (err)
+	{
+		alert(err);
+	}
 }
 
-function addEdgeNetwork(idIn, fromIn, toIn, group)
+/*
+The remove node function as specified in vis.js tutorials.
+Currently, is is not in use, but is useful as a reference, should it become needed.
+*/
+function removeNode(idIn)
 {
-	Relationships.add(
+	try
 	{
-		id: idIn,
-		from: fromIn,
-		to: toIn,
-		dashes: false,
-		hidden: true,
-		label: group,
-		color: 
-		{
-			color:'black',
-			highlight:'#D35A1A',
-			hover: '#D35A1A'
-		},
-
-	});
+		Nodes.remove({id: idIn});
+	}
+	catch (err)
+	{
+		alert(err);
+	}
 }
 
+/*
+The update edge function as specified in vis.js tutorials.
+Currently, is is not in use, but is useful as a reference, should it become needed.
+*/
 function updateEdge(idIn, fromIn, inTo)
 {
 	try
@@ -700,6 +442,10 @@ function updateEdge(idIn, fromIn, inTo)
 	}
 }
 
+/*
+The remove edge function as specified in vis.js tutorials.
+Currently, is is not in use, but is useful as a reference, should it become needed.
+*/
 function removeEdge(idIn)
 {
 	try
@@ -712,11 +458,10 @@ function removeEdge(idIn)
 	}
 }
 
-
-
-
-
-
+/*
+This function is made possible using the FileSaver.js.
+It opens a standard window, so that the user may choose which file to read from.
+*/
 var openFile = function (event)
 {
 	var input = event.target;
@@ -732,27 +477,37 @@ var openFile = function (event)
 	reader.readAsText(input.files[0]);
 };
 
+/*
+Takes in the json object from the server and adds it to the buffer.
+*/
 function readInJSONFromServer(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
 	ServerJSONBuffer.push(obj);
 }
 
+/*
+Takes in the json object from the file and adds it to the buffer.
+*/
 function readInJSONFromFile(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
 	var obj2;
+	
 	clearNodesAndEdges();
+	
 	for(var k = 0; k< obj.NodesArray.length; k++)
 	{
 		obj2 = obj.NodesArray[k];
 		FileJSONBuffer.push(obj2);
 	}
-	//readingFromFile = 1;
-	//addNodesAndEdgesFile() ;
+
 	startTimer();
 }
 
+/*
+Cleans out the entire visualisation
+*/
 function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
@@ -766,109 +521,15 @@ function clearNodesAndEdges()
 
 }
 
+/*Returns the contents of the buffer*/
 function getBufferContents()
 {
 	return ServerJSONBuffer;
 }
 
-
-
-function hideNode(idIn)
-{
-	try 
-	{
-		Nodes.update(
-		{
-			id: idIn,
-			hidden: true
-		});
-	}
-	catch (err)
-	{
-		alert(err);
-	}
-}
-
-function showNode(idIn)
-{
-	try 
-	{
-		Nodes.update(
-		{
-			id: idIn,
-			hidden: false
-		});
-	}
-	catch (err)
-	{
-		alert(err);
-	}
-}
-
-function hideEdge(idIn)
-{
-	try 
-	{
-		Relationships.update(
-		{
-			id: idIn,
-			hidden: true
-		});
-	}
-	catch (err)
-	{
-		alert(err);
-	}
-}
-
-function showEdge(idIn)
-{
-	try 
-	{
-		Relationships.update(
-		{
-			id: idIn,
-			hidden: false
-		});
-	}
-	catch (err)
-	{
-		alert(err);
-	}
-}
-
-
-
-
-
-
-
-
-
-function hideAllNodesAndEdges()
-{
-	for(i = 0; i < allNodes.length; i++)
-		hideNode(allNodes[i]);
-
-	for(j = 0; j < allEdges.length; j++)
-		hideEdge(allEdges[j]);
-}
-
-function showAllNodesAndEdges()
-{
-	for(i = 0; i < allNodes.length; i++)
-		showNode(allNodes[i]);
-
-	for(j = 0; j < allEdges.length; j++)
-		showEdge(allEdges[j]);
-}
-
-
-
-
-
-
-
+/*
+Initiates the visualisation upon startup.
+*/
 function draw()
 {
 	Nodes = new vis.DataSet();
