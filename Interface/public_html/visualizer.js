@@ -125,8 +125,9 @@ function addNodesAndEdges()
 		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
 			{
 				
-				if(ServerJSONBuffer[k].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[k].Name == "LOADING_SECURITY_GROUPS")
+				if(ServerJSONBuffer[bufferCount].NodesArray[k].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[bufferCount].NodesArray[k].Name == "LOADING_SECURITY_GROUPS")
 				{
+					
 					atSecurityGroups = true;
 				}
 				
@@ -148,22 +149,24 @@ function addNodesAndEdges()
 				}
 				else
 				{
-
-						addSecurityGroupNode(ServerJSONBuffer[bufferCount].UUID, ServerJSONBuffer[bufferCount].Name);
+					
+						addSecurityGroupNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name);
 						
-						if(ServerJSONBuffer[bufferCount].Relationships.length != 0)
+						if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 						{
-							for(j = 0; j < ServerJSONBuffer[bufferCount].Relationships.length; j++)
+							for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 							{
-								addSecurityGroupEdge(SecurityGroupEdgeCount, ServerJSONBuffer[bufferCount].UUID, ServerJSONBuffer[bufferCount].Relationships[j].UUID);
+								addSecurityGroupEdge(SecurityGroupEdgeCount, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID);
 								
 								SecurityGroupEdgeCount = SecurityGroupEdgeCount + 1;
 							}
 						}
-					}
+					
+				}
 				
-				bufferCount=bufferCount+1;
 			}
+			
+				bufferCount=bufferCount+1;
 	}
 }
 
@@ -173,6 +176,7 @@ function addNodesAndEdgesFile()
 {
 	if(FileJSONBuffer.length > fileBufferCount)
 	{
+		
 		if(FileJSONBuffer[fileBufferCount].UUID == "LOADING_SECURITY_GROUPS" && FileJSONBuffer[fileBufferCount].Name == "LOADING_SECURITY_GROUPS")
 		{
 			atSecurityGroups = true;
@@ -349,7 +353,7 @@ function addNode(idIn, labelIn, levelIn)
 	}
 }
 
-/*Adds efges to the visualiser. They are formatted according to the 'level' variable*/
+/*Adds edges to the visualiser. They are formatted according to the 'level' variable*/
 function addEdge(idIn, fromIn, toIn, type, level)
 {
 		try
@@ -442,7 +446,9 @@ function addSecurityGroupNode(idIn, labelIn)
 	try
 	{
 		SecurityGroupNodes.add(
+		
 			{
+				
 				id: idIn,
 				label: labelIn,
 				//level: levelIn,
@@ -465,6 +471,7 @@ function addSecurityGroupNode(idIn, labelIn)
 		}
 		catch (err) 
 		{
+			
 			alert(err);
 		}
 }
@@ -799,15 +806,8 @@ function draw()
 
 function getSecurityGroupNode(id)
 {
-	for(var i = 1; i < SecurityGroupNodes.length; i++)
-	{
-		if(SecurityGroupNodes.get(i).id == id)
-		{
-			return SecurityGroupNodes.get(i);
-		}
-	}
 	
-	return -1;
+	return  SecurityGroupNodes.get(id);
 }
 
 function getSecurityGroupRelationships(id)
