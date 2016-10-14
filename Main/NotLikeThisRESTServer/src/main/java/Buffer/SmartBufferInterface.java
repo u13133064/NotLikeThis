@@ -2,6 +2,7 @@ package Buffer;
 
 
 import Composite.NetworkTree;
+import SecurityGroups.SecurityRuleSet;
 
 /**
  * Created by Jedd Shneier.
@@ -9,8 +10,10 @@ import Composite.NetworkTree;
 public interface SmartBufferInterface {
     void constructTree();
     void addToBuffer(NetworkTree tree);
+    void addToSecurityGroups(String id,SecurityRuleSet securityRuleSet);
     String getJSONList();
     String getInformation(String uuid);
+    String getConnections();
     void removeRoot();
     void stopThreads();
     void pauseThreads();

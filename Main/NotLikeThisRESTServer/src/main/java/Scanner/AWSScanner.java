@@ -13,7 +13,6 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeRegionsResult;
 import com.amazonaws.services.ec2.model.Region;
 
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -193,19 +192,6 @@ public class AWSScanner implements ScannerInterface {
 
     }
 
-
-    public NetworkTree resumeScan(LinkedList<String> tokens, Credential credentials) {
-        return null;
-    }
-
-    public LinkedList<String> pauseScan() {
-        return null;
-    }
-
-    public void stopScan() {
-
-    }
-
     public void run() {
         switch (option.getScannChoice())
         {
@@ -219,6 +205,7 @@ public class AWSScanner implements ScannerInterface {
                 scanNetworkFrom(option.getLevel(),option.getIdentifier());
                 break;
             case 4:
+                scanAllInstances();
 
             break;
 
@@ -226,6 +213,23 @@ public class AWSScanner implements ScannerInterface {
         }
     }
 
+    private void scanAllInstances() {
+        System.out.println("Scanning Regions ");
+        buffer.removeRoot();
+        DescribeRegionsResult regionsResult= ec2.describeRegions();
+        List<Region> regions= regionsResult.getRegions();
+
+        for(int i =0;i<regions.size();i++)
+        {
+            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
+            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
+
+            new Thread(new InstanceScannerThread(regions.get(i).getRegionName(),threadEc2,buffer)).start();
+            //delegate scan to the thread if it finds the id
+
+        }
+
+    }
 
 
 }

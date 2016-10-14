@@ -329,6 +329,22 @@
 				}, 10000);
 				
 			}
+			function scanAllInstances()
+			{
+				finished=false;
+				clearNodesAndEdges();
+				var xhttp = new XMLHttpRequest();
+				
+				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanAllInstances", true);
+				xhttp.send();
+				document.getElementById("loadicon").style.display = "inline";
+				setTimeout(function () 
+				{
+					document.getElementById("loadicon").style.display = "none";
+					getNodeFromServer();
+					//startTimer();
+				}, 10000);
+			}
 			function scanRegion(region) 
 			{	
 				document.getElementById("scanNetworkButton").innerHTML = "Pause Scan";
@@ -358,7 +374,7 @@
 				<button id="scanNetworkButton" class="w3-btn" onclick="cycle();" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
 				<button id="stopScanButton" onclick="stopScan()"class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button>
 				<button id="scanUpButton" class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Up</button>
-				<button id="scanDownButton" class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Down</button>
+				<button id="scanInstanceButton" onclick="scanAllInstances();" class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Instances</button>
 				
 				<button id="scanFromButton" class="w3-btn" onclick="textBox()" style="width:100%; background-color: orange;">Scan From</button>
 				<div id="scanFromInput" style="display: none; width: 100%; background-color: orange;"><input id="fromUUID" type="text" name="access" style="width: 70%;"><button style="width:30%;" onclick="scanFrom()">Go</button></div>

@@ -3,9 +3,12 @@ package Scanner;
 import Buffer.SharedBuffer;
 import Composite.NetworkTree;
 import Composite.Node;
+import SecurityGroups.SecurityRule;
+import SecurityGroups.SecurityRuleSet;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.model.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -106,20 +109,16 @@ public class InstanceScannerThread implements ThreadedScannerInterface
             List<Instance> instances = reservations.get(i).getInstances();
             for (int j = 0; j < instances.size(); j++) {
                 System.out.println("Adding instance for : " + regionName);
+                System.out.println("Instances size : " +  instances.size());
                 NetworkTree instanceNode = new Node();
                 instanceNode.setUUID(instances.get(j).getInstanceId());
                 instanceNode.setName(instances.get(j).getInstanceId());
                 instanceNode.setInformation("{Instance Information : " + instances.get(j).toString() + " }");
                 instanceNode.setLevel(5);
                 instanceNode.addRelationship(instances.get(j).getSubnetId());
-                List<GroupIdentifier> securityGroups = instances.get(j).getSecurityGroups();
-                for (int k = 0; k < securityGroups.size(); k++) {
-                    instanceNode.addSecurityGroup(securityGroups.get(k).getGroupId());
-                }
-                List<InstanceNetworkInterface> networkInterfaces = instances.get(j).getNetworkInterfaces();
-                for (int k = 0; k < networkInterfaces.size(); k++) {
-                    instanceNode.addNetworkInterface(networkInterfaces.get(k).getNetworkInterfaceId());
-                }
+                addSecurityRuleSets(instances.get(j));
+
+
                 if(buffer.getState()==1)
                 {
                     synchronized(buffer.getThreadNotifier())
@@ -139,4 +138,68 @@ public class InstanceScannerThread implements ThreadedScannerInterface
             }
         }
     }
+
+    private void addSecurityRuleSets(Instance instance) {
+        LinkedList<String> securtiyGroupIds = new LinkedList<String>();
+        for(int i = 0;i< instance.getSecurityGroups().size();i++)
+        {
+            securtiyGroupIds.add(instance.getSecurityGroups().get(i).getGroupId());
+
+        }
+
+
+        DescribeSecurityGroupsRequest describeSecurityGroupsRequest = new DescribeSecurityGroupsRequest().withGroupIds(securtiyGroupIds);
+        DescribeSecurityGroupsResult describeSecurityGroupsResult = ec2.describeSecurityGroups(describeSecurityGroupsRequest);
+        List<SecurityGroup> securityGroups= describeSecurityGroupsResult.getSecurityGroups();
+        for (int i =0;i<securityGroups.size();i++)
+        {
+            List<IpPermission> ipPermisions= securityGroups.get(i).getIpPermissions();
+
+            LinkedList<SecurityRule> inboundRules = new LinkedList<SecurityRule>();
+
+            for (int j =0;j<ipPermisions.size();j++)
+            {
+                SecurityRule inboundRule = new SecurityRule();
+                inboundRule.setIpAdresses(ipPermisions.get(j).getIpRanges());
+                //inboundRule.generateRanges(ipPermisions.get(j).getFromPort(),ipPermisions.get(j).getToPort());
+                inboundRule.setProtocol(ipPermisions.get(j).getIpProtocol());
+                LinkedList<String> securityGroupIds= new LinkedList<String>();
+                List<UserIdGroupPair> userIdGroupPairs = ipPermisions.get(j).getUserIdGroupPairs();
+                for(int k = 0;k<userIdGroupPairs.size();k++)
+                {
+                    securityGroupIds.add(userIdGroupPairs.get(k).getGroupId());
+                }
+                inboundRule.setSecurtyGroupIds(securityGroupIds);
+                inboundRules.add(inboundRule);
+            }
+            ipPermisions= securityGroups.get(i).getIpPermissionsEgress();
+            LinkedList<SecurityRule>outboundRules = new LinkedList<SecurityRule>();
+
+            for (int j =0;j<ipPermisions.size();j++)
+            {
+                SecurityRule outboundRule = new SecurityRule();
+                outboundRule.setIpAdresses(ipPermisions.get(j).getIpRanges());
+                //utboundRule.generateRanges(ipPermisions.get(j).getFromPort(),ipPermisions.get(j).getToPort());
+                outboundRule.setProtocol(ipPermisions.get(j).getIpProtocol());
+                LinkedList<String> securityGroupIds= new LinkedList<String>();
+                List<UserIdGroupPair> userIdGroupPairs = ipPermisions.get(j).getUserIdGroupPairs();
+                for(int k = 0;k<userIdGroupPairs.size();k++)
+                {
+                    securityGroupIds.add(userIdGroupPairs.get(k).getGroupId());
+                }
+                outboundRule.setSecurtyGroupIds(securityGroupIds);
+                outboundRules.add(outboundRule);
+            }
+            SecurityRuleSet securityRuleSet = new SecurityRuleSet();
+            securityRuleSet.setId(securityGroups.get(i).getGroupId());
+            securityRuleSet.setInboundRules(inboundRules);
+            securityRuleSet.setIpAddress(instance.getPrivateIpAddress());
+            securityRuleSet.setOutboundRules(outboundRules);
+
+            buffer.addToSecurityGroups(instance.getInstanceId(),securityRuleSet);
+
+        }
+    }
+
+
 }

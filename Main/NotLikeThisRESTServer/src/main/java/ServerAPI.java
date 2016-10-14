@@ -52,6 +52,23 @@ public class ServerAPI {
 
     }
     @GET
+    @Path("/scanAllInstances")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object ScanAllInstances(@BeanParam UUIDBean uuidBean) {
+        sharedBuffer=new SharedBuffer();
+        OptionBean options = new OptionBean();
+        options.setScannChoice(4);
+        new Thread(new AWSScanner(credentials,sharedBuffer,options)).start();
+
+
+        return Response.ok() //200
+                .entity("All Instance Scan Started",new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+    @GET
     @Path("/pauseScan")
     @Produces(MediaType.TEXT_PLAIN)
     public Object PauseScan(@BeanParam UUIDBean uuidBean) {
