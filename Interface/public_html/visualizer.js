@@ -612,7 +612,37 @@ function getBufferContents()
 }
 
 
-//function load
+
+var temp1;
+var temp2;
+
+function getSecurityGroupOf(id)
+{
+	temp1 = new vis.DataSet();
+ temp2 = new vis.DataSet();
+	var root = false;
+	
+	for(var i = 0; i < SecurityGroupRelationships.length; i++)
+	{
+		if(SecurityGroupRelationships.get(i).from == id)
+		{
+			if(!root)
+			{
+				temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).from));
+				root = true;
+			}
+			
+			temp1.add(SecurityGroupRelationships.get(i));
+			//alert(SecurityGroupRelationships.get(i).to);
+			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
+		}
+	}
+	
+	//return cur;
+	
+	//nodes: SecurityGroupNodes,
+       //         edges: SecurityGroupRelationships
+}
 
 
 
@@ -771,37 +801,6 @@ function getSecurityGroupRelationships(id)
 
 
 
-var temp1;
-var temp2;
-
-function getsus(id)
-{
-	temp1 = new vis.DataSet();
- temp2 = new vis.DataSet();
-	var root = false;
-	
-	for(var i = 0; i < SecurityGroupRelationships.length; i++)
-	{
-		if(SecurityGroupRelationships.get(i).from == id)
-		{
-			if(!root)
-			{
-				temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).from));
-				root = true;
-			}
-			
-			temp1.add(SecurityGroupRelationships.get(i));
-			//alert(SecurityGroupRelationships.get(i).to);
-			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
-		}
-	}
-	
-	//return cur;
-	
-	//nodes: SecurityGroupNodes,
-       //         edges: SecurityGroupRelationships
-}
-
 
 
 
@@ -812,7 +811,7 @@ function getsus(id)
 function drawSecurity(id)
 {
 	var currentNode, currentRelationships;
-getsus(id);
+	getSecurityGroupOf(id);
 	var options =
         {
 		interaction: 
