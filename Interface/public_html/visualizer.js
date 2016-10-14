@@ -128,6 +128,7 @@ function addNodesAndEdges()
 				if(ServerJSONBuffer[k].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[k].Name == "LOADING_SECURITY_GROUPS")
 				{
 					atSecurityGroups = true;
+					alert("Security Group");
 				}
 				
 				if(!atSecurityGroups)
