@@ -121,21 +121,49 @@ function addNodesAndEdges()
 {
 	if(ServerJSONBuffer.length > bufferCount)
 	{
+		
 		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
-		{
-			addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
-			
-			if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
-				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+				
+				if(ServerJSONBuffer[k].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[k].Name == "LOADING_SECURITY_GROUPS")
 				{
-					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
-					
-					edgeNum = edgeNum + 1;
+					atSecurityGroups = true;
 				}
+				
+				if(!atSecurityGroups)
+				{
+				
+					addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+					
+					if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
+					{
+						for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
+						{
+							addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+							
+							edgeNum = edgeNum + 1;
+						}
+					}
+				
+				}
+				else
+				{
+
+						addSecurityGroupNode(ServerJSONBuffer[bufferCount].UUID, ServerJSONBuffer[bufferCount].Name);
+						
+						if(ServerJSONBuffer[bufferCount].Relationships.length != 0)
+						{
+							for(j = 0; j < ServerJSONBuffer[bufferCount].Relationships.length; j++)
+							{
+								addSecurityGroupEdge(SecurityGroupEdgeCount, ServerJSONBuffer[bufferCount].UUID, ServerJSONBuffer[bufferCount].Relationships[j].UUID);
+								
+								SecurityGroupEdgeCount = SecurityGroupEdgeCount + 1;
+							}
+						}
+					}
+				
+				bufferCount=bufferCount+1;
 			}
-		}
-		bufferCount=bufferCount+1;
 	}
 }
 
