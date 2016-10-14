@@ -1,17 +1,53 @@
 {"NodesArray":
 [
-{"Name":"Root","UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"}],
-"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
-{"Name":"1","UUID":"2", "Level":"2", "Relationships":[],
-"SecurityGroups":[{"UUID":"c"}, {"UUID":"d"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
-{"Name":"2","UUID":"3", "Level":"2", "Relationships":[],
-"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
-{"Name":"3","UUID":"4", "Level":"2", "Relationships":[],
-"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
-{"Name":"4","UUID":"5", "Level":"2", "Relationships":[],
-"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"k"}]},
-{"Name":"5","UUID":"6", "Level":"2", "Relationships":[],
-"SecurityGroups":[{"UUID":"a"}, {"UUID":"b"}],"Networkinterfaces":[{"UUID":"l"}, {"UUID":"j"}]}
+{"Name":"Root",		"UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"},{"UUID":"7"},{"UUID":"8"},{"UUID":"9"}]},
+
+{"Name":"Region 1",		"UUID":"2", "Level":"2", "Relationships":[{"UUID":"10"}, {"UUID":"11"}, {"UUID":"12"}]},
+{"Name":"Region 2",		"UUID":"3", "Level":"2", "Relationships":[{"UUID":"13"}, {"UUID":"14"}, {"UUID":"15"}]},
+{"Name":"Region 3",		"UUID":"4", "Level":"2", "Relationships":[{"UUID":"16"}, {"UUID":"17"}, {"UUID":"18"}]},
+{"Name":"Region 4",		"UUID":"5", "Level":"2", "Relationships":[{"UUID":"19"}, {"UUID":"20"}, {"UUID":"21"}]},
+{"Name":"Region 5",		"UUID":"6", "Level":"2", "Relationships":[{"UUID":"22"}, {"UUID":"23"}, {"UUID":"24"}]},
+{"Name":"Region 6",		"UUID":"7", "Level":"2", "Relationships":[{"UUID":"25"}, {"UUID":"26"}, {"UUID":"27"}]},
+{"Name":"Region 7",		"UUID":"8", "Level":"2", "Relationships":[{"UUID":"28"}, {"UUID":"29"}, {"UUID":"30"}]},
+{"Name":"Region 8",		"UUID":"9", "Level":"2", "Relationships":[{"UUID":"31"}, {"UUID":"32"}, {"UUID":"33"}]},
+
+{"Name":"VPC 1",		"UUID":"10", "Level":"3", "Relationships":[{"UUID":"34"}, {"UUID":"35"}, {"UUID":"36"}]},
+{"Name":"VPC 2",		"UUID":"11", "Level":"3", "Relationships":[{"UUID":"37"}, {"UUID":"38"}, {"UUID":"39"}]},
+{"Name":"VPC 3",		"UUID":"12", "Level":"3", "Relationships":[{"UUID":"40"}, {"UUID":"41"}, {"UUID":"42"}]},
+{"Name":"VPC 4",		"UUID":"13", "Level":"3", "Relationships":[{"UUID":"43"}, {"UUID":"44"}, {"UUID":"45"}]},
+{"Name":"VPC 5",		"UUID":"14", "Level":"3", "Relationships":[{"UUID":"46"}, {"UUID":"47"}, {"UUID":"48"}]},
+{"Name":"VPC 6",		"UUID":"15", "Level":"3", "Relationships":[{"UUID":"49"}, {"UUID":"50"}, {"UUID":"51"}]},
+{"Name":"VPC 7",		"UUID":"16", "Level":"3", "Relationships":[{"UUID":"52"}, {"UUID":"53"}, {"UUID":"54"}]},
+{"Name":"VPC 8",		"UUID":"17", "Level":"3", "Relationships":[{"UUID":"55"}, {"UUID":"56"}, {"UUID":"57"}]},
+{"Name":"VPC 9",		"UUID":"18", "Level":"3", "Relationships":[{"UUID":"58"}, {"UUID":"59"}, {"UUID":"60"}]},
+{"Name":"VPC 10",		"UUID":"19", "Level":"3", "Relationships":[{"UUID":"61"}, {"UUID":"62"}, {"UUID":"63"}]},
+{"Name":"VPC 11",		"UUID":"20", "Level":"3", "Relationships":[{"UUID":"64"}, {"UUID":"65"}, {"UUID":"66"}]},
+{"Name":"VPC 12",		"UUID":"21", "Level":"3", "Relationships":[{"UUID":"67"}, {"UUID":"68"}, {"UUID":"69"}]},
+{"Name":"VPC 13",		"UUID":"22", "Level":"3", "Relationships":[{"UUID":"70"}, {"UUID":"71"}, {"UUID":"72"}]},
+{"Name":"VPC 14",		"UUID":"23", "Level":"3", "Relationships":[{"UUID":"73"}, {"UUID":"74"}, {"UUID":"75"}]},
+{"Name":"VPC 15",		"UUID":"24", "Level":"3", "Relationships":[{"UUID":"76"}, {"UUID":"77"}, {"UUID":"78"}]},
+{"Name":"VPC 16",		"UUID":"25", "Level":"3", "Relationships":[{"UUID":"79"}, {"UUID":"80"}, {"UUID":"81"}]},
+{"Name":"VPC 17",		"UUID":"26", "Level":"3", "Relationships":[{"UUID":"82"}, {"UUID":"83"}, {"UUID":"84"}]},
+{"Name":"VPC 18",		"UUID":"27", "Level":"3", "Relationships":[{"UUID":"85"}, {"UUID":"86"}, {"UUID":"87"}]},
+{"Name":"VPC 19",		"UUID":"28", "Level":"3", "Relationships":[{"UUID":"88"}, {"UUID":"89"}, {"UUID":"90"}]},
+{"Name":"VPC 20",		"UUID":"29", "Level":"3", "Relationships":[{"UUID":"91"}, {"UUID":"92"}, {"UUID":"93"}]},
+{"Name":"VPC 21",		"UUID":"30", "Level":"3", "Relationships":[{"UUID":"94"}, {"UUID":"95"}, {"UUID":"96"}]},
+{"Name":"VPC 22",		"UUID":"31", "Level":"3", "Relationships":[{"UUID":"97"}, {"UUID":"98"}, {"UUID":"99"}]},
+{"Name":"VPC 23",		"UUID":"32", "Level":"3", "Relationships":[{"UUID":"100"}, {"UUID":"101"}, {"UUID":"102"}]},
+{"Name":"VPC 24",		"UUID":"33", "Level":"3", "Relationships":[{"UUID":"103"}, {"UUID":"104"}, {"UUID":"105"}]},
+
+{"Name":"LOADING_SECURITY_GROUPS",	"UUID":"LOADING_SECURITY_GROUPS", "Level":"1", "Relationships":[]},
+
+{"Name":"1","UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"},{"UUID":"7"},{"UUID":"8"},{"UUID":"9"}]},
+{"Name":"2","UUID":"2", "Level":"1", "Relationships":[{"UUID":"1"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"},{"UUID":"7"},{"UUID":"8"},{"UUID":"9"}]},
+{"Name":"3","UUID":"3", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"4","UUID":"4", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"5","UUID":"5", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"6","UUID":"6", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"7","UUID":"7", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"8","UUID":"8", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"9","UUID":"9", "Level":"1", "Relationships":[{"UUID":"1"}]}
 
 
 ]}
+

@@ -86,16 +86,26 @@
 		</div>
 		<div id = "loadicon" style="display:none"class="loader"></div>
 		<div id="main">
-			<div id = "hierarchyVisualizerDiv"style="position: absolute; height: 90%; width: 100%;">
-			
+			<div id = "hierarchyVisualizerDiv"style="position: absolute; height: 90%; width: 100%;"></div>	
+			<div id = "securityGroupDiv"style="position: absolute; left:25%; top:25%; height: 50%; width: 50%; visibility: hidden;border-style: solid;">
+				
 			</div>	
+			<img id="closeSecurityImg"  onclick="sec()" src="Images\Exit.png" alt="Exit" style="position: absolute; left:72.5%; top:25%; height: 5%; width: 2.5%; visibility: hidden;">
 		</div>
 
 		<script>
-		
+			
 
 			var accessKey;
 			var secretKey;
+			
+			function sec()
+			{
+				document.getElementById("securityGroupDiv").style.visibility='hidden';
+				document.getElementById("hierarchyVisualizerDiv").style.visibility='visible';
+				document.getElementById("closeSecurityImg").style.visibility='hidden';
+				
+			}
 			function login()
 			{
 				document.getElementById("Logout").style.display = "inline";
@@ -121,10 +131,6 @@
 							logout();
 						}
 						alert(this.responseText);
-		
-						
-
-					
 					}
 				}
 

@@ -4,6 +4,13 @@ var Nodes;
 /*Containers used by vis.js to store relationships*/
 var Relationships;
 
+
+var SecurityGroupNodes;
+var SecurityGroupRelationships;
+
+var SecurityGroupEdgeCount = 0
+
+
 /*
 An integer that keeps track of the current index of the .json being  processed.
 This buffer is dedicated to reading from the server sent .json.
@@ -30,12 +37,6 @@ var FileJSONBuffer = [];
 
 /*
 An integer that keeps track of the amount of nodes.
-nodeCount is also used as the id for nodes in the Nodes container.
-*/
-var nodeCount = 0;
-
-/*
-An integer that keeps track of the amount of nodes.
 edgeNum is also used as the id for relationships in the Relationships container.
 */
 var edgeNum = 0;
@@ -46,13 +47,16 @@ when read from a local file.
 */
 var timer;
 
-var finished=false;
-var paused = false;
+var scanFinished=false;
+var scanPaused = false;
 
 var informationJSON;
 
 var readingFromFile = 0;
 var readingFromServer = 0;
+
+var atSecurityGroups = false;
+
 /*Starts the timer*/
 function startTimer() 
 {
@@ -72,7 +76,7 @@ function getNodeFromServer()
 {
 	var xhttp = new XMLHttpRequest();
 	
-	if(finished)
+	if(scanFinished)
 	{
 		alert("Scan Finished");
 		stopScan();
@@ -81,7 +85,7 @@ function getNodeFromServer()
  		
 	xhttp.onreadystatechange = function() 
 	{
-		 if(finished)
+		 if(scanFinished)
 		{
 			alert("Scan Finished");
 			document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
@@ -97,7 +101,7 @@ function getNodeFromServer()
 				return;
 			}
 			
-			if(!finished&&!paused)    
+			if(!scanFinished && !scanPaused)    
 			{
 	
 				var jsonIn = this.responseText;
@@ -112,7 +116,7 @@ function getNodeFromServer()
 	xhttp.send();
 }
 	
-/*The .json objects are processed and their information is added to the visualiser*/
+/*The .json objects from the server are processed and their information is added to the visualiser*/
 function addNodesAndEdges() 
 {
 	if(ServerJSONBuffer.length > bufferCount)
@@ -120,7 +124,6 @@ function addNodesAndEdges()
 		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
 		{
 			addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
-			allNodes.push(ServerJSONBuffer[bufferCount].NodesArray[k].UUID);
 			
 			if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
@@ -137,24 +140,44 @@ function addNodesAndEdges()
 }
 
 
-/*The .json objects are processed and their information is added to the visualiser.*/
+/*The .json objects from the file are processed and their information is added to the visualiser.*/
 function addNodesAndEdgesFile() 
 {
 	if(FileJSONBuffer.length > fileBufferCount)
 	{
-		addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
-		allNodes.push(FileJSONBuffer[fileBufferCount].UUID);
-		
-		if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
+		if(FileJSONBuffer[fileBufferCount].UUID == "LOADING_SECURITY_GROUPS" && FileJSONBuffer[fileBufferCount].Name == "LOADING_SECURITY_GROUPS")
 		{
-			for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
-			{
-				addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type, FileJSONBuffer[fileBufferCount].Level);
-				
-				edgeNum = edgeNum + 1;
-			}
+			atSecurityGroups = true;
 		}
 		
+		if(!atSecurityGroups)
+		{
+			addNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name, FileJSONBuffer[fileBufferCount].Level);
+			
+			if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
+			{
+				for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
+				{
+					addEdge(edgeNum, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].type, FileJSONBuffer[fileBufferCount].Level);
+					
+					edgeNum = edgeNum + 1;
+				}
+			}
+		}
+		else
+		{
+			addSecurityGroupNode(FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Name);
+			
+			if(FileJSONBuffer[fileBufferCount].Relationships.length != 0)
+			{
+				for(j = 0; j < FileJSONBuffer[fileBufferCount].Relationships.length; j++)
+				{
+					addSecurityGroupEdge(SecurityGroupEdgeCount, FileJSONBuffer[fileBufferCount].UUID, FileJSONBuffer[fileBufferCount].Relationships[j].UUID);
+					
+					SecurityGroupEdgeCount = SecurityGroupEdgeCount + 1;
+				}
+			}
+		}
 		fileBufferCount = fileBufferCount + 1;
 	}
 }
@@ -385,6 +408,66 @@ function addEdge(idIn, fromIn, toIn, type, level)
 	}
 }
 
+
+function addSecurityGroupNode(idIn, labelIn)
+{
+	try
+	{
+		SecurityGroupNodes.add(
+			{
+				id: idIn,
+				label: labelIn,
+				//level: levelIn,
+				color: 
+				{
+					background:'#ff8c1a', 
+					border:'black', 
+					highlight:
+					{
+						background:'#ff8c1a',
+						border: '#D35A1A'
+					},
+					hover: 
+					{
+						background:'#ff8c1a',
+						border: '#D35A1A'
+					}
+				}
+			});
+		}
+		catch (err) 
+		{
+			alert(err);
+		}
+}
+
+function addSecurityGroupEdge(idIn, fromIn, toIn)
+{
+	try
+	{
+		SecurityGroupRelationships.add(
+		{
+			id: idIn,
+			from: fromIn,
+			to: toIn,
+			dashes: false,
+			color: 
+			{
+				color:'black',
+				highlight:'#D35A1A',
+				hover: '#D35A1A'
+			},
+
+		});
+		
+	}
+	catch (err) 
+	{
+		alert(err);
+	}
+}
+
+
 /*
 The update node function as specified in vis.js tutorials.
 Currently, is is not in use, but is useful as a reference, should it become needed.
@@ -477,18 +560,14 @@ var openFile = function (event)
 	reader.readAsText(input.files[0]);
 };
 
-/*
-Takes in the json object from the server and adds it to the buffer.
-*/
+/*Takes in the json object from the server and adds it to the buffer..*/
 function readInJSONFromServer(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
 	ServerJSONBuffer.push(obj);
 }
 
-/*
-Takes in the json object from the file and adds it to the buffer.
-*/
+/*Takes in the json object from the file and adds it to the buffer.*/
 function readInJSONFromFile(jsonIn)
 {
 	var obj = JSON.parse(jsonIn);
@@ -505,17 +584,22 @@ function readInJSONFromFile(jsonIn)
 	startTimer();
 }
 
-/*
-Cleans out the entire visualisation
-*/
+/*Cleans out the entire visualisation*/
 function clearNodesAndEdges()
 {
 	var removedIds = Nodes.clear();
 	removedIds = Relationships.clear();
+	removedIds =  SecurityGroupNodes.clear();
+	removedIds = SecurityGroupRelationships.clear();
 	ServerJSONBuffer = [];
 	FileJSONBuffer = [];
 	fileBufferCount = 0;
 	bufferCount = 0;
+	scanFinished=false;
+	scanPaused = false;
+	SecurityGroupEdgeCount = 0
+	
+	atSecurityGroups = false;
 	
 	draw();
 
@@ -527,21 +611,30 @@ function getBufferContents()
 	return ServerJSONBuffer;
 }
 
-/*
-Initiates the visualisation upon startup.
-*/
+
+//function load
+
+
+
+
+
+
+
+/*Initiates the visualisation upon startup.*/
 function draw()
 {
 	Nodes = new vis.DataSet();
-
 	Relationships = new vis.DataSet();
+	SecurityGroupNodes = new vis.DataSet();
+	SecurityGroupRelationships = new vis.DataSet();
 
 	var options =
         {
 		interaction: 
 		{
 			navigationButtons: true, 
-			keyboard: true, hover: true, 
+			keyboard: true, 
+			hover: true, 
 			hideEdgesOnDrag: true
 		},
                 nodes: 
@@ -637,7 +730,152 @@ function draw()
 		xhttp.send();
 		
 		
+		
+		document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
+		document.getElementById("securityGroupDiv").style.visibility='visible';
+		document.getElementById("closeSecurityImg").style.visibility='visible';
+
+		drawSecurity(ids);
+	});	
+}
+
+function getSecurityGroupNode(id)
+{
+	for(var i = 1; i < SecurityGroupNodes.length; i++)
+	{
+		if(SecurityGroupNodes.get(i).id == id)
+		{
+			return SecurityGroupNodes.get(i);
+		}
+	}
 	
-	});
+	return -1;
+}
+
+function getSecurityGroupRelationships(id)
+{
+	var cur = new vis.DataSet();
 	
+	for(var i = 0; i < SecurityGroupRelationships.length; i++)
+	{
+		if(SecurityGroupRelationships.get(i).from == id)
+		{
+			cur.add(SecurityGroupRelationships.get(i));
+			SecurityGroupNodes.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
+		}
+	}
+	
+	return cur;
+}
+
+
+
+
+var temp1;
+var temp2;
+
+function getsus(id)
+{
+	temp1 = new vis.DataSet();
+ temp2 = new vis.DataSet();
+	var root = false;
+	
+	for(var i = 0; i < SecurityGroupRelationships.length; i++)
+	{
+		if(SecurityGroupRelationships.get(i).from == id)
+		{
+			if(!root)
+			{
+				temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).from));
+				root = true;
+			}
+			
+			temp1.add(SecurityGroupRelationships.get(i));
+			//alert(SecurityGroupRelationships.get(i).to);
+			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
+		}
+	}
+	
+	//return cur;
+	
+	//nodes: SecurityGroupNodes,
+       //         edges: SecurityGroupRelationships
+}
+
+
+
+
+
+
+
+
+function drawSecurity(id)
+{
+	var currentNode, currentRelationships;
+getsus(id);
+	var options =
+        {
+		interaction: 
+		{
+			navigationButtons: true, 
+			keyboard: true, 
+			hover: true, 
+			hideEdgesOnDrag: true
+		},
+                nodes: 
+		{
+			shape: 'dot', 
+			borderWidth:3,
+			size:40,
+			shapeProperties: 
+			{ 
+				useBorderWithImage:true
+			},
+			color: 
+			{
+				background:'white', 
+				border:'black', 
+				highlight:
+				{
+					background:'white',
+					border: 'black '
+				},
+				hover: 
+				{
+					border: 'black'
+				}
+
+			},
+			font: 
+			{
+				size:15, color:'white', face:'courier', strokeWidth:3, strokeColor:'black'
+			}	
+		
+		},
+                edges: 
+		{
+			width: 2,
+			smooth: 
+			{
+				type:"continuous",
+				forceDirection: "none",
+				roundness: 0.0
+			}
+		},
+		physics: 
+		{
+			enabled: false
+		}	
+	};
+
+	var data =
+	{
+                nodes: temp2,
+                edges: temp1
+	};
+
+	var container = document.getElementById("securityGroupDiv");
+
+	networkSecurity = new vis.Network(container, data, options);
+		
 }
