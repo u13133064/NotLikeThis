@@ -22,6 +22,7 @@ public class InstanceScannerThread implements ThreadedScannerInterface
     private String regionName;
     private AmazonEC2 ec2;
     private SharedBuffer buffer;
+	private String typeScan="";
 
    InstanceScannerThread(String regionName, AmazonEC2 ec2,SharedBuffer buffer)
     {
@@ -38,6 +39,15 @@ public class InstanceScannerThread implements ThreadedScannerInterface
         this.uuid=uuid;
         this.identifier=identifier;
 
+    }
+	
+	public InstanceScannerThread(String regionName, String uuid, String identifier, AmazonEC2 ec2, SharedBuffer buffer, String typeScan) {
+        this.regionName=regionName;
+        this.ec2=ec2;
+        this.buffer=buffer;
+        this.uuid=uuid;
+        this.identifier=identifier;
+		this.typeScan=typeScan;
     }
 
     public void scanContext()
@@ -64,6 +74,10 @@ public class InstanceScannerThread implements ThreadedScannerInterface
         if(uuid.equals("")) {
             scanContext();
         }
+		else if(typeScan.equals("up")
+		{
+			scanUp();
+		}
         else
         {
             scanOnly();
@@ -102,6 +116,40 @@ public class InstanceScannerThread implements ThreadedScannerInterface
 
 
         }
+		
+	public void scanUp() {
+		
+		DescribeInstancesRequest describeInstancesRequest;
+        if(identifier.equals("Vpc"))
+        {
+            Filter vpcFilter = new Filter("vpc-id").withValues(uuid);
+            describeInstancesRequest=new DescribeInstancesRequest().withFilters(vpcFilter);
+        }
+        else if(identifier.equals("Subnet"))
+        {
+            Filter subnetFilter = new Filter("subnet-id").withValues(uuid);
+            describeInstancesRequest=new DescribeInstancesRequest().withFilters(subnetFilter);
+        }
+        else{
+            describeInstancesRequest= new DescribeInstancesRequest().withInstanceIds(uuid);
+        }
+        DescribeInstancesResult instancesResult;
+        try
+        {
+         instancesResult = ec2.describeInstances(describeInstancesRequest);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
+		
+		DescribeInstancesResult describeInstancesResult = ec2.describeInstances(describeInstancesResult);
+        List<Instance> instances = describeInstancesResult.getInstances();
+		uuid = instances.get(0).getSubnetId();
+		
+		new Thread(new VpcScannerThread(regionName,uuid,ec2,buffer)).start();
+    }
 
     private void addInstances(List<Reservation> reservations) {
 
