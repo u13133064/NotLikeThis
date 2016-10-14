@@ -125,7 +125,7 @@ function addNodesAndEdges()
 		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
 			{
 				
-				if(ServerJSONBuffer[k].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[k].Name == "LOADING_SECURITY_GROUPS")
+				if(ServerJSONBuffer[bufferCount].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[bufferCount].Name == "LOADING_SECURITY_GROUPS")
 				{
 					atSecurityGroups = true;
 					alert("Security Group");
