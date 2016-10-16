@@ -8,6 +8,9 @@ var Relationships;
 var SecurityGroupNodes;
 var SecurityGroupRelationships;
 
+var currentSecurityGroupNodes;
+var currentSecurityGroupRelationships;
+
 var SecurityGroupEdgeCount = 0
 
 
@@ -46,6 +49,7 @@ An interval variable that determines the rate at which nodes are added to the vi
 when read from a local file.
 */
 var timer;
+var securityTimer;
 
 var scanFinished=false;
 var scanPaused = false;
@@ -56,19 +60,22 @@ var readingFromFile = 0;
 var readingFromServer = 0;
 
 var atSecurityGroups = false;
+var currentNodeID;
+var securityRoot;
 
 /*Starts the timer*/
-function startTimer() 
+function startTimerForFile() 
 {
 	timer = setInterval(addNodesAndEdgesFile, 10);
 	timerIsActive = true;
 }
 
 /*Stops the timer*/
-function stopTimer()
+function stopTimerForFile()
 {
 	clearInterval(timer);
 	timerIsActive = false;
+	alert("File scan has finished");
 }
 
 /*Reads in nodes from the server's .json objects passed to the browser*/
@@ -121,50 +128,21 @@ function addNodesAndEdges()
 {
 	if(ServerJSONBuffer.length > bufferCount)
 	{
-		
 		for(var k = 0; k< ServerJSONBuffer[bufferCount].NodesArray.length; k++)
+		{
+			addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+			
+			if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
 			{
-				
-				if(ServerJSONBuffer[bufferCount].UUID == "LOADING_SECURITY_GROUPS" && ServerJSONBuffer[bufferCount].Name == "LOADING_SECURITY_GROUPS")
+				for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
 				{
-					atSecurityGroups = true;
-					alert("Security Group");
-				}
-				
-				if(!atSecurityGroups)
-				{
-				
-					addNode(ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Name, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
+					addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
 					
-					if(ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length != 0)
-					{
-						for(j = 0; j < ServerJSONBuffer[bufferCount].NodesArray[k].Relationships.length; j++)
-						{
-							addEdge(edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].UUID, ServerJSONBuffer[bufferCount].NodesArray[k].Relationships[j].type, edgeNum, ServerJSONBuffer[bufferCount].NodesArray[k].Level);
-							
-							edgeNum = edgeNum + 1;
-						}
-					}
-				
+					edgeNum = edgeNum + 1;
 				}
-				else
-				{
-
-						addSecurityGroupNode(ServerJSONBuffer[bufferCount].UUID, ServerJSONBuffer[bufferCount].Name);
-						
-						if(ServerJSONBuffer[bufferCount].Relationships.length != 0)
-						{
-							for(j = 0; j < ServerJSONBuffer[bufferCount].Relationships.length; j++)
-							{
-								addSecurityGroupEdge(SecurityGroupEdgeCount, ServerJSONBuffer[bufferCount].UUID, ServerJSONBuffer[bufferCount].Relationships[j].UUID);
-								
-								SecurityGroupEdgeCount = SecurityGroupEdgeCount + 1;
-							}
-						}
-					}
-				
-				bufferCount=bufferCount+1;
 			}
+		}
+		bufferCount=bufferCount+1;
 	}
 }
 
@@ -206,8 +184,13 @@ function addNodesAndEdgesFile()
 					SecurityGroupEdgeCount = SecurityGroupEdgeCount + 1;
 				}
 			}
+			
 		}
 		fileBufferCount = fileBufferCount + 1;
+	}
+	else
+	{
+		stopTimerForFile();
 	}
 }
 
@@ -610,7 +593,7 @@ function readInJSONFromFile(jsonIn)
 		FileJSONBuffer.push(obj2);
 	}
 
-	startTimer();
+	startTimerForFile();
 }
 
 /*Cleans out the entire visualisation*/
@@ -627,7 +610,7 @@ function clearNodesAndEdges()
 	scanFinished=false;
 	scanPaused = false;
 	SecurityGroupEdgeCount = 0
-	
+	securityGroupCount = 0;
 	atSecurityGroups = false;
 	
 	draw();
@@ -645,10 +628,54 @@ function getBufferContents()
 var temp1;
 var temp2;
 
-function getSecurityGroupOf(id)
+/*Starts the timer*/
+function startTimerForSecurityGroups() 
 {
+	securityTimer = setInterval(function()
+	{
+		if(securityGroupCount < SecurityGroupRelationships.length)
+		{
+			if(SecurityGroupRelationships.get(securityGroupCount).from == currentNodeID)
+			{
+				if(!securityRoot)
+				{
+					currentSecurityGroupNodes.add(getSecurityGroupNode(SecurityGroupRelationships.get(securityGroupCount).from));
+					securityRoot = true;
+				}
+				
+				currentSecurityGroupRelationships.add(SecurityGroupRelationships.get(securityGroupCount));
+				currentSecurityGroupNodes.add(getSecurityGroupNode(SecurityGroupRelationships.get(securityGroupCount).to));
+			}
+			securityGroupCount++;
+		}
+		else
+		{
+			stopTimerForSecurityGroups()
+		}
+	
+		
+	}, 10);
+	timerIsActive = true;
+}
+
+/*Stops the timer*/
+function stopTimerForSecurityGroups()
+{
+	clearInterval(securityTimer);
+	timerIsActive = false;
+	securityGroupCount = 0;
+	//alert("sec scan has finished");
+}
+
+var securityGroupCount = 0;
+
+
+
+function getSecurityGroupOf(id)
+{//alert("sexc");
 	temp1 = new vis.DataSet();
- temp2 = new vis.DataSet();
+	temp2 = new vis.DataSet();
+	
 	var root = false;
 	
 	for(var i = 0; i < SecurityGroupRelationships.length; i++)
@@ -662,15 +689,9 @@ function getSecurityGroupOf(id)
 			}
 			
 			temp1.add(SecurityGroupRelationships.get(i));
-			//alert(SecurityGroupRelationships.get(i).to);
-			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
+			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));	
 		}
 	}
-	
-	//return cur;
-	
-	//nodes: SecurityGroupNodes,
-       //         edges: SecurityGroupRelationships
 }
 
 
@@ -686,6 +707,8 @@ function draw()
 	Relationships = new vis.DataSet();
 	SecurityGroupNodes = new vis.DataSet();
 	SecurityGroupRelationships = new vis.DataSet();
+	currentSecurityGroupNodes = new vis.DataSet();
+	currentSecurityGroupRelationships = new vis.DataSet();
 
 	var options =
         {
@@ -827,20 +850,14 @@ function getSecurityGroupRelationships(id)
 	return cur;
 }
 
-
-
-
-
-
-
-
-
-
-
 function drawSecurity(id)
 {
+	currentNodeID = id;
 	var currentNode, currentRelationships;
-	getSecurityGroupOf(id);
+	securityRoot = false;
+	currentSecurityGroupNodes.clear();
+	currentSecurityGroupRelationships.clear();
+	
 	var options =
         {
 		interaction: 
@@ -883,27 +900,30 @@ function drawSecurity(id)
                 edges: 
 		{
 			width: 2,
-			smooth: 
-			{
-				type:"continuous",
-				forceDirection: "none",
-				roundness: 0.0
+			"smooth": {
+				"type": "discrete",
+			"forceDirection": "none",
+			"roundness": 0
 			}
 		},
-		physics: 
-		{
-			enabled: false
-		}	
+		"physics": {
+    "barnesHut": {
+      "centralGravity": 0.2,
+      "springLength": 70
+    },
+    "minVelocity": 0.75
+  }
 	};
 
 	var data =
 	{
-                nodes: temp2,
-                edges: temp1
+                nodes: currentSecurityGroupNodes,
+                edges: currentSecurityGroupRelationships
 	};
 
 	var container = document.getElementById("securityGroupDiv");
 
 	networkSecurity = new vis.Network(container, data, options);
+	startTimerForSecurityGroups() ;
 		
 }
