@@ -22,12 +22,13 @@ public class SharedBuffer implements SmartBufferInterface{
     private HashMap<String,String> informationHashMap = new HashMap<String,String>();
     private HashMap<String,NetworkTree> uuidHashMap = new HashMap<String, NetworkTree>();
     private HashMap<String, LinkedList<SecurityRuleSet>> securityGroupHashMap = new HashMap<String, LinkedList<SecurityRuleSet>>();
+    private LinkedList<Integer>connections= new LinkedList<Integer>();
     Integer threadNotifier;
     private boolean finished=false;
 
     public SharedBuffer()
     {
-        frontBuffer=new ArrayBlockingQueue<NetworkTree>(10000);
+        frontBuffer=new ArrayBlockingQueue<NetworkTree>(100000);
         currentTree = new Node();
         currentTree.setInformation("AWS");
         currentTree.setName("Root");
@@ -69,6 +70,7 @@ public class SharedBuffer implements SmartBufferInterface{
         System.out.println(frontBuffer.size());
         try {
             frontBuffer.put(tree);
+
 
         } catch (InterruptedException e) {
             System.out.println("Buffer is full");
@@ -114,12 +116,22 @@ public class SharedBuffer implements SmartBufferInterface{
         String output="{"+'"' + "NodesArray"+'"' +":[";
         if(nodeList.isEmpty())
         {
-            if(finished)
+
+            if(finished && connections.size()==0)
              return "null";
-            else
+
+            else if(!finished)
             {
+                Node communicationNode = new Node();
+                communicationNode.setName("LOADING_SECURITY_GROUPS");
+                communicationNode.setUUID("LOADING_SECURITY_GROUPS");
+                consructJSON(communicationNode);
                 createConnections();
                 finished=true;
+            }
+            else
+            {
+                return "waiting";
             }
         }
         int counter =0;
@@ -144,15 +156,17 @@ public class SharedBuffer implements SmartBufferInterface{
         {
             Node node = new Node();
             node.setName(instanceList.get(i));
-            node.setUUID(instanceList.get(i)+"/2");
+            node.setUUID(instanceList.get(i));
             node.setLevel(5);
 
-            for(int j = 0;j<instanceList.size();j++)
-            {
-                if(checkConnection(securityGroupHashMap.get(instanceList.get(i)),securityGroupHashMap.get(instanceList.get(j))))
-                {
+            for(int j = 0;j<instanceList.size();j++) {
+                if (!instanceList.get(i).equals(instanceList.get(j))) {
 
-                    node.addRelationship(instanceList.get(j)+"/2");
+
+                    if (checkConnection(securityGroupHashMap.get(instanceList.get(i)), securityGroupHashMap.get(instanceList.get(j)))) {
+
+                        node.addRelationship(instanceList.get(j));
+                    }
                 }
             }
             node.setInformation(informationHashMap.get(instanceList.get(i)));
@@ -223,5 +237,15 @@ public class SharedBuffer implements SmartBufferInterface{
 
     public Integer getThreadNotifier() {
         return threadNotifier;
+    }
+
+    public void connect() {
+        connections.add(0);
+
+    }
+
+    public void disconnect() {
+        connections.remove();
+
     }
 }

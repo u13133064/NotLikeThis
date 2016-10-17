@@ -67,6 +67,7 @@ public class VpcScannerThread implements ThreadedScannerInterface{
 
         }
 
+
     }
     public void scanOnly()
     {
@@ -119,6 +120,7 @@ public class VpcScannerThread implements ThreadedScannerInterface{
     }
 
     public void run() {
+        buffer.connect();
         System.out.println("Starting VPC thread for : "+regionName);
         if(uuid.equals("")) {
             scanContext();
@@ -128,5 +130,6 @@ public class VpcScannerThread implements ThreadedScannerInterface{
         {
             scanOnly();
         }
+        buffer.disconnect();
     }
 }

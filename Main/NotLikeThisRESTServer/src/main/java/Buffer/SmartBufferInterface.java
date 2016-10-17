@@ -20,4 +20,8 @@ public interface SmartBufferInterface {
     void resumeThreads();
     int getState();
     Integer getThreadNotifier();
+
+    void connect();
+
+    void disconnect();
 }

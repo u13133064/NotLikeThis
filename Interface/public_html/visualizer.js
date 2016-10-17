@@ -9,7 +9,7 @@ var SecurityGroupNodes;
 var SecurityGroupRelationships;
 
 var SecurityGroupEdgeCount = 0
-
+var parentNodeScanned;
 
 /*
 An integer that keeps track of the current index of the .json being  processed.
@@ -71,6 +71,7 @@ function stopTimer()
 	timerIsActive = false;
 }
 
+
 /*Reads in nodes from the server's .json objects passed to the browser*/
 function getNodeFromServer() 
 {
@@ -85,40 +86,54 @@ function getNodeFromServer()
  		
 	xhttp.onreadystatechange = function() 
 	{
-		 if(scanFinished)
-		{
-			alert("Scan Finished");
-			document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
-			return;
-		}
+		
 	  
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			if(this.responseText=="null")
 			{	
-				alert("Scan Finished");
-				document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
-				return;
+				 scanFinished =true;
+				
+
 			}
-			
-			if(!scanFinished && !scanPaused)    
+   			else if(this.responseText=="waiting")
 			{
-	
-				var jsonIn = this.responseText;
-				readInJSONFromServer(jsonIn);
-				addNodesAndEdges() ;
-				getNodeFromServer();
+				       
+					scanFinished=false;
+					getNodeFromServer();
+			
 			}
+
+			
+			else 
+			{
+				if(!scanFinished && !scanPaused)    
+				{
+					console.log(this.responseText);
+	
+					var jsonIn = this.responseText;
+					readInJSONFromServer(jsonIn);
+					addNodesAndEdges() ;
+					getNodeFromServer();
+				}
+			}		
+			
 		}
 	}
 
 	xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getLatestTree", true);
 	xhttp.send();
+ 	if(scanFinished)
+		{
+			alert("Scan Finished");
+			document.getElementById("scanNetworkButton").innerHTML = "Scan Network";
+			return;
+		}
 }
 	
 /*The .json objects from the server are processed and their information is added to the visualiser*/
 function addNodesAndEdges() 
-{
+{       console.log(ServerJSONBuffer.length);
 	if(ServerJSONBuffer.length > bufferCount)
 	{
 		

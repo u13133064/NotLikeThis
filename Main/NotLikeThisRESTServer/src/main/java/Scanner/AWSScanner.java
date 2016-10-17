@@ -187,73 +187,10 @@ public class AWSScanner implements ScannerInterface {
             //delegate scan to the thread if it finds the id
 
         }
-    }
-	
-    private void scanSubnetworksUp(String identifier) {
-        //Look through each region for subnet
-        System.out.println("Scanning Regions ");
-        buffer.removeRoot();
-        DescribeRegionsResult regionsResult= ec2.describeRegions();
-        List<Region> regions= regionsResult.getRegions();
-
-        for(int i =0;i<regions.size();i++)
-        {
-            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
-            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
-
-            //launch a subnet scanner
-            new Thread(new SubNetworkScannerThread(regions.get(i).getRegionName(),identifier,"",threadEc2,buffer, "up")).start();
-            //delegate scan to the thread if it finds the id
-
-        }
 
 
 
     }
-	
-    private void scanInstancesUp(String identifier) {
-        //Look through each region for instance
-        System.out.println("Scanning Regions ");
-        buffer.removeRoot();
-        DescribeRegionsResult regionsResult= ec2.describeRegions();
-        List<Region> regions= regionsResult.getRegions();
-
-        for(int i =0;i<regions.size();i++)
-        {
-            AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
-            threadEc2.setRegion(RegionUtils.getRegion(regions.get(i).getRegionName()));
-
-            //launch a Vpc scanner
-            new Thread(new InstanceScannerThread(regions.get(i).getRegionName(),identifier,"",threadEc2,buffer, "up")).start();
-            //delegate scan to the thread if it finds the id
-
-        }
-
-    }
-	
-	public void scanNetworkUp(String level, String identifier)
-	{
-        if (level.equals("Vpc"))
-        {
-            scanVpcs(identifier);
-        }
-        else if (level.equals("Subnet"))
-        {
-            scanSubnetworksUp(identifier);
-        }
-        else if (level.equals("Instance"))
-        {
-            scanInstancesUp(identifier);
-        }
-        else if(level.equals("Region"))
-        {
-            scanFullNetwork();
-        }
-        else
-        {
-            scanFullNetwork();
-        }
-	}
 
     public void run() {
         switch (option.getScannChoice())

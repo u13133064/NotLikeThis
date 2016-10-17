@@ -6,4 +6,5 @@ package Scanner;
 public interface ThreadedScannerInterface extends Runnable {
     void scanOnly();
     void scanContext();
+    
 }
