@@ -7,7 +7,7 @@ var Relationships;
 
 var SecurityGroupNodes;
 var SecurityGroupRelationships;
-
+var currentID;
 var SecurityGroupEdgeCount = 0
 var parentNodeScanned;
 
@@ -814,7 +814,7 @@ function draw()
 		document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
 		document.getElementById("securityGroupDiv").style.visibility='visible';
 		document.getElementById("closeSecurityImg").style.visibility='visible';
-
+		currentID=ids;
 		drawSecurity(ids);
 	});	
 }
@@ -922,5 +922,23 @@ function drawSecurity(id)
 	var container = document.getElementById("securityGroupDiv");
 
 	networkSecurity = new vis.Network(container, data, options);
+	networkSecurity .on( 'selectNode', function(properties) 
+	{
+		var ids = properties.nodes;
+		var xhttp = new XMLHttpRequest();
+	
+		xhttp.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				if(this.responseText!="null")
+				{	
+					document.getElementById("information").value =this.responseText ;
+				}
+			}
+		};
+		xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getConnection?uuid="+currentID+"&otherId="+ids, true);
+		xhttp.send();
+	});	
 		
 }
