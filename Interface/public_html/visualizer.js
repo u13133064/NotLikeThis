@@ -669,7 +669,7 @@ var temp2;
 function getSecurityGroupOf(id)
 {
 	temp1 = new vis.DataSet();
- temp2 = new vis.DataSet();
+       temp2 = new vis.DataSet();
 	var root = false;
 	
 	for(var i = 0; i < SecurityGroupRelationships.length; i++)
@@ -897,18 +897,21 @@ function drawSecurity(id)
                 edges: 
 		{
 			width: 2,
-			smooth: 
-			{
-				type:"continuous",
-				forceDirection: "none",
-				roundness: 0.0
+			"smooth": {
+				"type": "discrete",
+			"forceDirection": "none",
+			"roundness": 0
 			}
 		},
-		physics: 
-		{
-			enabled: false
-		}	
+		"physics": {
+    "barnesHut": {
+      "centralGravity": 0.2,
+      "springLength": 70
+    },
+    "minVelocity": 0.75
+  }
 	};
+
 
 	var data =
 	{
