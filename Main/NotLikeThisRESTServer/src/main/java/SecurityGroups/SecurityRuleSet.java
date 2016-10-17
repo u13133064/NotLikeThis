@@ -2,17 +2,66 @@ package SecurityGroups;
 
 import org.apache.commons.net.util.SubnetUtils;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
  * Created by Jedd Shneier.
  */
 public class SecurityRuleSet {
-    LinkedList<SecurityRule> outboundRules;
-    LinkedList<SecurityRule> inboundRules;
-    String ipAddress;
-    String id;
+    private  LinkedList<SecurityRule> outboundRules;
+    private  LinkedList<SecurityRule> inboundRules;
+    private String ipAddress;
+    private  String id;
+    private HashMap<String,LinkedList<SecurityRuleSet>> connections = new HashMap<String, LinkedList<SecurityRuleSet>>();
 
+    @Override
+    public String toString() {
+        return "SecurityGroup: "  + id +
+                "\n"
+                +"Outbound rules: "+getOutboundRules()
+                + "\n"
+                +"Inbound rules: "+getInboundRules()
+                +"\n"
+                +"#";
+    }
+
+    public void addConnection(SecurityRuleSet securityRuleSet)
+    {
+        String id=securityRuleSet.getId();
+        if(!connections.containsKey(id))
+        {
+            LinkedList<SecurityRuleSet> set = new LinkedList<SecurityRuleSet>();
+            set.add(securityRuleSet);
+            connections.put(id,set);
+        }
+        else
+        {
+            LinkedList<SecurityRuleSet> set = connections.get(id);
+            set.add(securityRuleSet);
+            connections.put(id,set);
+        }
+
+    }
+    public String getConnectionInformation(String id)
+    {
+        if(id.equals(this.id))
+        {
+            return toString();
+        }
+        if(!connections.containsKey(id))
+        {
+            return toString();
+        }
+        String output = toString();
+        LinkedList<SecurityRuleSet> ruleSet= connections.get(id);
+        for(int i =0;i<ruleSet.size();i++)
+        {
+            output+=ruleSet.get(i).toString();
+        }
+        return output;
+
+    }
     public String getId() {
         return id;
     }
@@ -21,16 +70,26 @@ public class SecurityRuleSet {
         this.id = id;
     }
 
-    public LinkedList<SecurityRule> getOutboundRules() {
-        return outboundRules;
+    public String getOutboundRules() {
+        String output="";
+        for(int i=0;i<outboundRules.size();i++)
+        {
+            output+=outboundRules.get(i).toString();
+        }
+        return output;
     }
 
     public void setOutboundRules(LinkedList<SecurityRule> outboundRules) {
         this.outboundRules = outboundRules;
     }
 
-    public LinkedList<SecurityRule> getInboundRules() {
-        return inboundRules;
+    public String getInboundRules() {
+        String output="";
+        for(int i=0;i<inboundRules.size();i++)
+        {
+            output+=inboundRules.get(i).toString();
+        }
+        return output;
     }
 
     public void setInboundRules(LinkedList<SecurityRule> inboundRules) {
@@ -130,6 +189,7 @@ public class SecurityRuleSet {
         return utils.getInfo().isInRange(ip);
 
     }
+
 
 
 }

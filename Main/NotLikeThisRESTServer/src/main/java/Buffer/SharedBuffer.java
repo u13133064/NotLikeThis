@@ -47,7 +47,7 @@ public class SharedBuffer implements SmartBufferInterface{
         {
             NetworkTree node = frontBuffer.remove();
             if(!encountered(node))
-              consructJSON(node);
+                consructJSON(node);
         }
 
 
@@ -118,7 +118,7 @@ public class SharedBuffer implements SmartBufferInterface{
         {
 
             if(finished && connections.size()==0)
-             return "null";
+                return "null";
 
             else if(!finished)
             {
@@ -181,6 +181,7 @@ public class SharedBuffer implements SmartBufferInterface{
             System.out.println("No security Group");
             return false;
         }
+        boolean bflag= false;
         for(int i =0;i<securityRuleSets.size();i++)
         {
             for(int j =0;j<securityRuleSets2.size();j++)
@@ -189,12 +190,13 @@ public class SharedBuffer implements SmartBufferInterface{
                 {
                     if (securityRuleSets2.get(j).canRecieveFrom(securityRuleSets.get(i)))
                     {
-                        return  true;
+                        securityRuleSets.get(i).addConnection(securityRuleSets2.get(j));
+                        bflag= true;
                     }
                 }
             }
         }
-        return false;
+        return bflag;
     }
 
     public String getInformation(String uuid) {
@@ -203,8 +205,24 @@ public class SharedBuffer implements SmartBufferInterface{
         return informationHashMap.get(uuid);
     }
 
-    public String getConnections() {
-        return null;
+    public String getConnections(String uuid,String otherID)
+    {
+        String output="";
+        if(securityGroupHashMap.containsKey(uuid))
+        {
+            LinkedList<SecurityRuleSet> securityRuleSets = securityGroupHashMap.get(uuid);
+            LinkedList<SecurityRuleSet> otherSetRules= securityGroupHashMap.get(otherID);
+            for(int i=0;i<securityRuleSets.size();i++)
+            {
+                for(int j=0;j<otherSetRules.size();j++)
+                {
+                        output+= securityRuleSets.get(i).getConnectionInformation(otherSetRules.get(j).getId())+"\n";
+
+                }
+
+            }
+        }
+        return output;
     }
 
     public void removeRoot() {
