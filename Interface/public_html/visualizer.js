@@ -475,17 +475,17 @@ function addSecurityGroupNode(idIn, labelIn)
 				//level: levelIn,
 				color: 
 				{
-					background:'#ff8c1a', 
+					background:'#cc00ff', 
 					border:'black', 
 					highlight:
 					{
-						background:'#ff8c1a',
-						border: '#D35A1A'
+						background:'#cc00ff',
+						border: '#660066'
 					},
 					hover: 
 					{
-						background:'#ff8c1a',
-						border: '#D35A1A'
+						background:'#cc00ff',
+						border: '#660066'
 					}
 				}
 			});
@@ -847,16 +847,6 @@ function getSecurityGroupRelationships(id)
 	return cur;
 }
 
-
-
-
-
-
-
-
-
-
-
 function drawSecurity(id)
 {
 	var currentNode, currentRelationships;
@@ -905,17 +895,20 @@ function drawSecurity(id)
 			width: 2,
 			"smooth": {
 				"type": "discrete",
-			"forceDirection": "none",
-			"roundness": 0
+				"forceDirection": "none",
+				"roundness": 0
 			}
 		},
-		"physics": {
-    "barnesHut": {
-      "centralGravity": 0.2,
-      "springLength": 70
-    },
-    "minVelocity": 0.75
-  }
+		"physics": 
+		{
+			"barnesHut": 
+			{
+				"centralGravity": 0.2,
+				"springLength": 150,
+				"avoidOverlap": 1
+			},
+			"minVelocity": 0.75
+		}
 	};
 
 
