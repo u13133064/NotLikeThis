@@ -1,6 +1,5 @@
 import Buffer.SharedBuffer;
 import Credentials.Credential;
-import ParemeterBeans.ConnectionBean;
 import ParemeterBeans.CredentialBean;
 import ParemeterBeans.OptionBean;
 import ParemeterBeans.UUIDBean;
@@ -148,17 +147,6 @@ public class ServerAPI {
     public Object getInformation(@BeanParam UUIDBean paramBean) {
         return Response.ok() //200
                 .entity(sharedBuffer.getInformation(paramBean.uuid),new Annotation[0])
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-                .allow("OPTIONS").build();
-
-    }
-    @GET
-    @Path("/getConnection")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Object getConnection(@BeanParam ConnectionBean paramBean) {
-        return Response.ok() //200
-                .entity(sharedBuffer.getConnections(paramBean.uuid,paramBean.otherId),new Annotation[0])
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
                 .allow("OPTIONS").build();

@@ -13,7 +13,7 @@ public interface SmartBufferInterface {
     void addToSecurityGroups(String id,SecurityRuleSet securityRuleSet);
     String getJSONList();
     String getInformation(String uuid);
-    String getConnections(String uuid,String otherId);
+    String getConnections();
     void removeRoot();
     void stopThreads();
     void pauseThreads();

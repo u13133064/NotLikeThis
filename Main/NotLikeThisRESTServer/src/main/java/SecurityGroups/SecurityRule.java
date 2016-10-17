@@ -12,8 +12,6 @@ public class SecurityRule
     private LinkedList<String> securtyGroupIds;
     private  String protocol;
     private List<String> IpAdresses;
-    private Integer portFrom;
-    private Integer portTo;
 
     public List<String> getIpAdresses() {
         return IpAdresses;
@@ -33,24 +31,14 @@ public class SecurityRule
         this.securtyGroupIds = securtyGroupIds;
     }
 
-    @Override
-    public String toString() {
-        return "\n"
-                +"Source :"+getSecurtyGroupIds()+getIpAdresses()+
-                "\n"+"Protocol: "+getProtocol()+
-                "\n"+"PortRanges: " + getPortRanges();
-    }
 
-    public String getPortRanges() {
-        if(portFrom==null || portTo==null)
-        {
-            return "All";
-        }
-        if(portTo==portFrom)
-        {
-            return String.valueOf(portTo);
-        }
-        return portFrom +" - "+portTo;
+
+
+
+
+
+    public int[] getPortRanges() {
+        return portRanges;
     }
 
     public void setPortRanges(int[] portRanges) {
@@ -58,10 +46,6 @@ public class SecurityRule
     }
 
     public String getProtocol() {
-        if(protocol.equals("-1"))
-        {
-            return "All";
-        }
         return protocol;
     }
 
@@ -80,9 +64,5 @@ public class SecurityRule
 
     }
 
-
-    public void setPortRanges(Integer fromPort, Integer toPort) {
-        this.portFrom=fromPort;
-        this.portTo=toPort;
-    }
+    
 }

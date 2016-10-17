@@ -163,11 +163,10 @@ public class InstanceScannerThread implements ThreadedScannerInterface
             {
                 SecurityRule inboundRule = new SecurityRule();
                 inboundRule.setIpAdresses(ipPermisions.get(j).getIpRanges());
-
+                //inboundRule.generateRanges(ipPermisions.get(j).getFromPort(),ipPermisions.get(j).getToPort());
                 inboundRule.setProtocol(ipPermisions.get(j).getIpProtocol());
                 LinkedList<String> securityGroupIds= new LinkedList<String>();
                 List<UserIdGroupPair> userIdGroupPairs = ipPermisions.get(j).getUserIdGroupPairs();
-                inboundRule.setPortRanges(ipPermisions.get(j).getFromPort(),ipPermisions.get(j).getToPort());
                 for(int k = 0;k<userIdGroupPairs.size();k++)
                 {
                     securityGroupIds.add(userIdGroupPairs.get(k).getGroupId());
