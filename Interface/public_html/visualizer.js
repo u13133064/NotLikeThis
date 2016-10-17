@@ -47,14 +47,20 @@ when read from a local file.
 */
 var timer;
 
+/*
+A boolean flag, to determine if the scan has finished
+*/
 var scanFinished=false;
+
+/*
+A boolean flag, to determine if the scan is still active
+*/
 var scanPaused = false;
 
-var informationJSON;
-
-var readingFromFile = 0;
-var readingFromServer = 0;
-
+/*
+A boolean flag. It signals when the scan has finished reading the hierarchial nodes
+and is now reading security group nodes
+*/
 var atSecurityGroups = false;
 
 /*Starts the timer*/
