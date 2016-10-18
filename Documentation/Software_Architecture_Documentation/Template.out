@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{section.1}{Software Architecture Documentation}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Vision}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Architecture requirements}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Architecture Scope}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Quality Requirements}{section.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.4.1}{Critical}{subsection.1.4}% 6
+\BOOKMARK [3][-]{subsubsection.1.4.2}{Important}{subsection.1.4}% 7
+\BOOKMARK [3][-]{subsubsection.1.4.3}{Nice To Have}{subsection.1.4}% 8
+\BOOKMARK [2][-]{subsection.1.5}{Access and integration channels}{section.1}% 9
+\BOOKMARK [2][-]{subsection.1.6}{Architectural Constraint}{section.1}% 10
+\BOOKMARK [1][-]{section.2}{Architectural Design}{}% 11
+\BOOKMARK [2][-]{subsection.2.1}{Layered Architecture}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Application Layer}{subsection.2.1}% 13
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Scanner}{subsection.2.1}% 14
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Buffer}{subsection.2.1}% 15
+\BOOKMARK [3][-]{subsubsection.2.1.4}{Client Layer}{subsection.2.1}% 16
+\BOOKMARK [3][-]{subsubsection.2.1.5}{Miscellaneous }{subsection.2.1}% 17
+\BOOKMARK [2][-]{subsection.2.2}{RESTFUL Design}{section.2}% 18
+\BOOKMARK [2][-]{subsection.2.3}{Threading Tactic}{section.2}% 19
+\BOOKMARK [1][-]{section.3}{Reference architectures and frameworks }{}% 20
+\BOOKMARK [1][-]{section.4}{Access and integration channels}{}% 21
+\BOOKMARK [2][-]{subsection.4.1}{Access channels}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.2}{Integration Channels}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{Technologies}{}% 24
