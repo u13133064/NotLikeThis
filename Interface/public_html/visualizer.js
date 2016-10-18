@@ -296,17 +296,17 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				color: 
 				{
-					background:'#66ff33', 
+					background:'#FF3C28', 
 					border:'black', 
 					highlight:
 					{
-						background:'#66ff33',
-						border: '#0C943D'
+						background:'#FF3C28',
+						border: '#990000 '
 					},
 					hover: 
 					{
-						background:'#66ff33',
-						border: '#0C943D'
+						background:'#FF3C28',
+						border: '#990000'
 					}
 				}				
 			});
@@ -319,17 +319,17 @@ function addNode(idIn, labelIn, levelIn)
 				level: levelIn,
 				color: 
 				{
-					background:'#FF3C28', 
+					background:'#66ff33', 
 					border:'black', 
 					highlight:
 					{
-						background:'#FF3C28',
-						border: '#990000 '
+						background:'#66ff33',
+						border: '#0C943D'
 					},
 					hover: 
 					{
-						background:'#FF3C28',
-						border: '#990000'
+						background:'#66ff33',
+						border: '#0C943D'
 					}
 				}				
 			});
@@ -424,8 +424,8 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				color: 
 				{
 					color:'black',
-					highlight:'#0C943D',
-					hover: '#0C943D'
+					highlight:'#990000',
+					hover: '#990000'
 				},
 			});
 			break;
@@ -440,8 +440,8 @@ function addEdge(idIn, fromIn, toIn, type, level)
 				color: 
 				{
 					color:'black',
-					highlight:'#990000',
-					hover: '#990000'
+					highlight:'#0C943D',
+					hover: '#0C943D'
 				},
 			});
 			break;
@@ -689,22 +689,10 @@ function getSecurityGroupOf(id)
 			}
 			
 			temp1.add(SecurityGroupRelationships.get(i));
-			//alert(SecurityGroupRelationships.get(i).to);
 			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 		}
 	}
-	
-	//return cur;
-	
-	//nodes: SecurityGroupNodes,
-       //         edges: SecurityGroupRelationships
 }
-
-
-
-
-
-
 
 /*Initiates the visualisation upon startup.*/
 function draw()

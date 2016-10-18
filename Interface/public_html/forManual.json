@@ -1,0 +1,55 @@
+{"NodesArray":
+[
+{"Name":"Root",		"UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"}]},
+
+{"Name":"Region 1",		"UUID":"2", "Level":"2", "Relationships":[{"UUID":"4"}, {"UUID":"5"}]},
+{"Name":"Region 2",		"UUID":"3", "Level":"2", "Relationships":[{"UUID":"6"}, {"UUID":"7"}]},
+
+
+{"Name":"VPC 1",		"UUID":"4", "Level":"3", "Relationships":[{"UUID":"8"}, {"UUID":"9"}]},
+{"Name":"VPC 2",		"UUID":"5", "Level":"3", "Relationships":[{"UUID":"10"}, {"UUID":"11"}]},
+{"Name":"VPC 3",		"UUID":"6", "Level":"3", "Relationships":[{"UUID":"12"}, {"UUID":"13"}]},
+{"Name":"VPC 4",		"UUID":"7", "Level":"3", "Relationships":[{"UUID":"14"}, {"UUID":"15"}]},
+
+{"Name":"Subnetwork 1",	"UUID":"8", "Level":"4", "Relationships":[{"UUID":"16"}, {"UUID":"17"}]},
+{"Name":"Subnetwork 2",	"UUID":"9", "Level":"4", "Relationships":[{"UUID":"18"}, {"UUID":"19"}]},
+{"Name":"Subnetwork 3",	"UUID":"10", "Level":"4", "Relationships":[{"UUID":"20"}, {"UUID":"21"}]},
+{"Name":"Subnetwork 4",	"UUID":"11", "Level":"4", "Relationships":[{"UUID":"22"}, {"UUID":"23"}]},
+{"Name":"Subnetwork 5",	"UUID":"12", "Level":"4", "Relationships":[{"UUID":"24"}, {"UUID":"25"}]},
+{"Name":"Subnetwork 6",	"UUID":"13", "Level":"4", "Relationships":[{"UUID":"26"}, {"UUID":"27"}]},
+{"Name":"Subnetwork 7",	"UUID":"14", "Level":"4", "Relationships":[{"UUID":"28"}, {"UUID":"29"}]},
+{"Name":"Subnetwork 8",	"UUID":"15", "Level":"4", "Relationships":[{"UUID":"30"}, {"UUID":"31"}]},
+
+{"Name":"Instance",	"UUID":"16", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"17", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"18", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"19", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"20", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"21", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"22", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"23", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"24", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"25", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"26", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"27", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"28", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"29", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"30", "Level":"5", "Relationships":[]},
+{"Name":"Instance",	"UUID":"31", "Level":"5", "Relationships":[]},
+
+{"Name":"LOADING_SECURITY_GROUPS",	"UUID":"LOADING_SECURITY_GROUPS", "Level":"1", "Relationships":[]},
+
+{"Name":"1","UUID":"1", "Level":"1", "Relationships":[{"UUID":"2"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"},{"UUID":"7"},{"UUID":"8"},{"UUID":"9"},{"UUID":"10"}]},
+{"Name":"2","UUID":"2", "Level":"1", "Relationships":[{"UUID":"1"}, {"UUID":"3"},{"UUID":"4"},{"UUID":"5"},{"UUID":"6"},{"UUID":"7"},{"UUID":"8"},{"UUID":"9"}]},
+{"Name":"3","UUID":"3", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"4","UUID":"4", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"5","UUID":"5", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"6","UUID":"6", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"7","UUID":"7", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"8","UUID":"8", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"9","UUID":"9", "Level":"1", "Relationships":[{"UUID":"1"}]},
+{"Name":"10","UUID":"10", "Level":"1", "Relationships":[{"UUID":"1"}]}
+
+
+]}
+
