@@ -114,24 +114,25 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 \subsection{Use case prioritiation}
 \textbf{Critical} 
 \begin{itemize}
-  \item Log in/log out
-  \item Scan network (through server)
+  \item Log in/Log out
+  \item Scan network
   \item Visualise network
+  \item Get Node Connections
+  \item Get Node information
 \end{itemize}
 \textbf{Important} 
 \begin{itemize}
   \item Stop scan
   \item Resume scan
-  \item Scan Up/Down
-  \item Scan region
-  \item Load scan from local .json
-  \item Save scan to local .json
-  \item Security groups
-  \item Node information
+  \item Scan Up
+  \item Scan Region
+  \item Scan From
+  \item Scan Instances
 \end{itemize}
 \textbf{Nice-To-Have} 
 \begin{itemize}
-\item No clue. Suggestions?
+  \item Load scan from local .json
+  \item Save scan to local .json
 \end{itemize}
 \newpage
 \subsection{Use case/Service contracts}
@@ -150,7 +151,7 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
     Resume scan & An active scan must have been stopped. & The scan resumes its execution. &  This use case provides a method for resuming a previously halted scan.\\ 
     \hline
     
-	Scan Up/Down & The scan must be active. & The direction of the scan is altered & This use case provides a way of changing the direction of the scan.\\ \hline
+	Scan Up & The scan must be active. & The direction of the scan is altered & This use case provides a way of changing the direction of the scan.\\ \hline
     Scan Region & The scan must be active. & The scan refocuses and only scans instances that fall below a certain region. & This use case provides a way to only scan instances that belong to a specific AWS region.\\ \hline
     Load scan from local .json & A .json file with the correct formatting must be stored on the local device. & The browser processes the information on the .json and visualises it, as it would with a normal scan. & This case provides a way load network visualisations, without the need to scan it from the server.\\ \hline
     Save scan to local .json & The scan must be active/ finished. & A window appears that will save a .json file to the local device. The file is named with a time stamp, in order to avoid issues if multiple files are saved & This case provides a way to save a representation of the current scan, that can be loaded at a later date.\\ \hline
