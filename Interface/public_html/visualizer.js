@@ -805,11 +805,15 @@ function draw()
 		
 		
 		
-		document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
-		document.getElementById("securityGroupDiv").style.visibility='visible';
-		document.getElementById("closeSecurityImg").style.visibility='visible';
-		currentID=ids;
-		drawSecurity(ids);
+		
+		if(String(ids).startsWith("i"))
+		{
+			drawSecurity(ids);
+			document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
+			document.getElementById("securityGroupDiv").style.visibility='visible';
+			document.getElementById("closeSecurityImg").style.visibility='visible';
+			currentID=ids;
+		}
 	});	
 }
 
@@ -913,6 +917,7 @@ function drawSecurity(id)
 	{
 		var ids = properties.nodes;
 		var xhttp = new XMLHttpRequest();
+		if(ids)
 	
 		xhttp.onreadystatechange = function() 
 		{
