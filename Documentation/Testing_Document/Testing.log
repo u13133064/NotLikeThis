@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  18 OCT 2016 18:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.15)  19 OCT 2016 10:18
 entering extended mode
-**./Template.tex
-(Template.tex
+**./Testing.tex
+(Testing.tex
 LaTeX2e <2016/03/31> patch level 1
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -22,10 +22,10 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 \@indexfile=\write3
-\openout3 = `Template.idx'.
+\openout3 = `Testing.idx'.
 
 
-Writing index file Template.idx
+Writing index file Testing.idx
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty"
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip43
@@ -156,7 +156,7 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4735.
 \c@Hy@tempcnt=\count96
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
+(C:\Users\Sagax\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -195,8 +195,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 18.
 
-(Template.aux)
-\openout1 = `Template.aux'.
+(Testing.aux)
+\openout1 = `Testing.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
@@ -212,8 +212,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count103
 \scratchdimen=\dimen110
@@ -263,19 +262,19 @@ LaTeX Info: Redefining \ref on input line 24.
 LaTeX Info: Redefining \pageref on input line 24.
 LaTeX Info: Redefining \nameref on input line 24.
 
-(Template.out) (Template.out)
+(Testing.out) (Testing.out)
 \@outlinefile=\write4
-\openout4 = `Template.out'.
+\openout4 = `Testing.out'.
 
 
-<./images/up-logo.jpg, id=279, 287.1528pt x 78.7743pt>
+<./images/up-logo.jpg, id=283, 287.1528pt x 78.7743pt>
 File: ./images/up-logo.jpg Graphic file (type jpg)
 
 <use ./images/up-logo.jpg>
 Package pdftex.def Info: ./images/up-logo.jpg used on input line 32.
 (pdftex.def)             Requested size: 446.9055pt x 122.60974pt.
 
-<./images/logo.jpg, id=280, 427.5975pt x 427.5975pt>
+<./images/logo.jpg, id=284, 427.5975pt x 427.5975pt>
 File: ./images/logo.jpg Graphic file (type jpg)
  <use ./images/logo.jpg>
 Package pdftex.def Info: ./images/logo.jpg used on input line 37.
@@ -293,16 +292,16 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 49.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./images/up-logo.jpg> <./
-images/logo.jpg>] (Template.toc [1] [2])
+{C:/Users/Sagax/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./images/up
+-logo.jpg> <./images/logo.jpg>] (Testing.toc [1]
+[2])
 \tf@toc=\write5
-\openout5 = `Template.toc'.
+\openout5 = `Testing.toc'.
 
  [3]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 128.
 
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
@@ -319,7 +318,7 @@ been already used, duplicate ignored
                    \relax 
 l.137 \item A
              PI: Amazon EC2 API [1] [2] [3]
-<./images/table.jpg, id=388, 906.38625pt x 166.37157pt>
+<./images/table.jpg, id=393, 906.38625pt x 166.37157pt>
 File: ./images/table.jpg Graphic file (type jpg)
 
 <use ./images/table.jpg>
@@ -330,44 +329,51 @@ Overfull \hbox (62.95433pt too wide) in paragraph at lines 203--204
 [][] 
  []
 
-[4 <./images/table.jpg>] [5] [6] [7] [8] [9] [10]
-<./images/maven.jpg, id=418, 561.59813pt x 421.575pt>
+[4 <./images/table.jpg>] [5] [6] [7] [8] [9] [10] [11]
+<./images/maven.jpg, id=437, 561.59813pt x 421.575pt>
 File: ./images/maven.jpg Graphic file (type jpg)
  <use ./images/maven.jpg>
-Package pdftex.def Info: ./images/maven.jpg used on input line 375.
+Package pdftex.def Info: ./images/maven.jpg used on input line 429.
 (pdftex.def)             Requested size: 492.22838pt x 355.66443pt.
 
-Overfull \hbox (45.32288pt too wide) in paragraph at lines 375--376
+Overfull \hbox (45.32288pt too wide) in paragraph at lines 429--430
 [] 
  []
 
-[11 <./images/maven.jpg>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 389.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 389.
- (Template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 389.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 389.
-Package rerunfilecheck Info: File `Template.out' has not changed.
-(rerunfilecheck)             Checksum: 99F51D8068965AB5726D59635430E184;5131.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 389.
+[12] [13 <./images/maven.jpg>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 438.
+ [14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 438.
+ (Testing.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 438.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 438.
+
+
+Package rerunfilecheck Warning: File `Testing.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Testing.out':
+(rerunfilecheck)             Before: FF4E41BF47700BEDBE554644FC1F549D;5201
+(rerunfilecheck)             After:  2E9802FCA96AC5AF05E823F8E8D0D0DE;6384.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 438.
  ) 
 Here is how much of TeX's memory you used:
- 5408 strings out of 493335
- 80916 string characters out of 3136677
+ 5426 strings out of 493335
+ 81237 string characters out of 3136680
  167733 words of memory out of 3000000
- 8816 multiletter control sequences out of 15000+200000
+ 8817 multiletter control sequences out of 15000+200000
  9750 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,28p,788b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,6n,28p,788b,384s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Template.pdf (16 pages, 387334 bytes).
+Output written on Testing.pdf (18 pages, 392612 bytes).
 PDF statistics:
- 465 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
- 573 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 495 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
+ 581 words of extra memory for PDF output out of 10000 (max. 10000000)
 
