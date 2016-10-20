@@ -102,6 +102,12 @@ function getNodeFromServer()
 				
 
 			}
+			else if(this.responseText==null)
+			{	
+				 scanFinished =true;
+				
+
+			}
    			else if(this.responseText=="waiting")
 			{
 				       
@@ -689,6 +695,7 @@ function getSecurityGroupOf(id)
 			}
 			
 			temp1.add(SecurityGroupRelationships.get(i));
+			alert(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 		}
 	}
@@ -805,8 +812,7 @@ function draw()
 		
 		
 		
-		
-		if(String(ids).startsWith("i"))
+		if(String(ids).startsWith("i")||String(ids).startsWith("vpc"))
 		{
 			drawSecurity(ids);
 			document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';

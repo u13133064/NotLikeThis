@@ -120,7 +120,6 @@ public class InstanceScannerThread implements ThreadedScannerInterface
                 instanceNode.addRelationship(instances.get(j).getSubnetId());
                 addSecurityRuleSets(instances.get(j));
 
-
                 if(buffer.getState()==1)
                 {
                     synchronized(buffer.getThreadNotifier())
@@ -182,7 +181,7 @@ public class InstanceScannerThread implements ThreadedScannerInterface
             {
                 SecurityRule outboundRule = new SecurityRule();
                 outboundRule.setIpAdresses(ipPermisions.get(j).getIpRanges());
-                //utboundRule.generateRanges(ipPermisions.get(j).getFromPort(),ipPermisions.get(j).getToPort());
+
                 outboundRule.setProtocol(ipPermisions.get(j).getIpProtocol());
                 LinkedList<String> securityGroupIds= new LinkedList<String>();
                 List<UserIdGroupPair> userIdGroupPairs = ipPermisions.get(j).getUserIdGroupPairs();
@@ -196,7 +195,10 @@ public class InstanceScannerThread implements ThreadedScannerInterface
             SecurityRuleSet securityRuleSet = new SecurityRuleSet();
             securityRuleSet.setId(securityGroups.get(i).getGroupId());
             securityRuleSet.setInboundRules(inboundRules);
-            securityRuleSet.setIpAddress(instance.getPrivateIpAddress());
+            securityRuleSet.setPrivateIpAddress(instance.getPrivateIpAddress());
+            securityRuleSet.setPublicIpAddress(instance.getPublicIpAddress());
+            securityRuleSet.setVpcID(instance.getVpcId());
+
             securityRuleSet.setOutboundRules(outboundRules);
 
             buffer.addToSecurityGroups(instance.getInstanceId(),securityRuleSet);

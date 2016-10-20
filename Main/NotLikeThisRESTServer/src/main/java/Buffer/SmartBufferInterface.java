@@ -2,6 +2,7 @@ package Buffer;
 
 
 import Composite.NetworkTree;
+import RouteTableGroups.RouteTableSet;
 import SecurityGroups.SecurityRuleSet;
 
 /**
@@ -24,4 +25,6 @@ public interface SmartBufferInterface {
     void connect();
 
     void disconnect();
+
+    void addToRouteTables(String id,RouteTableSet routeTableSet);
 }
