@@ -41,7 +41,11 @@ public class SecurityRuleSet {
 
     @Override
     public String toString() {
-        return "SecurityGroup: "  + id +
+        return
+                "\n"
+                 +"#"
+                +"\n"
+                + "SecurityGroup: "  + id +
                 "\n"
                 +"Vpc ID: "+getVpcID()
                 + "\n"
@@ -51,9 +55,9 @@ public class SecurityRuleSet {
                 + "\n"
                 +"Outbound rules: "+getOutboundRules()
                 + "\n"
-                +"Inbound rules: "+getInboundRules()
-                +"\n"
-                +"#";
+                +"Inbound rules: "+getInboundRules();
+
+
     }
 
     public void addConnection(SecurityRuleSet securityRuleSet)

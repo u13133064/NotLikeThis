@@ -695,7 +695,6 @@ function getSecurityGroupOf(id)
 			}
 			
 			temp1.add(SecurityGroupRelationships.get(i));
-			alert(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 		}
 	}
@@ -801,7 +800,7 @@ function draw()
 			{
 				if(this.responseText!="null")
 				{	
-					document.getElementById("information").value =this.responseText ;
+					document.getElementById("information").innerHTML = this.responseText;
 					document.getElementById("fromUUID").value =ids ;
 				}
 			}
@@ -931,7 +930,8 @@ function drawSecurity(id)
 			{
 				if(this.responseText!="null")
 				{	
-					document.getElementById("information").value =this.responseText ;
+					document.getElementById("information").innerHTML = this.responseText ;
+				
 				}
 			}
 		};

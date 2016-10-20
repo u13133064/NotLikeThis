@@ -3,6 +3,7 @@ package Buffer;
 
 import Composite.NetworkTree;
 import Composite.Node;
+import InformationDecorator.HTMLEncoder;
 import RouteTableGroups.RouteTableSet;
 import SecurityGroups.SecurityRuleSet;
 
@@ -33,9 +34,11 @@ public class SharedBuffer implements SmartBufferInterface{
     {
         frontBuffer=new ArrayBlockingQueue<NetworkTree>(100000);
         currentTree = new Node();
-        currentTree.setInformation("AWS");
+        LinkedList<String> information=new LinkedList<String>();
+        information.add("Welcome to Nimbus:The AWS network visualizer");
+        currentTree.setInformation(new HTMLEncoder().informationToHtml(information));
         currentTree.setName("Root");
-        currentTree.setUUID("RootAWS");
+        currentTree.setUUID("Root");
         currentTree.setLevel(1);
         frontBuffer.add(currentTree);
 
@@ -113,7 +116,7 @@ public class SharedBuffer implements SmartBufferInterface{
         jsonNode+=","+'"' + "Relationships" + '"'+ ":[";
         jsonNode+=node.getRelationships()+"]}";
         nodeList.add(jsonNode);
-        informationHashMap.put(node.getUUID(),"{"+'"' + "Information" + '"'+ ":"+ '"' + node.getInformation() + '"'+"}");
+        informationHashMap.put(node.getUUID(),node.getInformation());
     }
 
     public String getJSONList() {
@@ -239,8 +242,6 @@ public class SharedBuffer implements SmartBufferInterface{
     }
 
     public String getInformation(String uuid) {
-        //JSONObject json = new JSONObject(informationHashMap.get(uuid));
-        //String xml = XML.toString(json);
         return informationHashMap.get(uuid);
     }
 
@@ -261,7 +262,7 @@ public class SharedBuffer implements SmartBufferInterface{
 
             }
         }
-        return output;
+        return new HTMLEncoder().securityGroupToHtml(output);
     }
 
     public void removeRoot() {

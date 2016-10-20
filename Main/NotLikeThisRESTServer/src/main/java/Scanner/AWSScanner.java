@@ -4,6 +4,7 @@ import Buffer.SharedBuffer;
 import Composite.NetworkTree;
 import Composite.Node;
 import Credentials.Credential;
+import InformationDecorator.HTMLEncoder;
 import ParemeterBeans.OptionBean;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -13,6 +14,7 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeRegionsResult;
 import com.amazonaws.services.ec2.model.Region;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -47,9 +49,12 @@ public class AWSScanner implements ScannerInterface {
             System.out.println("Setting region: "+regions.get(i).getRegionName());  NetworkTree tree = new Node();
             tree.setUUID(regions.get(i).getRegionName());
             tree.setName(regions.get(i).getRegionName());
-            tree.setInformation("Region Information : "+regions.get(i).toString());
+            LinkedList<String> information=new LinkedList<String>();
+            information.add("RegionName:"+regions.get(i).getRegionName());
+            information.add("EndPoint:"+regions.get(i).getEndpoint());
+            tree.setInformation(new HTMLEncoder().informationToHtml(information));
             tree.setLevel(2);
-            tree.addRelationship("RootAWS");
+            tree.addRelationship("Root");
             if(buffer.getState()==1)
             {
                 synchronized(buffer.getThreadNotifier())
@@ -87,9 +92,10 @@ public class AWSScanner implements ScannerInterface {
         NetworkTree tree = new Node();
         tree.setUUID(region);
         tree.setName(region);
-        tree.setInformation("Region Information : "+RegionUtils.getRegion(region).toString());
+        LinkedList<String> information=new LinkedList<String>();
+        information.add("RegionName:"+region);
         tree.setLevel(2);
-        tree.addRelationship("RootAWS");
+        tree.addRelationship("Root");
         buffer.addToBuffer(tree);
         AmazonEC2 threadEc2 = new  AmazonEC2Client(credentials);
         threadEc2.setRegion(RegionUtils.getRegion(region));

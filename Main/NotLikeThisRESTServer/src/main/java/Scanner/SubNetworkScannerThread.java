@@ -3,12 +3,14 @@ package Scanner;
 import Buffer.SharedBuffer;
 import Composite.NetworkTree;
 import Composite.Node;
+import InformationDecorator.HTMLEncoder;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.model.DescribeSubnetsRequest;
 import com.amazonaws.services.ec2.model.DescribeSubnetsResult;
 import com.amazonaws.services.ec2.model.Filter;
 import com.amazonaws.services.ec2.model.Subnet;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -48,7 +50,15 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
             NetworkTree tree= new Node();
             tree.setUUID(subnets.get(i).getSubnetId());
             tree.setName(subnets.get(i).getSubnetId());
-            tree.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
+            LinkedList<String> information=new LinkedList<String>();
+            information.add("SubnetId:"+subnets.get(i).getSubnetId());
+            information.add("AvailabilityZone:"+subnets.get(i).getAvailabilityZone());
+            information.add("State:"+subnets.get(i).getState());
+            information.add("CidrBlock:"+subnets.get(i).getCidrBlock());
+            information.add("AvailableIpAddressCount:"+subnets.get(i).getAvailableIpAddressCount());
+            information.add("DefaultForAz:"+subnets.get(i).getDefaultForAz());
+            information.add("MapPublicIp:"+subnets.get(i).getMapPublicIpOnLaunch());
+            tree.setInformation(new HTMLEncoder().informationToHtml(information));
             tree.setLevel(4);
             tree.addRelationship(subnets.get(i).getVpcId());
             if(buffer.getState()==1)
@@ -116,7 +126,15 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
             NetworkTree tree= new Node();
             tree.setUUID(subnets.get(i).getSubnetId());
             tree.setName(subnets.get(i).getSubnetId());
-            tree.setInformation("{Sub-network Information : " + subnets.get(i).toString() + " }");
+            LinkedList<String> information=new LinkedList<String>();
+            information.add("SubnetId:"+subnets.get(i).getSubnetId());
+            information.add("AvailabilityZone:"+subnets.get(i).getAvailabilityZone());
+            information.add("State:"+subnets.get(i).getState());
+            information.add("CidrBlock:"+subnets.get(i).getCidrBlock());
+            information.add("AvailableIpAddressCount:"+subnets.get(i).getAvailableIpAddressCount());
+            information.add("DefaultForAz:"+subnets.get(i).getDefaultForAz());
+            information.add("MapPublicIp:"+subnets.get(i).getMapPublicIpOnLaunch());
+            tree.setInformation(new HTMLEncoder().informationToHtml(information));
             tree.setLevel(4);
             tree.addRelationship(subnets.get(i).getVpcId());
             if(buffer.getState()==1)
