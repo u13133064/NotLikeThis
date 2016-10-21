@@ -20,8 +20,12 @@ public interface SmartBufferInterface {
     void pauseThreads();
     void resumeThreads();
     int getState();
+    void setParentIdentifier(String identifier);
+    void setParentLevel(String level);
+    String getParentIdentifier();
+    String getParentLevel();
     Integer getThreadNotifier();
-
+    String getStatus();
     void connect();
 
     void disconnect();

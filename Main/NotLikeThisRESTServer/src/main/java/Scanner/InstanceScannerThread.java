@@ -148,6 +148,11 @@ public class InstanceScannerThread implements ThreadedScannerInterface
                 instanceNode.setInformation(new HTMLEncoder().informationToHtml(information));
                 instanceNode.setLevel(5);
                 instanceNode.addRelationship(instances.get(j).getSubnetId());
+                if(identifier.equals("Instance"))
+                {
+                    buffer.setParentLevel("Subnet");
+                    buffer.setParentIdentifier(instances.get(i).getVpcId());
+                }
                 addSecurityRuleSets(instances.get(j));
 
                 if(buffer.getState()==1)

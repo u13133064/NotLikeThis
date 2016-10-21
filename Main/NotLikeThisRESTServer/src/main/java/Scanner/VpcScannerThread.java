@@ -100,7 +100,10 @@ public class VpcScannerThread implements ThreadedScannerInterface{
             new Thread(new InstanceScannerThread(this.regionName,uuid,"Vpc",this.ec2,buffer)).start();
         }
         LinkedList<Vpc> vpclist= new LinkedList<Vpc>();
+        buffer.setParentLevel("Region");
+        buffer.setParentIdentifier(regionName);
         for(int i = 0; i<vpcs.size();i++) {
+
             System.out.println("Found Vpc at : "+regionName);
             NetworkTree node= new Node();
             node.setName(vpcs.get(i).getVpcId());

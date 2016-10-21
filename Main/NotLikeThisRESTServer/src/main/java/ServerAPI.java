@@ -124,7 +124,33 @@ public class ServerAPI {
 
 
         return Response.ok() //200
-                .entity("Region Scan Started",new Annotation[0])
+                .entity("Scanning from started",new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+
+    @GET
+    @Path("/scanUp")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Object ScanUp() {
+        OptionBean options = new OptionBean();
+        String parentIdentifier =sharedBuffer.getParentIdentifier();
+        String parentLevel =sharedBuffer.getParentLevel();
+        sharedBuffer=new SharedBuffer();
+        sharedBuffer.setParentIdentifier(parentIdentifier);
+        sharedBuffer.setParentLevel(parentLevel);
+        System.out.println("Parent identifer: "+parentIdentifier);
+        System.out.println("Parent Level: "+parentLevel);
+        options.setScannChoice(3);
+        options.setIdentifier(parentIdentifier);
+        options.setLevel(parentLevel);
+        new Thread(new AWSScanner(credentials,sharedBuffer,options)).start();
+
+
+        return Response.ok() //200
+                .entity("Scan up Started",new Annotation[0])
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
                 .allow("OPTIONS").build();
@@ -148,6 +174,17 @@ public class ServerAPI {
     public Object getInformation(@BeanParam UUIDBean paramBean) {
         return Response.ok() //200
                 .entity(sharedBuffer.getInformation(paramBean.uuid),new Annotation[0])
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS").build();
+
+    }
+    @GET
+    @Path("/getStatus")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object getStatus() {
+        return Response.ok() //200
+                .entity(sharedBuffer.getStatus(),new Annotation[0])
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
                 .allow("OPTIONS").build();

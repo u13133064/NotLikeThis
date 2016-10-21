@@ -73,55 +73,72 @@
 	</script>
 	
 	<body onload="draw();" style="background-image: url('Images/cloud.jpg'); background-repeat: no-repeat; background-attachment: fixed;background-size: 100%;">
-		<nav class="navbar navbar-inverse" style="background-color:#2B547E">
+		<nav class="navbar navbar-inverse" style="background-color:#2B547E;height:80px">
 		<div id="topBar" class="container" >
-		<div class="input-group" >
-			<span class="input-group-addon" id="basic-addon2">Access Key</span>
-			<input type="password" class="form-control" id="accessKey"placeholder="Access Key" aria-describedby="basic-addon1">
-			<span class="input-group-addon" id="basic-addon2">Secret Key</span>
-			<input type="password" class="form-control" id="secretKey"placeholder="Secret Key" aria-describedby="basic-addon1">
-		</div>
-		<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" id="Login" onclick='login()' class="btn btn-default">Login</button>
-			  <button type="button" id="Logout" style=" display: none;"onclick='logout()'class="btn btn-default">Logout</button>
-			  <button id="saveFile" onclick="writeOutFile()" class="btn btn-default" >Save current scan</button>
-			  <label class="btn btn-default btn-file">Browse <input type="file" id='loadFile' onchange='openFile(event)' style="display: none;"></label>
-			 <div class="container">
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Scanner
-					<span class="caret"></span></button>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><button id="scanNetworkButton" class="btn btn-default" onclick="cycle();" style="width:100%; background-color: #38ACEC; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button></li>
-			      
-						<li><button id="stopScanButton" onclick="stopScan()"class="btn btn-default" style="width:100%; color:#38ACEC ;background-color: #C2DFFF; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button></li>
-						<li>	<button id="scanUpButton" class="btn btn-default" style="width:100%; background-color: #38ACEC; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Up</button></li>
-						<li>	<button id="scanInstanceButton" onclick="scanAllInstances();" class="btn btn-default" style="width:100%;color:#38ACEC; background-color: #C2DFFF; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Instances</button></li>
-
-						<li><div class="input-group"><span class="input-group-btn"><button class="btn btn-secondary" style="width:100%; background-color: #38ACEC;" onclick="scanFrom()"type="button">Scan From</button></span><input type="text" id="fromUUID"  style="width:100%; color:#38ACEC;background-color: #C2DFFF;"class="form-control" placeholder="Search for..."></div></li>
-					</ul>
+				<div class="input-group" >
+					<span class="input-group-addon" id="basic-addon2">Access Key</span>
+					<input type="password" class="form-control" id="accessKey"placeholder="Access Key" aria-describedby="basic-addon1">
+					<span class="input-group-addon" id="2basic-addon2">Secret Key</span>
+					<input type="password" class="form-control" id="secretKey"placeholder="Secret Key" aria-describedby="basic-addon1">
 				</div>
-  
-			</div>
-			<div class="container">
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Scan Region
-					    <span class="caret"></span></button>
-					    <ul class="dropdown-menu dropdown-menu">
-							      <li><button id="scanNetworkButton" class="btn btn-default" onclick="cycle();" style="width:100%; background-color: #38ACEC; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button></li>
-							      
-							      <li><button id="stopScanButton" onclick="stopScan()"class="btn btn-default" style="width:100%; color:#38ACEC ;background-color: #C2DFFF; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button></li>
-								<li>	<button id="scanUpButton" class="btn btn-default" style="width:100%; background-color: #38ACEC; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Up</button></li>
+
+
+
+					 <div class="container">
+						 <button style="position:absolute;background-color:white;color: black;" type="button" id="Login" onclick='login()' class="w3-btn">Login</button>
+						 <button type="button" id="Logout" style=" display: none;position:absolute; left:13%;background-color:white;color: black; "onclick='logout()'class="w3-btn">Logout</button>
+						 <button style="position:absolute; left:53%;background-color:white;color: black; " id="saveFile" onclick="writeOutFile()" class="w3-btn" >Save current scan</button>
+						 <label style="position:absolute; left:45%;background-color:white;color: black;"class="btn btn-default btn-file">Browse <input type="file" id='loadFile' onchange='openFile(event)' style="display: none;"></label>
+					   	<div class="dropdown">
+							<button style="position:absolute; left:18%" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Scanner
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li><button id="scanNetworkButton" class="btn btn-default" onclick="cycle();" style="width:100%; background-color: #38ACEC; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button></li>
+					      
+								<li><button id="stopScanButton" onclick="stopScan()"class="btn btn-default" style="width:100%; color:#38ACEC ;background-color: #C2DFFF; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button></li>
+								<li>	<button id="scanUpButton"  onclick="scanUp()"class="btn btn-default" style="width:100%; background-color: #38ACEC; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Up</button></li>
 								<li>	<button id="scanInstanceButton" onclick="scanAllInstances();" class="btn btn-default" style="width:100%;color:#38ACEC; background-color: #C2DFFF; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Instances</button></li>
 
 								<li><div class="input-group"><span class="input-group-btn"><button class="btn btn-secondary" style="width:100%; background-color: #38ACEC;" onclick="scanFrom()"type="button">Scan From</button></span><input type="text" id="fromUUID"  style="width:100%; color:#38ACEC;background-color: #C2DFFF;"class="form-control" placeholder="Search for..."></div></li>
+							</ul>
+						</div>
+						 <div style="position:absolute; left:75%" id="status" class="container"></div>
+						 <div class="dropdown">
+							 <button style="position:absolute; left:27%" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose Regions
+								 <span class="caret"></span></button>
+							 <ul class="dropdown-menu dropdown-menu-right">
+								 <li> <a href="#" onclick='scanRegion("us-east-1")'>US East (N. Virginia)</a></li>
+								 <li><a href="#" onclick='scanRegion("us-west-1")'>US West (N. California)</a></li>
+								 <li><a href="#" onclick='scanRegion("us-west-2")'>US West (Oregon)</a></li>
+								 <li><a href="#" onclick='scanRegion("ap-northeast-2")'>Asia Pacific (Seoul)</a></li>
+								 <li><a href="#" onclick='scanRegion("ap-southeast-1")'>Asia Pacific (Singapore)</a></li>
+								 <li> <a href="#" onclick='scanRegion("ap-southeast-2")'>Asia Pacific (Sydney)</a></li>
+								 <li><a href="#" onclick='scanRegion("ap-northeast-1")'>Asia Pacific (Tokyo)</a></li>
+								 <li> <a href="#" onclick='scanRegion("ap-south-1")'>Asia Pacific (Mumbai)</a></li>
+								 <li><a href="#" onclick='scanRegion("eu-central-1")'>EU (Frankfurt)</a></li>
+								 <li><a href="#" onclick='scanRegion("eu-west-1")'>EU (Ireland)</a></li>
+								 <li> <a href="#" onclick='scanRegion("sa-east-1")'>South America (São Paulo)</a></li>
 
-				</div>
-			</div>
-		</div>
+
+
+
+
+
+
+
+
+
+								 </ul>
+							 </div>
+
+						 </div>
+					</div>
+
 		
 	
-		</div>
-			
+				</div>
+
+		</div>	
 		</nav>
 		<div id = "loadicon" style="display:none"class="loader"></div>
 		<div id="main">
@@ -175,6 +192,22 @@
 
 				xhttp.open("POST", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/validate?a_key="+accessKey+"&s_key="+secretKey, true);
 				xhttp.send();
+			}
+			function scanUp()
+			{
+				finished=false;
+				scanFinished=false;
+				clearNodesAndEdges();
+				var xhttp = new XMLHttpRequest();
+				document.getElementById("loadicon").style.display = "inline";
+				xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/scanUp", true);
+				xhttp.send();
+				setTimeout(function () 
+				{
+					document.getElementById("loadicon").style.display = "none";
+					getNodeFromServer();
+			
+				}, 10000);
 			}
 			
 			function logout()
@@ -329,7 +362,7 @@
 				{
 					document.getElementById("loadicon").style.display = "none";
 					getNodeFromServer();
-					//startTimer();
+				
 				}, 10000);
 
 			}
@@ -412,36 +445,8 @@
 		</script>
 
 
-		<div id="draggable" class="ui-widget-content" style="border: 1px solid grey; border-radius: 5px;">
-				<div id="toolbar" style="height: 20px; background-color: #146eb4; border-top-right-radius: 5px; border-top-left-radius: 5px; cursor: pointer;"></div>
-				
-				<button id="scanNetworkButton" class="w3-btn" onclick="cycle();" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Network</button>
-				<button id="stopScanButton" onclick="stopScan()"class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Stop Scan</button>
-				<button id="scanUpButton" class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Up</button>
-				<button id="scanInstanceButton" onclick="scanAllInstances();" class="w3-btn" style="width:100%; background-color: orange; position:relative;" onmouseover="mouseover(this)" onmouseleave="mouseleave(this)">Scan Instances</button>
-				
-				<button id="scanFromButton" class="w3-btn" onclick="textBox()" style="width:100%; background-color: orange;">Scan From</button>
-				<div id="scanFromInput" style="display: none; width: 100%; background-color: orange;"><input id="fromUUID" type="text" name="access" style="width: 70%;"><button style="width:30%;" onclick="scanFrom()">Go</button></div>
-
-			<div class="w3-dropdown-hover" style="width:100%;">
-				<button class="w3-btn" style="width:100%; background-color: orange;">Region</button>
-					<div class="w3-dropdown-content w3-border">
-						<a href="#" onclick='scanRegion("us-east-1")'>US East (N. Virginia)</a>
-						<a href="#" onclick='scanRegion("us-west-1")'>US West (N. California)</a>
-						<a href="#" onclick='scanRegion("us-west-2")'>US West (Oregon)</a>
-						<a href="#" onclick='scanRegion("ap-northeast-2")'>Asia Pacific (Seoul)</a>
-						<a href="#" onclick='scanRegion("ap-southeast-1")'>Asia Pacific (Singapore)</a>
-						<a href="#" onclick='scanRegion("ap-southeast-2")'>Asia Pacific (Sydney)</a>
-						<a href="#" onclick='scanRegion("ap-northeast-1")'>Asia Pacific (Tokyo)</a>
-						<a href="#" onclick='scanRegion("ap-south-1")'>Asia Pacific (Mumbai)</a>
-						<a href="#" onclick='scanRegion("eu-central-1")'>EU (Frankfurt)</a>
-						<a href="#" onclick='scanRegion("eu-west-1")'>EU (Ireland)</a>
-						<a href="#" onclick='scanRegion("sa-east-1")'>South America (São Paulo)</a>
-					</div>
-			</div>
-		</div>
 		
-		<div data-toggle="collapse" data-target="#information" id="draggableTwo" class="ui-widget-content" style="border: 1px solid grey; border-radius: 5px;z">
+		<div data-toggle="collapse" data-target="#information" id="draggableTwo" class="ui-widget-content" style="border: 1px solid grey; border-radius: 5px;">
 			<div style="border: 1px solid grey; height: 20px; border-top-right-radius: 5px; border-top-left-radius: 5px; background-color: darkgray; cursor: pointer;"></div>
 			<div class="collapse"spellcheck="false" style=" float: left; height: 180px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: white; " id="information"></div>
 		</div>

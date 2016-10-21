@@ -137,6 +137,11 @@ public class SubNetworkScannerThread implements ThreadedScannerInterface{
             tree.setInformation(new HTMLEncoder().informationToHtml(information));
             tree.setLevel(4);
             tree.addRelationship(subnets.get(i).getVpcId());
+            if(identifier.equals("Subnet"))
+            {
+                buffer.setParentLevel("Vpc");
+                buffer.setParentIdentifier(subnets.get(i).getVpcId());
+            }
             if(buffer.getState()==1)
             {
                 synchronized(buffer.getThreadNotifier())

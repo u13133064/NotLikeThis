@@ -76,6 +76,24 @@ function stopTimer()
 	clearInterval(timer);
 	timerIsActive = false;
 }
+function getStatus()
+{
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() 
+	{
+		
+	  
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			document.getElementById("status").innerHTML = this.responseText;
+			
+		}
+	}
+
+	xhttp.open("GET", "http://localhost:8080/NotLikeThisRESTServer_war_exploded/services/getStatus", true);
+	xhttp.send();
+
+}
 
 
 /*Reads in nodes from the server's .json objects passed to the browser*/
@@ -112,7 +130,9 @@ function getNodeFromServer()
 			{
 				       
 					scanFinished=false;
+					
 					getNodeFromServer();
+					getStatus();
 			
 			}
 
@@ -127,6 +147,7 @@ function getNodeFromServer()
 					readInJSONFromServer(jsonIn);
 					addNodesAndEdges() ;
 					getNodeFromServer();
+					getStatus();
 				}
 			}		
 			

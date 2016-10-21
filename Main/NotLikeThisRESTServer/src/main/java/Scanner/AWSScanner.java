@@ -27,6 +27,10 @@ public class AWSScanner implements ScannerInterface {
     private OptionBean option;
     private AmazonEC2 ec2;
     private  AWSCredentials credentials;
+    private String parentLevel;
+    private String parentIdentifier;
+
+
 
     public AWSScanner(Credential clientCredentials, SharedBuffer sharedBuffer, OptionBean option)
     {
@@ -213,10 +217,22 @@ public class AWSScanner implements ScannerInterface {
             case 4:
                 scanAllInstances();
 
-            break;
+                 break;
+            case 5:
+                scanUp();
+                break;
 
-            default:;
+            default:break;
         }
+    }
+
+    private void scanUp() {
+
+        parentIdentifier=buffer.getParentIdentifier();
+        parentLevel=buffer.getParentLevel();
+
+        scanNetworkFrom(parentLevel,parentIdentifier);
+        
     }
 
     private void scanAllInstances() {

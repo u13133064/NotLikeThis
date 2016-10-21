@@ -18,10 +18,13 @@ import java.util.concurrent.BlockingQueue;
 public class SharedBuffer implements SmartBufferInterface{
     private BlockingQueue<NetworkTree> frontBuffer;
     private int state=0;
+    private String status="Scanning";
     private NetworkTree currentTree;
     private LinkedList<String> nodeList = new LinkedList<String>();
     private LinkedList<String> instanceList = new LinkedList<String>();
     private LinkedList<String> vpcList = new LinkedList<String>();
+    private LinkedList<String> subnetList = new LinkedList<String>();
+    private LinkedList<String> regionList = new LinkedList<String>();
     private HashMap<String,String> informationHashMap = new HashMap<String,String>();
     private HashMap<String,NetworkTree> uuidHashMap = new HashMap<String, NetworkTree>();
     private HashMap<String, LinkedList<RouteTableSet>> routeTableHashMap = new HashMap<String, LinkedList<RouteTableSet>>();
@@ -29,7 +32,8 @@ public class SharedBuffer implements SmartBufferInterface{
     private LinkedList<Integer>connections= new LinkedList<Integer>();
     Integer threadNotifier;
     private boolean finished=false;
-
+    private String parentIdentifier;
+    private String parentLevel;
     public SharedBuffer()
     {
         frontBuffer=new ArrayBlockingQueue<NetworkTree>(100000);
@@ -65,11 +69,21 @@ public class SharedBuffer implements SmartBufferInterface{
         else
         {
             uuidHashMap.put(node.getUUID(),node);
-            if(node.getLevel()==5) {
-                instanceList.add(node.getUUID());
-            }
-            else if(node.getLevel()==3) {
-                vpcList.add(node.getUUID());
+            switch(node.getLevel()) {
+                case 2:
+                    regionList.add(node.getUUID());
+                    break;
+                case 3:
+                    vpcList.add(node.getUUID());
+                    break;
+                case 4:
+                    subnetList.add(node.getUUID());
+                    break;
+                case 5:
+                    instanceList.add(node.getUUID());
+                    break;
+
+
             }
             return false;
         }
@@ -127,10 +141,14 @@ public class SharedBuffer implements SmartBufferInterface{
         {
 
             if(finished && connections.size()==0)
+            {
+                status="Complete";
                 return "null";
+            }
 
             else if(!finished && connections.size()==0)
             {
+                status="Scanning";
                 Node communicationNode = new Node();
                 communicationNode.setName("LOADING_SECURITY_GROUPS");
                 communicationNode.setUUID("LOADING_SECURITY_GROUPS");
@@ -140,9 +158,11 @@ public class SharedBuffer implements SmartBufferInterface{
             }
             else
             {
+                status="Waiting";
                 return "waiting";
             }
         }
+        status="Scanning";
         int counter =0;
         int max=1;
 
@@ -292,9 +312,35 @@ public class SharedBuffer implements SmartBufferInterface{
         return state;
     }
 
+    public void setParentIdentifier(String identifier) {
+        parentIdentifier=identifier;
+    }
+
+    public void setParentLevel(String level) {
+        parentLevel=level;
+    }
+
+    public String getParentIdentifier() {
+        return parentIdentifier;
+    }
+
+    public String getParentLevel() {
+        return parentLevel;
+    }
+
 
     public Integer getThreadNotifier() {
         return threadNotifier;
+    }
+
+    public String getStatus() {
+
+
+        return   "<span class='label label-default'>Status: "+status
+                +"Regions Scanned: "+regionList.size()+
+                " Vpcs Scanned: "+vpcList.size()
+                +"Subnets Scanned: "+subnetList.size()
+                +"Instances Scanned: "+instanceList.size()+"</span>";
     }
 
     public void connect() {
