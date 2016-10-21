@@ -53,9 +53,7 @@ public class SecurityRule
         return portFrom +" - "+portTo;
     }
 
-    public void setPortRanges(int[] portRanges) {
-        this.portRanges = portRanges;
-    }
+
 
     public String getProtocol() {
         if(protocol.equals("-1"))

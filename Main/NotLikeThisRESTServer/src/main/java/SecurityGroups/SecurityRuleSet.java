@@ -11,14 +11,44 @@ import java.util.LinkedList;
 public class SecurityRuleSet {
     private  LinkedList<SecurityRule> outboundRules;
     private  LinkedList<SecurityRule> inboundRules;
-    private String ipAddress;
+    private String privateIpAddress;
+    private String vpcID;
+
+    public String getVpcID() {
+        return vpcID;
+    }
+
+    public void setVpcID(String vpcID) {
+        this.vpcID = vpcID;
+    }
+
+    private String publicIpAddress;
     private  String id;
     private HashMap<String,LinkedList<SecurityRuleSet>> connections = new HashMap<String, LinkedList<SecurityRuleSet>>();
+
+    public String getPrivateIpAddress() {
+        return privateIpAddress;
+    }
+
+    public String getPublicIpAddress() {
+        return publicIpAddress;
+    }
+
+    public void setPublicIpAddress(String publiceIpAddress) {
+        this.publicIpAddress = publiceIpAddress;
+    }
+
 
     @Override
     public String toString() {
         return "SecurityGroup: "  + id +
                 "\n"
+                +"Vpc ID: "+getVpcID()
+                + "\n"
+                +"Private ip address: "+getPrivateIpAddress()
+                + "\n"
+                +"Public ip address: "+getPublicIpAddress()
+                + "\n"
                 +"Outbound rules: "+getOutboundRules()
                 + "\n"
                 +"Inbound rules: "+getInboundRules()
@@ -96,13 +126,6 @@ public class SecurityRuleSet {
         this.inboundRules = inboundRules;
     }
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
 
 
     public boolean canSendTo(SecurityRuleSet securityRuleSet) {
@@ -151,9 +174,19 @@ public class SecurityRuleSet {
         }
         for (int i = 0;i<outboundSecurityRule.getIpAdresses().size();i++)
         {
-            if (matchesIP(securityRuleSet.getIpAddress(),outboundSecurityRule.getIpAdresses().get(i)))
+            if(getVpcID().equals(securityRuleSet.getVpcID()))
             {
-                return true;
+                if (matchesIP(securityRuleSet.getPrivateIpAddress(), outboundSecurityRule.getIpAdresses().get(i)) || matchesIP(securityRuleSet.getPublicIpAddress(), outboundSecurityRule.getIpAdresses().get(i)))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (matchesIP(securityRuleSet.getPublicIpAddress(), outboundSecurityRule.getIpAdresses().get(i)))
+                {
+                    return true;
+                }
             }
 
         }
@@ -184,6 +217,10 @@ public class SecurityRuleSet {
         {
             return true;
         }
+        if(ip==null)
+        {
+            return false;
+        }
         SubnetUtils utils = new SubnetUtils(address);
         utils.setInclusiveHostCount(true);
         return utils.getInfo().isInRange(ip);
@@ -191,5 +228,7 @@ public class SecurityRuleSet {
     }
 
 
-
+    public void setPrivateIpAddress(String privateIpAddress) {
+        this.privateIpAddress = privateIpAddress;
+    }
 }

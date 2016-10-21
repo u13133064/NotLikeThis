@@ -22,7 +22,12 @@ public class Credential {
     }
 
     public void setPrivate_key(String private_key) {
+
         this.private_key = private_key;
+        if(this.private_key.contains(" "))
+        {
+            this.private_key= this.private_key.replaceAll(" ","+");
+        }
     }
 
     public String getAccess_key() {
@@ -31,6 +36,10 @@ public class Credential {
 
     public void setAccess_key(String access_key) {
         this.access_key = access_key;
+        if(this.access_key.contains(" "))
+        {
+            this.access_key=this.access_key.replaceAll(" ","+");
+        }
     }
 
     public void validate() {
@@ -43,6 +52,10 @@ public class Credential {
         catch (Exception e)
         {
             validated=false;
+            System.out.println(access_key);
+            System.out.println(private_key);
+            e.printStackTrace();
+
         }
 
     }

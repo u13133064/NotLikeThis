@@ -3,6 +3,7 @@ package Buffer;
 
 import Composite.NetworkTree;
 import Composite.Node;
+import RouteTableGroups.RouteTableSet;
 import SecurityGroups.SecurityRuleSet;
 
 import java.util.HashMap;
@@ -19,8 +20,10 @@ public class SharedBuffer implements SmartBufferInterface{
     private NetworkTree currentTree;
     private LinkedList<String> nodeList = new LinkedList<String>();
     private LinkedList<String> instanceList = new LinkedList<String>();
+    private LinkedList<String> vpcList = new LinkedList<String>();
     private HashMap<String,String> informationHashMap = new HashMap<String,String>();
     private HashMap<String,NetworkTree> uuidHashMap = new HashMap<String, NetworkTree>();
+    private HashMap<String, LinkedList<RouteTableSet>> routeTableHashMap = new HashMap<String, LinkedList<RouteTableSet>>();
     private HashMap<String, LinkedList<SecurityRuleSet>> securityGroupHashMap = new HashMap<String, LinkedList<SecurityRuleSet>>();
     private LinkedList<Integer>connections= new LinkedList<Integer>();
     Integer threadNotifier;
@@ -61,6 +64,9 @@ public class SharedBuffer implements SmartBufferInterface{
             uuidHashMap.put(node.getUUID(),node);
             if(node.getLevel()==5) {
                 instanceList.add(node.getUUID());
+            }
+            else if(node.getLevel()==3) {
+                vpcList.add(node.getUUID());
             }
             return false;
         }
@@ -120,7 +126,7 @@ public class SharedBuffer implements SmartBufferInterface{
             if(finished && connections.size()==0)
                 return "null";
 
-            else if(!finished)
+            else if(!finished && connections.size()==0)
             {
                 Node communicationNode = new Node();
                 communicationNode.setName("LOADING_SECURITY_GROUPS");
@@ -172,6 +178,39 @@ public class SharedBuffer implements SmartBufferInterface{
             node.setInformation(informationHashMap.get(instanceList.get(i)));
             consructJSON(node);
         }
+        for(int i = 0;i<vpcList.size();i++)
+        {
+            Node node = new Node();
+            node.setName(vpcList.get(i));
+            node.setUUID(vpcList.get(i));
+            node.setLevel(3);
+            LinkedList<RouteTableSet>routeTableSets= routeTableHashMap.get(vpcList.get(i));
+            if(routeTableSets!=null)
+            {
+                for (int j = 0; j <routeTableSets.size();j++)
+                {
+                    LinkedList<String>routeTableAssociations=routeTableSets.get(j).getAssociations();
+                    for(int k=0;k<routeTableAssociations.size();k++)
+                    {
+                        if(routeTableAssociations.get(k)!=null)
+                        {
+                            Node subnetNode=new Node();
+                            subnetNode.setUUID(routeTableAssociations.get(k));
+                            subnetNode.setName(routeTableAssociations.get(k));
+                            subnetNode.setLevel(4);
+                            subnetNode.setInformation(informationHashMap.get(routeTableAssociations.get(k)));
+                            consructJSON(subnetNode);
+                            node.addRelationship(routeTableAssociations.get(k));
+                        }
+
+                    }
+                }
+
+
+            }
+            node.setInformation(informationHashMap.get(vpcList.get(i)));
+            consructJSON(node);
+        }
 
     }
 
@@ -216,7 +255,7 @@ public class SharedBuffer implements SmartBufferInterface{
             {
                 for(int j=0;j<otherSetRules.size();j++)
                 {
-                        output+= securityRuleSets.get(i).getConnectionInformation(otherSetRules.get(j).getId())+"\n";
+                    output+= securityRuleSets.get(i).getConnectionInformation(otherSetRules.get(j).getId())+"\n";
 
                 }
 
@@ -264,6 +303,23 @@ public class SharedBuffer implements SmartBufferInterface{
 
     public void disconnect() {
         connections.remove();
+
+    }
+
+    public void addToRouteTables(String id,RouteTableSet routeTableSet) {
+        if(routeTableHashMap.containsKey(id)==false)
+        {
+            LinkedList<RouteTableSet> newSet = new LinkedList<RouteTableSet>();
+            newSet.add(routeTableSet);
+            routeTableHashMap.put(id,newSet);
+        }
+        else
+        {
+            LinkedList<RouteTableSet> newSet = routeTableHashMap.get(id);
+            newSet.add(routeTableSet);
+            routeTableHashMap.put(id,newSet);
+        }
+
 
     }
 }

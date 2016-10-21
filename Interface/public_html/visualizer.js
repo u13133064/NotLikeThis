@@ -102,6 +102,12 @@ function getNodeFromServer()
 				
 
 			}
+			else if(this.responseText==null)
+			{	
+				 scanFinished =true;
+				
+
+			}
    			else if(this.responseText=="waiting")
 			{
 				       
@@ -689,6 +695,7 @@ function getSecurityGroupOf(id)
 			}
 			
 			temp1.add(SecurityGroupRelationships.get(i));
+			alert(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 			temp2.add(getSecurityGroupNode(SecurityGroupRelationships.get(i).to));
 		}
 	}
@@ -805,11 +812,14 @@ function draw()
 		
 		
 		
-		document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
-		document.getElementById("securityGroupDiv").style.visibility='visible';
-		document.getElementById("closeSecurityImg").style.visibility='visible';
-		currentID=ids;
-		drawSecurity(ids);
+		if(String(ids).startsWith("i")||String(ids).startsWith("vpc"))
+		{
+			drawSecurity(ids);
+			document.getElementById("hierarchyVisualizerDiv").style.visibility='hidden';
+			document.getElementById("securityGroupDiv").style.visibility='visible';
+			document.getElementById("closeSecurityImg").style.visibility='visible';
+			currentID=ids;
+		}
 	});	
 }
 
@@ -913,6 +923,7 @@ function drawSecurity(id)
 	{
 		var ids = properties.nodes;
 		var xhttp = new XMLHttpRequest();
+		if(ids)
 	
 		xhttp.onreadystatechange = function() 
 		{

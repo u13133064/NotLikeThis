@@ -3,11 +3,11 @@ package Scanner;
 import Buffer.SharedBuffer;
 import Composite.NetworkTree;
 import Composite.Node;
+import RouteTableGroups.RouteTableSet;
 import com.amazonaws.services.ec2.AmazonEC2;
-import com.amazonaws.services.ec2.model.DescribeVpcsRequest;
-import com.amazonaws.services.ec2.model.DescribeVpcsResult;
-import com.amazonaws.services.ec2.model.Vpc;
+import com.amazonaws.services.ec2.model.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,7 +39,7 @@ public class VpcScannerThread implements ThreadedScannerInterface{
 
         DescribeVpcsResult describeVpcsResult = ec2.describeVpcs();
         List<Vpc> vpcs = describeVpcsResult.getVpcs();
-
+        LinkedList<Vpc> vpclist= new LinkedList<Vpc>();
         for(int i = 0; i<vpcs.size();i++) {
             System.out.println("Adding Vpc for : "+regionName);
             NetworkTree node= new Node();
@@ -48,6 +48,7 @@ public class VpcScannerThread implements ThreadedScannerInterface{
             node.setInformation("{Vpc Information : " + vpcs.get(i).toString() + " }");
             node.setLevel(3);
             node.addRelationship(regionName);
+            vpclist.add(vpcs.get(i));
             if(buffer.getState()==1)
             {
                 synchronized(buffer.getThreadNotifier())
@@ -66,7 +67,7 @@ public class VpcScannerThread implements ThreadedScannerInterface{
             buffer.addToBuffer(node);
 
         }
-
+        addRoutetableSets(vpclist);
 
     }
     public void scanOnly()
@@ -90,6 +91,7 @@ public class VpcScannerThread implements ThreadedScannerInterface{
             //launch a instance scanner
             new Thread(new InstanceScannerThread(this.regionName,uuid,"Vpc",this.ec2,buffer)).start();
         }
+        LinkedList<Vpc> vpclist= new LinkedList<Vpc>();
         for(int i = 0; i<vpcs.size();i++) {
             System.out.println("Found Vpc at : "+regionName);
             NetworkTree node= new Node();
@@ -98,6 +100,8 @@ public class VpcScannerThread implements ThreadedScannerInterface{
             node.setInformation("{Vpc Information : " + vpcs.get(i).toString() + " }");
             node.setLevel(3);
             node.addRelationship(regionName);
+            vpclist.add(vpcs.get(i));
+
             if(buffer.getState()==1)
             {
                 synchronized(buffer.getThreadNotifier())
@@ -116,7 +120,36 @@ public class VpcScannerThread implements ThreadedScannerInterface{
             buffer.addToBuffer(node);
 
         }
+        addRoutetableSets(vpclist);
 
+    }
+
+    private void addRoutetableSets(LinkedList<Vpc> vpcs) {
+        DescribeRouteTablesResult describeRouteTablesResult = ec2.describeRouteTables();
+
+        List<RouteTable> routeTables = describeRouteTablesResult.getRouteTables();
+        for (int vpc = 0; vpc < vpcs.size(); vpc++) {
+            for (int i = 0; i < routeTables.size(); i++) {
+
+                if (vpcs.get(vpc).getVpcId().equals(routeTables.get(i).getVpcId())) {
+                    RouteTableSet routeTableSet = new RouteTableSet();
+                    List<RouteTableAssociation> routeTableAssociations = routeTables.get(i).getAssociations();
+                    LinkedList<String> associations = new LinkedList<String>();
+                    for (int j = 0; j < routeTableAssociations.size(); j++) {
+                        associations.add(routeTableAssociations.get(j).getSubnetId());
+                    }
+                    routeTableSet.setAssociations(associations);
+                    List<Route> routes = routeTables.get(i).getRoutes();
+                    LinkedList<String> routeList = new LinkedList<String>();
+                    for (int j = 0; j < routes.size(); j++) {
+                        routeList.add(routes.get(j).getDestinationCidrBlock());
+                    }
+                    routeTableSet.setRoutes(routeList);
+                    routeTableSet.setID(routeTables.get(i).getRouteTableId());
+                    buffer.addToRouteTables(vpcs.get(vpc).getVpcId(), routeTableSet);
+                }
+            }
+        }
     }
 
     public void run() {
