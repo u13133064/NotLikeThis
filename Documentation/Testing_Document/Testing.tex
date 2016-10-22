@@ -109,16 +109,16 @@ u12003672
 Our project's purpose is to provide a visual representation of the Amazon Web Services (AWS) virtual networks. Our system scans the user's network and generates a representation in real time. thus, this is both a network architecture tool and an easy way for users to understand the structure, as many users may not be skilled and have trouble understanding the structure without such a representation. The projects main focuses are performance and scalability. Scalability is a necessity, as very large networks ,connected in very complex ways, need to be scanned, and performance as this needs to be done quickly and rendered in real time. These requirements are reflected in our testing cases. This document details our functional features to be tested, pass/fail criteria, test deliverables, detailed test results and finally, conclusions and recommendations.
 
 \subsection{Purpose}
-The purpose of this document is to present the complete suite of artifacts that describe test planning, test design, test execution, test results and conclusions drawn from the testing activity. This document holds our guidelines for testing , or result,s from these tests and a blueprint for future tests.
+The purpose of this document is to present the complete suite of artifacts that describe test planning, test design, test execution, test results and conclusions drawn from the testing activity. This document holds our guidelines for testing , or results, from these tests and a blueprint for future tests.
 
 
 \subsection{Scope}
-The scope of this document is structured as follows. The features that are considered for
+The scope of this document is structured as follows: the features that are considered for
 testing are listed and those that have been identified from the requirements are
-discussed in detail in the Unit Test Plan. Furthermore, this document outlines the test environment
-and the risks involved in the testing approaches that will be followed. Assumptions and
-dependencies of this test plan will also be mentioned.The Unit Test Report
-discusses and concludes on the results of the tests. Finally recommendations are made for further development,issues encountered and future tests to be carried out.
+discussed in detail, in the Unit Test Plan. Furthermore, this document outlines the test environment
+and the risks involved with the testing approaches that will be followed. Assumptions and
+dependencies of this test plan will also be mentioned. The Unit Test Report
+discusses and concludes on the results of the tests. Finally, recommendations are made for further development issues encountered and future tests to be carried out.
 
 \subsection{ Test Environment}
 
@@ -140,10 +140,10 @@ discusses and concludes on the results of the tests. Finally recommendations are
 \subsection{Assumptions and Dependencies}
 Assumptions:
 \begin{itemize}
-  \item We assumed a fast, stable uncapped internet conenction.
-  \item We assumed a valid user account for AWS.
-\item We assumed a midrange network on the account.
-\item We assumed Amazon web services would be running in all regions.
+  \item A fast, stable uncapped internet conenction.
+  \item A valid user account for AWS.
+	\item A midrange network on the account.
+	\item Amazon web services running in all regions.
 \end{itemize}
 Dependencies:
 \begin{itemize}
@@ -152,7 +152,7 @@ Dependencies:
 \item Amazon SDK as a Maven dependency.
 \item Jersey 2.16 as a Maven dependency.
 \item Junit a Maven dependency.
-\item Viz.js library.
+\item Vis.js library.
 \item AngularJs.
 \item Bootstrap.
 \end{itemize}
@@ -160,47 +160,50 @@ Dependencies:
 \section{Unit Test Plan}
 
 \subsection{Test Items}
-The application under test is the Amazon Web Services Network Visualizer. It is divided into three separate and interconnected applications namely the Front-end(User interface and network visualizer), the Back-end(Network Scanner and Smart buffer ) and the application server(NetworkRESTServer and NetworkRESTAPI). All three are tested in their own unit tests and integration tests, and together are tested in the use case tests.
+The application being tested is the Amazon Web Services Network Visualizer, otherwise known as Nimbus. It is divided into three separate and interconnected applications, namely the Front-end (User interface and network visualizer), the Back-end (Network Scanner and Smart buffer ) and the application server (NetworkRESTServer and NetworkRESTAPI). All three are tested with their own unit tests and integration tests and are tested together in the use case tests.
  
 \subsection{Functional Features to be Tested}  
-For this level of testing each of the three applications will be tested. Their individual subprograms will be tested according to their functionality and each application will be integration tested and finally perform their own unit test. The functional features to be tested in each application are as follows:
+For this level of testing, each of the three applications will be tested. Their individual subprograms will be tested, according to their functionality and each application will be integration tested and finally perform their own unit test. The functional features to be tested in each application are as follows:
 
 \subsubsection{Front-end}
 \begin{itemize}
   \item Send data to server tested through AJAX scripts in UI HTML.
   \item Receive data from server tested through AJAX scripts in UI HTML.
-  \item Visualize network jsons tested through the visualizer.js script.
-  \item Iterative adding to network tested through the visualiser.js script.
+  \item Visualize network jsons, tested through the visualizer.js script.
+  \item Iterative adding to network tested, through the visualiser.js script.
   \item Dynamic menu and information box tested through the UI HTML.
-  \item Button expected functionality tested through the UI HTML. 
+  \item Button expected functionality, tested through the UI HTML. 
 \end{itemize}
-For this unit tests will be performed with mock results from the server. The functionality of the interface will be tested through user testing.
+These unit tests will be performed with mock results from the server. The functionality of the interface will be tested through user testing.
 
 \subsubsection{Back-end}
 \begin{itemize}
   \item Connecting to AWS account tested through the Credential validation function.
   \item Scan regions tested through the AWSScanner.
-  \item Threading on different levels tested through the AWSScanner.
-  \item Scanning VPCS  tested through the vpcScannerThread.
-   \item Scanning Subnetworks  tested through the subnetworkScannerThread.
-    \item Scanning instances tested through the isntanceScannerThread.
-  \item Adding scanned results to buffer tested through Sharedbuffer.
-\item Constructing tree tested through Sharedbuffer.
-  \item Iteratively returning the nodes as JSON objects tested through Sharedbuffer.
+  \item Threading on different levels, tested through the AWSScanner.
+  \item Scanning VPCS,  tested through the vpcScannerThread.
+   \item Scanning Subnetworks,  tested through the subnetworkScannerThread.
+    \item Scanning instances, tested through the isntanceScannerThread.
+  \item Adding scanned results to buffer, tested through Sharedbuffer.
+\item Constructing a tree, tested through Sharedbuffer.
+  \item Iteratively returning the nodes as JSON objects, tested through Sharedbuffer.
 \end{itemize}
-Unit tests are performed for each file and if they perform  expected functionality they pass. The entire Back-end will integration test and the final artifact will be tested as a whole in its own unit test.
+Unit tests are performed for each file and if they perform as expected, they pass. The entire Back-end will be  integration tested and the final artifact will be tested as a whole, in its own unit test.
 
-\subsubsection{EST server}
+\subsubsection{REST server}
 \begin{itemize}
-  \item Deploy on server tested through GlassFish.
-  \item Accessible from client tested through FireFox and FireBug.
-  \item Able to launch scanner with provided credentials tested through ServerAPI.
-  \item Able to return on AJAX request tested through ServerAPI,FireFox and FireBug .
-   \item Scanning Subnetworks  tested through the subnetworkScannerThread.
+  \item Deploy on server, tested through GlassFish.
+  \item Accessible from client, tested through FireFox and FireBug.
+  \item Able to launch scanner with provided credentials, tested through ServerAPI.
+  \item Able to return on AJAX request, tested through ServerAPI, FireFox and FireBug.
+   \item Scanning Subnetworks, tested through the subnetworkScannerThread.
 \end{itemize}
-The unit tests will be done as intergration tests wit hthe first two applciations. Once the unit tests of the two applciations as a whole have been verified correct they will be used in the test of the REST server.
+The unit tests will be done as intergration tests, with the first two applciations. Once the unit tests of the two applciations as a whole have been verified, they will be used in the test of the REST server.
+\newline
+\newline
+\includegraphics[width=17cm,height=7cm] {./images/table.jpg}
 
-\includegraphics[width=17.3cm,height=6.5cm]{./images/table.jpg}
+%\includegraphics[width=17.3cm,height=7.0cm]{./images/table.jpg}
 \newpage
  \section{Test Cases}
 \subsection{Test Case 1: Login}
@@ -218,7 +221,7 @@ The unit tests will be done as intergration tests wit hthe first two applciation
 \subsubsection{Outcome: }
 The following are the expected outcomes for a pass result for the functionality:
 \begin{itemize}
-	\item Valid data allows for access to the AWS account in question, and invalid data is rejected by the system. 
+	\item Valid data allows for access to the AWS account in question and invalid data is rejected by the system. 
 \end{itemize}
 
 \subsection{Test Case 2: Scan Network }
@@ -238,7 +241,7 @@ The following are the expected outcomes for a pass result for the functionality:
 \end{itemize}
 
 \subsection{Test Case 3: Scan Region }
-\subsubsection{Condition :Specified region  is scanned and visualized}
+\subsubsection{Condition: Specified region  is scanned and visualized}
 \subsubsection{Objective:} The purpose of this test is to test if a region scan and visualization is successful for a valid user.
 
 \subsubsection{Input:}
@@ -254,7 +257,7 @@ The following are the expected outcomes for a pass result for the functionality:
 
 
 \subsection{Test Case 4: Scan from UUID}
-\subsubsection{Condition :Scan starts from specified UUID and performs scan of surrounding space}
+\subsubsection{Condition: Scan starts from specified UUID and performs scan of surrounding space}
 \subsubsection{Objective:} The purpose of this test is to test if a subscan is successfully performed with a valid UUID for valid user.
 
 \subsubsection{Input:}
@@ -278,7 +281,7 @@ The following are the expected outcomes for a pass result for the functionality:
 
 
 \subsection{Test Case 5: Scan up }
-\subsubsection{Condition :Scan resumes from uuid scan and scans the above region}
+\subsubsection{Condition: Scan resumes from uuid scan and scans the above region}
 \subsubsection{Objective:} The purpose of this test is to test if a subscan scans up from previous scan with a valid UUID for valid user.
 
 \subsubsection{Input:}
@@ -298,8 +301,8 @@ The following are the expected outcomes for a pass result for the functionality:
 \end{itemize}
 
 \subsection{Test Case 6: Scan Instances }
-\subsubsection{Condition :Scan resumes from uuid scan and scans the below region}
-\subsubsection{Objective:} The purpose of this test is to test if a subscan scans down from previous scan with a valid UUID for valid user.
+\subsubsection{Condition: Scan resumes from uuid scan and scans the region below}
+\subsubsection{Objective:} The purpose of this test is to test if a subscan scans down from previous scan with a valid UUID for a valid user.
 
 \subsubsection{Input:}
  The following inputs will be used to test this functionality:
@@ -318,7 +321,7 @@ The following are the expected outcomes for a pass result for the functionality:
 \end{itemize}
 
 \subsection{Test Case 7: Get information }
-\subsubsection{Condition : Information retrieved for particular node}
+\subsubsection{Condition: Information retrieved for particular node}
 \subsubsection{Objective:} The purpose of this test is to test if information can be retrieved for selected nodes.
 
 \subsubsection{Input:}
@@ -337,7 +340,7 @@ The following are the expected outcomes for a pass result for the functionality:
 \end{itemize}
 
 \subsection{Test Case 8: Get connection }
-\subsubsection{Condition : Returns links of the security (and other) groups}
+\subsubsection{Condition: Returns links of the security (and other) groups}
 \subsubsection{Objective:} On call of the function the security and in some cases other groups for the node in question is returned. 
 
 \subsubsection{Input:}
@@ -358,7 +361,7 @@ The following are the expected outcomes for a pass result for the functionality:
 \end{itemize}
 
 \subsection{Test Case 9: Logout }
-\subsubsection{Condition : Disconnection from the AWS account}
+\subsubsection{Condition: Disconnection from the AWS account}
 \subsubsection{Objective:} On click of the logout button the saved user information and the connection to the AWS account is lost. 
 
 \subsubsection{Input:}
@@ -380,13 +383,13 @@ The following are the expected outcomes for a pass result for the functionality:
 \subsection{Item Pass/Fail Criteria}
 
 \begin{itemize}
-\item Valid keys must result in connection to AWS.
+\item Valid keys must result in a connection to AWS.
 \item Scan must produce a visualized scanned network that matches the AWS network.
-\item Scan of region must produce the region subtree that matches the subtree visualized in full scan.
-\item Scan from uuid must produce a  subtree that matches the subtree visualized in full scan.
+\item Scan of region must produce the region subtree that matches the subtree visualized in the full scan.
+\item Scan from UUID must produce a subtree that matches the subtree visualized in full a scan.
 \item Scan up must produce a subtree that matches the subtree visualized by the parent node.
-\item Scan Instances must produce a subtree that matches the subtree visualized in instance.
-\item The information needs to match the information for the node got through command line interface.
+\item Scan Instances must produce a subtree that matches the subtree visualized in the instance.
+\item The information needs to match the information that came through command line interface.
 \item The groups in question need to be returned
 \item The system is disconnected from the account, and user information is lost. 
 \end{itemize}
@@ -395,7 +398,7 @@ The following are the expected outcomes for a pass result for the functionality:
 
 \subsection{Detailed Test Results}
 \subsubsection{Overview of Test Results}
-The individual unit tests of each part of the applciations were all successful. the applciations themselves passed their unit tests. The intergration tests did not have any failures. The first 4  test cases as well as the last test case succeded. The scan up and scan down test case failed. This is due to a bug in the construction of the network tree in the buffrer.Junit was used in unit tests with the neccesary mock objects and the actual objects were used in the integration tests. The ability to run automated repeatable tests vastly sped up our testing.
+The individual unit tests of each part of the applciations were all successful. The applications themselves passed their unit tests. The intergration tests did not have any failures. The first 4  test cases as well as the last test case succeded. The scan up and scan down test cases failed. This is due to a bug in the construction of the network tree in the buffer. JUnit was used in unit tests with the neccesary mock objects and the actual objects were used in the integration tests. The ability to run automated repeatable tests vastly sped up our testing.
 \subsubsection{Test Case 1}
 Valid keys were used to connect to AWS. Invalid keys threw an exception that was caught as intended.
 \subsubsection{Test Case 1 Pass}
@@ -406,7 +409,7 @@ Network scanned and visualized matched what was expected.
 Region scanned and visualized matched the subtree of the region found in the full scan.
 \subsubsection{Test Case 3 Pass}
 \subsubsection{Test Case 4}
-Subnetwork scanned from uuid matched the subtree of the region found in the full scan.
+Subnetwork scanned from UUID matched the subtree of the region found in the full scan.
 \subsubsection{Test Case 4 Pass}
 \subsubsection{Test Case 5}
 Subnetwork scanned matched the subtree of the region found in the full scan.

@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {2.2}Functional Features to be Tested}{3}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Front-end}{3}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Back-end}{3}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}EST server}{4}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3}REST server}{4}{subsubsection.2.2.3}
 \contentsline {section}{\numberline {3}Test Cases}{5}{section.3}
 \contentsline {subsection}{\numberline {3.1}Test Case 1: Login}{5}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Condition : Valid Credentials allow connection to AWS}{5}{subsubsection.3.1.1}
@@ -21,37 +21,37 @@
 \contentsline {subsubsection}{\numberline {3.2.3}Input:}{5}{subsubsection.3.2.3}
 \contentsline {subsubsection}{\numberline {3.2.4}Outcome: }{6}{subsubsection.3.2.4}
 \contentsline {subsection}{\numberline {3.3}Test Case 3: Scan Region }{6}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Condition :Specified region is scanned and visualized}{6}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.1}Condition: Specified region is scanned and visualized}{6}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Objective:}{6}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Input:}{6}{subsubsection.3.3.3}
 \contentsline {subsubsection}{\numberline {3.3.4}Outcome: }{6}{subsubsection.3.3.4}
 \contentsline {subsection}{\numberline {3.4}Test Case 4: Scan from UUID}{6}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Condition :Scan starts from specified UUID and performs scan of surrounding space}{6}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.1}Condition: Scan starts from specified UUID and performs scan of surrounding space}{6}{subsubsection.3.4.1}
 \contentsline {subsubsection}{\numberline {3.4.2}Objective:}{6}{subsubsection.3.4.2}
 \contentsline {subsubsection}{\numberline {3.4.3}Input:}{6}{subsubsection.3.4.3}
 \contentsline {subsubsection}{\numberline {3.4.4}Outcome: }{7}{subsubsection.3.4.4}
 \contentsline {subsection}{\numberline {3.5}Test Case 5: Scan up }{7}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Condition :Scan resumes from uuid scan and scans the above region}{7}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.1}Condition: Scan resumes from uuid scan and scans the above region}{7}{subsubsection.3.5.1}
 \contentsline {subsubsection}{\numberline {3.5.2}Objective:}{7}{subsubsection.3.5.2}
 \contentsline {subsubsection}{\numberline {3.5.3}Input:}{7}{subsubsection.3.5.3}
 \contentsline {subsubsection}{\numberline {3.5.4}Outcome: }{7}{subsubsection.3.5.4}
 \contentsline {subsection}{\numberline {3.6}Test Case 6: Scan Instances }{8}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}Condition :Scan resumes from uuid scan and scans the below region}{8}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1}Condition: Scan resumes from uuid scan and scans the region below}{8}{subsubsection.3.6.1}
 \contentsline {subsubsection}{\numberline {3.6.2}Objective:}{8}{subsubsection.3.6.2}
 \contentsline {subsubsection}{\numberline {3.6.3}Input:}{8}{subsubsection.3.6.3}
 \contentsline {subsubsection}{\numberline {3.6.4}Outcome: }{8}{subsubsection.3.6.4}
 \contentsline {subsection}{\numberline {3.7}Test Case 7: Get information }{8}{subsection.3.7}
-\contentsline {subsubsection}{\numberline {3.7.1}Condition : Information retrieved for particular node}{8}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.1}Condition: Information retrieved for particular node}{8}{subsubsection.3.7.1}
 \contentsline {subsubsection}{\numberline {3.7.2}Objective:}{8}{subsubsection.3.7.2}
 \contentsline {subsubsection}{\numberline {3.7.3}Input:}{8}{subsubsection.3.7.3}
 \contentsline {subsubsection}{\numberline {3.7.4}Outcome: }{8}{subsubsection.3.7.4}
 \contentsline {subsection}{\numberline {3.8}Test Case 8: Get connection }{9}{subsection.3.8}
-\contentsline {subsubsection}{\numberline {3.8.1}Condition : Returns links of the security (and other) groups}{9}{subsubsection.3.8.1}
+\contentsline {subsubsection}{\numberline {3.8.1}Condition: Returns links of the security (and other) groups}{9}{subsubsection.3.8.1}
 \contentsline {subsubsection}{\numberline {3.8.2}Objective:}{9}{subsubsection.3.8.2}
 \contentsline {subsubsection}{\numberline {3.8.3}Input:}{9}{subsubsection.3.8.3}
 \contentsline {subsubsection}{\numberline {3.8.4}Outcome: }{9}{subsubsection.3.8.4}
 \contentsline {subsection}{\numberline {3.9}Test Case 9: Logout }{9}{subsection.3.9}
-\contentsline {subsubsection}{\numberline {3.9.1}Condition : Disconnection from the AWS account}{9}{subsubsection.3.9.1}
+\contentsline {subsubsection}{\numberline {3.9.1}Condition: Disconnection from the AWS account}{9}{subsubsection.3.9.1}
 \contentsline {subsubsection}{\numberline {3.9.2}Objective:}{9}{subsubsection.3.9.2}
 \contentsline {subsubsection}{\numberline {3.9.3}Input:}{9}{subsubsection.3.9.3}
 \contentsline {subsubsection}{\numberline {3.9.4}Outcome: }{9}{subsubsection.3.9.4}
