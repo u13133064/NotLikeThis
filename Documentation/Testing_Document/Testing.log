@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  22 OCT 2016 15:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  22 OCT 2016 17:25
 entering extended mode
 **./Testing.tex
 (Testing.tex
@@ -316,8 +316,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.137 \item A
-             PI: Amazon EC2 API [1] [2] [3]
+l.136 \item S
+             erver:GlassFish Server Open Source Edition 4.1.1 [1] [2] [3]
 <./images/table.jpg, id=463, 906.38625pt x 166.37157pt>
 File: ./images/table.jpg Graphic file (type jpg)
 
@@ -358,13 +358,13 @@ Here is how much of TeX's memory you used:
  8831 multiletter control sequences out of 15000+200000
  9750 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,28p,788b,384s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,6n,28p,880b,384s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Testing.pdf (18 pages, 399082 bytes).
+Output written on Testing.pdf (18 pages, 399262 bytes).
 PDF statistics:
  551 PDF objects out of 1000 (max. 8388607)
  103 named destinations out of 1000 (max. 500000)
