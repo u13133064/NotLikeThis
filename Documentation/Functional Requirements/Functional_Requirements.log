@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  22 OCT 2016 17:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  22 OCT 2016 19:18
 entering extended mode
 **./Functional_Requirements.tex
 (Functional_Requirements.tex
@@ -315,53 +315,8 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
  [3]
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
-[]|\OT1/cmr/m/n/12 The vi-su-aliser has
- []
-
-
-Underfull \hbox (badness 2961) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 to be con-nected to
- []
-
-
-Underfull \hbox (badness 4859) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 the in-ter-net in or-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 der to ver-ify the
- []
-
-
-Underfull \hbox (badness 4217) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 in-for-ma-tion. Only
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 a reg-is-tered AWS
- []
-
-
-Underfull \hbox (badness 1609) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 and se-cret key may
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 Once the user is
- []
-
-
-Underfull \hbox (badness 1509) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 then use the lo-gout
- []
-
-
-Underfull \hbox (badness 6268) in paragraph at lines 144--144
-\OT1/cmr/m/n/12 func-tion-al-ity to log
+Underfull \hbox (badness 2735) in paragraph at lines 144--144
+\OT1/cmr/m/n/12 is logged in he/she
  []
 
 
@@ -425,6 +380,56 @@ Underfull \hbox (badness 4819) in paragraph at lines 148--149
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[]|\OT1/cmr/m/n/12 The re-la-tion-ships
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+\OT1/cmr/m/n/12 be-tween nodes are
+ []
+
+
+Underfull \hbox (badness 2293) in paragraph at lines 153--153
+\OT1/cmr/m/n/12 must have in-stances
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--153
+\OT1/cmr/m/n/12 The browser must
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 153--153
+\OT1/cmr/m/n/12 server, that con-tain
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--153
+[]|\OT1/cmr/m/n/12 Information re-lat-
+ []
+
+
+Underfull \hbox (badness 2073) in paragraph at lines 153--153
+\OT1/cmr/m/n/12 ing to the spec-i-fied
+ []
+
+
+Underfull \hbox (badness 4505) in paragraph at lines 153--154
+[]|\OT1/cmr/m/n/12 This use case pro-
+ []
+
+
+Underfull \hbox (badness 2617) in paragraph at lines 153--154
+\OT1/cmr/m/n/12 vides a method for
+ []
+
+
+Underfull \hbox (badness 2173) in paragraph at lines 153--154
+\OT1/cmr/m/n/12 eas-ily view-ing in-fro-
+ []
+
+
 Underfull \hbox (badness 3826) in paragraph at lines 156--156
 \OT1/cmr/m/n/12 a method for tem-
  []
@@ -437,6 +442,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--161
 
 Underfull \hbox (badness 4341) in paragraph at lines 161--161
 \OT1/cmr/m/n/12 and only scans in-
+ []
+
+
+Underfull \hbox (badness 2073) in paragraph at lines 163--164
+\OT1/cmr/m/n/12 a way of spec-i-fy-ing
  []
 
 
@@ -482,202 +492,203 @@ Underfull \vbox (badness 10000) detected at line 171
 File: ./Diagrams/LoginUseCase.png Graphic file (type png)
 
 <use ./Diagrams/LoginUseCase.png>
-Package pdftex.def Info: ./Diagrams/LoginUseCase.png used on input line 184.
+Package pdftex.def Info: ./Diagrams/LoginUseCase.png used on input line 181.
 (pdftex.def)             Requested size: 446.9055pt x 165.65025pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 184--184
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 181--181
  [] 
  []
 
-<./Diagrams/ScanNetworkUseCase.png, id=75, 627.84563pt x 405.01312pt>
+[6 <./Diagrams/LoginUseCase.png>]
+<./Diagrams/ScanNetworkUseCase.png, id=80, 627.84563pt x 405.01312pt>
 File: ./Diagrams/ScanNetworkUseCase.png Graphic file (type png)
 
 <use ./Diagrams/ScanNetworkUseCase.png>
 Package pdftex.def Info: ./Diagrams/ScanNetworkUseCase.png used on input line 1
-92.
+90.
 (pdftex.def)             Requested size: 446.9055pt x 288.29056pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 192--192
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 190--190
  [] 
  []
 
-<./Diagrams/GetNodeInformationUseCase.png, id=76, 444.91219pt x 134.00063pt>
+[7 <./Diagrams/ScanNetworkUseCase.png>]
+<./Diagrams/GetNodeInformationUseCase.png, id=85, 444.91219pt x 134.00063pt>
 File: ./Diagrams/GetNodeInformationUseCase.png Graphic file (type png)
 
 <use ./Diagrams/GetNodeInformationUseCase.png>
 Package pdftex.def Info: ./Diagrams/GetNodeInformationUseCase.png used on input
- line 200.
+ line 198.
 (pdftex.def)             Requested size: 446.9055pt x 134.60141pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 200--200
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 198--198
  [] 
  []
 
-[6 <./Diagrams/LoginUseCase.png> <./Diagrams/ScanNetworkUseCase.png>]
-<./Diagrams/StopResumePauseUseCase.png, id=82, 595.47469pt x 194.22563pt>
+<./Diagrams/StopResumePauseUseCase.png, id=86, 595.47469pt x 194.22563pt>
 File: ./Diagrams/StopResumePauseUseCase.png Graphic file (type png)
 
 <use ./Diagrams/StopResumePauseUseCase.png>
 Package pdftex.def Info: ./Diagrams/StopResumePauseUseCase.png used on input li
-ne 209.
+ne 207.
 (pdftex.def)             Requested size: 446.9055pt x 145.76665pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 209--209
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 207--207
  [] 
  []
 
-<./Diagrams/ScanFromUseCase.png, id=83, 654.94687pt x 420.06938pt>
+<./Diagrams/ScanFromUseCase.png, id=87, 654.94687pt x 420.06938pt>
 File: ./Diagrams/ScanFromUseCase.png Graphic file (type png)
 
 <use ./Diagrams/ScanFromUseCase.png>
-Package pdftex.def Info: ./Diagrams/ScanFromUseCase.png used on input line 217.
+Package pdftex.def Info: ./Diagrams/ScanFromUseCase.png used on input line 215.
 
 (pdftex.def)             Requested size: 446.9055pt x 286.6369pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 217--217
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 215--215
  [] 
  []
 
-[7 <./Diagrams/GetNodeInformationUseCase.png> <./Diagrams/StopResumePauseUseCas
+[8 <./Diagrams/GetNodeInformationUseCase.png> <./Diagrams/StopResumePauseUseCas
 e.png>]
-<./Diagrams/ScanInstancesUseCase.png, id=88, 521.69907pt x 402.00188pt>
+<./Diagrams/ScanInstancesUseCase.png, id=92, 521.69907pt x 402.00188pt>
 File: ./Diagrams/ScanInstancesUseCase.png Graphic file (type png)
 
 <use ./Diagrams/ScanInstancesUseCase.png>
 Package pdftex.def Info: ./Diagrams/ScanInstancesUseCase.png used on input line
- 225.
+ 223.
 (pdftex.def)             Requested size: 446.9055pt x 344.3715pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 225--225
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 223--223
  [] 
  []
 
-[8 <./Diagrams/ScanFromUseCase.png>] [9 <./Diagrams/ScanInstancesUseCase.png>]
-<./Diagrams/LoginSequence.png, id=97, 281.55188pt x 519.44063pt>
+[9 <./Diagrams/ScanFromUseCase.png>] [10 <./Diagrams/ScanInstancesUseCase.png>]
+<./Diagrams/LoginSequence.png, id=101, 281.55188pt x 519.44063pt>
 File: ./Diagrams/LoginSequence.png Graphic file (type png)
 
 <use ./Diagrams/LoginSequence.png>
-Package pdftex.def Info: ./Diagrams/LoginSequence.png used on input line 235.
+Package pdftex.def Info: ./Diagrams/LoginSequence.png used on input line 233.
 (pdftex.def)             Requested size: 268.14603pt x 494.74188pt.
 
-<./Diagrams/ScanNetworkSequence.png, id=98, 176.91093pt x 603.75563pt>
+<./Diagrams/ScanNetworkSequence.png, id=102, 176.91093pt x 603.75563pt>
 File: ./Diagrams/ScanNetworkSequence.png Graphic file (type png)
 
 <use ./Diagrams/ScanNetworkSequence.png>
 Package pdftex.def Info: ./Diagrams/ScanNetworkSequence.png used on input line 
-239.
+237.
 (pdftex.def)             Requested size: 446.9055pt x 1525.21254pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 239--239
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 237--237
  [] 
  []
 
-[10 <./Diagrams/LoginSequence.png>]
+[11 <./Diagrams/LoginSequence.png>]
 Overfull \vbox (833.6279pt too high) has occurred while \output is active []
 
 
-[11 <./Diagrams/ScanNetworkSequence.png>]
-<./Diagrams/GetNodeInformationSequence.png, id=107, 374.14781pt x 481.04718pt>
+[12 <./Diagrams/ScanNetworkSequence.png>]
+<./Diagrams/GetNodeInformationSequence.png, id=112, 374.14781pt x 481.04718pt>
 File: ./Diagrams/GetNodeInformationSequence.png Graphic file (type png)
 
 <use ./Diagrams/GetNodeInformationSequence.png>
 Package pdftex.def Info: ./Diagrams/GetNodeInformationSequence.png used on inpu
-t line 243.
+t line 241.
 (pdftex.def)             Requested size: 446.9055pt x 574.62595pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 243--243
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 241--241
  [] 
  []
 
-<./Diagrams/ScanFromSequence.png, id=108, 374.90062pt x 539.76656pt>
+<./Diagrams/ScanFromSequence.png, id=113, 374.90062pt x 539.76656pt>
 File: ./Diagrams/ScanFromSequence.png Graphic file (type png)
 
 <use ./Diagrams/ScanFromSequence.png>
-Package pdftex.def Info: ./Diagrams/ScanFromSequence.png used on input line 247
+Package pdftex.def Info: ./Diagrams/ScanFromSequence.png used on input line 245
 .
 (pdftex.def)             Requested size: 446.9055pt x 643.475pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 247--247
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 245--245
  [] 
  []
 
-[12 <./Diagrams/GetNodeInformationSequence.png>]
-<./Diagrams/ScanRegionSequence.png, id=114, 191.21437pt x 603.75563pt>
+[13 <./Diagrams/GetNodeInformationSequence.png>]
+<./Diagrams/ScanRegionSequence.png, id=118, 191.21437pt x 603.75563pt>
 File: ./Diagrams/ScanRegionSequence.png Graphic file (type png)
 
 <use ./Diagrams/ScanRegionSequence.png>
 Package pdftex.def Info: ./Diagrams/ScanRegionSequence.png used on input line 2
-51.
+49.
 (pdftex.def)             Requested size: 446.9055pt x 1411.29005pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 251--251
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 249--249
  [] 
  []
 
-[13 <./Diagrams/ScanFromSequence.png>] [14]
+[14 <./Diagrams/ScanFromSequence.png>] [15]
 Overfull \vbox (719.70541pt too high) has occurred while \output is active []
 
 
-[15 <./Diagrams/ScanRegionSequence.png>]
-<./Diagrams/ChangeScannerStateSequence.png, id=127, 184.43906pt x 532.99126pt>
+[16 <./Diagrams/ScanRegionSequence.png>]
+<./Diagrams/ChangeScannerStateSequence.png, id=131, 184.43906pt x 532.99126pt>
 File: ./Diagrams/ChangeScannerStateSequence.png Graphic file (type png)
 
 <use ./Diagrams/ChangeScannerStateSequence.png>
 Package pdftex.def Info: ./Diagrams/ChangeScannerStateSequence.png used on inpu
-t line 255.
+t line 253.
 (pdftex.def)             Requested size: 446.9055pt x 1291.4694pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 255--255
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 253--253
  [] 
  []
 
-[16]
+[17]
 Overfull \vbox (599.88477pt too high) has occurred while \output is active []
 
 
-[17 <./Diagrams/ChangeScannerStateSequence.png>]
-<./Diagrams/ScanInstancesSequence.png, id=136, 228.855pt x 597.73312pt>
+[18 <./Diagrams/ChangeScannerStateSequence.png>]
+<./Diagrams/ScanInstancesSequence.png, id=141, 228.855pt x 597.73312pt>
 File: ./Diagrams/ScanInstancesSequence.png Graphic file (type png)
 
 <use ./Diagrams/ScanInstancesSequence.png>
 Package pdftex.def Info: ./Diagrams/ScanInstancesSequence.png used on input lin
-e 259.
+e 257.
 (pdftex.def)             Requested size: 446.9055pt x 1167.2987pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 259--259
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 257--257
  [] 
  []
 
-[18]
+[19]
 Overfull \vbox (475.71407pt too high) has occurred while \output is active []
 
 
-[19 <./Diagrams/ScanInstancesSequence.png>]
+[20 <./Diagrams/ScanInstancesSequence.png>]
 File: ./Diagrams/ScanInstancesSequence.png Graphic file (type png)
 
 <use ./Diagrams/ScanInstancesSequence.png>
 Package pdftex.def Info: ./Diagrams/ScanInstancesSequence.png used on input lin
-e 264.
+e 262.
 (pdftex.def)             Requested size: 446.9055pt x 1167.2987pt.
- [20]
+ [21]
 Overfull \vbox (502.46407pt too high) has occurred while \output is active []
 
 
-[21]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 268.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 268.
+[22]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 266.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 266.
  (Functional_Requirements.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 268.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 268.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 266.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 266.
 Package rerunfilecheck Info: File `Functional_Requirements.out' has not changed
 .
 (rerunfilecheck)             Checksum: 176CD47F8D37680E9A60BDBB397AC09B;500.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 268.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 266.
  ) 
 Here is how much of TeX's memory you used:
- 5360 strings out of 493335
- 81092 string characters out of 3136677
- 188203 words of memory out of 3000000
+ 5361 strings out of 493335
+ 81099 string characters out of 3136677
+ 192203 words of memory out of 3000000
  8810 multiletter control sequences out of 15000+200000
  9750 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -687,9 +698,9 @@ Here is how much of TeX's memory you used:
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Functional_Requirements.pdf (22 pages, 645905 bytes).
+Output written on Functional_Requirements.pdf (23 pages, 648293 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
+ 184 PDF objects out of 1000 (max. 8388607)
+ 32 named destinations out of 1000 (max. 500000)
  132 words of extra memory for PDF output out of 10000 (max. 10000000)
 

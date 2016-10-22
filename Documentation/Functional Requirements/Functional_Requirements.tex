@@ -141,16 +141,16 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
     \hline
     Use Case & Pre Condition & Post Condition & Description \\ 
     \hline \hline
-    Log in/log out & The visualiser has to be connected to the internet in order to verify the information. Only a registered AWS user with a valid key and secret key may log into the system. Once the user is logged in he/she can then use the logout functionality to log out. & The user is logged in now and may begin making use of the visualisation server. & This use case provides a method for logging in to view a hierarchical representation of their network and log out once done.\\ 
+    Log in/log out & The visualiser must be connected to the internet in order to verify the login information. Only a registered AWS user with a valid key and secret key may log into the system. Once the user is logged in he/she can then use the logout functionality to log out. & The user is logged in now and may begin making use of the visualisation server. & This use case provides a method for logging in to view a hierarchical representation of their network and log out once done.\\ 
     \hline
     Scan network & The visualiser must be connected to the internet in order to load the information from the server. The user must have instances in their network, that the server may scan. & The server continuously sends information of the instances to the browser, which are then stored by the browser. & This use case provides a method for loading the network representation from the AWS network and storing it on a browser. \\ 
     \hline
     Visualise Network &  The visualiser must be connected to the internet in order to load the information from the server. The user must have instances in their network, that the server may scan. The browser must have a feed from the server, that contain instance information. & As new node information is loaded into the browser, the browser will sequentially display them in a hierarchy.  &  This use case provides a method for reading information the browser has received and visualising it.\\ 
     \hline
     
-    Get Node Connections &  aaa. & aaa.  &  aaa.\\ 
+    Get Node Connections &  The visualiser must be connected to the internet in order to load the information from the server. The user must have instances in their network that the server may scan.& The relationships between nodes are logged and added to the buffer.  &  This use case provides a method for logging the relationships of instances.\\ 
     \hline
-     Get Node Infromation &  aaa. & aaa.  &  aaa.\\ 
+     Get Node Infromation &  The visualiser must be connected to the internet in order to load the information from the server. The user must have instances in their network, that the server may scan. The browser must have a feed from the server, that contain instance information. & Information relating to the specified instance is displayed.  &   This use case provides a method for easily viewing infromation related to specific instances/nodes.\\ 
     \hline
     
     Stop scan & The scan must be active. & The scan's execution is temporarily halted.  & This use case provides a method for temporarily halting an active scan.\\ \hline
@@ -160,7 +160,7 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 	\hline
     Scan Region & The scan must be active. & The scan refocuses and only scans instances that fall below a certain region. & This use case provides a way to only scan instances that belong to a specific AWS region.\\ \hline
     
-    Scan From &  aaa. & aaa.  &  aaa.\\ 
+    Scan From &  The scan must be active. The user has provided a valid name of an instance. & The scan starts at the provided instance and begins scanning from the specified point.  &  This use case provides a way of specifying where the scan should begin.\\ 
     \hline
     Scan Instances &  aaa. & aaa.  &  aaa.\\ 
     \hline
@@ -170,31 +170,29 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
     \hline
   \end{longtable}
 \end{center}
-\newpage
-
 
 \subsection{Required functionality}
 \begin{itemize}
-	% We need to add the correct pictures here. We must also give a description of the elements.
 	\item \textbf{Log in/log out}
 		\begin{flushleft}
-		 Basically just say what this part does. 	
+		Log in allows the user to log in using a valid AWS Access Key and Secret Key. Their details are encrypted, to avoid security leaks. Only once a user is logged in, may they use the system. Once they have finished they may log out. Doing so will clear the credentials used, to ensure privacy.
 		\end{flushleft}
 		\begin{center}
   	 	\includegraphics[width=1\textwidth] {./Diagrams/LoginUseCase.png}\\[0.4cm]    
 		\end{center}
+	\newpage
 
 	\item \textbf{Scan network}
 		\begin{flushleft}
-			Basically just say what this part does.
+		When the scan is initialised, the AWS scanner is activated. It will create a number of threads that will scan the various parts of the network simultaneously, greatly increasing the scalability and performance. As the scans occur, the results are added to the Shared Buffer, that the Visualiser reads from and draws the nodes as they appear.
 		\end{flushleft}
 		\begin{center}
   	 	\includegraphics[width=1\textwidth] {./Diagrams/ScanNetworkUseCase.png}\\[0.4cm]    
 		\end{center}
-
+\newpage
 	\item \textbf{Get Node Information}
 	\begin{flushleft}
-		Basically just say what this part does.
+	If a request is sent for a node's information, the shared buffer is queried [using the instances unique ID (UUID)] and the results are sentto the visualiser.
 	\end{flushleft}
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/GetNodeInformationUseCase.png}\\[0.4cm]    
@@ -203,7 +201,7 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 
 	\item \textbf{Stop/Pause/Resume Scan}
 	\begin{flushleft}
-		Basically just say what this part does.
+	If a stop/pause/resume request is sent, the buffer will forward the request to the threads.
 	\end{flushleft}
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/StopResumePauseUseCase.png}\\[0.4cm]    
