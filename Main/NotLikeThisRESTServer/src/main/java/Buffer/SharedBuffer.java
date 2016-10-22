@@ -336,11 +336,11 @@ public class SharedBuffer implements SmartBufferInterface{
     public String getStatus() {
 
 
-        return   "<span class='label label-default'>Status: "+status
-                +"Regions Scanned: "+regionList.size()+
+        return   "<span style='background-color:#09689E;size:20px'class='label label-default'>Status: "+status
+                +" Regions Scanned: "+regionList.size()+
                 " Vpcs Scanned: "+vpcList.size()
-                +"Subnets Scanned: "+subnetList.size()
-                +"Instances Scanned: "+instanceList.size()+"</span>";
+                +" Subnets Scanned: "+subnetList.size()
+                +" Instances Scanned: "+instanceList.size()+"</span>";
     }
 
     public void connect() {
