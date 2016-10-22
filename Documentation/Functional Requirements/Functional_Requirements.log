@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  22 OCT 2016 15:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.7.28)  22 OCT 2016 16:16
 entering extended mode
 **./Functional_Requirements.tex
 (Functional_Requirements.tex
@@ -425,398 +425,271 @@ Underfull \hbox (badness 4819) in paragraph at lines 148--149
  []
 
 
-Underfull \hbox (badness 3826) in paragraph at lines 150--150
+Underfull \hbox (badness 3826) in paragraph at lines 156--156
 \OT1/cmr/m/n/12 a method for tem-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--155
+Underfull \hbox (badness 10000) in paragraph at lines 161--161
 []|\OT1/cmr/m/n/12 The scan re-fo-cuses
  []
 
 
-Underfull \hbox (badness 4341) in paragraph at lines 155--155
+Underfull \hbox (badness 4341) in paragraph at lines 161--161
 \OT1/cmr/m/n/12 and only scans in-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--156
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
 \OT1/cmr/m/n/12 cor-rect for-mat-ting
  []
 
 
-Underfull \hbox (badness 3312) in paragraph at lines 156--156
+Underfull \hbox (badness 3312) in paragraph at lines 168--168
 \OT1/cmr/m/n/12 su-al-i-sa-tions, with-out
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 156--156
+Underfull \hbox (badness 1168) in paragraph at lines 168--168
 \OT1/cmr/m/n/12 the need to scan it
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--157
+Underfull \hbox (badness 10000) in paragraph at lines 169--169
 []|\OT1/cmr/m/n/12 A win-dow ap-pears
  []
 
 
-Underfull \hbox (badness 7667) in paragraph at lines 157--157
+Underfull \hbox (badness 7667) in paragraph at lines 169--169
 \OT1/cmr/m/n/12 The file is named
  []
 
 
-Underfull \hbox (badness 2772) in paragraph at lines 157--157
+Underfull \hbox (badness 2772) in paragraph at lines 169--169
 \OT1/cmr/m/n/12 if mul-ti-ple files are
  []
 
 
-Underfull \hbox (badness 5446) in paragraph at lines 158--158
-[]|\OT1/cmr/m/n/12 The scan must be
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
-\OT1/cmr/m/n/12 ac-tive or fin-ished.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
-\OT1/cmr/m/n/12 The browser must
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
-\OT1/cmr/m/n/12 on the browser is
- []
-
-
-Underfull \hbox (badness 3826) in paragraph at lines 158--158
-\OT1/cmr/m/n/12 tion re-lated to the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
-[]|\OT1/cmr/m/n/12 Node in-for-ma-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
-[]|\OT1/cmr/m/n/12 The app must be
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
-\OT1/cmr/m/n/12 and which teams
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
-[]|\OT1/cmr/m/n/12 The name of the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
-\OT1/cmr/m/n/12 a way of quickly
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--159
-\OT1/cmr/m/n/12 log-ging in-for-ma-tion
- []
-
-
-Overfull \hbox (27.88582pt too wide) in alignment at lines 140--163
+Overfull \hbox (27.88582pt too wide) in alignment at lines 140--171
  [] [] [] [] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 163
+Underfull \vbox (badness 10000) detected at line 171
  []
 
-[4] [5] <./Diagrams/Login_Logout.jpg, id=74, 772.8875pt x 462.72874pt>
-File: ./Diagrams/Login_Logout.jpg Graphic file (type jpg)
+[4] [5] <./Diagrams/LoginUseCase.png, id=74, 497.60907pt x 184.43906pt>
+File: ./Diagrams/LoginUseCase.png Graphic file (type png)
 
-<use ./Diagrams/Login_Logout.jpg>
-Package pdftex.def Info: ./Diagrams/Login_Logout.jpg used on input line 174.
-(pdftex.def)             Requested size: 446.9055pt x 267.56381pt.
+<use ./Diagrams/LoginUseCase.png>
+Package pdftex.def Info: ./Diagrams/LoginUseCase.png used on input line 184.
+(pdftex.def)             Requested size: 446.9055pt x 165.65025pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 174--174
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 184--184
  [] 
  []
 
-[6 <./Diagrams/Login_Logout.jpg>]
-<./Diagrams/LoadInfo.jpg, id=80, 667.49374pt x 519.9425pt>
-File: ./Diagrams/LoadInfo.jpg Graphic file (type jpg)
+<./Diagrams/ScanNetworkUseCase.png, id=75, 627.84563pt x 405.01312pt>
+File: ./Diagrams/ScanNetworkUseCase.png Graphic file (type png)
 
-<use ./Diagrams/LoadInfo.jpg>
-Package pdftex.def Info: ./Diagrams/LoadInfo.jpg used on input line 182.
-(pdftex.def)             Requested size: 446.9055pt x 348.12166pt.
+<use ./Diagrams/ScanNetworkUseCase.png>
+Package pdftex.def Info: ./Diagrams/ScanNetworkUseCase.png used on input line 1
+92.
+(pdftex.def)             Requested size: 446.9055pt x 288.29056pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 182--182
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 192--192
  [] 
  []
 
-[7 <./Diagrams/LoadInfo.jpg>]
+<./Diagrams/GetNodeInformationUseCase.png, id=76, 444.91219pt x 134.00063pt>
+File: ./Diagrams/GetNodeInformationUseCase.png Graphic file (type png)
 
-LaTeX Warning: File `./Diagrams/Game Time.jpg' not found on input line 189.
+<use ./Diagrams/GetNodeInformationUseCase.png>
+Package pdftex.def Info: ./Diagrams/GetNodeInformationUseCase.png used on input
+ line 200.
+(pdftex.def)             Requested size: 446.9055pt x 134.60141pt.
 
-<./Diagrams/Game Time.jpg, id=85, 590.205pt x 266.9975pt>
-File: ./Diagrams/Game Time.jpg Graphic file (type jpg)
-
-<use ./Diagrams/Game Time.jpg>
-Package pdftex.def Info: ./Diagrams/Game Time.jpg used on input line 189.
-(pdftex.def)             Requested size: 446.9055pt x 202.17464pt.
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 189--189
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 200--200
  [] 
  []
 
-[8 <./Diagrams/Game Time.jpg>]
-<./Diagrams/Scoring.jpg, id=90, 1237.62375pt x 872.25874pt>
-File: ./Diagrams/Scoring.jpg Graphic file (type jpg)
+[6 <./Diagrams/LoginUseCase.png> <./Diagrams/ScanNetworkUseCase.png>]
+<./Diagrams/StopResumePauseUseCase.png, id=82, 595.47469pt x 194.22563pt>
+File: ./Diagrams/StopResumePauseUseCase.png Graphic file (type png)
 
-<use ./Diagrams/Scoring.jpg>
-Package pdftex.def Info: ./Diagrams/Scoring.jpg used on input line 197.
-(pdftex.def)             Requested size: 446.9055pt x 314.97119pt.
+<use ./Diagrams/StopResumePauseUseCase.png>
+Package pdftex.def Info: ./Diagrams/StopResumePauseUseCase.png used on input li
+ne 209.
+(pdftex.def)             Requested size: 446.9055pt x 145.76665pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 197--197
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 209--209
  [] 
  []
 
-[9 <./Diagrams/Scoring.jpg>]
-<./Diagrams/Substitutions.jpg, id=95, 1110.1475pt x 805.0075pt>
-File: ./Diagrams/Substitutions.jpg Graphic file (type jpg)
+<./Diagrams/ScanFromUseCase.png, id=83, 654.94687pt x 420.06938pt>
+File: ./Diagrams/ScanFromUseCase.png Graphic file (type png)
 
-<use ./Diagrams/Substitutions.jpg>
-Package pdftex.def Info: ./Diagrams/Substitutions.jpg used on input line 205.
-(pdftex.def)             Requested size: 446.9055pt x 324.06091pt.
+<use ./Diagrams/ScanFromUseCase.png>
+Package pdftex.def Info: ./Diagrams/ScanFromUseCase.png used on input line 217.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 205--205
+(pdftex.def)             Requested size: 446.9055pt x 286.6369pt.
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 217--217
  [] 
  []
 
-[10 <./Diagrams/Substitutions.jpg>]
-<./Diagrams/Discipline.jpg, id=100, 983.675pt x 568.1225pt>
-File: ./Diagrams/Discipline.jpg Graphic file (type jpg)
+[7 <./Diagrams/GetNodeInformationUseCase.png> <./Diagrams/StopResumePauseUseCas
+e.png>]
+<./Diagrams/ScanInstancesUseCase.png, id=88, 521.69907pt x 402.00188pt>
+File: ./Diagrams/ScanInstancesUseCase.png Graphic file (type png)
 
-<use ./Diagrams/Discipline.jpg>
-Package pdftex.def Info: ./Diagrams/Discipline.jpg used on input line 213.
-(pdftex.def)             Requested size: 446.9055pt x 258.1147pt.
+<use ./Diagrams/ScanInstancesUseCase.png>
+Package pdftex.def Info: ./Diagrams/ScanInstancesUseCase.png used on input line
+ 225.
+(pdftex.def)             Requested size: 446.9055pt x 344.3715pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 213--213
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 225--225
  [] 
  []
 
-[11 <./Diagrams/Discipline.jpg>]
-<./Diagrams/Lineout.jpg, id=105, 948.54375pt x 617.30624pt>
-File: ./Diagrams/Lineout.jpg Graphic file (type jpg)
+[8 <./Diagrams/ScanFromUseCase.png>] [9 <./Diagrams/ScanInstancesUseCase.png>]
+<./Diagrams/LoginSequence.png, id=97, 281.55188pt x 519.44063pt>
+File: ./Diagrams/LoginSequence.png Graphic file (type png)
 
-<use ./Diagrams/Lineout.jpg>
-Package pdftex.def Info: ./Diagrams/Lineout.jpg used on input line 221.
-(pdftex.def)             Requested size: 446.9055pt x 290.84042pt.
+<use ./Diagrams/LoginSequence.png>
+Package pdftex.def Info: ./Diagrams/LoginSequence.png used on input line 235.
+(pdftex.def)             Requested size: 268.14603pt x 494.74188pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 221--221
+<./Diagrams/ScanNetworkSequence.png, id=98, 176.91093pt x 603.75563pt>
+File: ./Diagrams/ScanNetworkSequence.png Graphic file (type png)
+
+<use ./Diagrams/ScanNetworkSequence.png>
+Package pdftex.def Info: ./Diagrams/ScanNetworkSequence.png used on input line 
+239.
+(pdftex.def)             Requested size: 446.9055pt x 1525.21254pt.
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 239--239
  [] 
  []
 
-[12 <./Diagrams/Lineout.jpg>]
-<./Diagrams/Scrums.jpg, id=111, 625.33624pt x 336.25626pt>
-File: ./Diagrams/Scrums.jpg Graphic file (type jpg)
+[10 <./Diagrams/LoginSequence.png>]
+Overfull \vbox (833.6279pt too high) has occurred while \output is active []
 
-<use ./Diagrams/Scrums.jpg>
-Package pdftex.def Info: ./Diagrams/Scrums.jpg used on input line 229.
-(pdftex.def)             Requested size: 446.9055pt x 240.31877pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 229--229
+[11 <./Diagrams/ScanNetworkSequence.png>]
+<./Diagrams/GetNodeInformationSequence.png, id=107, 374.14781pt x 481.04718pt>
+File: ./Diagrams/GetNodeInformationSequence.png Graphic file (type png)
+
+<use ./Diagrams/GetNodeInformationSequence.png>
+Package pdftex.def Info: ./Diagrams/GetNodeInformationSequence.png used on inpu
+t line 243.
+(pdftex.def)             Requested size: 446.9055pt x 574.62595pt.
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 243--243
  [] 
  []
 
-<./Diagrams/Tackles.jpg, id=112, 548.0475pt x 330.23375pt>
-File: ./Diagrams/Tackles.jpg Graphic file (type jpg)
+<./Diagrams/ScanFromSequence.png, id=108, 374.90062pt x 539.76656pt>
+File: ./Diagrams/ScanFromSequence.png Graphic file (type png)
 
-<use ./Diagrams/Tackles.jpg>
-Package pdftex.def Info: ./Diagrams/Tackles.jpg used on input line 236.
-(pdftex.def)             Requested size: 402.21222pt x 242.36363pt.
- [13 <./Diagrams/Scrums.jpg> <./Diagrams/Tackles.jpg>] <./Diagrams/Possession.j
-pg, id=117, 263.98625pt x 330.23375pt>
-File: ./Diagrams/Possession.jpg Graphic file (type jpg)
+<use ./Diagrams/ScanFromSequence.png>
+Package pdftex.def Info: ./Diagrams/ScanFromSequence.png used on input line 247
+.
+(pdftex.def)             Requested size: 446.9055pt x 643.475pt.
 
-<use ./Diagrams/Possession.jpg>
-Package pdftex.def Info: ./Diagrams/Possession.jpg used on input line 243.
-(pdftex.def)             Requested size: 178.75946pt x 223.61871pt.
-
-<./Diagrams/Turn-Over.jpg, id=118, 948.54375pt x 596.2275pt>
-File: ./Diagrams/Turn-Over.jpg Graphic file (type jpg)
-
-<use ./Diagrams/Turn-Over.jpg>
-Package pdftex.def Info: ./Diagrams/Turn-Over.jpg used on input line 250.
-(pdftex.def)             Requested size: 446.9055pt x 280.90929pt.
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 250--250
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 247--247
  [] 
  []
 
-[14 <./Diagrams/Possession.jpg> <./Diagrams/Turn-Over.jpg>]
-<./Diagrams/CleanBreaks.jpg, id=123, 1075.01625pt x 547.04375pt>
-File: ./Diagrams/CleanBreaks.jpg Graphic file (type jpg)
+[12 <./Diagrams/GetNodeInformationSequence.png>]
+<./Diagrams/ScanRegionSequence.png, id=114, 191.21437pt x 603.75563pt>
+File: ./Diagrams/ScanRegionSequence.png Graphic file (type png)
 
-<use ./Diagrams/CleanBreaks.jpg>
-Package pdftex.def Info: ./Diagrams/CleanBreaks.jpg used on input line 257.
-(pdftex.def)             Requested size: 446.9055pt x 227.41959pt.
+<use ./Diagrams/ScanRegionSequence.png>
+Package pdftex.def Info: ./Diagrams/ScanRegionSequence.png used on input line 2
+51.
+(pdftex.def)             Requested size: 446.9055pt x 1411.29005pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 257--257
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 251--251
  [] 
  []
 
-<./Diagrams/Offload.jpg, id=124, 962.59625pt x 596.2275pt>
-File: ./Diagrams/Offload.jpg Graphic file (type jpg)
+[13 <./Diagrams/ScanFromSequence.png>] [14]
+Overfull \vbox (719.70541pt too high) has occurred while \output is active []
 
-<use ./Diagrams/Offload.jpg>
-Package pdftex.def Info: ./Diagrams/Offload.jpg used on input line 264.
-(pdftex.def)             Requested size: 446.9055pt x 276.80623pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 264--264
+[15 <./Diagrams/ScanRegionSequence.png>]
+<./Diagrams/ChangeScannerStateSequence.png, id=127, 184.43906pt x 532.99126pt>
+File: ./Diagrams/ChangeScannerStateSequence.png Graphic file (type png)
+
+<use ./Diagrams/ChangeScannerStateSequence.png>
+Package pdftex.def Info: ./Diagrams/ChangeScannerStateSequence.png used on inpu
+t line 255.
+(pdftex.def)             Requested size: 446.9055pt x 1291.4694pt.
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 255--255
  [] 
  []
 
-[15 <./Diagrams/CleanBreaks.jpg> <./Diagrams/Offload.jpg>]
-<./Diagrams/Ruck.jpg, id=129, 716.6775pt x 341.275pt>
-File: ./Diagrams/Ruck.jpg Graphic file (type jpg)
+[16]
+Overfull \vbox (599.88477pt too high) has occurred while \output is active []
 
-<use ./Diagrams/Ruck.jpg>
-Package pdftex.def Info: ./Diagrams/Ruck.jpg used on input line 271.
-(pdftex.def)             Requested size: 446.9055pt x 212.81726pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 271--271
+[17 <./Diagrams/ChangeScannerStateSequence.png>]
+<./Diagrams/ScanInstancesSequence.png, id=136, 228.855pt x 597.73312pt>
+File: ./Diagrams/ScanInstancesSequence.png Graphic file (type png)
+
+<use ./Diagrams/ScanInstancesSequence.png>
+Package pdftex.def Info: ./Diagrams/ScanInstancesSequence.png used on input lin
+e 259.
+(pdftex.def)             Requested size: 446.9055pt x 1167.2987pt.
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 259--259
  [] 
  []
 
-[16 <./Diagrams/Ruck.jpg>]
-<./Diagrams/Mauls.jpg, id=134, 695.59875pt x 434.62375pt>
-File: ./Diagrams/Mauls.jpg Graphic file (type jpg)
+[18]
+Overfull \vbox (475.71407pt too high) has occurred while \output is active []
 
-<use ./Diagrams/Mauls.jpg>
-Package pdftex.def Info: ./Diagrams/Mauls.jpg used on input line 279.
-(pdftex.def)             Requested size: 446.9055pt x 279.23259pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 279--279
- [] 
- []
+[19 <./Diagrams/ScanInstancesSequence.png>]
+File: ./Diagrams/ScanInstancesSequence.png Graphic file (type png)
 
-<./Diagrams/EventsList.jpg, id=135, 829.0975pt x 555.07375pt>
-File: ./Diagrams/EventsList.jpg Graphic file (type jpg)
+<use ./Diagrams/ScanInstancesSequence.png>
+Package pdftex.def Info: ./Diagrams/ScanInstancesSequence.png used on input lin
+e 264.
+(pdftex.def)             Requested size: 446.9055pt x 1167.2987pt.
+ [20]
+Overfull \vbox (502.46407pt too high) has occurred while \output is active []
 
-<use ./Diagrams/EventsList.jpg>
-Package pdftex.def Info: ./Diagrams/EventsList.jpg used on input line 287.
-(pdftex.def)             Requested size: 446.9055pt x 299.19328pt.
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 287--287
- [] 
- []
-
-[17 <./Diagrams/Mauls.jpg>] [18 <./Diagrams/EventsList.jpg>]
-<./Diagrams/Login_LogoutActivityDiagram.jpg, id=145, 620.3175pt x 626.34pt>
-File: ./Diagrams/Login_LogoutActivityDiagram.jpg Graphic file (type jpg)
-
-<use ./Diagrams/Login_LogoutActivityDiagram.jpg>
-Package pdftex.def Info: ./Diagrams/Login_LogoutActivityDiagram.jpg used on inp
-ut line 296.
-(pdftex.def)             Requested size: 268.14603pt x 270.74496pt.
-
-<./Diagrams/LoadInfoActivityDiagram.jpg, id=146, 873.2625pt x 496.85625pt>
-File: ./Diagrams/LoadInfoActivityDiagram.jpg Graphic file (type jpg)
-
-<use ./Diagrams/LoadInfoActivityDiagram.jpg>
-Package pdftex.def Info: ./Diagrams/LoadInfoActivityDiagram.jpg used on input l
-ine 300.
-(pdftex.def)             Requested size: 446.9055pt x 254.27277pt.
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 300--300
- [] 
- []
-
-<./Diagrams/GameTimeActivityDiagram.jpg, id=147, 838.13126pt x 556.0775pt>
-File: ./Diagrams/GameTimeActivityDiagram.jpg Graphic file (type jpg)
-
-<use ./Diagrams/GameTimeActivityDiagram.jpg>
-Package pdftex.def Info: ./Diagrams/GameTimeActivityDiagram.jpg used on input l
-ine 304.
-(pdftex.def)             Requested size: 446.9055pt x 296.51001pt.
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 304--304
- [] 
- []
-
-[19 <./Diagrams/Login_LogoutActivityDiagram.jpg> <./Diagrams/LoadInfoActivityDi
-agram.jpg>]
-<./Diagrams/ScoringActivityDiagram.jpg, id=152, 1096.095pt x 521.95pt>
-File: ./Diagrams/ScoringActivityDiagram.jpg Graphic file (type jpg)
-
-<use ./Diagrams/ScoringActivityDiagram.jpg>
-Package pdftex.def Info: ./Diagrams/ScoringActivityDiagram.jpg used on input li
-ne 308.
-(pdftex.def)             Requested size: 446.9055pt x 212.8142pt.
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 308--308
- [] 
- []
-
-[20 <./Diagrams/GameTimeActivityDiagram.jpg> <./Diagrams/ScoringActivityDiagram
-.jpg>]
-<./Diagrams/SubstitutionsActivityDiagram.jpg, id=157, 838.13126pt x 347.2975pt>
-File: ./Diagrams/SubstitutionsActivityDiagram.jpg Graphic file (type jpg)
-<use ./Diagrams/SubstitutionsActivityDiagram.jpg>
-Package pdftex.def Info: ./Diagrams/SubstitutionsActivityDiagram.jpg used on in
-put line 313.
-(pdftex.def)             Requested size: 446.9055pt x 185.18495pt.
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 313--313
- [] 
- []
-
-<./Diagrams/DisciplineActivityDiagram.jpg, id=158, 456.70625pt x 449.68pt>
-File: ./Diagrams/DisciplineActivityDiagram.jpg Graphic file (type jpg)
-
-<use ./Diagrams/DisciplineActivityDiagram.jpg>
-Package pdftex.def Info: ./Diagrams/DisciplineActivityDiagram.jpg used on input
- line 317.
-(pdftex.def)             Requested size: 268.14603pt x 264.02579pt.
-
-<./Diagrams/DomainModel.jpg, id=159, 977.6525pt x 694.595pt>
-File: ./Diagrams/DomainModel.jpg Graphic file (type jpg)
-
-<use ./Diagrams/DomainModel.jpg>
-Package pdftex.def Info: ./Diagrams/DomainModel.jpg used on input line 322.
-(pdftex.def)             Requested size: 446.9055pt x 317.51443pt.
- [21 <./Diagrams/SubstitutionsActivityDiagram.jpg> <./Diagrams/DisciplineActivi
-tyDiagram.jpg>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 326.
- [22 <./Diagrams/DomainModel.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 326.
+[21]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 268.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 268.
  (Functional_Requirements.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 326.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 326.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 268.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 268.
 Package rerunfilecheck Info: File `Functional_Requirements.out' has not changed
 .
 (rerunfilecheck)             Checksum: 176CD47F8D37680E9A60BDBB397AC09B;500.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 326.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 268.
  ) 
 Here is how much of TeX's memory you used:
- 5411 strings out of 493335
- 82139 string characters out of 3136677
+ 5360 strings out of 493335
+ 81092 string characters out of 3136677
  188203 words of memory out of 3000000
- 8850 multiletter control sequences out of 15000+200000
+ 8810 multiletter control sequences out of 15000+200000
  9750 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,5n,28p,700b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,5n,28p,531b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Functional_Requirements.pdf (23 pages, 4065748 bytes).
+Output written on Functional_Requirements.pdf (22 pages, 645905 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
- 182 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 132 words of extra memory for PDF output out of 10000 (max. 10000000)
 
