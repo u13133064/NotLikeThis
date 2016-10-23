@@ -162,7 +162,7 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
     
     Scan From &  The scan must be active. The user has provided a valid name of an instance. & The scan starts at the provided instance and begins scanning from the specified point.  &  This use case provides a way of specifying where the scan should begin.\\ 
     \hline
-    Scan Instances &  aaa. & aaa.  &  aaa.\\ 
+    Scan Instances &  The scan must be active. & The scan only scans instances.  &  This use case provides a way to only scan instances.\\ 
     \hline
     
     Load scan from local .json & A .json file with the correct formatting must be stored on the local device. & The browser processes the information on the .json and visualises it, as it would with a normal scan. & This case provides a way load network visualisations, without the need to scan it from the server.\\ \hline
@@ -262,8 +262,8 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/StopResumePauseUseCase.png}\\[0.4cm]    
 	\end{center}
-
-	\item \textbf{Scan From}
+\newpage
+ \item \textbf{Scan From}
 	\begin{flushleft}
 
 \textbf{Description}
@@ -285,7 +285,7 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/ScanFromUseCase.png}\\[0.4cm]    
 	\end{center}
-
+\newpage
 	\item \textbf{Scan Instances}
 	\begin{flushleft}
 
@@ -318,34 +318,40 @@ The processes followed when using some of the more important functions of the sy
 		\begin{center}
   	 	\includegraphics[width=0.6\textwidth] {./Diagrams/LoginSequence.png}\\[0.4cm]    
 		\end{center}
+	\newpage
 	\item Scan network
 		\begin{center}
-  	  	\includegraphics[width=1\textwidth] {./Diagrams/ScanNetworkSequence.png}\\[0.4cm]    
+  	  	\includegraphics[width=0.3\textwidth] {./Diagrams/ScanNetworkSequence.png}\\[0.4cm]    
 		\end{center}
+	\newpage
 	\item Get Node Information
 		\begin{center}
 	 	\includegraphics[width=1\textwidth] {./Diagrams/GetNodeInformationSequence.png}\\[0.4cm]
 		\end{center}
+	\newpage
 	\item Scan From
 		\begin{center}
 			 	\includegraphics[width=1\textwidth] {./Diagrams/ScanFromSequence.png}\\[0.4cm]
 		\end{center}
 	\item Scan Region
 		\begin{center}
-			 	\includegraphics[width=1\textwidth] {./Diagrams/ScanRegionSequence.png}\\[0.4cm]
+			 	\includegraphics[width=0.4\textwidth] {./Diagrams/ScanRegionSequence.png}\\[0.4cm]
 		\end{center}
+	\newpage
 	\item Change Scanner State
 		\begin{center}
-	 	\includegraphics[width=1\textwidth] {./Diagrams/ChangeScannerStateSequence.png}\\[0.4cm]
+	 	\includegraphics[width=0.5\textwidth] {./Diagrams/ChangeScannerStateSequence.png}\\[0.4cm]
 		\end{center}
 	\item Scan Instances
-	\begin{center}
-		\includegraphics[width=1\textwidth] {./Diagrams/ScanInstancesSequence.png}\\[0.4cm]
-	\end{center}
 \end{itemize}
+	\begin{center}
+		\includegraphics[width=0.5\textwidth] {./Diagrams/ScanInstancesSequence.png}\\[0.4cm]
+	\end{center}
+
+
 \subsection{Domain Model}
 	\begin{center}
-  	  	\includegraphics[width=1\textwidth] {./Diagrams/ScanInstancesSequence.png}\\[0.4cm]    
+  	  	\includegraphics[width=0.5\textwidth] {./Diagrams/ScanInstancesSequence.png}\\[0.4cm]    
 	\end{center}
 \index{Vision}
 
