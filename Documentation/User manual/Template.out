@@ -5,16 +5,20 @@
 \BOOKMARK [1][-]{section.5}{Using the system}{}% 5
 \BOOKMARK [2][-]{subsection.5.1}{Login}{section.5}% 6
 \BOOKMARK [2][-]{subsection.5.2}{Logout}{section.5}% 7
-\BOOKMARK [2][-]{subsection.5.3}{Scan Network}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.4}{Pause/Resume}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.5}{Stop}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.6}{Scan up/down}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.7}{Regions}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.8}{Zooming}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.9}{Dragging}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.10}{Hovering over a node}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.11}{Clicking on a node}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.12}{Dragging boxes}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.13}{Loading from a file}{section.5}% 18
-\BOOKMARK [2][-]{subsection.5.14}{Saving a file}{section.5}% 19
-\BOOKMARK [1][-]{section.6}{Troubleshooting}{}% 20
+\BOOKMARK [2][-]{subsection.5.3}{Scanner Tab}{section.5}% 8
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Scan Network}{subsection.5.3}% 9
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Stop}{subsection.5.3}% 10
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Scan up}{subsection.5.3}% 11
+\BOOKMARK [3][-]{subsubsection.5.3.4}{Scan Instances}{subsection.5.3}% 12
+\BOOKMARK [3][-]{subsubsection.5.3.5}{Search Box}{subsection.5.3}% 13
+\BOOKMARK [2][-]{subsection.5.4}{Regions}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.5}{Zooming}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.6}{Dragging}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.7}{Dragging Nodes}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.8}{Hovering over a node}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.9}{Clicking on a node}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.10}{Security Groups}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.11}{Dragging Information Box}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.12}{Loading from a file}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.13}{Saving a file}{section.5}% 23
+\BOOKMARK [1][-]{section.6}{Troubleshooting}{}% 24

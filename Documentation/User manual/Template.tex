@@ -106,12 +106,15 @@ u12003672
 \section{System Overview} 
 
 Nimbus, the Amazon Web Services (AWS) network visualiser, will by usable by registered users of AWS. The system will scan the AWS network and build a visual hierarchy, so that the user may have a better understanding of the network's structure, how different services relate to each other and gain information in an intuitive manner. After opening the web page, the user must log in using their AWS access- and secret key. Only once the user's identity has been verified by our server, will it allow them to make use of Nimbus. Once the user has succesfully logged in, they may begin the network scan. The browser itself does not scan the AWS, rather it communicates with our server. The user may choose to simply scan their network in its entirety, or only to scan certain parts of it. Our server scans and maps out the network, then sends the relevant information to the browser. The browser processes this and displays the hierarchy.
+\newline
+We have set put to create a system that is highly effecient and scalable, while being easy to use and accessible.
 
 
 \section{System Configuration}
 \begin {itemize}
-	\item The user will use a browser to make use of the webpage and the server.
+	\item The user uses a browser to make use of the webpage and the server.
 	\item The user requires internet access in order to make use of the server and its scanning capabilities. 
+	\item If the user wishes to run the server on their device, they will require IntelliJ IDEA Community Edition.
 	\item The web page does offer the ability to store and load .json files, which are representative of the current scan.
 \end{itemize}
 
@@ -126,17 +129,9 @@ Nimbus, the Amazon Web Services (AWS) network visualiser, will by usable by regi
 	\end{center}
 	
 	\item The user must have Java EE installed.
-	\item The user must have IntelliJ Developer Edition installed.
-	\item The user must follow the steps specified in the next two blogs to get a working server.
-	\item ( \url {http://jason.zwolak.org/technoblog/2013/06/restful-service-with-tomee-and-intellij-idea/})
-	\item ( \url {https://chiaboy.wordpress.com/2014/07/20/simple-jersey-example-with-intellij-idea-and-tomcat/})
-		\begin{center}
-			\includegraphics[width=0.3\textwidth] {./images/InstallOne.png}\\[0.4cm]
-	
-					\includegraphics[width=0.3\textwidth] {./images/InstallTwo.png}\\[0.4cm]
-				\end{center}
-
-	
+	\item The user must have IntelliJ Community Edition installed.
+	\item The user must have an SDK installed onto IntelliJ.
+	\item The user simply has to import the project to run it.
 	
 	
 \end{enumerate}
@@ -158,21 +153,13 @@ The functionality of the visualiser is spread between the following use cases:
 
 	\subsection{Login}
 		\begin {itemize}
-			\item The user is presented with two options for logging in. The first is to enter their details into the input boxes at the top of the web page, Access Key and Secret Key.
-			\item Once the details are filled in, pressing "Login" will log the user into the server.
+			\item The user must enter their AWS Access and Secret keys into the appropriate boxes.
+			\item Once the keys are filled in, pressing "Login" will log the user into the server.
+			\item If the login is a success, an alert box will appear, saying: Success: Account keys have been received and verified
 		\end{itemize}
-		
-  		\begin{center}
-    			\includegraphics[width=0.7\textwidth]{./images/LoginOne.png}
-  		\end{center}
-
-		\begin {itemize}
-		\item The second option is to immediately press the  "Scan Network" button.
-		\item If this occurs, the user is presented with an alert box, where they may enter their Access Key and Secret Key.
-		\end{itemize}
-		
+	
 		\begin{center}
-			\includegraphics[width=0.9\textwidth]{./images/LoginTwo.png}
+			\includegraphics[width=0.5\textwidth]{./images/LoginOne.png}
 		\end{center}
 		
 
@@ -180,65 +167,67 @@ The functionality of the visualiser is spread between the following use cases:
 		\begin {itemize}
 			\item Once the user has finished their session, they can log out using the "Logout" button.
 		\end{itemize}
+	
+		\subsection{Scanner Tab}
+		\begin {itemize}
+		\item This tab contains a number of functions that will be discussed.
+		\end{itemize}
+	
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{./images/AfterStop.png}
+	\end{center}	
+
 	\newpage
 	
-	\subsection{Scan Network}
+	\subsubsection{Scan Network}
 		\begin {itemize}
-			\item After the user has successfully logged in, they may scan the network, by pressing "Scan Network".
+			\item After the user has successfully logged in, they may scan the network, by pressing: Scanner, Scan Network
 			\item The network will then build a hierarchial tree node by node, so that the user may follow its construction with ease.
-			\item The network presented here is for demonstration purposes and is not reflective of an actual network.
+			\item The network presented here is for demonstration purposes and is not representave of an actual network.
 		\end{itemize}
+	
 		\begin{center}
-			\includegraphics[width=0.9\textwidth]{./images/PostScanLaunch.png}
-			\end{center}	
+		\includegraphics[width=0.5\textwidth]{./images/PostScanLaunch.png}
+	\end{center}
 		
 	
-		
-	\subsection{Pause/Resume}
-	\begin {itemize}
-	\item While the scan is active, it can be paused.It will halt the scan's execution, but it can be resumed.
-	\item While the scan is is inactive, it can be resumed. This will resume scan's execution, from where it left off
-	\end{itemize}
-	
-	\begin{center}
-		\includegraphics[width=0.45\textwidth]{./images/AfterPause.png}
-		\includegraphics[width=0.4\textwidth]{./images/WhileActive.png}
-	\end{center}	
-	
-	\newpage
-	
-		\subsection{Stop}
+	\subsubsection{Stop}
 		\begin {itemize}
-		\item If the scan is stopped, a new scan may be begun. Progress from the previous scan is lost.
+		\item Pressing: Scanner, Stop Scan, will stop the scan.
+		\item A new scan can be launched, but current progress will be lost.
 	\end{itemize}
 	
-	\begin{center}
-		\includegraphics[width=0.45\textwidth]{./images/AfterStop.png}
-	\end{center}	
+	
 
 	
-	\subsection{Scan up/down}
+	\subsubsection{Scan up}
 			\begin {itemize}
-			\item Selecting "Scan Up" or "Scan Down" will determine the direction the scan is goes.
+			\item Pressing: Scanner, Scan Up will change the direction of the scan.
 	\end{itemize}
+
+	\subsubsection{Scan Instances}
+	\begin {itemize}
+	\item Pressing: Scanner, Scan Instances will cause the scanner to only scan instances.
+	\end{itemize}
+
+	\subsubsection{Search Box}
+	\begin {itemize}
+	\item Typing a valid Instance ID into the search box and launching the search will cause the scanner to find the instance, load it and begin scanning instances from it.
+	\end{itemize}
+
+	\newpage
 		
-		\newpage
-		
-			\subsection{Regions}
+	\subsection{Regions}
 			\begin {itemize}
-			\item Hovering the mouse over "Region" will reveal a drop-down list with all the AWS regions. 
+			\item Pressing: Scan Region will reveal a drop-down list with all the AWS regions. 
 			\item Selecting a region will cause the scan to only scan nodes that fall under the selected region.
-		\end{itemize}
+	\end{itemize}
 		
-		\begin{center}
-			\includegraphics[width=0.3\textwidth]{./images/RegionSelect.png}
-
-		\end{center}	
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{./images/RegionSelect.png}
+	\end{center}	
 		
-		\newpage
-		
-		
-		\subsection{Zooming}
+	\subsection{Zooming}
 			\begin {itemize}
 			\item Hovering the mouse over the hierarchy and rolling the mouse forwards or backwards will zoom in and zoom out respectively.
 		\end{itemize}
@@ -247,8 +236,9 @@ The functionality of the visualiser is spread between the following use cases:
 			\includegraphics[width=0.45\textwidth]{./images/ZoomOut.png}
 			\includegraphics[width=0.3\textwidth]{./images/ZoomIn.png}
 		\end{center}	
-		
-				\subsection{Dragging}
+	
+	\newpage
+	\subsection{Dragging}
 				\begin {itemize}
 				\item Clicking and holding the mouse over the hierarchy allows the user to move the tree around the screen.
 				\item While this occurs, edges are not displayed. This is for effeciency's sake.
@@ -256,41 +246,53 @@ The functionality of the visualiser is spread between the following use cases:
 			
 			\begin{center}
 				\includegraphics[width=0.45\textwidth]{./images/Dragging.png}
-
 			\end{center}
+		
+	\subsection{Dragging Nodes}
+		\begin {itemize}
+		\item Clicking and holding nodes allows them to be shifted. Nodes can only be shifred horizontally, to preserve the hierarchial structure.
+	\end{itemize}
 		
 			\subsection{Hovering over a node}
 						\begin {itemize}
-						\item Hovering the mouse over a node will highlingt it and its edges
+						\item Hovering the mouse over a node will highlingt it and its edges.
+						\item The node's border and connected edges are broadened and have a darker shade of the node they are connected to. 
 					\end{itemize}
 					
 					\begin{center}
 						\includegraphics[width=0.45\textwidth]{./images/NodeHover.png}
 						
 					\end{center}
-		\newpage
+	
 		
 		\subsection{Clicking on a node}
 					\begin {itemize}
-					\item Clicking on a node will turn its and its border's black.
-					\item When a node is clicked, the server is queried and its information is loaded into the grey box.
+					\item Clicking on a node will highlingt it and its edges.
+					\item When a node is clicked, the server is queried and its information is loaded into the information box.
+					\item If the instance belongs to a security group, one will be displayed.
 				\end{itemize}
 				
 				\begin{center}
-					\includegraphics[width=0.45\textwidth]{./images/SelectNode.png}
-					
+					\includegraphics[width=0.40\textwidth]{./images/SelectNode.png}
+					\includegraphics[width=0.33\textwidth]{./images/Info.png}
 				\end{center}
+			
+		\subsection{Security Groups}
+			\begin {itemize}
+				\item The node is displayed as part of its security group.
+				\item The network can be manipulated like the hierarchial network.
+				\item Pressing the "X" in the corner will close the box.
+			\end{itemize}
 		
-		\subsection{Dragging boxes}
+		\begin{center}
+			\includegraphics[width=0.60\textwidth]{./images/SecurityGroup.png}
+		\end{center}
+		
+		\subsection{Dragging Information Box}
 				\begin {itemize}
-				\item The box containing the network controls and the box where node information is displayed, can be moved.
-				\item The small bar at the top of both boxes can be dragged, allowing for ease of use
+				\item The Information Box may be dragged about the screen, by dragging the grey bar on top. 
 			\end{itemize}
 			
-			\begin{center}
-				\includegraphics[width=0.45\textwidth]{./images/DragBoxes.png}
-				
-			\end{center}
 			\newpage	
 			
 			\subsection{Loading from a file}
