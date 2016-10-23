@@ -176,6 +176,30 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 	\item \textbf{Log in/log out}
 		\begin{flushleft}
 		Log in allows the user to log in using a valid AWS Access Key and Secret Key. Their details are encrypted, to avoid security leaks. Only once a user is logged in, may they use the system. Once they have finished they may log out. Doing so will clear the credentials used, to ensure privacy.
+	\newline
+\textbf{Description}
+	\newline
+	This function validates clients' credentials to allow them to scan an accounts network.
+	\newline
+	\textbf{Inputs}
+	\newline
+	Client’s access key and client’s private key.
+	\newline
+	\textbf{Processing}
+	\newline
+	The access key and private key is passed to a Credentials object. The credentials are validated by
+	trying to connect to an account with those keys.
+	\newline
+	\textbf{Outputs}
+	\newline
+	If validation successful:
+	\newline
+	Access to the visualization interface.
+	\newline
+	If invalid:
+	\newline
+	Error message and retry prompt.
+	\newline
 		\end{flushleft}
 		\begin{center}
   	 	\includegraphics[width=1\textwidth] {./Diagrams/LoginUseCase.png}\\[0.4cm]    
@@ -185,6 +209,22 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 	\item \textbf{Scan network}
 		\begin{flushleft}
 		When the scan is initialised, the AWS scanner is activated. It will create a number of threads that will scan the various parts of the network simultaneously, greatly increasing the scalability and performance. As the scans occur, the results are added to the Shared Buffer, that the Visualiser reads from and draws the nodes as they appear.
+\newline
+\textbf{Description}
+	\newline
+	This function launches a scan of the entire network
+	\newline
+	\textbf{Inputs}
+	\newline
+	Previously validated credentials
+	\newline
+	\textbf{Processing}
+	\newline
+	A number of subscanners are launched. They add whatthey find to the buffer. The buffer constructs the tree and the visualizaer fetches it.
+	\newline
+	\textbf{Outputs}
+	\newline
+	A dynamically growing tree that is rendered to user.
 		\end{flushleft}
 		\begin{center}
   	 	\includegraphics[width=1\textwidth] {./Diagrams/ScanNetworkUseCase.png}\\[0.4cm]    
@@ -193,6 +233,22 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 	\item \textbf{Get Node Information}
 	\begin{flushleft}
 	If a request is sent for a node's information, the shared buffer is queried [using the instances unique ID (UUID)] and the results are sentto the visualiser.
+\newline
+\textbf{Description}
+	\newline
+	This function requests inforamtion for a specific node
+	\newline
+	\textbf{Inputs}
+	\newline
+	The nodes uuid.
+	\newline
+	\textbf{Processing}
+	\newline
+	The buffer looks for the matching information in its hashmap.
+	\newline
+	\textbf{Outputs}
+	\newline
+	A set of information about the node.
 	\end{flushleft}
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/GetNodeInformationUseCase.png}\\[0.4cm]    
@@ -209,7 +265,22 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 
 	\item \textbf{Scan From}
 	\begin{flushleft}
-		Basically just say what this part does.
+
+\textbf{Description}
+	\newline
+	This function launches a scan of the network from specific uuid.
+	\newline
+	\textbf{Inputs}
+	\newline
+	Uuid of specific node
+	\newline
+	\textbf{Processing}
+	\newline
+	The scanner controlelr launches the specific threaded scanner only and it follows the process of scan network, but on its own.
+	\newline
+	\textbf{Outputs}
+	\newline
+	The network scanned from that spceifed node.
 	\end{flushleft}
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/ScanFromUseCase.png}\\[0.4cm]    
@@ -217,7 +288,22 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 
 	\item \textbf{Scan Instances}
 	\begin{flushleft}
-		Basically just say what this part does.
+
+		\textbf{Description}
+	\newline
+	This functionscans all isntances registered t othe user.
+	\newline
+	\textbf{Inputs}
+	\newline
+	Nothing
+	\newline
+	\textbf{Processing}
+	\newline
+	The scanner controlelr launches an instance threaded scanner for each region only which  follow the process of scan network.
+	\newline
+	\textbf{Outputs}
+	\newline
+	All instances scanned and rendered.
 	\end{flushleft}
 	\begin{center}
 		\includegraphics[width=1\textwidth] {./Diagrams/ScanInstancesUseCase.png}\\[0.4cm]    
@@ -226,7 +312,7 @@ The Nimbus Amazon Web Services (AWS) network visualiser will be used to visualis
 \end{itemize}
 \newpage
 \subsection{Process specification}
-The processes followed when using some of the more important functions of the OnlyRugby app system are displayed below:
+The processes followed when using some of the more important functions of the system are displayed below:
 \begin{itemize}
 	\item Log in/ log out
 		\begin{center}
