@@ -1,3 +1,12 @@
+
+/**
+ * <h1>AWSScanner</h1>
+ * Concrete implementation of ScannerInterface
+ * Master Scanner that calls sub-scanners as needed.
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
+ */
 package Scanner;
 
 import Buffer.SharedBuffer;
@@ -18,9 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-/**
- * Created by Jedd Shneier.
- */
+
 public class AWSScanner implements ScannerInterface {
     private SharedBuffer buffer;
     private Credential clientCredentials;

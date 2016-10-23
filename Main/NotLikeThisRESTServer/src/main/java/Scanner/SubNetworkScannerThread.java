@@ -14,7 +14,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Jedd Sheneier.
+ * <h1>VpcScannerThread</h1>
+ * Concrete implementation of ThreadedScannerInterface
+ * Scans Subnets of a particular region.
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class SubNetworkScannerThread implements ThreadedScannerInterface{
     private String regionName;

@@ -5,7 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Jedd Shneier.
+ * <h1>HTMLEncoder</h1>
+ * A class for styling information
+ * Marks up raw information as HTML
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class HTMLEncoder {
     public String securityGroupToHtml(String input) {

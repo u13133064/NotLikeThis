@@ -11,9 +11,13 @@ import com.amazonaws.services.ec2.model.*;
 
 import java.util.LinkedList;
 import java.util.List;
-
 /**
- * Created by Jedd Shneier
+ * <h1>InstanceScannerThread</h1>
+ * Concrete implementation of ThreadedScannerInterface
+ * Scans Instance of a particular region.
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class InstanceScannerThread implements ThreadedScannerInterface
 {

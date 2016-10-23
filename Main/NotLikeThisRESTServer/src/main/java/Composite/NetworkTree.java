@@ -1,7 +1,13 @@
 package Composite;
 
 /**
- * Created by Jedd Shneier
+ * <h1>NetworkTree</h1>
+ * Interface for Node objects
+ * Composite design pattern
+ * Used as communication object between threads and buffer
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public interface NetworkTree {
     String getUUID();
@@ -13,10 +19,6 @@ public interface NetworkTree {
     void setUUID(String id);
     void setInformation(String info);
     void addRelationship(String UUID);
-    void addSecurityGroup(String UUID);
-    String getSecurityGroups();
-    void addNetworkInterface(String UUID);
-    String getNetworkInterfaces();
     String getRelationships();
 
 }

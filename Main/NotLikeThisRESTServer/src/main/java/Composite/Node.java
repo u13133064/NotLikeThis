@@ -3,15 +3,20 @@ package Composite;
 import java.util.LinkedList;
 
 /**
- * Created by Jedd Shneier.
+ * <h1>Node</h1>
+ * Concrete implementation of network Interface
+ * Composite design pattern
+ * Used as communication object between threads and buffer
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class Node implements NetworkTree {
     private String information;
     private String uuid;
     private int level;
     private LinkedList<String> relationships=null;
-    private LinkedList<String> securityGroups=null;
-    private LinkedList<String> networkInterfaces=null;
+
     private String name;
 
     public String getUUID() {
@@ -58,14 +63,6 @@ public class Node implements NetworkTree {
         relationships.add(UUID);
     }
 
-    public void addSecurityGroup(String UUID) {
-        if(securityGroups==null)
-        {
-            securityGroups= new LinkedList<String>();
-        }
-        securityGroups.add(UUID);
-
-    }
     private String getList(LinkedList<String> list)
     {
         if(list==null)
@@ -85,27 +82,10 @@ public class Node implements NetworkTree {
 
     }
 
-    public String getSecurityGroups() {
-        return getList(securityGroups);
 
-    }
-
-    public void addNetworkInterface(String UUID) {
-        if(networkInterfaces==null)
-        {
-            networkInterfaces= new LinkedList<String>();
-        }
-        networkInterfaces.add(UUID);
-
-    }
-
-    public String getNetworkInterfaces() {
-        return getList(networkInterfaces)
-;
-    }
 
     public String getRelationships() {
-            return  getList(relationships);
+        return  getList(relationships);
     }
 
 

@@ -3,7 +3,11 @@ package RouteTableGroups;
 import java.util.LinkedList;
 
 /**
- * Created by Jedd Shneier
+ * <h1>RouteTableSet</h1>
+ * Holds information on  route table rules for Vpcs
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class RouteTableSet {
     private LinkedList<String> associations=new LinkedList<String>();

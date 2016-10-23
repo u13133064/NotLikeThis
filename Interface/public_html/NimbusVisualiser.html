@@ -211,7 +211,6 @@
     function scanUp()
     {
         scanFinished=false;
-        scanFinished=false;
         clearNodesAndEdges();
         var xhttp = new XMLHttpRequest();
         document.getElementById("loadicon").style.display = "inline";
@@ -439,8 +438,7 @@
     }
     function scanRegion(region)
     {
-        document.getElementById("scanNetworkButton").innerHTML = "Pause Scan";
-        stage = 1;
+      
         scanFinished=false;
         clearNodesAndEdges();
         var xhttp = new XMLHttpRequest();

@@ -1,3 +1,12 @@
+
+/**
+ * <h1>ServerAPI</h1>
+ * The list of API calls to the REST server
+ * matched to their respective functions
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
+ */
 import Buffer.SharedBuffer;
 import Credentials.Credential;
 import ParemeterBeans.ConnectionBean;
@@ -10,12 +19,21 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.lang.annotation.Annotation;
-// The Java class will be hosted at the URI path "/services"
+
+/** The Java class will be hosted at the URI path "/services"
+ *
+ */
 @Path("/services")
 public class ServerAPI {
-    // The Java method will process HTTP GET requests
+
     static SharedBuffer sharedBuffer = new SharedBuffer();
     static Credential credentials;
+    /**
+     * This is the  method which calls for a full scan of the network
+     * @return Http response object
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/startScanner")
     @Produces(MediaType.TEXT_PLAIN)
@@ -33,7 +51,13 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which calls for a region scan
 
+     * @return Http response object
+     *
+     * @see Exception
+     */
     @GET
     @Path("/regionScan")
     @Produces(MediaType.TEXT_PLAIN)
@@ -52,6 +76,13 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which calls for a scan of all instances
+
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/scanAllInstances")
     @Produces(MediaType.TEXT_PLAIN)
@@ -69,11 +100,19 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which calls for all active scans to pause
+
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
+
     @GET
     @Path("/pauseScan")
     @Produces(MediaType.TEXT_PLAIN)
     public Object PauseScan(@BeanParam UUIDBean uuidBean) {
-       sharedBuffer.pauseThreads();
+        sharedBuffer.pauseThreads();
 
         return Response.ok() //200
                 .entity("Scan Paused",new Annotation[0])
@@ -82,6 +121,13 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which calls for all paused scanners to resume
+
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/resumeScan")
     @Produces(MediaType.TEXT_PLAIN)
@@ -95,6 +141,13 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which calls for all active scans to stop
+
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/stopScan")
     @Produces(MediaType.TEXT_PLAIN)
@@ -109,7 +162,13 @@ public class ServerAPI {
 
     }
 
+    /**
+     * This is the method which calls for a scan beginning at specified uuid
 
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
 
     @GET
     @Path("/scanFrom")
@@ -130,7 +189,12 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
-
+    /**
+     * This is the method which calls for scan to continue from where scanFrom ended off.
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/scanUp")
     @Produces(MediaType.TEXT_PLAIN)
@@ -156,6 +220,12 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which requests the next node for visualization
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
 
     @GET
     @Path("/getLatestTree")
@@ -168,6 +238,13 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which asks for the information about a particular node specified by uuid
+     * @param paramBean
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/getInformation")
     @Produces(MediaType.APPLICATION_JSON)
@@ -179,6 +256,12 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which requests curretn summary of the ongoing scans
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/getStatus")
     @Produces(MediaType.APPLICATION_JSON)
@@ -188,8 +271,14 @@ public class ServerAPI {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
                 .allow("OPTIONS").build();
-
     }
+    /**
+     * This is the method which calls for the connections fora  node specified by uuid
+     * @param paramBean
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
     @GET
     @Path("/getConnection")
     @Produces(MediaType.TEXT_PLAIN)
@@ -201,6 +290,13 @@ public class ServerAPI {
                 .allow("OPTIONS").build();
 
     }
+    /**
+     * This is the method which valdiates user keys
+
+     * @return Http resposne object.
+     *.
+     * @see Exception
+     */
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

@@ -13,7 +13,15 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * Created by Jedd Shneier.
+ * <h1>SharedBuffer</h1>
+ * Concrete implementation of SmartBufferInterface
+ * Handle thread coordination
+ * Construct trees
+ * Hold information
+ * Send information to Visualizer
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class SharedBuffer implements SmartBufferInterface{
     private BlockingQueue<NetworkTree> frontBuffer;

@@ -7,7 +7,13 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeAvailabilityZonesRequest;
 
 /**
- * Created by Jedd Shneier.
+ * <h1>Credential</h1>
+ * Object to hold access key and secret key ofa  client
+ * Validates keys
+ *Transport object for passing credentials to scanners
+ * @author  Jedd Shneier
+ * @version 1.0
+ * @since   2016-10-16
  */
 public class Credential {
     private String access_key;
